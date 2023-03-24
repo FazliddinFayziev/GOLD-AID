@@ -12,16 +12,22 @@ const Inputs = (eng, ru) => {
     const Welcome = (eng ? "Welcome" : ru ? "Добро пожаловать" : "Xush kelibsiz")
     const InputPassword = (eng ? "Password:" : ru ? "Пароль:" : "Parol:")
     const Contact = (eng ? "Contact" : ru ? "Контакт" : "Bog'lanish")
-    const English = (eng ? "English" : ru ? "Английский" : "Ingliz")
     const InputFemale = (eng ? "Female" : ru ? "Женский" : "Ayol")
     const InputMale = (eng ? "Male" : ru ? "Мужской" : "Erkak")
+
+
+    const myLanguage = (eng ? "English" : ru ? "Русский" : "O'zbek")
+    const English = (eng ? "English" : ru ? "Английский" : "Ingliz")
     const Uzbek = (eng ? "Uzbek" : ru ? "Узбекский" : "O'zbek")
     const Russian = (eng ? "Russian" : ru ? "Русский" : "Rus")
+
+
     const InputGender = (eng ? "Gender" : ru ? "Пол" : "Jins")
     const Login = (eng ? "Login" : ru ? "Логин" : "Kirish")
     const About = (eng ? "About" : ru ? "О нас" : "Biz")
     return {
         InputConfirmPassword,
+        myLanguage,
         RegisterButton,
         InputUsername,
         InputPassword,
