@@ -5,7 +5,7 @@ import Inputs, { Eye } from '../Data/Inputs';
 
 
 const Register_Inputs = () => {
-    const { languageBoolean, open, setOpen } = useGlobalContext();
+    const { languageBoolean, open, setOpen, name, age, email, handleInputChange } = useGlobalContext();
     const { ru, eng } = languageBoolean;
 
     return (
@@ -19,17 +19,36 @@ const Register_Inputs = () => {
                 {/* ALL INPUTS */}
 
                 {/* input-1 */}
-                <div>
-                    <input type="text" placeholder={Inputs(eng, ru).InputName} />
+                <div className='form'>
+                    <input
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={(e) => handleInputChange(e)}
+                        required
+                        autoComplete="off"
+                    />
+                    <label htmlFor="name" className="label-name">
+                        <span className="content-name">{Inputs(eng, ru).InputName}</span>
+                    </label>
                 </div>
 
                 {/* input-2 */}
-                <div>
-                    <input type="number" placeholder={Inputs(eng, ru).InputAge} />
+                <div className='form'>
+                    <input
+                        type="number"
+                        name="age"
+                        value={age}
+                        onChange={(e) => handleInputChange(e)}
+                        required
+                        autoComplete="off" />
+                    <label htmlFor="name" className="label-name">
+                        <span className="content-name">{Inputs(eng, ru).InputAge}</span>
+                    </label>
                 </div>
 
                 {/* input-3 select */}
-                <div>
+                <div className='form'>
                     <select>
                         <option>{Inputs(eng, ru).InputGender}</option>
                         <option>{Inputs(eng, ru).InputMale}</option>
@@ -37,27 +56,38 @@ const Register_Inputs = () => {
                     </select>
                 </div>
 
-                {/* input-4 */}
-                <div>
-                    <input type="text" placeholder={Inputs(eng, ru).InputUsername} />
-                </div>
-
                 {/* input-5 */}
-                <div>
-                    <input type="email" placeholder={Inputs(eng, ru).InputEmail} />
+                <div className='form'>
+                    <input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => handleInputChange(e)}
+                        required autoComplete="off"
+                    />
+                    <label htmlFor="name" className="label-name">
+                        <span className="content-name">{Inputs(eng, ru).InputEmail}</span>
+                    </label>
                 </div>
 
                 {/* input-6 */}
-                <div>
-                    <input type={Eye(open).type} placeholder={Inputs(eng, ru).InputPassword} />
+                <div className='form'>
+                    <input type={Eye(open).type} name="password" required autoComplete="off" />
+                    <label htmlFor="name" className="label-name">
+                        <span className="content-name">{Inputs(eng, ru).InputPassword}</span>
+                    </label>
                     <div onClick={() => setOpen(!open)} className='eye'>
                         {Eye(open).sign}
                     </div>
                 </div>
+                <div className='green-password'></div>
 
                 {/* input-7 */}
-                <div>
-                    <input type={Eye(open).type} placeholder={Inputs(eng, ru).InputConfirmPassword} />
+                <div className='form'>
+                    <input type={Eye(open).type} name="confirmPassword" required autoComplete="off" />
+                    <label htmlFor="name" className="label-name">
+                        <span className="content-name">{Inputs(eng, ru).InputConfirmPassword}</span>
+                    </label>
                     <div onClick={() => setOpen(!open)} className='eye'>
                         {Eye(open).sign}
                     </div>
@@ -67,7 +97,7 @@ const Register_Inputs = () => {
 
                 {/* BUTTON */}
 
-                <div>
+                <div className='form'>
                     <button className='test-button'>{Inputs(eng, ru).RegisterButton}</button>
                 </div>
 

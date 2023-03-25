@@ -24,7 +24,7 @@ const LoginNavbar = () => {
                 <ul>
                     <select onChange={(e) => setLanguage(e.target.value)} className="nav-select">
                         <option value="English">{Inputs(eng, ru).myLanguage}</option>
-                        <option value="English">{Inputs(eng, ru).English}</option>
+                        {<option value="English">{Inputs(eng, ru).English}</option>}
                         <option value="Russian">{Inputs(eng, ru).Russian}</option>
                         <option value="Uzbek">{Inputs(eng, ru).Uzbek}</option>
                     </select>

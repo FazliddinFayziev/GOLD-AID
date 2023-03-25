@@ -18,7 +18,7 @@ const Login_Inputs = () => {
 
                 {/* input-1 */}
                 <div>
-                    <input type="text" placeholder={Inputs(eng, ru).InputUsername} />
+                    <input type="text" placeholder={Inputs(eng, ru).InputEmail} />
                 </div>
 
                 {/* input-2 */}

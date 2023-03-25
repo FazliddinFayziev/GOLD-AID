@@ -2,7 +2,6 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 const Inputs = (eng, ru) => {
     const Forgot = (eng ? "Forgot my password and Username" : ru ? "Забыли пароль и имя пользователя" : "Parol va foydalanuvchi nomimni unutdim")
     const InputConfirmPassword = (eng ? "Confirm Password:" : ru ? "Подтвердите пароль:" : "Parolni tasdiqlang:")
-    const InputUsername = (eng ? "Username:" : ru ? "Имя пользователя:" : "Foydalanuvchi ismingiz:")
     const InputAge = (eng ? "Enter Age:" : ru ? "Введите возраст:" : "Yoshingizni kiriting:")
     const RegisterButton = (eng ? "Take the test" : ru ? "Пройти тест" : "Test topshirish")
     const InputName = (eng ? "Enter Name:" : ru ? "Введите имя:" : "Ismingizni kiriting:")
@@ -29,7 +28,6 @@ const Inputs = (eng, ru) => {
         InputConfirmPassword,
         myLanguage,
         RegisterButton,
-        InputUsername,
         InputPassword,
         RegisterNav,
         InputFemale,
