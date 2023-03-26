@@ -19,7 +19,7 @@ const LoginNavbar = () => {
                 <ul className="nav-text">{Inputs(eng, ru).About}</ul>
                 <ul className="nav-text">{Inputs(eng, ru).Contact}</ul>
                 <Link to={log ? "/login" : "/register"} className='nav-text'>
-                    <ul className="nav-text">{log ? Inputs(eng, ru).Login : Inputs(eng, ru).RegisterNav}</ul>
+                    <ul className="nav-text hide-login">{log ? Inputs(eng, ru).Login : Inputs(eng, ru).RegisterNav}</ul>
                 </Link>
                 <ul>
                     <select onChange={(e) => setLanguage(e.target.value)} className="nav-select">

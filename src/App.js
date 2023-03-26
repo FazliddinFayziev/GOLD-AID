@@ -1,7 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Loading from "./Components/Loading";
-import { Home, Login, Register } from './Pages'
+import { Home, Login, Register, Warning } from './Pages'
+
 
 
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/warning" element={<Warning />} />
       </Routes>
     </>
   );

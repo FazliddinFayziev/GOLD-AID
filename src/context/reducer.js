@@ -7,6 +7,8 @@ const reducer = (state, action) => {
                 ...state,
                 [action.key]: action.value,
             };
+        case types.REGISTER_PAGE_BUTTON:
+            console.log(state)
         default:
             return state;
     }

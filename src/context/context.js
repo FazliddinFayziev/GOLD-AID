@@ -9,8 +9,11 @@ const AppContext = React.createContext();
 const initialState = {
     name: '',
     age: '',
+    gender: '',
     email: '',
     password: '',
+    score: '',
+    level: '',
 }
 
 export const AppProvider = ({ children }) => {
@@ -19,7 +22,6 @@ export const AppProvider = ({ children }) => {
     // useState for language and Login Page
     const [language, setLanguage] = useState("English")
     const [languageBoolean, setLanguageBoolean] = useState({ eng: true, ru: false, uz: false })
-    const [checkStrong, setCheckStrong] = useState({ weak: true, good: false, strong: false })
     const [open, setOpen] = useState(true);
 
     // Change the Language Function
@@ -37,6 +39,13 @@ export const AppProvider = ({ children }) => {
         });
     };
 
+    // "Take TEST button" on Register Page
+    const RegisterTestButton = () => {
+        dispatch({
+            type: types.REGISTER_PAGE_BUTTON
+        })
+    }
+
 
 
     return <AppContext.Provider value={{
@@ -44,11 +53,12 @@ export const AppProvider = ({ children }) => {
         open,
         setOpen,
         language,
-        checkStrong,
         setLanguage,
-        setCheckStrong,
         languageBoolean,
         setLanguageBoolean,
+
+        RegisterTestButton,
+
         handleInputChange
     }}>
         {children}

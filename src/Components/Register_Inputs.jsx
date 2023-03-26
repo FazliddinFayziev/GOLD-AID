@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useGlobalContext } from '../context/context';
-import Inputs, { Eye } from '../Data/Inputs';
+import Inputs, { checkConfirmPassword, checkPassword, Eye } from '../Data/Inputs';
+import { useState } from 'react';
 
 
 
 const Register_Inputs = () => {
-    const { languageBoolean, open, setOpen, name, age, email, handleInputChange } = useGlobalContext();
+    const { languageBoolean, open, setOpen, name, age, email, password, gender, handleInputChange, RegisterTestButton } = useGlobalContext();
+    const [checkStrong, setCheckStrong] = useState({ weak: false, good: false, strong: false });
+    const [checkStrongConfirm, setCheckStrongConfirm] = useState({ weakCon: false, goodCon: false, strongCon: false });
+    const [confirmInputValue, setConfirmInputValue] = useState('');
+    const { weak, good, strong } = checkStrong;
+    const { weakCon, goodCon, strongCon } = checkStrongConfirm;
     const { ru, eng } = languageBoolean;
+
+    useEffect(() => {
+        checkPassword(password, setCheckStrong)
+    }, [password])
+
+    useEffect(() => {
+        checkConfirmPassword(confirmInputValue, setCheckStrongConfirm, password)
+    }, [confirmInputValue])
 
     return (
         <div className="container-inputs">
@@ -49,10 +63,10 @@ const Register_Inputs = () => {
 
                 {/* input-3 select */}
                 <div className='form'>
-                    <select>
-                        <option>{Inputs(eng, ru).InputGender}</option>
-                        <option>{Inputs(eng, ru).InputMale}</option>
-                        <option>{Inputs(eng, ru).InputFemale}</option>
+                    <select name='gender' value={gender} onChange={(e) => handleInputChange(e)}>
+                        <option value="Gender">{Inputs(eng, ru).InputGender}</option>
+                        <option value="Male">{Inputs(eng, ru).InputMale}</option>
+                        <option value="Female">{Inputs(eng, ru).InputFemale}</option>
                     </select>
                 </div>
 
@@ -72,7 +86,14 @@ const Register_Inputs = () => {
 
                 {/* input-6 */}
                 <div className='form'>
-                    <input type={Eye(open).type} name="password" required autoComplete="off" />
+                    <input
+                        type={Eye(open).type}
+                        name="password"
+                        value={password}
+                        onChange={(e) => handleInputChange(e)}
+                        required
+                        autoComplete="off"
+                    />
                     <label htmlFor="name" className="label-name">
                         <span className="content-name">{Inputs(eng, ru).InputPassword}</span>
                     </label>
@@ -80,11 +101,18 @@ const Register_Inputs = () => {
                         {Eye(open).sign}
                     </div>
                 </div>
-                <div className='green-password'></div>
+                <div className={weak ? "red-password" : good ? "yellow-password" : strong ? "green-password" : ""}></div>
 
                 {/* input-7 */}
                 <div className='form'>
-                    <input type={Eye(open).type} name="confirmPassword" required autoComplete="off" />
+                    <input
+                        type={Eye(open).type}
+                        name="confirmPassword"
+                        value={confirmInputValue}
+                        onChange={(e) => setConfirmInputValue(e.target.value)}
+                        required
+                        autoComplete="off"
+                    />
                     <label htmlFor="name" className="label-name">
                         <span className="content-name">{Inputs(eng, ru).InputConfirmPassword}</span>
                     </label>
@@ -92,13 +120,19 @@ const Register_Inputs = () => {
                         {Eye(open).sign}
                     </div>
                 </div>
+                <div className={weakCon ? "red-password" : goodCon ? "yellow-password" : strongCon ? "green-password" : ""}></div>
 
                 {/* END OF INPUTS */}
 
                 {/* BUTTON */}
 
                 <div className='form'>
-                    <button className='test-button'>{Inputs(eng, ru).RegisterButton}</button>
+                    <button
+                        className='test-button'
+                        onClick={RegisterTestButton}
+                    >
+                        {Inputs(eng, ru).RegisterButton}
+                    </button>
                 </div>
 
             </div>

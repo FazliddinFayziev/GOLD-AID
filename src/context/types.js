@@ -1,3 +1,4 @@
 export const types = {
     TARGET: "TARGET_INPUTS",
+    REGISTER_PAGE_BUTTON: "REGISTER_PAGE_BUTTON",
 } 
