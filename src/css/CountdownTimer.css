@@ -1,0 +1,51 @@
+.countdown-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.countdown-timer-svg {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+}
+
+.countdown-timer-circle {
+    fill: transparent;
+}
+
+.countdown-timer-progress {
+    fill: transparent;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dasharray 0.5s ease-out;
+}
+
+.countdown-timer-text {
+    position: absolute;
+    z-index: 2;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.countdown-timer-hours,
+.countdown-timer-minutes,
+.countdown-timer-seconds {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.countdown-timer-separator {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 0 0.5em;
+}

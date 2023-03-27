@@ -2,17 +2,20 @@ import React, { useEffect } from 'react'
 import { useGlobalContext } from '../context/context';
 import Inputs, { checkConfirmPassword, checkPassword, Eye } from '../Data/Inputs';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Register_Inputs = () => {
-    const { languageBoolean, open, setOpen, name, age, email, password, gender, handleInputChange, RegisterTestButton } = useGlobalContext();
+    const { languageBoolean, open, setOpen, name, age, email, password, gender, handleInputChange } = useGlobalContext();
     const [checkStrong, setCheckStrong] = useState({ weak: false, good: false, strong: false });
     const [checkStrongConfirm, setCheckStrongConfirm] = useState({ weakCon: false, goodCon: false, strongCon: false });
     const [confirmInputValue, setConfirmInputValue] = useState('');
     const { weak, good, strong } = checkStrong;
     const { weakCon, goodCon, strongCon } = checkStrongConfirm;
     const { ru, eng } = languageBoolean;
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         checkPassword(password, setCheckStrong)
@@ -21,6 +24,10 @@ const Register_Inputs = () => {
     useEffect(() => {
         checkConfirmPassword(confirmInputValue, setCheckStrongConfirm, password)
     }, [confirmInputValue])
+
+    const handleNavigate = () => {
+        navigate("/warning")
+    }
 
     return (
         <div className="container-inputs">
@@ -129,7 +136,7 @@ const Register_Inputs = () => {
                 <div className='form'>
                     <button
                         className='test-button'
-                        onClick={RegisterTestButton}
+                        onClick={handleNavigate}
                     >
                         {Inputs(eng, ru).RegisterButton}
                     </button>

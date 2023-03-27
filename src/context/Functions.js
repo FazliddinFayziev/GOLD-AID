@@ -20,3 +20,13 @@ export const changeLoginAndRegister = (href, setLog) => {
     }
 }
 
+
+// CHANGE TEST AND WARNING PAGES
+export const changeWarningAndTest = (href, setLog) => {
+    if (href === "http://localhost:3000/warning") {
+        setLog(false)
+    } else if (href === "http://localhost:3000/test") {
+        setLog(true)
+    }
+}
+

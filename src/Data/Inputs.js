@@ -1,5 +1,7 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 const Inputs = (eng, ru) => {
+    const WarningPage = (eng ? (<p className='warning-page-text'>You will be given only one chance to take the test. Thanks to test, we will know your level. <span className='red-text'>Please be responsible for your test, because according to your test results, you will get your courses !</span></p>) : ru ? (<p className='warning-page-text'>Вам будет предоставлена ​​только одна возможность пройти тест. Благодаря тесту мы узнаем ваш уровень. <span className='red-text'>Пожалуйста, будьте ответственны за свой тест, потому что по результатам теста вы получите свои курсы !</span></p>) : (<p className='warning-page-text'>Sinovdan o'tish uchun sizga faqat bitta imkoniyat beriladi. Sinov orqali biz sizning darajangizni bilib olamiz. <span className='red-text'>Iltimos, testga mas'uliyat bilan yondashing, chunki test natijalari sizni qaysi kursda bo'lishingizni belgilab beradi!</span></p>))
+    const WarningPageTitle = (eng ? (<h1>Before start, we should know your <span className="text-level">Level</span></h1>) : ru ? (<h1>Перед стартом, мы должны знать ваш <span className="text-level">Уровень</span></h1>) : (<h1>Boshlashdan oldin, biz sizning <span className="text-level">Darajangizni</span> bilishimiz kerak</h1>))
     const Forgot = (eng ? "Forgot my password and Username" : ru ? "Забыли пароль и имя пользователя" : "Parol va foydalanuvchi nomimni unutdim")
     const InputConfirmPassword = (eng ? "Confirm Password:" : ru ? "Подтвердите пароль:" : "Parolni tasdiqlang:")
     const InputAge = (eng ? "Enter Age:" : ru ? "Введите возраст:" : "Yoshingizni kiriting:")
@@ -23,9 +25,11 @@ const Inputs = (eng, ru) => {
     const About = (eng ? "About" : ru ? "О нас" : "Biz")
     return {
         InputConfirmPassword,
+        WarningPageTitle,
         RegisterButton,
         InputPassword,
         RegisterNav,
+        WarningPage,
         InputFemale,
         InputGender,
         myLanguage,

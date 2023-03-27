@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --gray: #D9D9D9;
+    --black: #000;
+    --maincolor: #4461F2;
+    --maincolorHover: #002aff;
+    --mainBackgroundColor: #F8F8FF;
+    --font: 'Dosis',
+        sans-serif;
+    --font-w: 800;
+    --border: solid 2px #000;
+}
+
+.test-time {
+    width: 150px;
+    height: 150px;
+    border: var(--border);
+}
+
+.hidden {
+    display: none;
+}
+
+.test-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.test-welcome-page {
+    font-family: var(--font);
+    font-weight: var(--font-w);
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.test-div {
+    font-family: var(--font);
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.test-question {
+    font-weight: var(--font-w);
+}
+
+.test-label {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.test-input {
+    margin-left: 8px;
+    appearance: none;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    border-width: 1px;
+    background-color: rgb(192, 192, 192);
+    border-color: rgba(209, 213, 219, 0.5);
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    transition-duration: 200ms;
+    margin-top: 1px;
+    vertical-align: top;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    float: left;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.test-input:checked {
+    background-color: var(--maincolor);
+    border-color: var(--maincolor);
+}
+
+.test-input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.test-label span {
+    margin-left: 0.5rem
+}
+
+.button-container-for-test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.test-button-container {
+    margin-top: 3vh;
+    width: 40vh;
+    height: 7vh;
+    border-radius: 10px;
+}
+
+.test-button {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: var(--maincolor);
+    color: #fff;
+    font-size: 20px;
+    font-family: var(--font);
+    font-weight: 600;
+    padding: 5px 10px;
+    outline: 0;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(135, 135, 135, 1);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(135, 135, 135, 1);
+    box-shadow: 5px 5px 5px 0px rgba(135, 135, 135, 1);
+    transition: all 0.5s ease-in-out;
+    border: none;
+    border-radius: 10px;
+}

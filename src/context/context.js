@@ -39,6 +39,13 @@ export const AppProvider = ({ children }) => {
         });
     };
 
+    // Navigate to Warning Page
+    // const NavigateToWarningPage = () => {
+    //     dispatch({
+    //         type: types.NAVIGATE_TO_WARNING
+    //     })
+    // }
+
     // "Take TEST button" on Register Page
     const RegisterTestButton = () => {
         dispatch({
@@ -55,11 +62,10 @@ export const AppProvider = ({ children }) => {
         language,
         setLanguage,
         languageBoolean,
-        setLanguageBoolean,
-
+        handleInputChange,
         RegisterTestButton,
-
-        handleInputChange
+        setLanguageBoolean,
+        // NavigateToWarningPage,
     }}>
         {children}
     </AppContext.Provider>
