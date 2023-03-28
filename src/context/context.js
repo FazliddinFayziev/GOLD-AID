@@ -24,6 +24,9 @@ export const AppProvider = ({ children }) => {
     const [languageBoolean, setLanguageBoolean] = useState({ eng: true, ru: false, uz: false })
     const [open, setOpen] = useState(true);
 
+    // LOGGIN AND REGISTER LOGICS
+    const [isRegister, setIsRegister] = useState(false);
+
     // Change the Language Function
     useEffect(() => {
         changeLanguage(language, setLanguageBoolean)
@@ -65,6 +68,9 @@ export const AppProvider = ({ children }) => {
         handleInputChange,
         RegisterTestButton,
         setLanguageBoolean,
+
+        isRegister,
+        setIsRegister,
         // NavigateToWarningPage,
     }}>
         {children}

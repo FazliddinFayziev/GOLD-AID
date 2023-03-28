@@ -62,6 +62,15 @@ export const Eye = (open) => {
     }
 }
 
+// Email check
+export const EmailCheck = (email, setIsEmail) => {
+    let signs = /[@]/g;
+    let dot = /[.]/g;
+    if (email.match(signs) && email.match(dot)) {
+        setIsEmail(true)
+    }
+}
+
 // check Password
 export const checkPassword = (password, setCheckStrong) => {
     let upperCaseLetters = /[A-Za-z]/g;
@@ -101,6 +110,7 @@ export const checkConfirmPassword = (confirmInputValue, setCheckStrongConfirm, p
         setCheckStrongConfirm({ weakCon: false, goodCon: false, strongCon: true })
     }
 }
+
 
 
 

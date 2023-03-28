@@ -1,32 +1,49 @@
 import React, { useEffect } from 'react'
 import { useGlobalContext } from '../context/context';
-import Inputs, { checkConfirmPassword, checkPassword, Eye } from '../Data/Inputs';
+import Inputs, { checkConfirmPassword, checkPassword, EmailCheck, Eye } from '../Data/Inputs';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 
 const Register_Inputs = () => {
-    const { languageBoolean, open, setOpen, name, age, email, password, gender, handleInputChange } = useGlobalContext();
+    // GLOBAL
+    const { languageBoolean, open, setOpen, name, age, email, password, gender, handleInputChange, setIsRegister } = useGlobalContext();
+    // LOCAL USESTATE();
     const [checkStrong, setCheckStrong] = useState({ weak: false, good: false, strong: false });
     const [checkStrongConfirm, setCheckStrongConfirm] = useState({ weakCon: false, goodCon: false, strongCon: false });
+    const [isEmail, setIsEmail] = useState(false)
     const [confirmInputValue, setConfirmInputValue] = useState('');
+    // NONE USESTATE();
     const { weak, good, strong } = checkStrong;
     const { weakCon, goodCon, strongCon } = checkStrongConfirm;
     const { ru, eng } = languageBoolean;
 
     const navigate = useNavigate();
 
+    // ALL USEEFFECT()
     useEffect(() => {
         checkPassword(password, setCheckStrong)
-    }, [password])
+    }, [password, confirmInputValue])
 
     useEffect(() => {
         checkConfirmPassword(confirmInputValue, setCheckStrongConfirm, password)
-    }, [confirmInputValue])
+    }, [confirmInputValue, password])
 
-    const handleNavigate = () => {
-        navigate("/warning")
+    useEffect(() => {
+        EmailCheck(email, setIsEmail)
+    }, [email])
+
+    // IMPORTANT FUNCTIONS
+    // NAVIGATE LOGIC
+    const handleNavigate = (e) => {
+        e.preventDefault()
+        if (name !== "" && age !== "" && gender !== "" && isEmail && strong && strongCon) {
+            setIsRegister(true)
+            navigate("/warning")
+        } else {
+            alert(eng ? "Please fill all inputs right" : ru ? "Пожалуйста, заполните все поля правильно" : "Iltimos, barcha maʼlumotlarni toʻgʻri toʻldiring")
+        }
     }
 
     return (
@@ -135,6 +152,7 @@ const Register_Inputs = () => {
 
                 <div className='form'>
                     <button
+                        type='submit'
                         className='test-button'
                         onClick={handleNavigate}
                     >

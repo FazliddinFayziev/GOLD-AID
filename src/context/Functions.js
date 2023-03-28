@@ -30,3 +30,29 @@ export const changeWarningAndTest = (href, setLog) => {
     }
 }
 
+
+// LEVEL CHECK
+export const getLevel = (score) => {
+    let level;
+    let b = "BEGINNER";
+    let e = "ELEMENTARY";
+    let p = "PRE-INTERMEDIATE";
+    let i = "INTERMEDIATE";
+    let u = "UPPER-INTERMEDIATE";
+    let ielts = "IELTS";
+    if (score >= 0 && score <= 10) {
+        level = b
+    } else if (score >= 0 && score <= 10) {
+        level = e
+    } else if (score >= 11 && score <= 15) {
+        level = p
+    } else if (score >= 16 && score <= 20) {
+        level = i
+    } else if (score >= 21 && score <= 25) {
+        level = u
+    } else if (score >= 26 && score <= 30) {
+        level = ielts
+    }
+    return level;
+}
+

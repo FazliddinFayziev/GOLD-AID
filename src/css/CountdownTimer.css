@@ -49,3 +49,14 @@
     font-size: 1.5em;
     margin: 0 0.5em;
 }
+
+@media (min-width: 1024px) {
+    .countdown-timer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 80%;
+        /* margin-bottom: -20%; */
+        position: fixed;
+    }
+}

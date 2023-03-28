@@ -1,71 +1,11 @@
-import React, { useState } from 'react';
-import { questions, reading } from '../Data/data';
+import React, { useEffect, useState } from 'react';
+import { questions } from '../Data/data';
 import "../css/test.css";
 import FinishTest from './FinishTest';
 import { useGlobalContext } from '../context/context';
 import CountdownTimer from './CountdownTimer';
+import { getLevel } from '../context/Functions';
 
-
-function getLevel(score, scoreReading) {
-    let level;
-    let b = "BEGINNER";
-    let e = "ELEMENTARY";
-    let p = "PRE-INTERMEDIATE";
-    let i = "INTERMEDIATE";
-    let u = "UPPER-INTERMEDIATE";
-    if (score >= 0 && score <= 10 && scoreReading >= 0 && scoreReading <= 2) {
-        level = b
-    } else if (score >= 0 && score <= 10 && scoreReading >= 3 && scoreReading <= 4) {
-        level = b
-    } else if (score >= 0 && score <= 10 && scoreReading >= 5 && scoreReading <= 7) {
-        level = b
-    } else if (score >= 0 && score <= 10 && scoreReading >= 8 && scoreReading <= 9) {
-        level = e
-    } else if (score >= 0 && score <= 10 && scoreReading === 10) {
-        level = b
-    } else if (score >= 11 && score <= 20 && scoreReading >= 0 && scoreReading <= 2) {
-        level = e
-    } else if (score >= 11 && score <= 20 && scoreReading >= 3 && scoreReading <= 4) {
-        level = e
-    } else if (score >= 11 && score <= 20 && scoreReading >= 5 && scoreReading <= 7) {
-        level = e
-    } else if (score >= 11 && score <= 20 && scoreReading >= 8 && scoreReading <= 9) {
-        level = p
-    } else if (score >= 11 && score <= 20 && scoreReading === 10) {
-        level = e
-    } else if (score >= 21 && score <= 30 && scoreReading >= 0 && scoreReading <= 2) {
-        level = e
-    } else if (score >= 21 && score <= 30 && scoreReading >= 3 && scoreReading <= 4) {
-        level = p
-    } else if (score >= 21 && score <= 30 && scoreReading >= 5 && scoreReading <= 7) {
-        level = p
-    } else if (score >= 21 && score <= 30 && scoreReading >= 8 && scoreReading <= 9) {
-        level = p
-    } else if (score >= 21 && score <= 30 && scoreReading === 10) {
-        level = p
-    } else if (score >= 31 && score <= 45 && scoreReading >= 0 && scoreReading <= 2) {
-        level = p
-    } else if (score >= 31 && score <= 45 && scoreReading >= 3 && scoreReading <= 4) {
-        level = i
-    } else if (score >= 31 && score <= 45 && scoreReading >= 5 && scoreReading <= 7) {
-        level = i
-    } else if (score >= 31 && score <= 45 && scoreReading >= 8 && scoreReading <= 9) {
-        level = i
-    } else if (score >= 31 && score <= 45 && scoreReading === 10) {
-        level = i
-    } else if (score >= 46 && score <= 50 && scoreReading >= 0 && scoreReading <= 2) {
-        level = i
-    } else if (score >= 46 && score <= 50 && scoreReading >= 3 && scoreReading <= 4) {
-        level = i
-    } else if (score >= 46 && score <= 50 && scoreReading >= 5 && scoreReading <= 7) {
-        level = u
-    } else if (score >= 46 && score <= 50 && scoreReading >= 8 && scoreReading <= 9) {
-        level = u
-    } else if (score >= 46 && score <= 50 && scoreReading === 10) {
-        level = u
-    }
-    return level;
-}
 
 const Tests = () => {
     const { name, RegisterTestButton } = useGlobalContext();
@@ -73,46 +13,60 @@ const Tests = () => {
 
 
     const [score, setScore] = useState(0);
-    const [scoreReading, setScoreReading] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [level, setLevel] = useState("")
-    const [big, setBig] = useState(false);
 
     const handleOptionSelect = (e, questionId) => {
         setSelectedAnswers({ ...selectedAnswers, [questionId]: e.target.value });
     };
 
 
+    // prevent REFREFING
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            event.preventDefault();
+            event.returnValue = "";
+
+            const confirmationMessage = "Are you sure you want to refresh the page?";
+            const customEvent = new CustomEvent("beforeunload", {
+                detail: confirmationMessage,
+            });
+
+            window.dispatchEvent(customEvent);
+
+            return confirmationMessage;
+        };
+
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    }, []);
+
+
+
     // Whole logic of checking th tests
     const handleQuizSubmit = () => {
         let newScore = 0;
-        let readingScore = 0;
         questions.forEach((question) => {
             if (selectedAnswers[question.id] === question.answer) {
                 newScore++;
             }
         });
-        reading.forEach((question) => {
-            if (selectedAnswers[question.id] === question.answer) {
-                readingScore++;
-            }
-        })
         setScore(newScore);
-        setScoreReading(readingScore);
         setIsSubmitted(true);
-        const level = getLevel(newScore, readingScore);
+        const level = getLevel(newScore);
         setLevel(level);
     };
 
     return (
         <>
-
             <CountdownTimer />
-
             <div className={isSubmitted && "hidden"}>
                 <div className='test-container'>
-                    <h1 className='test-welcome-page'><p className='welcome'>Welcome {name}</p></h1>
+                    <h1 className='test-welcome-page'><p className='welcome'>Welcome <span className='name-span'>{name}</span></p></h1>
                 </div>
                 {questions.map((question) => (
                     <div key={question.id} className="test-div">
@@ -147,7 +101,7 @@ const Tests = () => {
             </div>
             <div>
                 {isSubmitted && (
-                    <FinishTest score={score} level={level} scoreReading={scoreReading} />
+                    <FinishTest score={score} level={level} />
                 )}
             </div>
         </>

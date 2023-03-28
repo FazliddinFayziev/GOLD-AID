@@ -5,13 +5,15 @@ import Inputs from '../Data/Inputs';
 import { useNavigate } from 'react-router-dom';
 
 const WarningPage = () => {
-    const { languageBoolean } = useGlobalContext();
+    const { languageBoolean, isRegister } = useGlobalContext();
     const { ru, eng } = languageBoolean
 
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        navigate("/test")
+        if (isRegister) {
+            navigate("/test")
+        }
     }
 
     return (

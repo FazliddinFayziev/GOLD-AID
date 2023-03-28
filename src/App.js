@@ -1,13 +1,14 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Loading from "./Components/Loading";
+import { useGlobalContext } from "./context/context";
 import { Home, Login, Register, TestPage, Warning } from './Pages'
 
 
 
 
 function App() {
-
+  const { isRegister, setIsRegister } = useGlobalContext();
   return (
     <>
       <Routes>
@@ -15,8 +16,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/loading" element={<Loading />} />
-        <Route path="/warning" element={<Warning />} />
-        <Route path="/test" element={<TestPage />} />
+        <Route path="/warning" element={isRegister ? <Warning /> : <Navigate to="/register" />} />
+        <Route path="/test" element={isRegister ? <TestPage /> : <Navigate to="/register" />} />
       </Routes>
     </>
   );

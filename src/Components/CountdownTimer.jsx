@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/CountdownTimer.css";
 
 const CountdownTimer = () => {
-    const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
+    const [timeLeft, setTimeLeft] = useState(1800); // 1 hour in seconds
 
     useEffect(() => {
         if (timeLeft <= 0) return;
