@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../css/CountdownTimer.css";
+import { useGlobalContext } from "../context/context";
 
 const CountdownTimer = () => {
-    const [timeLeft, setTimeLeft] = useState(1800); // 1 hour in seconds
+    const { timeLeft, setTimeLeft } = useGlobalContext();
 
     useEffect(() => {
         if (timeLeft <= 0) return;
-
         const intervalId = setInterval(() => {
             setTimeLeft((prevTime) => prevTime - 1);
         }, 1000);

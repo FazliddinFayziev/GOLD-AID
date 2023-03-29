@@ -1,15 +1,37 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../context/context';
+import Inputs from '../Data/Inputs';
 
-function FinishTest({ score, scoreReading, level }) {
+function FinishTest({ score, level }) {
+    const { name, languageBoolean, ContinueButton, setIsDone } = useGlobalContext();
+    const { ru, eng } = languageBoolean;
+    const navigate = useNavigate();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsDone(true)
+        navigate("/")
+        ContinueButton();
+    }
     return (
-        <div className="flex justify-center items-center h-screen">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-                <div className='flex justify-center my-3'>
-                    <h1 className='font-serif font-semibold text-xl'><p className='welcome'>Thank you dear Student</p></h1>
+        <div className="finish-test">
+            <div className="">
+                <div className=''>
+                    <h1 className=''><p>Thank you {name}</p></h1>
                 </div>
-                <p>Your score from Grammar and Vocabulary: <span className='text-xl font-serif font-semibold text-blue-600'>{score} out of 50</span></p>
-                <p>Your score from Reading: <span className='text-xl font-serif font-semibold text-blue-600'>{scoreReading} out 0f 10</span></p>
-                <p>Your level:  <span className='text-xl font-serif font-semibold text-blue-600'>{level}</span></p>
+                <p>{Inputs(eng, ru).YourScore} <span className=''>{score}</span></p>
+                <p>{Inputs(eng, ru).YourLevel}  <span className=''>{level}</span></p>
+                <div className='button-container-for-test'>
+                    <div className='test-button-container'>
+                        <button
+                            type='submit'
+                            className="test-button"
+                            onClick={handleSubmit}
+                        >
+                            {Inputs(eng, ru).ContinueButton}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );

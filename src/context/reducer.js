@@ -8,7 +8,13 @@ const reducer = (state, action) => {
                 ...state,
                 [action.key]: action.value,
             };
-        case types.REGISTER_PAGE_BUTTON:
+        case types.CALCULATE:
+            return {
+                ...state,
+                backendScore: action.score,
+                backendLevel: action.level,
+            };
+        case types.NAVIGATE_TO_HOME:
             console.log(state)
         default:
             return state;

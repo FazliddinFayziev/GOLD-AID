@@ -12,8 +12,8 @@ const initialState = {
     gender: '',
     email: '',
     password: '',
-    score: '',
-    level: '',
+    backendScore: 0,
+    backendLevel: '',
 }
 
 export const AppProvider = ({ children }) => {
@@ -24,8 +24,12 @@ export const AppProvider = ({ children }) => {
     const [languageBoolean, setLanguageBoolean] = useState({ eng: true, ru: false, uz: false })
     const [open, setOpen] = useState(true);
 
-    // LOGGIN AND REGISTER LOGICS
+    // LOGGIN AND REGISTER LOGICS AND HOME
     const [isRegister, setIsRegister] = useState(false);
+    const [isDone, setIsDone] = useState(false);
+
+    // USESTATE() FOR TIMING FUNCTIONS
+    const [timeLeft, setTimeLeft] = useState(225); // 1 hour in seconds
 
     // Change the Language Function
     useEffect(() => {
@@ -42,17 +46,19 @@ export const AppProvider = ({ children }) => {
         });
     };
 
-    // Navigate to Warning Page
-    // const NavigateToWarningPage = () => {
-    //     dispatch({
-    //         type: types.NAVIGATE_TO_WARNING
-    //     })
-    // }
-
-    // "Take TEST button" on Register Page
-    const RegisterTestButton = () => {
+    // navigate to home and set isDone to (true)
+    const ContinueButton = () => {
         dispatch({
-            type: types.REGISTER_PAGE_BUTTON
+            type: types.NAVIGATE_TO_HOME
+        })
+    }
+
+    // Backend Score and BackendLevel
+    const Calculate = (level, score) => {
+        dispatch({
+            type: types.CALCULATE,
+            level: level,
+            score: score,
         })
     }
 
@@ -60,18 +66,24 @@ export const AppProvider = ({ children }) => {
 
     return <AppContext.Provider value={{
         ...state,
+
+
+        isDone,
+        setIsDone,
+        Calculate,
+
         open,
         setOpen,
         language,
+        timeLeft,
+        isRegister,
+        setTimeLeft,
         setLanguage,
+        setIsRegister,
+        ContinueButton,
         languageBoolean,
         handleInputChange,
-        RegisterTestButton,
         setLanguageBoolean,
-
-        isRegister,
-        setIsRegister,
-        // NavigateToWarningPage,
     }}>
         {children}
     </AppContext.Provider>

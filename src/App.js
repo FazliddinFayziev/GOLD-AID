@@ -8,11 +8,11 @@ import { Home, Login, Register, TestPage, Warning } from './Pages'
 
 
 function App() {
-  const { isRegister, setIsRegister } = useGlobalContext();
+  const { isRegister, isDone } = useGlobalContext();
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={isDone ? <Home /> : <Navigate to="/register" />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/loading" element={<Loading />} />

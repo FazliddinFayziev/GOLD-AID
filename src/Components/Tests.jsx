@@ -4,11 +4,11 @@ import "../css/test.css";
 import FinishTest from './FinishTest';
 import { useGlobalContext } from '../context/context';
 import CountdownTimer from './CountdownTimer';
-import { getLevel } from '../context/Functions';
+import { backendScore, getLevel } from '../context/Functions';
 
 
 const Tests = () => {
-    const { name, RegisterTestButton } = useGlobalContext();
+    const { name, timeLeft, setTimeLeft, Calculate } = useGlobalContext();
 
 
 
@@ -46,6 +46,14 @@ const Tests = () => {
     }, []);
 
 
+    // USEEFFECT() FOR TIMING FUNCTION
+    useEffect(() => {
+        if (timeLeft === 0) {
+            handleQuizSubmit();
+        }
+    }, [timeLeft])
+
+
 
     // Whole logic of checking th tests
     const handleQuizSubmit = () => {
@@ -59,12 +67,14 @@ const Tests = () => {
         setIsSubmitted(true);
         const level = getLevel(newScore);
         setLevel(level);
+        setTimeLeft(0);
+        Calculate(level, backendScore(level));
     };
 
     return (
         <>
-            <CountdownTimer />
-            <div className={isSubmitted && "hidden"}>
+            {timeLeft > 0 && <CountdownTimer />}
+            <div className={isSubmitted ? "hidden" : undefined}>
                 <div className='test-container'>
                     <h1 className='test-welcome-page'><p className='welcome'>Welcome <span className='name-span'>{name}</span></p></h1>
                 </div>
@@ -90,8 +100,7 @@ const Tests = () => {
                     <div className='button-container-for-test'>
                         <div className='test-button-container'>
                             <button className="test-button"
-                                // onClick={handleQuizSubmit}
-                                onClick={RegisterTestButton}
+                                onClick={handleQuizSubmit}
                             >
                                 Submit
                             </button>
@@ -99,7 +108,7 @@ const Tests = () => {
                     </div>
                 )}
             </div>
-            <div>
+            <div className='finish-test-container'>
                 {isSubmitted && (
                     <FinishTest score={score} level={level} />
                 )}

@@ -7,11 +7,14 @@ const Inputs = (eng, ru) => {
     const InputAge = (eng ? "Enter Age:" : ru ? "Введите возраст:" : "Yoshingizni kiriting:")
     const RegisterButton = (eng ? "Take the test" : ru ? "Пройти тест" : "Test topshirish")
     const InputName = (eng ? "Enter Name:" : ru ? "Введите имя:" : "Ismingizni kiriting:")
+    const YourLevel = (eng ? "Your Level:" : ru ? "Ваш уровень:" : "Sizning darajangiz:")
     const InputEmail = (eng ? "Email:" : ru ? "Электронная почта" : "Elektron pochta:")
     const StartTest = (eng ? "Start the test" : ru ? "Начать тест" : "Testni boshlash")
+    const YourScore = (eng ? "Your score:" : ru ? "Ваша оценка:" : "Sizning balingiz:")
     const RegisterNav = (eng ? "Register" : ru ? "Регистрация" : "Roʻyxatdan oʻtish")
     const Register = (eng ? "Register" : ru ? "Регистрация" : "Roʻyxatdan oʻtish")
     const Welcome = (eng ? "Welcome" : ru ? "Добро пожаловать" : "Xush kelibsiz")
+    const ContinueButton = (eng ? "Continue" : ru ? "Продолжать" : "Davom etish")
     const InputPassword = (eng ? "Password:" : ru ? "Пароль:" : "Parol:")
     const Contact = (eng ? "Contact" : ru ? "Контакт" : "Bog'lanish")
     const myLanguage = (eng ? "English" : ru ? "Русский" : "O'zbek")
@@ -24,8 +27,10 @@ const Inputs = (eng, ru) => {
     const Login = (eng ? "Login" : ru ? "Логин" : "Kirish")
     const About = (eng ? "About" : ru ? "О нас" : "Biz")
     return {
+
         InputConfirmPassword,
         WarningPageTitle,
+        ContinueButton,
         RegisterButton,
         InputPassword,
         RegisterNav,
@@ -35,6 +40,8 @@ const Inputs = (eng, ru) => {
         myLanguage,
         InputEmail,
         InputName,
+        YourScore,
+        YourLevel,
         StartTest,
         InputMale,
         InputAge,
@@ -49,6 +56,8 @@ const Inputs = (eng, ru) => {
         Login,
     }
 }
+
+export default Inputs
 
 
 
@@ -111,8 +120,4 @@ export const checkConfirmPassword = (confirmInputValue, setCheckStrongConfirm, p
     }
 }
 
-
-
-
-export default Inputs
 

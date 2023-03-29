@@ -32,7 +32,7 @@ export const changeWarningAndTest = (href, setLog) => {
 
 
 // LEVEL CHECK
-export const getLevel = (score) => {
+export const getLevel = (myScore) => {
     let level;
     let b = "BEGINNER";
     let e = "ELEMENTARY";
@@ -40,19 +40,44 @@ export const getLevel = (score) => {
     let i = "INTERMEDIATE";
     let u = "UPPER-INTERMEDIATE";
     let ielts = "IELTS";
-    if (score >= 0 && score <= 10) {
+    if (myScore >= 0 && myScore <= 10) {
         level = b
-    } else if (score >= 0 && score <= 10) {
+    } else if (myScore >= 0 && myScore <= 10) {
         level = e
-    } else if (score >= 11 && score <= 15) {
+    } else if (myScore >= 11 && myScore <= 15) {
         level = p
-    } else if (score >= 16 && score <= 20) {
+    } else if (myScore >= 16 && myScore <= 20) {
         level = i
-    } else if (score >= 21 && score <= 25) {
+    } else if (myScore >= 21 && myScore <= 25) {
         level = u
-    } else if (score >= 26 && score <= 30) {
+    } else if (myScore >= 26 && myScore <= 30) {
         level = ielts
     }
     return level;
+}
+
+
+export const backendScore = (myLevel) => {
+    let score = 0;
+    let b = "BEGINNER";
+    let e = "ELEMENTARY";
+    let p = "PRE-INTERMEDIATE";
+    let i = "INTERMEDIATE";
+    let u = "UPPER-INTERMEDIATE";
+    let ielts = "IELTS";
+    if (myLevel === b) {
+        score = 0
+    } else if (myLevel === e) {
+        score = 1
+    } else if (myLevel === p) {
+        score = 2
+    } else if (myLevel === i) {
+        score = 3
+    } else if (myLevel === u) {
+        score = 4
+    } else if (myLevel === ielts) {
+        score = 5
+    }
+    return score;
 }
 
