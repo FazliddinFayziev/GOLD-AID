@@ -29,7 +29,7 @@ export const AppProvider = ({ children }) => {
     const [isDone, setIsDone] = useState(false);
 
     // USESTATE() FOR TIMING FUNCTIONS
-    const [timeLeft, setTimeLeft] = useState(225); // 1 hour in seconds
+    const [timeLeft, setTimeLeft] = useState(30); // 1 hour in seconds
 
     // Change the Language Function
     useEffect(() => {
