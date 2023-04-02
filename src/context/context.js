@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useReducer } from 'react';
 import { changeLanguage } from './Functions';
 import reducer from './reducer';
 import { types } from './types';
+import axios from 'axios';
 
 
 const AppContext = React.createContext();
@@ -24,9 +25,12 @@ export const AppProvider = ({ children }) => {
     const [languageBoolean, setLanguageBoolean] = useState({ eng: true, ru: false, uz: false })
     const [open, setOpen] = useState(true);
 
+    // USESTATE() LOADING BOOLEAN
+    const [isLoading, setIsLoading] = useState(false);
+
+
     // LOGGIN AND REGISTER LOGICS AND HOME
     const [isRegister, setIsRegister] = useState(false);
-    const [isDone, setIsDone] = useState(false);
 
     // USESTATE() FOR TIMING FUNCTIONS
     const [timeLeft, setTimeLeft] = useState(30); // 1 hour in seconds
@@ -35,6 +39,17 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         changeLanguage(language, setLanguageBoolean)
     }, [language])
+
+
+
+    // USESTATE() FOR USERS ACCESS TOKEN
+    const [user, setUser] = useState({})
+    axios.defaults.baseURL = 'https://gold-aid.onrender.com/api/v1'
+
+    // USEEFFECT() FOR USERS ACCESS TOKEN
+    useEffect(() => {
+
+    }, [])
 
 
     // Targetting value of inputs
@@ -64,12 +79,20 @@ export const AppProvider = ({ children }) => {
 
 
 
+
+
     return <AppContext.Provider value={{
         ...state,
 
+        // Logic with User token
+        user,
+        setUser,
 
-        isDone,
-        setIsDone,
+        // LOADING
+        isLoading,
+        setIsLoading,
+
+
         Calculate,
 
         open,

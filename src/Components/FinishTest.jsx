@@ -1,33 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/context';
 import Inputs from '../Data/Inputs';
 import axios from 'axios';
 function FinishTest({ score, level }) {
-    const { name, email, age, gender, password, backendScore, backendLevel, languageBoolean, ContinueButton, setIsDone } = useGlobalContext();
+    const { isLoading, setIsLoading, name, email, age, gender, password, backendScore, backendLevel, languageBoolean, ContinueButton } = useGlobalContext();
     const { ru, eng } = languageBoolean;
+    const [err, setErr] = useState('')
     const navigate = useNavigate();
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setIsDone(true)
-        navigate("/")
-        ContinueButton();
-        axios.post('http://10.10.193.118:3001/api/v1/register', {
-            name: name,
-            email: email,
-            age: age,
-            gender: gender,
-            password: password,
-            level: backendLevel,
-            score: backendScore
-        })
-            .then(function (response) {
-                console.log(response);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const res = await axios.post('/register', {
+                name: name,
+                email: email,
+                age: age,
+                gender: gender,
+                password: password,
+                level: backendLevel,
+                score: backendScore
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
-            .catch(function (error) {
-                console.log(error);
-            });
+            console.log(res.data)
+            ContinueButton();
+            return navigate('/login')
+        } catch (err) {
+            console.log(err.response.data.err)
+            setErr(err.response.data.err)
+        }
     }
+
+
     return (
         <div className="finish-test">
             <div className="">
