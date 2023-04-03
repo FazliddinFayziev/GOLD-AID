@@ -6,15 +6,158 @@
     --maincolor: #4461F2;
     --maincolorHover: #002aff;
     --mainBackgroundColor: #F8F8FF;
+    --white: #fff;
     --font: 'Dosis',
         sans-serif;
     --font-w: 800;
     --border: solid 2px #000;
 }
 
+
+
 .container-home-navbar {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
     width: 100%;
-    height: 64px;
-    border: var(--border);
+    height: 80px;
+    font-family: var(--font);
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+}
+
+.logo-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: var(--maincolorHover);
+}
+
+.home-navbar-about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-navbar-about ul {
+    display: flex;
+    justify-content: center;
+    margin-right: 40px;
+}
+
+.home-navbar-about ul li {
+    list-style-type: none;
+    text-decoration: none;
+    font-weight: var(--font-w);
+    display: inline-block;
+    margin-right: 40px;
+    position: relative;
+    cursor: pointer;
+    color: var(--white);
+}
+
+.home-navbar-about ul li:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: #fff;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.home-navbar-about ul li:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.home-navbar-about ul li.active:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.home-navbar-about ul li:last-child {
+    margin-right: 0;
+}
+
+.home-navbar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.home-navbar-icon:hover {
+    transform: scale(1.2);
+}
+
+.home-navbar-icon svg {
+    transition: all 0.2s ease-in-out;
+}
+
+.home-navbar-icon.animate svg {
+    animation: spin 0.8s linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.home-navbar-profile-picture {
+    cursor: pointer;
+    display: block;
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.home-navbar-profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: var(--maincolorHover);
+}
+
+.hambook-container {
+    display: none;
+    margin-right: 20px;
+    width: 30px;
+    height: 30px;
+}
+
+.hambook-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media(max-width: 950px) {
+    .home-navbar-about ul {
+        display: none;
+    }
+
+    .home-navbar-profile-picture {
+        display: none;
+    }
+
+    .hambook-container {
+        display: block;
+    }
+
 
 }

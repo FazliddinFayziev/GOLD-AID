@@ -330,3 +330,39 @@ export const questions = [
         answer: "learning"
     },
 ]
+
+
+
+
+export const levelCards = [
+    {
+        id: 0,
+        level: "BEGINNER",
+        cardImg: 'https://res.cloudinary.com/dcrolfqsj/image/upload/v1680507562/beginner_uckifj.jpg',
+    },
+    {
+        id: 1,
+        level: "ELEMENTARY",
+        cardImg: 'https://res.cloudinary.com/dcrolfqsj/image/upload/v1680507561/elementary_hpjwg0.jpg',
+    },
+    {
+        id: 2,
+        level: "PRE-INTERMEDIATE",
+        cardImg: 'https://res.cloudinary.com/dcrolfqsj/image/upload/v1680507561/pre-intermediate_cdd7pv.jpg',
+    },
+    {
+        id: 3,
+        level: "INTERMEDIATE",
+        cardImg: 'https://res.cloudinary.com/dcrolfqsj/image/upload/v1680507561/intermediate_cv3ob0.jpg',
+    },
+    {
+        id: 4,
+        level: "UPPER-INTERMEDIATE",
+        cardImg: 'https://res.cloudinary.com/dcrolfqsj/image/upload/v1680507561/upper-intermediate_ftpiwc.jpg',
+    },
+    {
+        id: 5,
+        level: "IELTS",
+        cardImg: 'https://res.cloudinary.com/dcrolfqsj/image/upload/v1680507562/ielts_vgw9hv.jpg',
+    },
+]

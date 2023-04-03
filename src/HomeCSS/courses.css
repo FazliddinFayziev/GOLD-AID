@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --gray: #D9D9D9;
+    --black: #000;
+    --white: #fff;
+    --maincolor: #4461F2;
+    --maincolorHover: #002aff;
+    --mainBackgroundColor: #F8F8FF;
+    --font: 'Dosis',
+        sans-serif;
+    --font-w: 800;
+    --border: solid 2px #000;
+}
+
+.courses-title {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font);
+    font-size: 15px;
+    margin-top: 50px;
+}
+
+.courses-title h1:after {
+    display: inline-block;
+    content: "";
+    width: 100%;
+    height: 4px;
+    margin-bottom: 25px;
+    background-color: var(--maincolor);
+}
+
+.courses-title .white {
+    color: var(--black);
+}
+
+.courses-title .black {
+    color: var(--white);
+}
+
+.courses-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns */
+    grid-gap: 20px;
+}
+
+.card-level-box {
+    display: flex;
+    justify-content: center;
+}
+
+.cardImg-box {
+    width: 300px;
+    height: 400px;
+    border-radius: 20px;
+}
+
+.cardImg-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+@media (max-width: 950px) {
+    .courses-title {
+        font-size: 12px;
+    }
+
+    .cardImg-box {
+        width: 250px;
+        height: 350px;
+        border-radius: 10px;
+    }
+
+    .cardImg-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .courses-cards {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .courses-cards {
+        grid-template-columns: 1fr;
+        /* 1 column */
+    }
+
+    .cardImg-box {
+        width: 200px;
+        height: 300px;
+        border-radius: 10px;
+    }
+
+    .cardImg-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+}

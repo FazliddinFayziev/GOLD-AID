@@ -28,6 +28,9 @@ export const AppProvider = ({ children }) => {
     // USESTATE() LOADING BOOLEAN
     const [isLoading, setIsLoading] = useState(false);
 
+    // USESTATE() BACKGROUND COLOR
+    const [bgColor, setBgColor] = useState(true)
+
 
     // LOGGIN AND REGISTER LOGICS AND HOME
     const [isRegister, setIsRegister] = useState(false);
@@ -39,8 +42,6 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         changeLanguage(language, setLanguageBoolean)
     }, [language])
-
-
 
     // USESTATE() FOR USERS ACCESS TOKEN
     const [user, setUser] = useState({})
@@ -91,6 +92,10 @@ export const AppProvider = ({ children }) => {
         // LOADING
         isLoading,
         setIsLoading,
+
+        // bg color
+        bgColor,
+        setBgColor,
 
 
         Calculate,

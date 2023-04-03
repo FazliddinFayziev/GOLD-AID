@@ -12,4 +12,7 @@ export { default as Tests } from "./Tests";
 
 // HOME PAGE COMPONENTS
 export { default as Navbar } from './Navbar';
+export { default as HerroBanner } from './HerroBanner';
+export { default as Courses } from "./Courses";
+export { default as CourseCard } from "./CourseCard";
 

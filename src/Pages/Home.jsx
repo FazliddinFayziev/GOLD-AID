@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useGlobalContext } from '../context/context';
 import { useNavigate } from 'react-router-dom';
-import { Loading, Navbar } from '../Components';
+import { Courses, HerroBanner, Loading, Navbar } from '../Components';
+import "../HomeCSS/home.css"
 // import jwt_decode from 'jwt-decode';
 
 const Home = () => {
-    const { user, setUser, isLoading, setIsLoading } = useGlobalContext();
+    const { bgColor, user, setUser, isLoading, setIsLoading } = useGlobalContext();
     const navigate = useNavigate();
 
     // GET NEW TOKEN
@@ -58,9 +59,19 @@ const Home = () => {
     //     return <Loading />
     // }
     return (
-        <div>
-            <Navbar />
-        </div>
+        <>
+            <div className={bgColor ? 'home-container-white' : 'home-container-black'}>
+                <div>
+                    <Navbar />
+                </div>
+                <div>
+                    <HerroBanner />
+                </div>
+                <div>
+                    <Courses />
+                </div>
+            </div>
+        </>
     )
 }
 

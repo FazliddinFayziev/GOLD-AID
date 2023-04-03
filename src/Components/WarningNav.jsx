@@ -15,7 +15,7 @@ const WarningNav = () => {
     return (
         <div className="start-navbar">
             <div className="start-navbar-container">
-                < ul className="nav-text" > {Inputs(eng, ru).About}</ul >
+                <ul className="nav-text" > {Inputs(eng, ru).About}</ul>
                 <ul className="nav-text">{Inputs(eng, ru).Contact}</ul>
                 <ul>
                     <select onChange={(e) => setLanguage(e.target.value)} className={log ? "select-hiden" : "nav-select"}>
