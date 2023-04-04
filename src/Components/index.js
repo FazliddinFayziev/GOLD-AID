@@ -15,4 +15,5 @@ export { default as Navbar } from './Navbar';
 export { default as HerroBanner } from './HerroBanner';
 export { default as Courses } from "./Courses";
 export { default as CourseCard } from "./CourseCard";
+export { default as Footer } from "./Footer";
 

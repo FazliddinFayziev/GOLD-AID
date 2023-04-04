@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import '../HomeCSS/navbar.css'
-import { hambook, logo, profile } from '../assets'
-import { useGlobalContext } from '../context/context'
-import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs"
+import React, { useState } from 'react';
+import '../HomeCSS/navbar.css';
+import { hambook, logo, profile } from '../assets';
+import { useGlobalContext } from '../context/context';
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Navbar = () => {
     const { bgColor, setBgColor } = useGlobalContext();
-    const { nav, setNav } = useState(false);
+    const [nav, setNav] = useState(false);
     return (
         <>
             <div className='container-home-navbar'>
@@ -35,15 +36,38 @@ const Navbar = () => {
 
 
                     {/* NAVBAR @MEDIA HAMBURGER */}
-                    <div className='hambook-container'>
+                    <div
+                        onClick={() => setNav(true)}
+                        className='hambook-container'
+                    >
                         <img src={hambook} alt="hambook" />
                     </div>
                 </div>
             </div>
 
             {/* @MEDIA OPEN NAVBAR MENU */}
-            <div className='navbar-menu'>
-
+            <div className='navbar-sidebar'>
+                <div className={nav ? 'navbar-menu-show' : 'navbar-menu-hidden'}>
+                    <div className='navbar-menu'>
+                        <div
+                            onClick={() => setNav(false)}
+                            className='navbar-menu-icon'
+                        >
+                            <AiOutlineClose className='navbar-menu-close' fontSize={30} />
+                        </div>
+                        <div className='navbar-menu-container-img'>
+                            <div className='navbar-menu-img'>
+                                <img src={profile} alt="profile-picture" />
+                            </div>
+                        </div>
+                        <div className='navbar-menu-text'>
+                            <ul>
+                                <li>About</li>
+                                <li>Contact</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )

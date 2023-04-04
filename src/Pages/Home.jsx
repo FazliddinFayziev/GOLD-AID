@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useGlobalContext } from '../context/context';
 import { useNavigate } from 'react-router-dom';
-import { Courses, HerroBanner, Loading, Navbar } from '../Components';
+import { Courses, Footer, HerroBanner, Loading, Navbar } from '../Components';
 import "../HomeCSS/home.css"
 // import jwt_decode from 'jwt-decode';
 
@@ -61,15 +61,10 @@ const Home = () => {
     return (
         <>
             <div className={bgColor ? 'home-container-white' : 'home-container-black'}>
-                <div>
-                    <Navbar />
-                </div>
-                <div>
-                    <HerroBanner />
-                </div>
-                <div>
-                    <Courses />
-                </div>
+                <Navbar />
+                <HerroBanner />
+                <Courses />
+                <Footer />
             </div>
         </>
     )

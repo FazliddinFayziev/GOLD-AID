@@ -146,7 +146,16 @@
     object-fit: cover;
 }
 
+.navbar-menu-show {
+    display: none;
+}
+
+.navbar-menu-hidden {
+    display: none;
+}
+
 @media(max-width: 950px) {
+
     .home-navbar-about ul {
         display: none;
     }
@@ -157,7 +166,117 @@
 
     .hambook-container {
         display: block;
+        transition: transform 0.2s ease;
+        cursor: pointer;
+    }
+
+    .hambook-container:hover {
+        transform: scale(1.2);
+    }
+
+    .navbar-sidebar {
+        transition: all 0.5s ease-in-out;
+    }
+
+    .navbar-menu-show {
+        display: block;
+        width: 50%;
+        height: 80%;
+        position: absolute;
+        background-color: #4461F2;
+        z-index: 100;
+        top: 0;
+        right: 0;
+        animation-name: slideInRight;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    .navbar-menu-hidden {
+        overflow: hidden;
+        width: 0%;
+        height: 80%;
+        position: absolute;
+        background-color: #4461F2;
+        z-index: 100;
+        top: 0;
+        right: 0;
+        animation-name: slideOutRight;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0%);
+        }
+    }
+
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0%);
+        }
+
+        to {
+            transform: translateX(100%);
+        }
     }
 
 
+
+    .navbar-menu-icon {
+        margin-top: 20px;
+        margin-left: 20px;
+        color: var(--white);
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .navbar-menu-close:hover {
+        transform: scale(1.2);
+    }
+
+    .navbar-menu-container-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbar-menu-img {
+        width: 60px;
+        height: 60px;
+        margin-top: 50px;
+    }
+
+    .navbar-menu-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .navbar-menu-text ul {
+        list-style-type: none;
+        font-family: var(--font);
+    }
+
+    .navbar-menu-text ul li {
+        text-align: center;
+    }
+
+    .navbar-menu-text {
+        display: flex;
+        justify-content: center;
+        font-weight: var(--font-w);
+        margin-top: 20px;
+        cursor: pointer;
+        color: var(--white);
+    }
+
+    .navbar-menu-text ul li {
+        margin-top: 20px;
+    }
 }
