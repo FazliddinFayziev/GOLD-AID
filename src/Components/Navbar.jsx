@@ -48,7 +48,7 @@ const Navbar = () => {
             {/* @MEDIA OPEN NAVBAR MENU */}
             <div className='navbar-sidebar'>
                 <div className={nav ? 'navbar-menu-show' : 'navbar-menu-hidden'}>
-                    <div className='navbar-menu'>
+                    <div className={nav ? 'navbar-menu-box-show' : 'navbar-menu-box-hidden'}>
                         <div
                             onClick={() => setNav(false)}
                             className='navbar-menu-icon'

@@ -175,15 +175,15 @@
     }
 
     .navbar-sidebar {
-        transition: all 0.5s ease-in-out;
+        overflow: hidden;
     }
 
     .navbar-menu-show {
         display: block;
+        position: absolute;
         width: 50%;
         height: 80%;
-        position: absolute;
-        background-color: #4461F2;
+        background-color: var(--maincolor);
         z-index: 100;
         top: 0;
         right: 0;
@@ -193,11 +193,11 @@
     }
 
     .navbar-menu-hidden {
-        overflow: hidden;
-        width: 0%;
-        height: 80%;
+        display: block;
         position: absolute;
-        background-color: #4461F2;
+        width: 0;
+        height: 80%;
+        background-color: var(--maincolor);
         z-index: 100;
         top: 0;
         right: 0;
@@ -208,27 +208,35 @@
 
     @keyframes slideInRight {
         from {
-            transform: translateX(100%);
+            width: 0;
         }
 
         to {
-            transform: translateX(0%);
+            width: 50%;
         }
     }
 
     @keyframes slideOutRight {
         from {
-            transform: translateX(0%);
+            width: 50%;
         }
 
         to {
-            transform: translateX(100%);
+            width: 0;
         }
     }
 
+    .navbar-menu-box-show {
+        display: block;
+    }
+
+    .navbar-menu-box-hidden {
+        display: none;
+    }
 
 
     .navbar-menu-icon {
+        display: block;
         margin-top: 20px;
         margin-left: 20px;
         color: var(--white);
@@ -258,6 +266,15 @@
         object-fit: cover;
     }
 
+    .navbar-menu-text {
+        display: flex;
+        justify-content: center;
+        font-weight: var(--font-w);
+        margin-top: 20px;
+        cursor: pointer;
+        color: var(--white);
+    }
+
     .navbar-menu-text ul {
         list-style-type: none;
         font-family: var(--font);
@@ -267,14 +284,6 @@
         text-align: center;
     }
 
-    .navbar-menu-text {
-        display: flex;
-        justify-content: center;
-        font-weight: var(--font-w);
-        margin-top: 20px;
-        cursor: pointer;
-        color: var(--white);
-    }
 
     .navbar-menu-text ul li {
         margin-top: 20px;
