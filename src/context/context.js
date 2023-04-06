@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState, useReducer } from 'react';
 import { changeLanguage } from './Functions';
 import reducer from './reducer';
 import { types } from './types';
-import axios from 'axios';
 
 
 const AppContext = React.createContext();
@@ -45,7 +44,6 @@ export const AppProvider = ({ children }) => {
 
     // USESTATE() FOR USERS ACCESS TOKEN
     const [user, setUser] = useState({})
-    axios.defaults.baseURL = 'https://gold-aid.onrender.com/api/v1'
 
     // USEEFFECT() FOR USERS ACCESS TOKEN
     useEffect(() => {

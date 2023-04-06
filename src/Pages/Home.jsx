@@ -1,63 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
-import { useGlobalContext } from '../context/context';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Courses, Footer, HerroBanner, Loading, Navbar } from '../Components';
-import "../HomeCSS/home.css"
-// import jwt_decode from 'jwt-decode';
+import { useGlobalContext } from '../context/context';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import '../HomeCSS/home.css';
 
 const Home = () => {
-    const { bgColor, user, setUser, isLoading, setIsLoading } = useGlobalContext();
+    const { bgColor, user, setUser, setIsLoading } = useGlobalContext();
+    const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    // GET NEW TOKEN
-    // const getNewToken = async () => {
-    //     try {
-    //         const token = localStorage.getItem('refreshToken')
-    //         const res = await axios.post('/', { refreshToken: token }, {
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         })
-    //         const { accessToken, refreshToken } = res.data
-    //         setUser({ accessToken })
-    //         localStorage.setItem('refreshToken', refreshToken)
-    //         return accessToken
-    //     } catch (err) {
-    //         logOut()
-    //     }
-    // }
-
-    // LOG-OUT
-    // const logOut = () => {
-    //     setUser({})
-    //     localStorage.setItem('refreshToken', '')
-    //     return navigate('/register')
-    // }
-
-    // useEffect(() => {
-    //     setIsLoading(true)
-    //     const fetch = async () => {
-    //         const token = await getNewToken()
-    //         if (!token) return navigate('/register')
-    //         console.log('Hello World')
-    //     }
-    //     fetch()
-    //     setIsLoading(false)
-    // }, [])
-
-
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         getNewToken()
-    //     }, 5400000) // fetches new urls and tokens after 1.5 hour
-    //     return () => clearInterval(timer)
-    // }, [])
-
-
-    // if (!isLoading) {
-    //     return <Loading />
-    // }
     return (
         <>
             <div className={bgColor ? 'home-container-white' : 'home-container-black'}>
@@ -67,7 +20,7 @@ const Home = () => {
                 <Footer />
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

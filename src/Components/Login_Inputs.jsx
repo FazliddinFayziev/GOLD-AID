@@ -2,32 +2,51 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { useGlobalContext } from '../context/context';
 import Inputs, { Eye } from '../Data/Inputs';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+const LOGIN_URL = '/login';
 
 const Login_Inputs = () => {
     const { user, setUser, languageBoolean, open, setOpen } = useGlobalContext();
     const { ru, eng } = languageBoolean;
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [err, setErr] = useState('')
+    const [errMsg, setErrMsg] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+
         try {
-            const res = await axios.post('/login', { email, password }, {
-                headers: {
-                    'Content-Type': 'application/json'
+            const response = await axios.post('https://gold-aid.onrender.com/api/v1/login',
+                JSON.stringify({ email, password }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
                 }
-            })
-            setErr('')
-            const { accessToken, refreshToken } = res.data
-            localStorage.setItem('refreshToken', refreshToken)
-            setUser({ accessToken })
-            return navigate('/')
+            );
+            console.log(response);
+            //console.log(JSON.stringify(response));
+            const accessToken = response?.data?.accessToken;
+            const isAdmin = response?.data?.user?.isAdmin;
+            setUser({ email, password, isAdmin, accessToken });
+            setEmail('');
+            setPassword('');
+            navigate(from, { replace: true });
         } catch (err) {
-            console.log(err)
-            setErr(err.response.data.err)
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg('Login Failed');
+            }
         }
     }
 

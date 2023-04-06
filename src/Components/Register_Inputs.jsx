@@ -3,6 +3,11 @@ import { useGlobalContext } from '../context/context';
 import Inputs, { checkConfirmPassword, checkPassword, EmailCheck, Eye } from '../Data/Inputs';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from '../api/axios';
+
+
+const REGISTER_URL = '/isRegistered';
+
 
 
 
@@ -14,6 +19,8 @@ const Register_Inputs = () => {
     const [checkStrongConfirm, setCheckStrongConfirm] = useState({ weakCon: false, goodCon: false, strongCon: false });
     const [isEmail, setIsEmail] = useState(false)
     const [confirmInputValue, setConfirmInputValue] = useState('');
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
     // NONE USESTATE();
     const { weak, good, strong } = checkStrong;
     const { weakCon, goodCon, strongCon } = checkStrongConfirm;
@@ -36,15 +43,39 @@ const Register_Inputs = () => {
 
     // IMPORTANT FUNCTIONS
     // NAVIGATE LOGIC
-    const handleNavigate = (e) => {
+    const handleNavigate = async (e) => {
         e.preventDefault()
-        if (name !== "" && age !== "" && gender !== "" && isEmail && strong && strongCon) {
-            setIsRegister(true)
-            navigate("/warning")
-        } else {
-            alert(eng ? "Please fill all inputs right" : ru ? "Пожалуйста, заполните все поля правильно" : "Iltimos, barcha maʼlumotlarni toʻgʻri toʻldiring")
+        // if (name !== "" && age !== "" && gender !== "" && isEmail && strong && strongCon) {
+        //     setIsRegister(true)
+        //     navigate("/warning")
+        // } else {
+        //     alert(eng ? "Please fill all inputs right" : ru ? "Пожалуйста, заполните все поля правильно" : "Iltimos, barcha maʼlumotlarni toʻgʻri toʻldiring")
+        // }
+        try {
+            const response = await axios.post(REGISTER_URL,
+                JSON.stringify({ email, password }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            // TODO: remove console.logs before deployment
+            console.log(JSON.stringify(response?.data));
+            //console.log(JSON.stringify(response))
+            setSuccess(true);
+            //clear state and controlled inputs
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 409) {
+                setErrMsg('Username Taken');
+            } else {
+                setErrMsg('Registration Failed')
+            }
         }
     }
+
+
 
     return (
         <div className="container-inputs">
