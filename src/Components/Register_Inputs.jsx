@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 
 
-const REGISTER_URL = '/isRegistered';
+const REGISTER_URL = '/isregistered';
 
 
 
@@ -45,24 +45,22 @@ const Register_Inputs = () => {
     // NAVIGATE LOGIC
     const handleNavigate = async (e) => {
         e.preventDefault()
-        // if (name !== "" && age !== "" && gender !== "" && isEmail && strong && strongCon) {
-        //     setIsRegister(true)
-        //     navigate("/warning")
-        // } else {
-        //     alert(eng ? "Please fill all inputs right" : ru ? "Пожалуйста, заполните все поля правильно" : "Iltimos, barcha maʼlumotlarni toʻgʻri toʻldiring")
-        // }
         try {
-            const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ email, password }),
+            const response = await axios.post('https://gold-aid.onrender.com/api/v1/isregistered',
+                JSON.stringify({ email: email, password: password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
+                    // withCredentials: true
                 }
             );
-            // TODO: remove console.logs before deployment
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response))
-            setSuccess(true);
+            // if (name !== "" && age !== "" && gender !== "" && isEmail && strong && strongCon) {
+            // setIsRegister(true)
+            console.log(response?.msg)
+            // setSuccess(true);
+            // navigate("/warning")
+            // } else {
+            // alert(eng ? "Please fill all inputs right" : ru ? "Пожалуйста, заполните все поля правильно" : "Iltimos, barcha maʼlumotlarni toʻgʻri toʻldiring")
+            // }
             //clear state and controlled inputs
         } catch (err) {
             if (!err?.response) {
@@ -190,6 +188,8 @@ const Register_Inputs = () => {
                         {Inputs(eng, ru).RegisterButton}
                     </button>
                 </div>
+
+                <p>{errMsg}</p>
 
             </div>
 

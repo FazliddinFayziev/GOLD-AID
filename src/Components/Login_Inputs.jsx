@@ -23,25 +23,25 @@ const Login_Inputs = () => {
 
         try {
             const response = await axios.post('https://gold-aid.onrender.com/api/v1/login',
-                JSON.stringify({ email, password }),
+                JSON.stringify({ email: email, password: password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
+                    // withCredentials: true
                 }
             );
             console.log(response);
-            //console.log(JSON.stringify(response));
+            console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const isAdmin = response?.data?.user?.isAdmin;
             setUser({ email, password, isAdmin, accessToken });
             setEmail('');
             setPassword('');
-            navigate(from, { replace: true });
+            navigate('/');
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password');
+                setErrMsg('Username or Password is not correct');
             } else if (err.response?.status === 401) {
                 setErrMsg('Unauthorized');
             } else {
@@ -100,6 +100,8 @@ const Login_Inputs = () => {
                         {Inputs(eng, ru).Login}
                     </button>
                 </div>
+
+                <p>{errMsg}</p>
 
             </div>
 
