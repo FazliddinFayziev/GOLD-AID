@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --black: #000;
+    --white: #fff;
+    --maincolor: #4461F2;
+    --font: 'Dosis',
+        sans-serif;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: center;
+}
+
+.ProgressBar {
+    background-color: #DEE4FF;
+    border: 1px solid var(--black);
+    border-radius: 20px;
+    height: 30px;
+    position: relative;
+    width: 50%;
+}
+
+.ProgressBar__fill {
+    background-color: var(--maincolor);
+    border-radius: 20px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font);
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.progress-text .white {
+    color: var(--black);
+}
+
+.progress-text .black {
+    color: var(--white);
+}

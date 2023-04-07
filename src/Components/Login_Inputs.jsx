@@ -45,7 +45,7 @@ const Login_Inputs = () => {
             } else if (err.response?.status === 401) {
                 setErrMsg('Unauthorized');
             } else {
-                setErrMsg('Login Failed');
+                setErrMsg('Email is not found');
             }
         }
     }

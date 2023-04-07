@@ -6,3 +6,4 @@ export { default as TestPage } from "./TestPage";
 export { default as Error } from "./Error";
 export { default as Admin } from "./Admin";
 export { default as Layout } from "./Layout";
+export { default as LessonsPage } from "./LessonsPage";

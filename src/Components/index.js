@@ -18,3 +18,8 @@ export { default as CourseCard } from "./CourseCard";
 export { default as Footer } from "./Footer";
 
 
+// Lessons Page
+export { default as Lessons } from "./Lessons";
+export { default as ProgressBar } from "./ProgressBar";
+
+

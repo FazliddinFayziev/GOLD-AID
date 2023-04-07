@@ -50,23 +50,24 @@ const Register_Inputs = () => {
                 JSON.stringify({ email: email, password: password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
-                    // withCredentials: true
                 }
             );
-            // if (name !== "" && age !== "" && gender !== "" && isEmail && strong && strongCon) {
-            // setIsRegister(true)
-            console.log(response?.msg)
-            // setSuccess(true);
-            // navigate("/warning")
-            // } else {
-            // alert(eng ? "Please fill all inputs right" : ru ? "Пожалуйста, заполните все поля правильно" : "Iltimos, barcha maʼlumotlarni toʻgʻri toʻldiring")
-            // }
-            //clear state and controlled inputs
+            if (name !== "" && age !== "" && gender !== "" && isEmail && strong && strongCon) {
+                setIsRegister(true)
+                console.log(response.data.msg)
+                setSuccess(true);
+                navigate("/warning")
+            } else if (response.data.msg) {
+                setErrMsg('This email and password is taken')
+            } else {
+                alert(eng ? "Please fill all inputs right" : ru ? "Пожалуйста, заполните все поля правильно" : "Iltimos, barcha maʼlumotlarni toʻgʻri toʻldiring")
+            }
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
-            } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
+            } else if (err.response?.status === 404) {
+                setErrMsg('');
+                navigate('/warning')
             } else {
                 setErrMsg('Registration Failed')
             }

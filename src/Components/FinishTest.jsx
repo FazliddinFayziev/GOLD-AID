@@ -12,7 +12,7 @@ function FinishTest({ score, level }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('/register', {
+            const res = await axios.post('https://gold-aid.onrender.com/api/v1/register', {
                 name: name,
                 email: email,
                 age: age,
@@ -27,7 +27,7 @@ function FinishTest({ score, level }) {
             })
             console.log(res.data)
             ContinueButton();
-            return navigate('/login')
+            return navigate('/')
         } catch (err) {
             console.log(err.response.data.err)
             setErr(err.response.data.err)
