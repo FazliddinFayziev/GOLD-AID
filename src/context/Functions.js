@@ -81,3 +81,13 @@ export const backendScore = (myLevel) => {
     return score;
 }
 
+
+
+// token in localStorage
+export const setTokenToLocalStorage = (accessToken, refreshToken, expiresIn) => {
+    const accessTokenExpireTime = new Date().getTime() + expiresIn * 1000;
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+    localStorage.setItem('accessTokenExpireTime', accessTokenExpireTime);
+};
+

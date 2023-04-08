@@ -25,7 +25,7 @@ export const AppProvider = ({ children }) => {
     const [open, setOpen] = useState(true);
 
     // USESTATE() LOADING BOOLEAN
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     // USESTATE() BACKGROUND COLOR
     const [bgColor, setBgColor] = useState(true)

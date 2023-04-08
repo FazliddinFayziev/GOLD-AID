@@ -3,6 +3,7 @@ import axios from "axios";
 import { useGlobalContext } from '../context/context';
 import Inputs, { Eye } from '../Data/Inputs';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { setTokenToLocalStorage } from '../context/Functions';
 const LOGIN_URL = '/login';
 
 const Login_Inputs = () => {
@@ -26,17 +27,22 @@ const Login_Inputs = () => {
                 JSON.stringify({ email: email, password: password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
-                    // withCredentials: true
                 }
             );
             console.log(response);
             console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
-            const isAdmin = response?.data?.user?.isAdmin;
+            const refreshToken = response?.data?.refreshToken;
+            const isAdmin = response?.data?.isAdmin;
             setUser({ email, password, isAdmin, accessToken });
+            setTokenToLocalStorage(accessToken, refreshToken, 5400) // Local Storage with TOKENS
             setEmail('');
             setPassword('');
-            navigate('/');
+            if (isAdmin) {
+                navigate('/admin');
+            } else {
+                navigate('/')
+            }
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');

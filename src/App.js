@@ -23,17 +23,15 @@ function App() {
 
           {/* PROTECTED ROUTES */}
 
-          {/* <Route element={<RequireAuth check={false} />}> */}
-          <Route path="/" element={<Home />} />
-          {/* </Route> */}
+          <Route element={<RequireAuth check={false} />}>
+            <Route path="/" element={<Home />} />
+          </Route>
 
           <Route element={<RequireAuth check={true} />}>
             <Route path="admin" element={<Admin />} />
           </Route>
 
           <Route path="/:level/:id" element={<LessonsPage />} />
-
-          <Route path="loading" element={<Loading />} />
 
           {/* CATCH ALL */}
           <Route path="*" element={<Error />} />
