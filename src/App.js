@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Loading from "./Components/Loading";
 import { useGlobalContext } from "./context/context";
 import { Home, Login, Register, TestPage, Warning, Error, Layout, Admin, LessonsPage } from './Pages'
 import RequireAuth from "./Components/RequireAuth";

@@ -7,7 +7,7 @@ import '../HomeCSS/home.css';
 import axios from '../api/axios';
 
 const Home = () => {
-    const { bgColor, user, setUser, isLoading, setIsLoading } = useGlobalContext();
+    const { bgColor, user, setUser, isLoading, setIsLoading, } = useGlobalContext();
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();

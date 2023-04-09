@@ -3,10 +3,12 @@
 export { default as Register_Inputs } from './Register_Inputs';
 export { default as RegisterNavbar } from './RegisterNavbar';
 export { default as CountdownTimer } from "./CountdownTimer";
+export { default as CircleLoading } from './CircleLoading';
 export { default as Login_Inputs } from './Login_Inputs';
 export { default as WarningPage } from './WarningPage';
 export { default as FinishTest } from "./FinishTest";
 export { default as WarningNav } from './WarningNav';
+export { default as ShowCard } from './ShowCard';
 export { default as Loading } from './Loading';
 export { default as Tests } from "./Tests";
 
@@ -22,5 +24,6 @@ export { default as Footer } from "./Footer";
 export { default as Lessons } from "./Lessons";
 export { default as ProgressBar } from "./ProgressBar";
 export { default as LessonCard } from "./LessonCard";
+
 
 

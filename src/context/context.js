@@ -33,6 +33,10 @@ export const AppProvider = ({ children }) => {
 
     // LOGGIN AND REGISTER LOGICS AND HOME
     const [isRegister, setIsRegister] = useState(false);
+    // error messsage
+    const [errMsg, setErrMsg] = useState('');
+    // show card
+    const [showCard, setShowCard] = useState(false);
 
     // USESTATE() FOR TIMING FUNCTIONS
     const [timeLeft, setTimeLeft] = useState(30); // 1 hour in seconds
@@ -94,6 +98,14 @@ export const AppProvider = ({ children }) => {
         // bg color
         bgColor,
         setBgColor,
+
+        // error message
+        errMsg,
+        setErrMsg,
+
+        // show card
+        showCard,
+        setShowCard,
 
 
         Calculate,
