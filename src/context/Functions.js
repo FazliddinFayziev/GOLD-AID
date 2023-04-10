@@ -56,7 +56,7 @@ export const getLevel = (myScore) => {
     return level;
 }
 
-
+// TURNING FRONTEND SCORES TO BACKEND SCORE FOR SENDING IT TO BACKEND.
 export const backendScore = (myLevel) => {
     let score = 0;
     let b = "BEGINNER";

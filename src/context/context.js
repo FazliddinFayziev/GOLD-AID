@@ -39,7 +39,7 @@ export const AppProvider = ({ children }) => {
     const [showCard, setShowCard] = useState(false);
 
     // USESTATE() FOR TIMING FUNCTIONS
-    const [timeLeft, setTimeLeft] = useState(30); // 1 hour in seconds
+    const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
 
     // Change the Language Function
     useEffect(() => {

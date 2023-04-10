@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context/context';
 import Inputs from '../Data/Inputs';
 import axios from 'axios';
 function FinishTest({ score, level }) {
-    const { isLoading, setIsLoading, name, email, age, gender, password, backendScore, backendLevel, languageBoolean, ContinueButton } = useGlobalContext();
+    const { name, email, age, gender, password, backendScore, backendLevel, languageBoolean, ContinueButton } = useGlobalContext();
     const { ru, eng } = languageBoolean;
     const [err, setErr] = useState('')
     const navigate = useNavigate();
@@ -55,6 +55,7 @@ function FinishTest({ score, level }) {
                     </div>
                 </div>
             </div>
+            <p>{err}</p>
         </div>
     );
 }

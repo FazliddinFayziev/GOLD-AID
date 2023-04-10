@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Courses, Footer, HerroBanner, Loading, Navbar } from '../Components';
 import { useGlobalContext } from '../context/context';
-import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import '../HomeCSS/home.css';
 import axios from '../api/axios';
 
 const Home = () => {
     const { bgColor, user, setUser, isLoading, setIsLoading, } = useGlobalContext();
-    const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
-    const location = useLocation();
 
     // LOADING
     useEffect(() => {
@@ -37,20 +34,20 @@ const Home = () => {
             try {
                 const refreshToken = localStorage.getItem('refreshToken');
 
-                const response = await axios.post('/newtoken',
-                    {
-                        refreshToken: refreshToken
-                    },
+                const response = await axios.get('/newtoken',
+                    // {
+                    //     refreshToken: refreshToken
+                    // },
                     {
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Authorization': `Bearer ${refreshToken}`
                         }
                     }
                 );
 
                 const data = response.data;
                 const accessToken = data.accessToken;
-                const accessTokenExpireTime = new Date().getTime() + data.expiresIn * 1000;
+                const accessTokenExpireTime = new Date().getTime() + 5400 * 1000;
 
                 localStorage.setItem('accessToken', accessToken);
                 localStorage.setItem('accessTokenExpireTime', accessTokenExpireTime);
@@ -70,10 +67,10 @@ const Home = () => {
         useEffect(() => {
             if (!accessToken || !refreshToken || !accessTokenExpireTime) {
                 // Navigate to login page if tokens do not exist in localStorage
-                navigate('/')
+                navigate('/register')
             } else if (isAccessTokenExpired()) {
                 // Navigate to login page if access token is expired
-                navigate('/')
+                navigate('/login')
             } else {
                 refreshAccessToken();
             }

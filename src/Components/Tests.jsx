@@ -5,45 +5,39 @@ import FinishTest from './FinishTest';
 import { useGlobalContext } from '../context/context';
 import CountdownTimer from './CountdownTimer';
 import { backendScore, getLevel } from '../context/Functions';
+import Loading from './Loading';
 
 
 const Tests = () => {
     const { name, timeLeft, setTimeLeft, Calculate } = useGlobalContext();
 
-
-
     const [score, setScore] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [level, setLevel] = useState("")
+    const [level, setLevel] = useState("");
+    const [randomQuestion, setRandomQuestion] = useState(0);
+    // LOADING USESTATE()
+    const [isloading, setIsLoading] = useState(true);
 
     const handleOptionSelect = (e, questionId) => {
         setSelectedAnswers({ ...selectedAnswers, [questionId]: e.target.value });
     };
 
 
-    // prevent REFREFING
+    // LOADING
     useEffect(() => {
-        const handleBeforeUnload = (event) => {
-            event.preventDefault();
-            event.returnValue = "";
-
-            const confirmationMessage = "Are you sure you want to refresh the page?";
-            const customEvent = new CustomEvent("beforeunload", {
-                detail: confirmationMessage,
-            });
-
-            window.dispatchEvent(customEvent);
-
-            return confirmationMessage;
-        };
-
-        window.addEventListener("beforeunload", handleBeforeUnload);
-
-        return () => {
-            window.removeEventListener("beforeunload", handleBeforeUnload);
-        };
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+        return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        // RANDOM QUESTIONS
+        const randomQuestions = Math.floor(Math.random() * questions.length);
+        console.log(randomQuestions)
+        setRandomQuestion(randomQuestions)
+    }, [])
 
 
     // USEEFFECT() FOR TIMING FUNCTION
@@ -58,7 +52,7 @@ const Tests = () => {
     // Whole logic of checking th tests
     const handleQuizSubmit = () => {
         let newScore = 0;
-        questions.forEach((question) => {
+        questions[randomQuestion].quiz.forEach((question) => {
             if (selectedAnswers[question.id] === question.answer) {
                 newScore++;
             }
@@ -71,6 +65,10 @@ const Tests = () => {
         Calculate(level, backendScore(level));
     };
 
+    if (isloading) {
+        return <Loading />
+    }
+
     return (
         <>
             {timeLeft > 0 && <CountdownTimer />}
@@ -78,7 +76,7 @@ const Tests = () => {
                 <div className='test-container'>
                     <h1 className='test-welcome-page'><p className='welcome'>Welcome <span className='name-span'>{name}</span></p></h1>
                 </div>
-                {questions.map((question) => (
+                {questions[randomQuestion].quiz.map((question) => (
                     <div key={question.id} className="test-div">
                         <h3 className='test-question'>{question.id}) {question.text}</h3>
                         {question.options.map((option, index) => (
