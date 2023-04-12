@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tests, WarningNav } from '../Components'
+import { Tests, WarningNav } from '../../Components'
 
 
 const TestPage = () => {

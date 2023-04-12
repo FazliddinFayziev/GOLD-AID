@@ -97,7 +97,7 @@ const Register_Inputs = () => {
         setRegisterLoading(true)
         try {
             const response = await axios.post('/isregistered',
-                JSON.stringify({ email: email, password: password }),
+                JSON.stringify({ email: email }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                 }
@@ -246,7 +246,7 @@ const Register_Inputs = () => {
 
                     {/* BUTTON */}
 
-                    <div className='form'>
+                    <div className='form-for-button'>
                         <button
                             type='submit'
                             className='test-button'

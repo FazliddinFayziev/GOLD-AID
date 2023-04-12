@@ -31,7 +31,7 @@ function App() {
           <Route path="admin" element={<Admin />} />
           {/* </Route> */}
 
-          <Route path="/:level/:id" element={<LessonsPage />} />
+          <Route path="/:level" element={<LessonsPage />} />
 
           {/* CATCH ALL */}
           <Route path="*" element={<Error />} />

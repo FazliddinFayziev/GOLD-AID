@@ -1,5 +1,5 @@
 import React from 'react'
-import { WarningNav, WarningPage } from '../Components'
+import { WarningNav, WarningPage } from '../../Components'
 
 const Warning = () => {
     return (

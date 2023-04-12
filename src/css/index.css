@@ -178,6 +178,20 @@ body {
   margin-bottom: 10px;
 }
 
+.form-for-button {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  background-color: var(--mainBackgroundColor);
+  margin-top: 2vh;
+  width: 40vh;
+  height: 8vh;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
 .form input {
   width: 100%;
   height: 100%;

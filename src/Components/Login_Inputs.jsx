@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
-import axios from "axios";
+import axios from '../api/axios';
 import { useGlobalContext } from '../context/context';
 import Inputs, { Eye } from '../Data/Inputs';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setTokenToLocalStorage } from '../context/Functions';
-const LOGIN_URL = '/login';
+import CircleLoading from './CircleLoading';
+
 
 const Login_Inputs = () => {
-    const { user, setUser, languageBoolean, open, setOpen } = useGlobalContext();
+    const { setUser, languageBoolean, open, setOpen } = useGlobalContext();
     const { ru, eng } = languageBoolean;
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errMsg, setErrMsg] = useState('');
+    const [loginLoading, setLoginLoading] = useState(false)
     const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
+
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setLoginLoading(true)
         try {
-            const response = await axios.post('https://gold-aid.onrender.com/api/v1/login',
+            const response = await axios.post('/login',
                 JSON.stringify({ email: email, password: password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
@@ -35,25 +36,35 @@ const Login_Inputs = () => {
             const refreshToken = response?.data?.refreshToken;
             const isAdmin = response?.data?.isAdmin;
             setUser({ email, password, isAdmin, accessToken });
-            setTokenToLocalStorage(accessToken, refreshToken, 5400) // Local Storage with TOKENS
+            setTokenToLocalStorage(refreshToken, 30) // Local Storage with TOKENS
             setEmail('');
             setPassword('');
             if (isAdmin) {
                 navigate('/admin');
+                setLoginLoading(false)
             } else {
                 navigate('/')
+                setLoginLoading(false)
             }
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
+                setLoginLoading(false)
             } else if (err.response?.status === 400) {
                 setErrMsg('Username or Password is not correct');
+                setLoginLoading(false)
             } else if (err.response?.status === 401) {
                 setErrMsg('Unauthorized');
+                setLoginLoading(false)
             } else {
                 setErrMsg('Email is not found');
+                setLoginLoading(false)
             }
         }
+    }
+
+    if (loginLoading) {
+        return <CircleLoading />
     }
 
     return (

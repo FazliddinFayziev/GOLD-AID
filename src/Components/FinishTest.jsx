@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/context';
 import Inputs from '../Data/Inputs';
-import axios from 'axios';
+import axios from '../api/axios';
+import { setTokenToLocalStorage } from '../context/Functions';
 function FinishTest({ score, level }) {
-    const { name, email, age, gender, password, backendScore, backendLevel, languageBoolean, ContinueButton } = useGlobalContext();
+    const { name, email, setUser, age, gender, password, backendScore, backendLevel, languageBoolean, ContinueButton } = useGlobalContext();
     const { ru, eng } = languageBoolean;
     const [err, setErr] = useState('')
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ function FinishTest({ score, level }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('https://gold-aid.onrender.com/api/v1/register', {
+            const res = await axios.post('/register', {
                 name: name,
                 email: email,
                 age: age,
@@ -26,6 +27,11 @@ function FinishTest({ score, level }) {
                 }
             })
             console.log(res.data)
+            const accessToken = res?.data?.accessToken;
+            const refreshToken = res?.data?.refreshToken;
+            const isAdmin = res?.data?.isAdmin;
+            setUser({ email, password, isAdmin, accessToken });
+            setTokenToLocalStorage(refreshToken, 30) // Local Storage with TOKENS
             ContinueButton();
             return navigate('/')
         } catch (err) {

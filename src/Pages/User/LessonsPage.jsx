@@ -1,6 +1,6 @@
 import React from 'react'
-import { HerroBanner, Lessons, Navbar } from '../Components'
-import { useGlobalContext } from '../context/context'
+import { Footer, HerroBanner, Lessons, Navbar } from '../../Components'
+import { useGlobalContext } from '../../context/context'
 const LessonsPage = () => {
     const { bgColor } = useGlobalContext();
     return (
@@ -9,6 +9,7 @@ const LessonsPage = () => {
                 <Navbar />
                 <HerroBanner />
                 <Lessons />
+                <Footer />
             </div>
         </>
     )

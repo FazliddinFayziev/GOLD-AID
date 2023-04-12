@@ -1,6 +1,6 @@
-import { RegisterNavbar, Register_Inputs, ShowCard } from "../Components"
-import { register_img } from "../assets";
-import { useGlobalContext } from '../context/context';
+import { RegisterNavbar, Register_Inputs, ShowCard } from "../../Components"
+import { register_img } from "../../assets";
+import { useGlobalContext } from '../../context/context';
 
 const Register = () => {
     const { setShowCard } = useGlobalContext();

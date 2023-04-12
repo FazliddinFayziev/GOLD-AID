@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Courses, Footer, HerroBanner, Loading, Navbar } from '../Components';
-import { useGlobalContext } from '../context/context';
-import '../HomeCSS/home.css';
-import axios from '../api/axios';
+import { Courses, Footer, HerroBanner, Loading, Navbar } from '../../Components';
+import { useGlobalContext } from '../../context/context';
+import '../../HomeCSS/home.css';
+import axios from '../../api/axios';
 
 const Home = () => {
     const { bgColor, user, setUser, isLoading, setIsLoading, } = useGlobalContext();
@@ -20,7 +20,7 @@ const Home = () => {
 
 
     const useToken = () => {
-        const accessToken = localStorage.getItem('accessToken');
+        const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
         const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
 
@@ -32,40 +32,51 @@ const Home = () => {
         // Make API call to refresh access token using refresh token
         const refreshAccessToken = async () => {
             try {
-                const refreshToken = localStorage.getItem('refreshToken');
+                const token = localStorage.getItem('refreshToken');
 
                 const response = await axios.get('/newtoken',
-                    // {
-                    //     refreshToken: refreshToken
-                    // },
                     {
                         headers: {
-                            'Authorization': `Bearer ${refreshToken}`
+                            'Authorization': `Bearer ${token}`
                         }
                     }
                 );
 
-                const data = response.data;
-                const accessToken = data.accessToken;
-                const accessTokenExpireTime = new Date().getTime() + 5400 * 1000;
+                const { accessToken } = response.data;
+                const accessTokenExpireTime = new Date().getTime() + 30 * 1000;
 
-                localStorage.setItem('accessToken', accessToken);
+                setUser({ ...user, accessToken: accessToken });
                 localStorage.setItem('accessTokenExpireTime', accessTokenExpireTime);
+                console.log(accessToken);
             } catch (error) {
                 console.error(error);
+                logOut()
             }
 
-            // Update access token and expiration time in localStorage
+            // Update access token and expiration time
             const accessToken = 'newAccessToken';
-            const accessTokenExpireTime = new Date().getTime() + 1.5 * 60 * 60 * 1000; // set expiration time to 1.5 hours from now
+            const accessTokenExpireTime = new Date().getTime() + 30 * 1000; // set expiration time to 30 seconds from now
 
-            localStorage.setItem('accessToken', accessToken);
+            setUser({ ...user, accessToken: accessToken });
             localStorage.setItem('accessTokenExpireTime', accessTokenExpireTime);
 
         };
 
         useEffect(() => {
-            if (!accessToken || !refreshToken || !accessTokenExpireTime) {
+            const timer = setInterval(() => {
+                refreshAccessToken()
+            }, 30000); // fetches new urls and tokens every 30 seconds
+            return () => clearInterval(timer)
+        }, [])
+
+        const logOut = () => {
+            setUser({})
+            localStorage.setItem('refreshToken', '')
+            return navigate('/login')
+        }
+
+        useEffect(() => {
+            if (!refreshToken || !accessTokenExpireTime) {
                 // Navigate to login page if tokens do not exist in localStorage
                 navigate('/register')
             } else if (isAccessTokenExpired()) {
@@ -87,7 +98,7 @@ const Home = () => {
 
 
     if (!accessToken) {
-        return null; // Render loading spinner or other indicator
+        return <Loading /> // Render loading spinner or other indicator
     }
     return (
         <>

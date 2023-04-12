@@ -1,6 +1,6 @@
 import React from 'react'
-import { RegisterNavbar, Login_Inputs } from "../Components"
-import { login_img } from "../assets";
+import { RegisterNavbar, Login_Inputs } from "../../Components"
+import { login_img } from "../../assets";
 
 const Login = () => {
 

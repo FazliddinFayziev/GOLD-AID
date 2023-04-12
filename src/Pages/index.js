@@ -1,9 +1,9 @@
-export { default as Home } from './Home';
-export { default as Login } from './Login';
-export { default as Register } from './Register';
-export { default as Warning } from './Warning';
-export { default as TestPage } from "./TestPage";
-export { default as Error } from "./Error";
-export { default as Admin } from "./Admin";
+export { default as Home } from './User/Home';
+export { default as Login } from './User/Login';
+export { default as Register } from './User/Register';
+export { default as Warning } from './User/Warning';
+export { default as TestPage } from "./User/TestPage";
+export { default as Error } from "./User/Error";
+export { default as Admin } from "./Admin/Admin";
 export { default as Layout } from "./Layout";
-export { default as LessonsPage } from "./LessonsPage";
+export { default as LessonsPage } from "./User/LessonsPage";

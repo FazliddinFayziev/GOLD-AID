@@ -3733,31 +3733,7 @@ export const questions = [
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// LEVEL CARDS
 export const levelCards = [
     {
         id: 0,
@@ -3788,5 +3764,71 @@ export const levelCards = [
         id: 5,
         level: "IELTS",
         cardImg: 'https://res.cloudinary.com/dcrolfqsj/image/upload/v1680507562/ielts_vgw9hv.jpg',
+    },
+]
+
+
+
+
+// LESSON CARDS
+export const lessonCards = [
+    {
+        id: 0,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275859/introduction_gscuas.jpg",
+        tick: true,
+    },
+
+    {
+        id: 1,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275859/lesson1_cfmysk.jpg",
+        tick: true,
+    },
+
+    {
+        id: 2,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275859/lesson2_ro9q5n.jpg",
+        tick: true,
+    },
+
+    {
+        id: 3,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275859/lesson3_vzdhgi.jpg",
+        tick: true,
+    },
+
+    {
+        id: 4,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275859/lesson4_vymnoi.jpg",
+        tick: true,
+    },
+
+    {
+        id: 5,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275859/lesson5_lly9up.jpg",
+        tick: false,
+    },
+
+    {
+        id: 6,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275859/lesson6_kqlixj.jpg",
+        tick: false,
+    },
+
+    {
+        id: 7,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275860/lesson7_sevgsz.jpg",
+        tick: false,
+    },
+
+    {
+        id: 8,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275859/lesson8_o0hrx4.jpg",
+        tick: false,
+    },
+
+    {
+        id: 9,
+        lessonCard: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681275859/lesson9_x5apg1.jpg",
+        tick: false,
     },
 ]
