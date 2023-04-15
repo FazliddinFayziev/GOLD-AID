@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --gray: #D9D9D9;
+    --black: #000;
+    --white: #fff;
+    --maincolor: #4461F2;
+    --maincolorHover: #002aff;
+    --mainBackgroundColor: #F8F8FF;
+    --font: 'Dosis',
+        sans-serif;
+    --font-w: 800;
+    --border: solid 2px #000;
+}
+
+.motivation-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    font-family: var(--font);
+    font-weight: 500;
+}
+
+.motivation-text p {
+    font-size: 20px;
+    text-align: center;
+}
+
+.motivation-text .white {
+    color: var(--black);
+}
+
+.motivation-text .black {
+    color: var(--white);
+}
+
+@media (max-width: 950px) {
+    .motivation-text p {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 350px) {
+    .motivation-text p {
+        font-size: 10px;
+    }
+}

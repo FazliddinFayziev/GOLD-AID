@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../HomeCSS/navbar.css';
+import '../css/HomeCSS/navbar.css';
 import { hambook, logo, profile } from '../assets';
 import { useGlobalContext } from '../context/context';
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";

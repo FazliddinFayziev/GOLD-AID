@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --black: #000;
+    --white: #fff;
+    --maincolor: #4461F2;
+    --font: 'Dosis',
+        sans-serif;
+    --font-w: 800;
+}
+
+.video-title {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font);
+    font-size: 15px;
+    margin-top: 50px;
+}
+
+.video-title h1:after {
+    display: inline-block;
+    content: "";
+    width: 100%;
+    height: 4px;
+    margin-bottom: 25px;
+    background-color: var(--maincolor);
+}
+
+.video-title .white {
+    color: var(--black);
+}
+
+.video-title .black {
+    color: var(--white);
+}
+
+.video-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--maincolor);
+    border: 5px inset yellow;
+}
+
+.main-video {
+    width: 100%;
+    height: auto;
+}
+
+
+
+.video-react .big-play-button {
+    color: yellow !important;
+}
+
+@media(max-width: 950px) {
+    .video-title {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 450px) {
+    .video-container {
+        max-width: 300px;
+    }
+}

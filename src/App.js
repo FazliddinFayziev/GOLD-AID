@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useGlobalContext } from "./context/context";
 import { Home, Login, Register, TestPage, Warning, Error, Layout, Admin, LessonsPage } from './Pages'
+import VideoPage from "./Pages/User/VideoPage";
 
 
 
@@ -32,6 +33,8 @@ function App() {
           {/* </Route> */}
 
           <Route path="/:level" element={<LessonsPage />} />
+
+          <Route path="/:level/:lesson" element={<VideoPage />} />
 
           {/* CATCH ALL */}
           <Route path="*" element={<Error />} />

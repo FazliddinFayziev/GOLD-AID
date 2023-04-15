@@ -1,0 +1,19 @@
+:root {
+    --blackBackGrondColor: #0e2439;
+    --whiteBackGroundColor: #c6d9ec;
+}
+
+.video-container-white,
+.video-container-black {
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.video-container-white {
+    background-color: var(--whiteBackGroundColor);
+}
+
+.video-container-black {
+    background-color: var(--blackBackGrondColor);
+}

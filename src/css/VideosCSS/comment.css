@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --gray: #D9D9D9;
+    --black: #000;
+    --maincolor: #4461F2;
+    --maincolorHover: #002aff;
+    --mainBackgroundColor: #F8F8FF;
+    --font: 'Dosis',
+        sans-serif;
+    --font-w: 800;
+    --border: solid 2px #000;
+}
+
+.comment {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment-section {
+    margin-top: 20px;
+    font-family: var(--font);
+    font-weight: 500;
+    /* border: var(--border); */
+    padding: 10px;
+}
+
+.comments-list {
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.comment-input {
+    display: flex;
+    justify-content: center;
+}
+
+.comment-input input {
+    width: 50%;
+    height: 30px;
+    padding: 5px;
+}
+
+.comment-input button {
+    padding: 5px;
+    background-color: var(--maincolor);
+    border: none;
+    color: #fff;
+}

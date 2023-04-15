@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Courses, Footer, HerroBanner, Loading, Navbar } from '../../Components';
 import { useGlobalContext } from '../../context/context';
-import '../../HomeCSS/home.css';
+import '../../css/HomeCSS/home.css';
 import axios from '../../api/axios';
 
 const Home = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../css/CountdownTimer.css";
+import "../css/OtherCSS/CountdownTimer.css";
 import { useGlobalContext } from "../context/context";
 
 const CountdownTimer = () => {

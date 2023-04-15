@@ -1,29 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react';
+import '../css/VideosCSS/smallNavbar.css';
+import { hambook, logo, profile } from '../assets';
+import { useGlobalContext } from '../context/context';
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { AiOutlineClose } from "react-icons/ai";
 
 const SmallNavbar = () => {
+    const { bgColor, setBgColor } = useGlobalContext();
+    const [nav, setNav] = useState(false);
     return (
         <>
-            <div className='container-home-navbar'>
+            <div className='container-small-navbar'>
                 {/* IMAGE DIV */}
                 <div>
-                    <div className='logo-img'>
+                    <div className='small-logo-img'>
                         <img src={logo} alt="gold-aid" />
                     </div>
                 </div>
 
                 {/* NAVBAR OTHER SIDE DIV */}
-                <div className='home-navbar-about'>
+                <div className='small-navbar-about'>
                     <ul>
                         <li>About</li>
                         <li>Contact</li>
                     </ul>
                     <div
-                        className={`home-navbar-icon ${bgColor ? 'animate' : ''}`}
+                        className={`small-navbar-icon ${bgColor ? 'small-animate' : ''}`}
                         onClick={() => setBgColor(!bgColor)}
                     >
                         {bgColor ? <BsFillMoonFill fontSize={30} color='#fff' /> : <BsFillSunFill fontSize={30} color='#fff' />}
                     </div>
-                    <div className='home-navbar-profile-picture'>
+                    <div className='small-navbar-profile-picture'>
                         <img src={profile} alt="gold-aid-profile-image" />
                     </div>
 
@@ -31,7 +38,7 @@ const SmallNavbar = () => {
                     {/* NAVBAR @MEDIA HAMBURGER */}
                     <div
                         onClick={() => setNav(true)}
-                        className='hambook-container'
+                        className='small-hambook-container'
                     >
                         <img src={hambook} alt="hambook" />
                     </div>
@@ -39,21 +46,21 @@ const SmallNavbar = () => {
             </div>
 
             {/* @MEDIA OPEN NAVBAR MENU */}
-            <div className='navbar-sidebar'>
-                <div className={nav ? 'navbar-menu-show' : 'navbar-menu-hidden'}>
-                    <div className={nav ? 'navbar-menu-box-show' : 'navbar-menu-box-hidden'}>
+            <div className='small-navbar-sidebar'>
+                <div className={nav ? 'small-navbar-menu-show' : 'small-navbar-menu-hidden'}>
+                    <div className={nav ? 'small-navbar-menu-box-show' : 'small-navbar-menu-box-hidden'}>
                         <div
                             onClick={() => setNav(false)}
-                            className='navbar-menu-icon'
+                            className='small-navbar-menu-icon'
                         >
-                            <AiOutlineClose className='navbar-menu-close' fontSize={30} />
+                            <AiOutlineClose className='small-navbar-menu-close' fontSize={30} />
                         </div>
-                        <div className='navbar-menu-container-img'>
-                            <div className='navbar-menu-img'>
+                        <div className='small-navbar-menu-container-img'>
+                            <div className='small-navbar-menu-img'>
                                 <img src={profile} alt="profile-picture" />
                             </div>
                         </div>
-                        <div className='navbar-menu-text'>
+                        <div className='small-navbar-menu-text'>
                             <ul>
                                 <li>About</li>
                                 <li>Contact</li>

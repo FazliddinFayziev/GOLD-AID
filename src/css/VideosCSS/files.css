@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --black: #000;
+    --white: #fff;
+    --maincolor: #4461F2;
+    --font: 'Dosis',
+        sans-serif;
+    --font-w: 800;
+}
+
+.files-title {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font);
+    font-size: 15px;
+    margin-top: 50px;
+}
+
+.files-title h1:after {
+    display: inline-block;
+    content: "";
+    width: 100%;
+    height: 4px;
+    margin-bottom: 25px;
+    background-color: var(--maincolor);
+}
+
+.files-title .white {
+    color: var(--black);
+}
+
+.files-title .black {
+    color: var(--white);
+}
+
+.file-container {
+    display: flex;
+    justify-content: center;
+}
+
+.file-img-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--white);
+    cursor: pointer;
+    margin-top: 30px;
+    width: 200px;
+    height: 60px;
+}
+
+.file-img-container h1 {
+    font-family: var(--font);
+    font-size: 20px;
+}
+
+.file-document-img {
+    width: 30px;
+    height: 40px;
+}
+
+.file-document-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.file-click-img {
+    width: 30px;
+    height: 40px;
+}
+
+.file-click-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media(max-width: 950px) {
+    .files-title {
+        font-size: 10px;
+    }
+}

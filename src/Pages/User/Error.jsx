@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../HomeCSS/error.css';
+import '../../css/HomeCSS/error.css';
 
 const Error = () => {
     return (

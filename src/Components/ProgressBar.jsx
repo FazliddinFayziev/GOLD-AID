@@ -1,5 +1,5 @@
 import React from 'react';
-import "../LessonsCSS/progress.css";
+import "../css/LessonsCSS/progress.css";
 import { useGlobalContext } from '../context/context';
 
 

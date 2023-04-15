@@ -3832,3 +3832,17 @@ export const lessonCards = [
         tick: false,
     },
 ]
+
+
+export const DonwloadDocument = [
+    {
+        id: 0,
+        documentLink: "/images/myw3schoolsimage.jpg",
+        lesson: "Lesson_0"
+    },
+    {
+        id: 1,
+        documentLink: "/images/myw3schoolsimage.jpg",
+        lesson: "Lesson_1"
+    },
+]

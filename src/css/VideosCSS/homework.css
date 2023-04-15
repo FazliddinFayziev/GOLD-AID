@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --black: #000;
+    --white: #fff;
+    --maincolor: #4461F2;
+    --maincolorHover: #002aff;
+    --font: 'Dosis',
+        sans-serif;
+    --font-w: 800;
+}
+
+.home-p-container {
+    display: flex;
+    justify-content: center;
+}
+
+.homework-p-container {
+    width: 500px;
+    padding: 10px;
+}
+
+.homework-p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font);
+    color: var(--black);
+    margin-top: 30px;
+    font-weight: 500;
+}
+
+.homework-p-white {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font);
+    color: var(--white);
+    margin-top: 30px;
+    font-weight: 500;
+}
+
+.home-ball {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--maincolor);
+    margin-right: 10px;
+}
+
+.home-ball-2 {
+    width: 13px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--maincolor);
+    margin-right: 10px;
+}
+
+.home-work-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.home-work-button button {
+    width: 200px;
+    height: 50px;
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    background-color: var(--maincolor);
+    border: none;
+    cursor: pointer;
+    transition: all 1s ease;
+}
+
+.home-work-button button:hover {
+    background-color: var(--maincolorHover);
+}
+
+@media (max-width: 300px) {
+    .homework-p {
+        font-size: 10px;
+    }
+}

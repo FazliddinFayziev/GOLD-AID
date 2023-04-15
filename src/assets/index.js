@@ -6,3 +6,6 @@ export const profile = "https://res.cloudinary.com/dcrolfqsj/image/upload/v16804
 export const white_background_image = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1680439766/back_rrsgqz.jpg";
 export const black_background_image = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1680508799/black_image_tj1dyu.jpg";
 export const hambook = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1680442818/Untitled__8_-removebg-preview_fzq41y.png";
+export const click = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681393837/click_fl6mnv.jpg";
+export const document = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681393837/document_aarbno.jpg"
+export const video = "https://res.cloudinary.com/dcrolfqsj/video/upload/v1681359507/video_thnvwb.mp4";

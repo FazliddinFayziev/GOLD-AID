@@ -1,5 +1,5 @@
 import React from 'react';
-import '../HomeCSS/courses.css';
+import '../css/HomeCSS/courses.css';
 import { useGlobalContext } from '../context/context';
 import { levelCards } from '../Data/data';
 import CourseCard from './CourseCard';

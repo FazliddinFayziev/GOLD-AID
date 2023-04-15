@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGlobalContext } from '../context/context';
-import '../LessonsCSS/lessons.css';
+import '../css/LessonsCSS/lessons.css';
 import ProgressBar from './ProgressBar';
 import LessonCard from './LessonCard';
 import { lessonCards } from '../Data/data';

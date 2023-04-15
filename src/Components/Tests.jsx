@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { questions } from '../Data/data';
-import "../css/test.css";
+import "../css/OtherCSS/test.css";
 import FinishTest from './FinishTest';
 import { useGlobalContext } from '../context/context';
 import CountdownTimer from './CountdownTimer';
