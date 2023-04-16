@@ -3846,3 +3846,67 @@ export const DonwloadDocument = [
         lesson: "Lesson_1"
     },
 ]
+
+
+export const profilePuctures = [
+    {
+        id: 0,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640978/avatar_11_quvs7l.jpg",
+    },
+
+    {
+        id: 1,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_12_lnzwoz.jpg",
+    },
+
+    {
+        id: 2,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_10_dp4y6r.jpg",
+    },
+
+    {
+        id: 3,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_9_zl7fgz.jpg",
+    },
+
+    {
+        id: 4,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_7_lh0cse.jpg",
+    },
+
+    {
+        id: 5,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_8_uvpb7w.jpg",
+    },
+
+    {
+        id: 6,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_4_l0vcsx.jpg",
+    },
+
+    {
+        id: 7,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_5_qf1cht.jpg",
+    },
+
+    {
+        id: 8,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_6_zyvn5q.jpg",
+    },
+
+    {
+        id: 9,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_2_llxm78.jpg",
+    },
+
+    {
+        id: 10,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_3_qi5ywp.jpg",
+    },
+
+    {
+        id: 11,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681640977/avatar_1_sjrzhd.jpg",
+        active: true
+    },
+]

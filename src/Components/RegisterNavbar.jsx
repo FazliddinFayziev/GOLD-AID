@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import Inputs from '../Data/Inputs';
 import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../context/context';
 import { changeLoginAndRegister } from '../context/Functions';
-import Inputs from '../Data/Inputs';
 
 const LoginNavbar = () => {
+
+    // GLOBAL
     const { setLanguage, languageBoolean } = useGlobalContext();
     const { ru, eng } = languageBoolean
+
+    // LOCAL
     const [log, setLog] = useState(true)
     const href = window.location.href;
     useEffect(() => {

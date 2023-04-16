@@ -3,6 +3,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useGlobalContext } from "./context/context";
 import { Home, Login, Register, TestPage, Warning, Error, Layout, Admin, LessonsPage } from './Pages'
 import VideoPage from "./Pages/User/VideoPage";
+import Homework from "./Pages/User/Homework";
+import Profile from "./Pages/User/Profile";
 
 
 
@@ -23,10 +25,7 @@ function App() {
 
 
           {/* PROTECTED ROUTES */}
-
-          {/* <Route element={<RequireAuth check={false} />}> */}
           <Route path="/" element={<Home />} />
-          {/* </Route> */}
 
           {/* <Route element={<RequireAuth check={true} />}> */}
           <Route path="admin" element={<Admin />} />
@@ -36,7 +35,11 @@ function App() {
 
           <Route path="/:level/:lesson" element={<VideoPage />} />
 
-          {/* CATCH ALL */}
+          <Route path="/:level/:lesson/:homework" element={<Homework />} />
+
+          <Route path="/profile/:user" element={<Profile />} />
+
+          {/* Catch */}
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>

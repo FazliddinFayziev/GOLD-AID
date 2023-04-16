@@ -1,9 +1,8 @@
 import React from 'react';
 import '../css/HomeCSS/courses.css';
-import { useGlobalContext } from '../context/context';
-import { levelCards } from '../Data/data';
 import CourseCard from './CourseCard';
-
+import { levelCards } from '../Data/data';
+import { useGlobalContext } from '../context/context';
 
 
 const Courses = () => {

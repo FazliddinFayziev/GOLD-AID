@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import "../css/OtherCSS/CountdownTimer.css";
+import "../css/Homework/homework.css";
+import React, { useEffect } from 'react';
 import { useGlobalContext } from "../context/context";
 
-const CountdownTimer = () => {
+const HomeworkTimer = () => {
 
     // GLOBAL
-    const { timeLeft, setTimeLeft } = useGlobalContext();
+    const { timeLeft, setTimeLeft, bgColor } = useGlobalContext();
 
     // LOCAL
     useEffect(() => {
@@ -22,25 +22,25 @@ const CountdownTimer = () => {
     const seconds = Math.floor(timeLeft % 60);
 
     return (
-        <div className="countdown-timer">
-            <div className="countdown-timer-text">
-                <span className="countdown-timer-hours">{hours.toString().padStart(2, "0")}</span>
-                <span className="countdown-timer-separator">:</span>
-                <span className="countdown-timer-minutes">{minutes.toString().padStart(2, "0")}</span>
-                <span className="countdown-timer-separator">:</span>
-                <span className="countdown-timer-seconds">{seconds.toString().padStart(2, "0")}</span>
+        <div className="homework-countdown-timer">
+            <div className={bgColor ? "homework-countdown-timer-text-white" : "homework-countdown-timer-text-black"}>
+                <span className="homework-countdown-timer-hours">{hours.toString().padStart(2, "0")}</span>
+                <span className="homework-countdown-timer-separator">:</span>
+                <span className="homework-countdown-timer-minutes">{minutes.toString().padStart(2, "0")}</span>
+                <span className="homework-countdown-timer-separator">:</span>
+                <span className="homework-countdown-timer-seconds">{seconds.toString().padStart(2, "0")}</span>
             </div>
-            <svg className="countdown-timer-svg">
+            <svg className="homework-countdown-timer-svg">
                 <circle
-                    className="countdown-timer-circle"
+                    className="homework-countdown-timer-circle"
                     cx="50%"
                     cy="50%"
                     r="48%"
-                    stroke="#b0afaf"
+                    stroke="#fff"
                     strokeWidth="4%"
                 />
                 <circle
-                    className="countdown-timer-progress"
+                    className="homework-countdown-timer-progress"
                     cx="50%"
                     cy="50%"
                     r="48%"
@@ -56,6 +56,6 @@ const CountdownTimer = () => {
             </svg>
         </div>
     );
-};
+}
 
-export default CountdownTimer;
+export default HomeworkTimer

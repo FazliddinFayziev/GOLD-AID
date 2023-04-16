@@ -1,8 +1,8 @@
 import React from 'react';
-import { useGlobalContext } from '../context/context';
 import "../css/VideosCSS/files.css";
-import DocumentContainer from './DocumentContainer';
 import { DonwloadDocument } from '../Data/data';
+import DocumentContainer from './DocumentContainer';
+import { useGlobalContext } from '../context/context';
 
 const Files = () => {
     const { bgColor } = useGlobalContext();

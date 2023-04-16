@@ -1,7 +1,7 @@
 import React from 'react';
-import { black_background_image, white_background_image } from '../assets';
-import { useGlobalContext } from '../context/context';
 import "../css/HomeCSS/banner.css";
+import { useGlobalContext } from '../context/context';
+import { black_background_image, white_background_image } from '../assets';
 
 const HerroBanner = () => {
     const { bgColor } = useGlobalContext();

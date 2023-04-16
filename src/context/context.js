@@ -49,11 +49,6 @@ export const AppProvider = ({ children }) => {
     // USESTATE() FOR USERS ACCESS TOKEN
     const [user, setUser] = useState({})
 
-    // USEEFFECT() FOR USERS ACCESS TOKEN
-    useEffect(() => {
-
-    }, [])
-
 
     // Targetting value of inputs
     const handleInputChange = (e) => {
@@ -80,10 +75,6 @@ export const AppProvider = ({ children }) => {
         })
     }
 
-
-
-
-
     return <AppContext.Provider value={{
         ...state,
 
@@ -107,7 +98,7 @@ export const AppProvider = ({ children }) => {
         showCard,
         setShowCard,
 
-
+        // calculate score for backend
         Calculate,
 
         open,

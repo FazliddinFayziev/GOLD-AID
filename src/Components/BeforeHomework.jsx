@@ -1,6 +1,6 @@
 import React from 'react';
-import { useGlobalContext } from '../context/context';
 import "../css/VideosCSS/homework.css"
+import { useGlobalContext } from '../context/context';
 
 const BeforeHomework = () => {
     const { bgColor } = useGlobalContext();

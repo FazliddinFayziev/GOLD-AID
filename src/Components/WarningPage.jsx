@@ -1,13 +1,16 @@
 import React from 'react';
-import { warning_img } from '../assets';
-import { useGlobalContext } from '../context/context';
 import Inputs from '../Data/Inputs';
+import { warning_img } from '../assets';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../context/context';
 
 const WarningPage = () => {
+
+    // GLOBAL
     const { languageBoolean, isRegister } = useGlobalContext();
     const { ru, eng } = languageBoolean
 
+    // LOCAL
     const navigate = useNavigate();
 
     const handleNavigate = () => {

@@ -38,8 +38,8 @@
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    background-color: var(--maincolor);
-    border: 5px inset yellow;
+    padding: 2px;
+    border: 5px inset var(--maincolor);
 }
 
 .main-video {

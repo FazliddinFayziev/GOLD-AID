@@ -1,9 +1,9 @@
 import React from 'react';
-import { useGlobalContext } from '../context/context';
+import LessonCard from './LessonCard';
 import '../css/LessonsCSS/lessons.css';
 import ProgressBar from './ProgressBar';
-import LessonCard from './LessonCard';
 import { lessonCards } from '../Data/data';
+import { useGlobalContext } from '../context/context';
 
 const Lessons = () => {
     const { bgColor } = useGlobalContext();

@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
 import '../css/HomeCSS/navbar.css';
+import React, { useState } from 'react';
+import { AiOutlineClose } from "react-icons/ai";
 import { hambook, logo, profile } from '../assets';
 import { useGlobalContext } from '../context/context';
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
 
 const Navbar = () => {
+
+    // GLOBAL
     const { bgColor, setBgColor } = useGlobalContext();
+
+    // LOCAL
     const [nav, setNav] = useState(false);
+
     return (
         <>
             <div className='container-home-navbar'>

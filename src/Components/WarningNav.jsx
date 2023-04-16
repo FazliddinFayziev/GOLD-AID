@@ -1,7 +1,7 @@
+import Inputs from '../Data/Inputs';
 import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../context/context';
 import { changeWarningAndTest } from '../context/Functions';
-import Inputs from '../Data/Inputs';
 
 const WarningNav = () => {
     const { setLanguage, languageBoolean } = useGlobalContext();

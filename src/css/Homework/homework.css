@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --gray: #D9D9D9;
+    --black: #000;
+    --maincolor: #4461F2;
+    --maincolorHover: #002aff;
+    --mainBackgroundColor: #F8F8FF;
+    --blackBackGrondColor: #0e2439;
+    --whiteBackGroundColor: #c6d9ec;
+    --font: 'Dosis',
+        sans-serif;
+    --font-w: 800;
+    --border: solid 2px #000;
+}
+
+.homework-test-page-white,
+.homework-test-page-black {
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.homework-test-page-white {
+    background-color: var(--whiteBackGroundColor);
+    font-family: var(--font);
+    color: var(--black);
+    width: 100%;
+    height: 100%;
+}
+
+.homework-test-page-black {
+    background-color: var(--blackBackGrondColor);
+    font-family: var(--font);
+    color: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+.homework-hidden {
+    display: none;
+}
+
+.homework-test-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+.welcome:after {
+    display: inline-block;
+    content: "";
+    width: 100%;
+    height: 4px;
+    margin-bottom: 15px;
+    background-color: var(--maincolor);
+}
+
+.homework-test-welcome-page {
+    font-family: var(--font);
+    font-weight: var(--font-w);
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.homework-test-div {
+    font-family: var(--font);
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 30px;
+}
+
+.homework-test-question {
+    font-weight: var(--font-w);
+}
+
+.homework-test-label {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.homework-test-input {
+    margin-left: 8px;
+    appearance: none;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    border-width: 1px;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    transition-duration: 200ms;
+    margin-top: 1px;
+    vertical-align: top;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    float: left;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.homework-test-input:checked {
+    background-color: var(--maincolor);
+    border-color: var(--maincolor);
+}
+
+.homework-test-input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.homework-test-label span {
+    margin-left: 0.5rem
+}
+
+.homework-button-container-for-test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.homework-test-button-container {
+    margin-top: 3vh;
+    width: 40vh;
+    height: 7vh;
+    border-radius: 10px;
+}
+
+.homework-test-button {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: var(--maincolor);
+    color: #fff;
+    font-size: 20px;
+    font-family: var(--font);
+    font-weight: 600;
+    padding: 5px 10px;
+    outline: 0;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(135, 135, 135, 1);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(135, 135, 135, 1);
+    box-shadow: 5px 5px 5px 0px rgba(135, 135, 135, 1);
+    transition: all 0.5s ease-in-out;
+    border: none;
+    border-radius: 10px;
+}
+
+.finish-test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+}
+
+
+
+/* Homework-timer LOGIC =================================> */
+.homework-countdown-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.homework-countdown-timer-svg {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+}
+
+.homework-countdown-timer-circle {
+    fill: transparent;
+}
+
+.homework-countdown-timer-progress {
+    fill: transparent;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dasharray 0.5s ease-out;
+}
+
+.homework-countdown-timer-text-white {
+    position: absolute;
+    z-index: 2;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    color: #000;
+}
+
+.homework-countdown-timer-text-black {
+    position: absolute;
+    z-index: 2;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+}
+
+.homework-countdown-timer-hours,
+.homework-countdown-timer-minutes,
+.homework-countdown-timer-seconds {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.homework-countdown-timer-separator {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 0 0.5em;
+}
+
+@media (min-width: 1024px) {
+    .homework-countdown-timer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 80%;
+        position: fixed;
+    }
+}

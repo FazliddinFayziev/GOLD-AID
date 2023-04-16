@@ -12,44 +12,95 @@
     --border: solid 2px #000;
 }
 
-.comment {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+.no-comment .white {
+    color: var(--black);
 }
 
-.author {
-    font-weight: bold;
-    margin-bottom: 5px;
+.no-comment .black {
+    color: #fff;
+}
+
+.comment-container {
+    padding: 20px;
+    font-family: var(--font);
 }
 
 .comment-section {
-    margin-top: 20px;
-    font-family: var(--font);
-    font-weight: 500;
-    /* border: var(--border); */
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    gap: 1rem;
 }
 
-.comments-list {
-    margin-bottom: 20px;
-    background-color: #fff;
+.comment {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--mainBackgroundColor);
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.name {
+    font-weight: bold;
+    color: var(--maincolor);
+}
+
+.comment-text {
+    font-size: 0.9rem;
 }
 
 .comment-input {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .comment-input input {
-    width: 50%;
-    height: 30px;
-    padding: 5px;
+    font-family: var(--font);
+    width: 90%;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 10px;
 }
 
-.comment-input button {
-    padding: 5px;
-    background-color: var(--maincolor);
+.comment-input .comment-send {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
     border: none;
-    color: #fff;
+    width: 10%;
+    height: 50px;
+    color: var(--maincolor);
+    background-color: #fff;
+    transition: all 1s ease-in-out;
+}
+
+.comment-send-icon:hover {
+    transform: scale(1.1);
+    color: var(--maincolorHover);
 }

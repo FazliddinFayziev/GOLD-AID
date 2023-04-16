@@ -1,15 +1,32 @@
+import axios from '../api/axios';
+import Inputs from '../Data/Inputs';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/context';
-import Inputs from '../Data/Inputs';
-import axios from '../api/axios';
 import { setTokenToLocalStorage } from '../context/Functions';
 function FinishTest({ score, level }) {
-    const { name, email, setUser, age, gender, password, backendScore, backendLevel, languageBoolean, ContinueButton } = useGlobalContext();
+
+    // GLOBAL
+    const {
+        age,
+        name,
+        email,
+        gender,
+        setUser,
+        password,
+        backendLevel,
+        backendScore,
+        ContinueButton,
+        languageBoolean,
+    } = useGlobalContext();
     const { ru, eng } = languageBoolean;
+
+    // LOCAL
     const [err, setErr] = useState('')
     const navigate = useNavigate();
 
+
+    // SUBMITTING MY DATA TO BACKEND
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {

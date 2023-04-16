@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import '../css/VideosCSS/smallNavbar.css';
+import { AiOutlineClose } from "react-icons/ai";
 import { hambook, logo, profile } from '../assets';
 import { useGlobalContext } from '../context/context';
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
 
 const SmallNavbar = () => {
+
+    // GLOBAL
     const { bgColor, setBgColor } = useGlobalContext();
+
+    // LOCAL
     const [nav, setNav] = useState(false);
     return (
         <>

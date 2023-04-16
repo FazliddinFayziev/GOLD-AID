@@ -1,6 +1,6 @@
 import React from 'react';
-import { document } from '../assets';
 import { click } from '../assets';
+import { document } from '../assets';
 
 const DocumentContainer = ({ documentLink, lesson, id }) => {
     return (

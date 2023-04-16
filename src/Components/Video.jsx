@@ -1,9 +1,9 @@
 import React from 'react'
-import { useGlobalContext } from '../context/context';
 import "../css/VideosCSS/video.css"
-import VideoContainer from './VideoContainer';
 import { video } from "../assets/index"
 import 'video-react/dist/video-react.css'
+import VideoContainer from './VideoContainer';
+import { useGlobalContext } from '../context/context';
 
 const Video = () => {
     const { bgColor } = useGlobalContext();

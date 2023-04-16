@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
 import axios from '../api/axios';
-import { useGlobalContext } from '../context/context';
+import React, { useState } from 'react';
+import CircleLoading from './CircleLoading';
 import Inputs, { Eye } from '../Data/Inputs';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../context/context';
 import { setTokenToLocalStorage } from '../context/Functions';
-import CircleLoading from './CircleLoading';
 
 
 const Login_Inputs = () => {
-    const { setUser, languageBoolean, open, setOpen } = useGlobalContext();
+
+    // GLOBAL
+    const {
+        open,
+        setUser,
+        setOpen,
+        languageBoolean,
+    } = useGlobalContext();
     const { ru, eng } = languageBoolean;
 
+    // LOCAL
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errMsg, setErrMsg] = useState('');
@@ -18,8 +26,7 @@ const Login_Inputs = () => {
     const navigate = useNavigate();
 
 
-
-
+    // SUBMITION LOGIC
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoginLoading(true)

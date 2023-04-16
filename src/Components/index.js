@@ -41,4 +41,14 @@ export { default as Video } from "./Video";
 export { default as Files } from "./Files";
 
 
+// HomeWork Page COMPONENTS
+export { default as HomeworkTimer } from "./HomeworkTimer";
+export { default as HomeWorkTest } from "./HomeWorkTest";
+
+
+// Profile Page COMPONENTS
+export { default as ProfileBanner } from "./ProfileBanner";
+export { default as ProfilePictures } from "./ProfilePictures";
+
+
 // ADMIN PAGE COMPONENETS ===================================>

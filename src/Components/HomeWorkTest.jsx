@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { questions } from '../Data/data';
-import "../css/OtherCSS/test.css";
 import FinishTest from './FinishTest';
 import { useGlobalContext } from '../context/context';
-import CountdownTimer from './CountdownTimer';
 import { backendScore, getLevel } from '../context/Functions';
 import Loading from './Loading';
+import "../css/Homework/homework.css";
+import HomeworkTimer from './HomeworkTimer';
 
-
-const Tests = () => {
+const HomeWorkTest = () => {
 
     // GLOBAL
-    const { name, timeLeft, setTimeLeft, Calculate } = useGlobalContext();
+    const { timeLeft, setTimeLeft, Calculate } = useGlobalContext();
 
     // LOCAL
     const [score, setScore] = useState(0);
@@ -75,18 +74,18 @@ const Tests = () => {
 
     return (
         <>
-            {timeLeft > 0 && <CountdownTimer />}
-            <div className={isSubmitted ? "hidden" : undefined}>
-                <div className='test-container'>
-                    <h1 className='test-welcome-page'><p className='welcome'>Welcome <span className='name-span'>{name}</span></p></h1>
+            {timeLeft > 0 && <HomeworkTimer />}
+            <div className={isSubmitted ? "homework-hidden" : undefined}>
+                <div className='homework-test-container'>
+                    <h1 className='homework-test-welcome-page'><p className='welcome'>Good luck</p></h1>
                 </div>
                 {questions[randomQuestion].quiz.map((question) => (
-                    <div key={question.id} className="test-div">
-                        <h3 className='test-question'>{question.id}) {question.text}</h3>
+                    <div key={question.id} className="homework-test-div">
+                        <h3 className='homework-test-question'>{question.id}) {question.text}</h3>
                         {question.options.map((option, index) => (
-                            <label key={index} className="test-label">
+                            <label key={index} className="homework-test-label">
                                 <input
-                                    className='test-input'
+                                    className='homework-test-input'
                                     type="radio"
                                     name={question.id}
                                     value={option.value}
@@ -99,9 +98,9 @@ const Tests = () => {
                     </div>
                 ))}
                 {!isSubmitted && (
-                    <div className='button-container-for-test'>
-                        <div className='test-button-container'>
-                            <button className="test-button"
+                    <div className='homework-button-container-for-test'>
+                        <div className='homework-test-button-container'>
+                            <button className="homework-test-button"
                                 onClick={handleQuizSubmit}
                             >
                                 Submit
@@ -119,4 +118,4 @@ const Tests = () => {
     );
 }
 
-export default Tests
+export default HomeWorkTest
