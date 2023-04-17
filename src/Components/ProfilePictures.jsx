@@ -23,6 +23,9 @@ const ProfilePictures = () => {
                     }
                 </div>
             </div>
+            <div className='profile-save-btn'>
+                <button type='button'>save</button>
+            </div>
         </>
     )
 }

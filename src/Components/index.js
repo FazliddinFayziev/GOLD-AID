@@ -47,8 +47,9 @@ export { default as HomeWorkTest } from "./HomeWorkTest";
 
 
 // Profile Page COMPONENTS
-export { default as ProfileBanner } from "./ProfileBanner";
 export { default as ProfilePictures } from "./ProfilePictures";
+export { default as ProfileBanner } from "./ProfileBanner";
+export { default as EditUser } from "./EditUser";
 
 
 // ADMIN PAGE COMPONENETS ===================================>
