@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+    --gray: #D9D9D9;
+    --black: #000;
+    --maincolor: #4461F2;
+    --maincolorHover: #002aff;
+    --mainBackgroundColor: #F8F8FF;
+    --font: 'Dosis',
+        sans-serif;
+    --font-w: 800;
+    --border: solid 2px #000;
+}
+
+.sidebar-close {
+    background-color: #262835;
+    border-right: 1px solid #e6e6e6;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font);
+    height: 100%;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+    z-index: 1;
+}
+
+.sidebar-open {
+    background-color: #262835;
+    border-right: 1px solid #e6e6e6;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font);
+    height: 100%;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+    z-index: 1;
+}
+
+.sidebar-close-btn {
+    display: flex;
+    justify-content: end;
+    color: #919191;
+    cursor: pointer;
+}
+
+.logo {
+    align-items: center;
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.logo img {
+    max-width: 100%;
+}
+
+.main-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu ul li {
+    margin-bottom: 10px;
+}
+
+.menu-link {
+    align-items: center;
+    color: #919191;
+    display: flex;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    color: var(--maincolorHover);
+}
+
+.menu-icon {
+    margin-right: 10px;
+}
+
+.additional ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.additional ul li {
+    margin-bottom: 10px;
+}
+
+.options ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.options ul li {
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #34c2ff;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+@media(min-width: 950px) {
+    .sidebar {
+        transform: translateX(0);
+    }
+}
+
+
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}

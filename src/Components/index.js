@@ -50,6 +50,3 @@ export { default as HomeWorkTest } from "./HomeWorkTest";
 export { default as ProfilePictures } from "./ProfilePictures";
 export { default as ProfileBanner } from "./ProfileBanner";
 export { default as EditUser } from "./EditUser";
-
-
-// ADMIN PAGE COMPONENETS ===================================>

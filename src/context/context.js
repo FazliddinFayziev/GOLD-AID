@@ -75,6 +75,10 @@ export const AppProvider = ({ children }) => {
         })
     }
 
+
+    // SIDEBAR
+    const [sideBar, setSideBar] = useState(false);
+
     return <AppContext.Provider value={{
         ...state,
 
@@ -100,6 +104,10 @@ export const AppProvider = ({ children }) => {
 
         // calculate score for backend
         Calculate,
+
+        // SIDEBAR
+        sideBar,
+        setSideBar,
 
         open,
         setOpen,
