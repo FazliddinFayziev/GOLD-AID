@@ -1,10 +1,15 @@
 import React from 'react'
 
+
 const AdminLevels = () => {
     return (
-        <div>
-            Levels
-        </div>
+        <>
+            <div className='dashboard'>
+                <div className='start-dashboard'>
+                    Levels
+                </div>
+            </div>
+        </>
     )
 }
 

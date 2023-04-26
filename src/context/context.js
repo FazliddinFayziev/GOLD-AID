@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useReducer } from 'react';
 import { changeLanguage } from './Functions';
 import reducer from './reducer';
 import { types } from './types';
+import { DashboardTypes } from './DashboardPathNames';
 
 
 const AppContext = React.createContext();
@@ -75,6 +76,9 @@ export const AppProvider = ({ children }) => {
         })
     }
 
+    // Changing the dahsbord element names
+    const [dashboardElement, setDashboardElement] = useState(DashboardTypes.DASHBOARD)
+
 
     // SIDEBAR
     const [sideBar, setSideBar] = useState(false);
@@ -108,6 +112,10 @@ export const AppProvider = ({ children }) => {
         // SIDEBAR
         sideBar,
         setSideBar,
+
+        // DASHBOARD
+        dashboardElement,
+        setDashboardElement,
 
         open,
         setOpen,

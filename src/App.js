@@ -23,25 +23,17 @@ function App() {
           <Route path="/warning" element={isRegister ? <Warning /> : <Navigate to="/register" />} />
           <Route path="test" element={isRegister ? <TestPage /> : <Navigate to="/register" />} />
 
-
           {/* PROTECTED ROUTES */}
           <Route path="/" element={<Home />} />
-
-          {/* <Route element={<RequireAuth check={true} />}> */}
-          <Route path="admin" element={<Admin />} />
-          {/* </Route> */}
-
-          <Route path="/:level" element={<LessonsPage />} />
-
-          <Route path="/:level/:lesson" element={<VideoPage />} />
-
-          <Route path="/:level/:lesson/:homework" element={<Homework />} />
-
+          <Route path="user/:level" element={<LessonsPage />} />
+          <Route path="user/:level/:lesson" element={<VideoPage />} />
+          <Route path="user/:level/:lesson/:homework" element={<Homework />} />
           <Route path="/profile/:user" element={<Profile />} />
-
-          {/* Catch */}
-          <Route path="*" element={<Error />} />
         </Route>
+        <Route path="/admin" element={<Admin />} />
+
+        {/* Catch Error */}
+        <Route path="*" element={<Error />} />
       </Routes>
     </>
   );

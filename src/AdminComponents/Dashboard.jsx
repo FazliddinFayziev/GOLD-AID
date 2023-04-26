@@ -6,7 +6,6 @@ const Dashboard = () => {
     return (
         <>
             <div className='dashboard'>
-                <Menu />
                 <div className='start-dashboard'>
                     Dashboard
                 </div>
