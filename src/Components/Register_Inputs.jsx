@@ -185,8 +185,8 @@ const Register_Inputs = () => {
                     <div className='form'>
                         <select name='gender' value={gender} onChange={(e) => handleInputChange(e)}>
                             <option value="Gender">{Inputs(eng, ru).InputGender}</option>
-                            <option value="Male">{Inputs(eng, ru).InputMale}</option>
-                            <option value="Female">{Inputs(eng, ru).InputFemale}</option>
+                            <option value="M">{Inputs(eng, ru).InputMale}</option>
+                            <option value="F">{Inputs(eng, ru).InputFemale}</option>
                         </select>
                     </div>
 

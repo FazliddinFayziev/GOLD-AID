@@ -14,7 +14,7 @@ const initialState = {
     email: '',
     password: '',
     backendScore: 0,
-    backendLevel: '',
+    courseName: '',
 }
 
 export const AppProvider = ({ children }) => {

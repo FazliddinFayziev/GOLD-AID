@@ -107,7 +107,16 @@
     margin-bottom: 10px;
 }
 
-h3 {
+.sidebar-open h3 {
+    color: #34c2ff;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.sidebar-close h3 {
     color: #34c2ff;
     font-size: 20px;
     font-weight: 400;

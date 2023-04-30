@@ -36,7 +36,7 @@ function FinishTest({ score, level }) {
                 age: age,
                 gender: gender,
                 password: password,
-                level: backendLevel,
+                courseName: backendLevel,
                 score: backendScore
             }, {
                 headers: {
@@ -59,27 +59,29 @@ function FinishTest({ score, level }) {
 
 
     return (
-        <div className="finish-test">
-            <div className="">
-                <div className=''>
-                    <h1 className=''><p>Thank you {name}</p></h1>
-                </div>
-                <p>{Inputs(eng, ru).YourScore} <span className=''>{score}</span></p>
-                <p>{Inputs(eng, ru).YourLevel}  <span className=''>{level}</span></p>
-                <div className='button-container-for-test'>
-                    <div className='test-button-container'>
-                        <button
-                            type='submit'
-                            className="test-button"
-                            onClick={handleSubmit}
-                        >
-                            {Inputs(eng, ru).ContinueButton}
-                        </button>
+        <>
+            <div className="finish-test">
+                <div className="">
+                    <div className=''>
+                        <h1 className=''><p>Thank you {name}</p></h1>
+                    </div>
+                    <p>{Inputs(eng, ru).YourScore} <span className=''>{score}</span></p>
+                    <p>{Inputs(eng, ru).YourLevel}  <span className=''>{level}</span></p>
+                    <div className='button-container-for-test'>
+                        <div className='test-button-container'>
+                            <button
+                                type='submit'
+                                className="test-button"
+                                onClick={handleSubmit}
+                            >
+                                {Inputs(eng, ru).ContinueButton}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
             <p>{err}</p>
-        </div>
+        </>
     );
 }
 
