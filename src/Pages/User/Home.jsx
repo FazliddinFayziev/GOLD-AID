@@ -6,7 +6,7 @@ import '../../css/HomeCSS/home.css';
 import axios from '../../api/axios';
 
 const Home = () => {
-    const { bgColor, user, setUser, isLoading, setIsLoading, } = useGlobalContext();
+    const { bgColor, user, setUser, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile } = useGlobalContext();
     const navigate = useNavigate();
 
     // LOADING
@@ -34,38 +34,64 @@ const Home = () => {
             try {
                 const token = localStorage.getItem('refreshToken');
 
-                const response = await axios.get('/newtoken',
-                    {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
+                const response = await axios.get('/newtoken', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
                     }
-                );
+                });
 
                 const { accessToken } = response.data;
-                const accessTokenExpireTime = new Date().getTime() + 30 * 1000;
+                const accessTokenExpireTime = new Date().getTime() + 3600 * 1000; // 1 hour of expiration time for access token
 
                 setUser({ ...user, accessToken: accessToken });
                 localStorage.setItem('accessTokenExpireTime', accessTokenExpireTime);
-                console.log(accessToken);
+
+                return accessToken;
             } catch (error) {
                 console.error(error);
-                logOut()
+                logOut();
             }
-
-            // Update access token and expiration time
-            const accessToken = 'newAccessToken';
-            const accessTokenExpireTime = new Date().getTime() + 30 * 1000; // set expiration time to 30 seconds from now
-
-            setUser({ ...user, accessToken: accessToken });
-            localStorage.setItem('accessTokenExpireTime', accessTokenExpireTime);
-
         };
+
+
+
+        const fetchCourses = async (token) => {
+            try {
+                const res = await axios.get('/courses', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                console.log(res.data);
+                const { courses, user } = res.data
+                setCourses(courses)
+                setUserProfile(user)
+            } catch (err) {
+                if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                    const refreshedToken = await refreshAccessToken(); // refresh the token
+                    fetchCourses(refreshedToken); // try the request again with the new token
+                } else {
+                    console.log(err);
+                }
+            }
+        };
+
+        useEffect(() => {
+            const fetch = async () => {
+                const token = await refreshAccessToken()
+                await fetchCourses(token)
+                if (!token) return navigate('/login')
+                console.log('Access token is fetching the courses')
+            }
+            fetch()
+        }, [])
+
 
         useEffect(() => {
             const timer = setInterval(() => {
                 refreshAccessToken()
-            }, 30000); // fetches new urls and tokens every 30 seconds
+                fetchCourses(user.accessToken)
+            }, 3600000); // fetches new urls and tokens every 1 hour
             return () => clearInterval(timer)
         }, [])
 
@@ -84,6 +110,7 @@ const Home = () => {
                 navigate('/login')
             } else {
                 refreshAccessToken();
+                fetchCourses(user.accessToken)
             }
         }, []);
 
@@ -98,7 +125,7 @@ const Home = () => {
 
 
     if (!accessToken) {
-        return <Loading /> // Render loading spinner or other indicator
+        return <Loading /> // Render loading spinner
     }
     return (
         <>

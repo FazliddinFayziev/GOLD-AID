@@ -50,6 +50,13 @@ export const AppProvider = ({ children }) => {
     // USESTATE() FOR USERS ACCESS TOKEN
     const [user, setUser] = useState({})
 
+    // USESTATE() FOR COURSES 
+    const [courses, setCourses] = useState([])
+
+
+    // USESTATE() FOR USER PROFILE
+    const [userProfile, setUserProfile] = useState([])
+
 
     // Targetting value of inputs
     const handleInputChange = (e) => {
@@ -116,6 +123,14 @@ export const AppProvider = ({ children }) => {
         // DASHBOARD
         dashboardElement,
         setDashboardElement,
+
+        // Courses
+        courses,
+        setCourses,
+
+        // User Profile
+        userProfile,
+        setUserProfile,
 
         open,
         setOpen,

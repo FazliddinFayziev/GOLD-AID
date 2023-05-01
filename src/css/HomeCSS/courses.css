@@ -21,6 +21,28 @@
     margin-top: 50px;
 }
 
+.course-profile-title {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font);
+    font-size: 10px;
+    margin-top: 50px;
+}
+
+.course-profile-title .white {
+    color: var(--black);
+}
+
+.course-profile-title .black {
+    color: var(--white);
+}
+
+.course-page-profile-related {
+    font-family: var(--font);
+    font-size: 20px;
+    color: var(--maincolor);
+}
+
 .courses-title h1:after {
     display: inline-block;
     content: "";
@@ -53,11 +75,15 @@
 .cardImg-box {
     width: 300px;
     height: 400px;
-    border-radius: 20px;
+    /* border-radius: 20px; */
+    border-radius: 10px;
+    background: #e0e0e0;
+    box-shadow: 26px 26px 50px #cccccc,
+        -26px -26px 50px #f4f4f4;
     cursor: pointer;
-    box-shadow: 7px 6px 5px 0px rgba(0, 0, 0, 0.75);
+    /* box-shadow: 7px 6px 5px 0px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 7px 6px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 7px 6px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 7px 6px 5px 0px rgba(0, 0, 0, 0.75); */
     transition: transform 0.5s ease;
 }
 

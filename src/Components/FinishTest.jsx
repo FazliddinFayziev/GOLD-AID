@@ -48,7 +48,7 @@ function FinishTest({ score, level }) {
             const refreshToken = res?.data?.refreshToken;
             const isAdmin = res?.data?.isAdmin;
             setUser({ email, password, isAdmin, accessToken });
-            setTokenToLocalStorage(refreshToken, 30) // Local Storage with TOKENS
+            setTokenToLocalStorage(refreshToken, 3600) // Local Storage with TOKENS
             ContinueButton();
             return navigate('/')
         } catch (err) {

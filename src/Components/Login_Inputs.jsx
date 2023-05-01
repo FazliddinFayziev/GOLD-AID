@@ -43,7 +43,7 @@ const Login_Inputs = () => {
             const refreshToken = response?.data?.refreshToken;
             const isAdmin = response?.data?.isAdmin;
             setUser({ email, password, isAdmin, accessToken });
-            setTokenToLocalStorage(refreshToken, 30) // Local Storage with TOKENS
+            setTokenToLocalStorage(refreshToken, 3600) // Local Storage with TOKENS
             setEmail('');
             setPassword('');
             if (isAdmin) {
