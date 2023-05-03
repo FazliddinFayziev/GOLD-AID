@@ -1,12 +1,14 @@
 import React from 'react'
 
-const CourseCard = ({ _id, id, level, cardImg, coursePicture, name, }) => {
+const CourseCard = ({ id, level, cardImg, coursePicture, name, }) => {
     return (
         <div key={id} className='card-level-box'>
             <div className='cardImg-box'>
-                <img src={cardImg} alt="card-image" />
+                <img src={coursePicture} alt="card-image" />
             </div>
-            {/* <p>{name}</p> */}
+            <div className='course-name-container'>
+                <p className='course-name'>{name}</p>
+            </div>
         </div>
     )
 }

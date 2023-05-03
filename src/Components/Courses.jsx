@@ -19,7 +19,7 @@ const Courses = () => {
                 </div>
                 <div className='courses-cards'>
                     {
-                        levelCards.map((levelCard, index) => {
+                        courses.map((levelCard, index) => {
                             return (
                                 <CourseCard key={index} {...levelCard} />
                             )

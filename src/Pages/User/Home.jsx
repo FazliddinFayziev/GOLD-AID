@@ -4,6 +4,7 @@ import { Courses, Footer, HerroBanner, Loading, Navbar } from '../../Components'
 import { useGlobalContext } from '../../context/context';
 import '../../css/HomeCSS/home.css';
 import axios from '../../api/axios';
+import { level_default } from '../../assets';
 
 const Home = () => {
     const { bgColor, user, setUser, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile } = useGlobalContext();
@@ -64,7 +65,23 @@ const Home = () => {
                 });
                 console.log(res.data);
                 const { courses, user } = res.data
-                setCourses(courses)
+                const newArr = courses.map((course) => {
+                    const {
+                        _id,
+                        name,
+                        coursePicture,
+                        mainScore,
+                        isCompleted,
+                    } = course
+                    return {
+                        id: _id,
+                        name: name,
+                        coursePicture: level_default,
+                        mainScore: mainScore,
+                        isCompleted: isCompleted
+                    }
+                })
+                setCourses(newArr)
                 setUserProfile(user)
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
