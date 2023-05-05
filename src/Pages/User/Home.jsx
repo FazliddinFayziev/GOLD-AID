@@ -7,7 +7,7 @@ import axios from '../../api/axios';
 import { level_default } from '../../assets';
 
 const Home = () => {
-    const { bgColor, user, setUser, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile } = useGlobalContext();
+    const { bgColor, user, setUser, isAccessTokenExpired, refreshAccessToken, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile } = useGlobalContext();
     const navigate = useNavigate();
 
     // LOADING
@@ -24,36 +24,6 @@ const Home = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
         const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
-
-        const isAccessTokenExpired = () => {
-            const currentTime = new Date().getTime();
-            return currentTime > accessTokenExpireTime;
-        };
-
-        // Make API call to refresh access token using refresh token
-        const refreshAccessToken = async () => {
-            try {
-                const token = localStorage.getItem('refreshToken');
-
-                const response = await axios.get('/newtoken', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                const { accessToken } = response.data;
-                const accessTokenExpireTime = new Date().getTime() + 3600 * 1000; // 1 hour of expiration time for access token
-
-                setUser({ ...user, accessToken: accessToken });
-                localStorage.setItem('accessTokenExpireTime', accessTokenExpireTime);
-
-                return accessToken;
-            } catch (error) {
-                console.error(error);
-                logOut();
-            }
-        };
-
 
 
         const fetchCourses = async (token) => {
@@ -108,15 +78,9 @@ const Home = () => {
             const timer = setInterval(() => {
                 refreshAccessToken()
                 fetchCourses(user.accessToken)
-            }, 3600000); // fetches new urls and tokens every 1 hour
+            }, 3000000); // fetches new urls and tokens every 50 minutes
             return () => clearInterval(timer)
         }, [])
-
-        const logOut = () => {
-            setUser({})
-            localStorage.setItem('refreshToken', '')
-            return navigate('/login')
-        }
 
         useEffect(() => {
             if (!refreshToken || !accessTokenExpireTime) {
@@ -142,7 +106,7 @@ const Home = () => {
 
 
     if (!accessToken) {
-        return <Loading /> // Render loading spinner
+        return navigate('/login') // Render loading spinner
     }
     return (
         <>

@@ -11,6 +11,7 @@ function FinishTest({ score, level }) {
         age,
         name,
         email,
+        setMsg,
         gender,
         setUser,
         password,
@@ -43,14 +44,10 @@ function FinishTest({ score, level }) {
                     'Content-Type': 'application/json'
                 }
             })
-            console.log(res.data)
-            const accessToken = res?.data?.accessToken;
-            const refreshToken = res?.data?.refreshToken;
-            const isAdmin = res?.data?.isAdmin;
-            setUser({ email, password, isAdmin, accessToken });
-            setTokenToLocalStorage(refreshToken, 3600) // Local Storage with TOKENS
+            const { msg } = res.data
+            setMsg(msg)
+            navigate('/verify')
             ContinueButton();
-            return navigate('/')
         } catch (err) {
             console.log(err.response.data.err)
             setErr(err.response.data.err)

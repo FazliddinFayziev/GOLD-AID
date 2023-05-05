@@ -1,5 +1,5 @@
 import Inputs from '../Data/Inputs';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { useGlobalContext } from '../context/context';
 import { changeLoginAndRegister } from '../context/Functions';
@@ -12,10 +12,11 @@ const LoginNavbar = () => {
 
     // LOCAL
     const [log, setLog] = useState(true)
-    const href = window.location.href;
+    const location = useLocation();
+    const currentPath = location.pathname;
     useEffect(() => {
-        changeLoginAndRegister(href, setLog)
-    }, [href])
+        changeLoginAndRegister(currentPath, setLog)
+    }, [currentPath])
 
     return (
         <div className="register-nav">

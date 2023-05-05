@@ -12,10 +12,10 @@ export const changeLanguage = (language, setLanguageBoolean) => {
 
 
 // CHANGE LOGIN AND REGISTER
-export const changeLoginAndRegister = (href, setLog) => {
-    if (href === "http://localhost:3000/login") {
+export const changeLoginAndRegister = (currentPath, setLog) => {
+    if (currentPath === "/login") {
         setLog(false)
-    } else if (href === "http://localhost:3000/register") {
+    } else if (currentPath === "/register") {
         setLog(true)
     }
 }

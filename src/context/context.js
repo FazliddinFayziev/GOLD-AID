@@ -3,6 +3,8 @@ import { changeLanguage } from './Functions';
 import reducer from './reducer';
 import { types } from './types';
 import { DashboardTypes } from './DashboardPathNames';
+import axios from '../api/axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const AppContext = React.createContext();
@@ -18,7 +20,10 @@ const initialState = {
 }
 
 export const AppProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    // USENAVIGATE( )
+    const navigate = useNavigate();
 
     // useState for language and Login Page
     const [language, setLanguage] = useState("English")
@@ -90,6 +95,57 @@ export const AppProvider = ({ children }) => {
     // SIDEBAR
     const [sideBar, setSideBar] = useState(false);
 
+
+    // Recieving the message for verification of email
+    const [msg, setMsg] = useState("")
+
+
+    // Make API call to refresh access token using refresh token
+    const refreshAccessToken = async () => {
+        try {
+            const token = localStorage.getItem('refreshToken');
+
+            const response = await axios.get('/newtoken', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const { accessToken } = response.data;
+            const accessTokenExpireTime = new Date().getTime() + 3600 * 1000; // 1 hour of expiration time for access token
+
+            setUser({ ...user, accessToken: accessToken });
+            localStorage.setItem('accessTokenExpireTime', accessTokenExpireTime);
+
+            return accessToken;
+        } catch (error) {
+            logOut()
+            console.error(error);
+        }
+    };
+
+
+    // LOG OUT FUNCTION
+    const logOut = () => {
+        setUser({})
+        localStorage.setItem('refreshToken', '')
+        return navigate('/login')
+    }
+
+
+    // IS ACCESS TOKEN EXPERED
+    const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+
+    const isAccessTokenExpired = () => {
+        const currentTime = new Date().getTime();
+        return currentTime > accessTokenExpireTime;
+    };
+
+
+
+
+
+
     return <AppContext.Provider value={{
         ...state,
 
@@ -131,6 +187,16 @@ export const AppProvider = ({ children }) => {
         // User Profile
         userProfile,
         setUserProfile,
+
+        // Access Token
+        refreshAccessToken,
+
+        // Is access Token Expired
+        isAccessTokenExpired,
+
+        // Verify Email Message
+        msg,
+        setMsg,
 
         open,
         setOpen,

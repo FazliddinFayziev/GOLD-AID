@@ -11,8 +11,10 @@ export { default as Login_Inputs } from './Login_Inputs';
 export { default as WarningPage } from './WarningPage';
 export { default as FinishTest } from "./FinishTest";
 export { default as WarningNav } from './WarningNav';
+export { default as Verifying } from "./Verifying";
 export { default as ShowCard } from './ShowCard';
 export { default as Loading } from './Loading';
+export { default as Verify } from "./Verify";
 export { default as Tests } from "./Tests";
 
 // HOME PAGE COMPONENTS
