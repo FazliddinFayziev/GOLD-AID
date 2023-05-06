@@ -1,16 +1,17 @@
 import React from 'react'
 
-const LessonCard = ({ id, lessonCard, tick }) => {
+const LessonCard = ({ lessonId, title, lessonPicture, isCompleted, currentScore }) => {
     return (
         <>
-            <div key={id} className='lesson-card-box'>
+            <div key={lessonId} className='lesson-card-box'>
                 <div className='lesson-card-hover'>
                     <div className='check-lesson-container'>
-                        <input checked={tick ? true : false} className={tick ? 'check-lesson' : 'check-lesson-empty'} type="checkbox" />
+                        <input checked={currentScore ? true : false} className={currentScore ? 'check-lesson' : 'check-lesson-empty'} type="checkbox" />
                     </div>
                     <div className='lesson-cardImg-box'>
-                        <img src={lessonCard} alt="card-image" />
+                        <img src={lessonPicture} alt="card-image" />
                     </div>
+                    <p>{title}</p>
                 </div>
             </div>
         </>

@@ -21,6 +21,8 @@
 
 body {
   background-color: var(--mainBackgroundColor);
+  height: 100%;
+  width: 100%;
 }
 
 /* REGISTER ==============================> */

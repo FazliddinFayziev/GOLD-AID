@@ -5,6 +5,7 @@ import Inputs, { Eye } from '../Data/Inputs';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/context';
 import { setTokenToLocalStorage } from '../context/Functions';
+import ShowCard from './ShowCard';
 
 
 const Login_Inputs = () => {
@@ -15,13 +16,14 @@ const Login_Inputs = () => {
         setUser,
         setOpen,
         languageBoolean,
+        setErrMsg,
+        setShowCard,
     } = useGlobalContext();
     const { ru, eng } = languageBoolean;
 
     // LOCAL
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errMsg, setErrMsg] = useState('');
     const [loginLoading, setLoginLoading] = useState(false)
     const navigate = useNavigate();
 
@@ -56,15 +58,19 @@ const Login_Inputs = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
+                setShowCard(true)
                 setLoginLoading(false)
             } else if (err.response?.status === 400) {
                 setErrMsg('Username or Password is not correct');
+                setShowCard(true)
                 setLoginLoading(false)
             } else if (err.response?.status === 401) {
                 setErrMsg('Unauthorized');
+                setShowCard(true)
                 setLoginLoading(false)
             } else {
                 setErrMsg('Email is not found');
+                setShowCard(true)
                 setLoginLoading(false)
             }
         }
@@ -124,9 +130,6 @@ const Login_Inputs = () => {
                         {Inputs(eng, ru).Login}
                     </button>
                 </div>
-
-                <p>{errMsg}</p>
-
             </div>
 
         </div>

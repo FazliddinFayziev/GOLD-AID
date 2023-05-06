@@ -2,11 +2,10 @@ import React from 'react';
 import LessonCard from './LessonCard';
 import '../css/LessonsCSS/lessons.css';
 import ProgressBar from './ProgressBar';
-import { lessonCards } from '../Data/data';
 import { useGlobalContext } from '../context/context';
 
 const Lessons = () => {
-    const { bgColor } = useGlobalContext();
+    const { bgColor, lessons } = useGlobalContext();
     return (
         <>
             <div className='lessons-container'>
@@ -16,7 +15,7 @@ const Lessons = () => {
                 <ProgressBar value={50} maxValue={100} />
                 <div className='lessons-cards'>
                     {
-                        lessonCards.map((lessonCard, index) => {
+                        lessons.map((lessonCard, index) => {
                             return (
                                 <LessonCard key={index} {...lessonCard} />
                             )

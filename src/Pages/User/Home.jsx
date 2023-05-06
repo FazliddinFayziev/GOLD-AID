@@ -4,7 +4,7 @@ import { Courses, Footer, HerroBanner, Loading, Navbar } from '../../Components'
 import { useGlobalContext } from '../../context/context';
 import '../../css/HomeCSS/home.css';
 import axios from '../../api/axios';
-import { level_default } from '../../assets';
+import { level_default, level_default_ielts } from '../../assets';
 
 const Home = () => {
     const { bgColor, user, setUser, isAccessTokenExpired, refreshAccessToken, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile } = useGlobalContext();
@@ -47,6 +47,7 @@ const Home = () => {
                         id: _id,
                         name: name,
                         coursePicture: level_default,
+                        ieltsPicture: level_default_ielts,
                         mainScore: mainScore,
                         isCompleted: isCompleted
                     }

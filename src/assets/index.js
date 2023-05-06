@@ -9,4 +9,6 @@ export const hambook = "https://res.cloudinary.com/dcrolfqsj/image/upload/v16804
 export const click = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681393837/click_fl6mnv.jpg";
 export const document = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681393837/document_aarbno.jpg"
 export const video = "https://res.cloudinary.com/dcrolfqsj/video/upload/v1681359507/video_thnvwb.mp4";
-export const level_default = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683095328/all-levels_kxffy3.jpg";
+export const level_default = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683345934/ga1_tgkmg0.jpg";
+export const level_default_ielts = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683345945/ga2_yswtts.jpg";
+export const lessons_default = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683358978/ga3_fxwz1r.jpg";

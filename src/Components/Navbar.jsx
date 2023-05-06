@@ -37,7 +37,7 @@ const Navbar = () => {
                         {bgColor ? <BsFillMoonFill fontSize={30} color='#fff' /> : <BsFillSunFill fontSize={30} color='#fff' />}
                     </div>
                     <div className='home-navbar-profile-picture'>
-                        <img src={profilePicture} alt="gold-aid-profile-image" />
+                        <img src={profilePicture ? profilePicture : profile} alt="gold-aid-profile-image" />
                     </div>
 
 
@@ -63,7 +63,15 @@ const Navbar = () => {
                         </div>
                         <div className='navbar-menu-container-img'>
                             <div className='navbar-menu-img'>
-                                <img src={profilePicture} alt="profile-picture" />
+                                {
+                                    profilePicture ?
+                                        (
+                                            <img src={profilePicture} alt="profile-picture" />
+                                        ) : (
+                                            <img src={profile} alt="profile-picture" />
+                                        )
+                                }
+
                             </div>
                         </div>
                         <div className='navbar-menu-text'>

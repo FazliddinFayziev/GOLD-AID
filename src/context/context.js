@@ -52,11 +52,12 @@ export const AppProvider = ({ children }) => {
         changeLanguage(language, setLanguageBoolean)
     }, [language])
 
-    // USESTATE() FOR USERS ACCESS TOKEN
-    const [user, setUser] = useState({})
 
     // USESTATE() FOR COURSES 
     const [courses, setCourses] = useState([])
+
+    // USESTATE() FOR LESSONS
+    const [lessons, setLessons] = useState([])
 
 
     // USESTATE() FOR USER PROFILE
@@ -98,6 +99,10 @@ export const AppProvider = ({ children }) => {
 
     // Recieving the message for verification of email
     const [msg, setMsg] = useState("")
+
+
+    // USESTATE() FOR USERS ACCESS TOKEN
+    const [user, setUser] = useState({})
 
 
     // Make API call to refresh access token using refresh token
@@ -197,6 +202,10 @@ export const AppProvider = ({ children }) => {
         // Verify Email Message
         msg,
         setMsg,
+
+        // Lessons
+        lessons,
+        setLessons,
 
         open,
         setOpen,
