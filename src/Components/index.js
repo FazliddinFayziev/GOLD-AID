@@ -28,6 +28,7 @@ export { default as Navbar } from './Navbar';
 // Lessons Page COMPONENTS
 export { default as ProgressBar } from "./ProgressBar";
 export { default as LessonCard } from "./LessonCard";
+export { default as NoLessons } from "./NoLessons";
 export { default as Lessons } from "./Lessons";
 
 // Video Page COMPONENTS

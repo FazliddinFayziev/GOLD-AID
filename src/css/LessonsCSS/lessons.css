@@ -41,7 +41,7 @@
 
 .lessons-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     /* 3 columns */
     grid-gap: 20px;
     margin-top: 20px;
@@ -50,11 +50,12 @@
 .lesson-card-box {
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .lesson-cardImg-box {
-    width: 300px;
-    height: 400px;
+    width: 250px;
+    height: 300px;
     border-radius: 20px;
     cursor: pointer;
     box-shadow: 7px 6px 5px 0px rgba(0, 0, 0, 0.75);
@@ -64,9 +65,9 @@
     transition: all 0.5s ease;
 }
 
-.lesson-card-hover:hover .lesson-cardImg-box {
+/* .lesson-card-hover:hover .lesson-cardImg-box {
     transform: scale(1.1);
-}
+} */
 
 
 .lesson-cardImg-box img {
@@ -87,8 +88,8 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     border: 2px solid var(--maincolor);
     background-color: green;
@@ -116,8 +117,8 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     border: 2px solid var(--maincolor);
     background-color: var(--white);
@@ -125,15 +126,76 @@
     cursor: pointer;
 }
 
+.lesson-name-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lesson-name {
+    color: var(--white);
+    font-size: 13px;
+}
+
+.lesson-image-container {
+    position: absolute;
+    top: 10%;
+    right: 25%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lesson-for-img {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    position: absolute;
+}
+
+.lesson-for-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* NO LESSONS */
+.no-leeons-search {
+    display: flex;
+    justify-content: center;
+    color: #333;
+}
+
+.no-lessons-text {
+    font-size: 1.5rem;
+    font-family: var(--font);
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    padding: 1rem;
+}
+
+.no-lessons-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 @media (max-width: 950px) {
+
     .lessons-title {
         font-size: 12px;
     }
 
     .lesson-cardImg-box {
-        width: 250px;
-        height: 350px;
+        width: 150px;
+        height: 200px;
         border-radius: 10px;
     }
 
@@ -142,25 +204,63 @@
         height: 100%;
         object-fit: cover;
         border-radius: 10px;
+    }
+
+    .lesson-for-img {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        position: absolute;
+    }
+
+    .lesson-for-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .lesson-image-container {
+        top: 10%;
+        right: 20%;
+        transform: translate(-50%, -50%);
     }
 }
 
 @media screen and (max-width: 768px) {
     .lessons-cards {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         /* 2 columns */
+    }
+
+    .lesson-for-img {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        position: absolute;
+    }
+
+    .lesson-for-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .lesson-image-container {
+        top: 10%;
+        right: 25%;
+        transform: translate(-50%, -50%);
     }
 }
 
 @media screen and (max-width: 480px) {
     .lessons-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         /* 1 column */
     }
 
     .lesson-cardImg-box {
-        width: 200px;
-        height: 300px;
+        width: 120px;
+        height: 160px;
         border-radius: 10px;
     }
 
@@ -169,5 +269,11 @@
         height: 100%;
         object-fit: cover;
         border-radius: 10px;
+    }
+
+    .lesson-image-container {
+        top: 10%;
+        right: 30%;
+        transform: translate(-50%, -50%);
     }
 }

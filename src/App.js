@@ -43,6 +43,7 @@ function App() {
 
         {/* Catch Error */}
         <Route path="*" element={<Error />} />
+        <Route path="/error" element={<Error />} />
       </Routes>
     </>
   );

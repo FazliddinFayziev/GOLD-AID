@@ -11,4 +11,4 @@ export const document = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1681
 export const video = "https://res.cloudinary.com/dcrolfqsj/video/upload/v1681359507/video_thnvwb.mp4";
 export const level_default = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683345934/ga1_tgkmg0.jpg";
 export const level_default_ielts = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683345945/ga2_yswtts.jpg";
-export const lessons_default = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683358978/ga3_fxwz1r.jpg";
+export const lessons_default = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683374718/ga4_rj3pzo.jpg";

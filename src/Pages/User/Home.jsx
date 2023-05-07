@@ -11,12 +11,12 @@ const Home = () => {
     const navigate = useNavigate();
 
     // LOADING
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
-        return () => clearTimeout(timer);
-    }, []);
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setIsLoading(false);
+    //     }, 2000);
+    //     return () => clearTimeout(timer);
+    // }, []);
 
 
 
@@ -54,6 +54,7 @@ const Home = () => {
                 })
                 setCourses(newArr)
                 setUserProfile(user)
+                setIsLoading(false)
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                     const refreshedToken = await refreshAccessToken(); // refresh the token
@@ -69,7 +70,7 @@ const Home = () => {
                 const token = await refreshAccessToken()
                 await fetchCourses(token)
                 if (!token) return navigate('/login')
-                console.log('Access token is fetching the courses')
+                // console.log('Access token is fetching the courses')
             }
             fetch()
         }, [])

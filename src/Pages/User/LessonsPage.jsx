@@ -3,19 +3,12 @@ import { Footer, HerroBanner, Lessons, Loading, Navbar } from '../../Components'
 import { useGlobalContext } from '../../context/context'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../api/axios';
+import { lessons_default } from '../../assets';
 const LessonsPage = () => {
-    const { user, bgColor, refreshAccessToken, isAccessTokenExpired, lessons, setLessons } = useGlobalContext();
+    const { user, bgColor, refreshAccessToken, isAccessTokenExpired, setLessons } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();
     const { level } = useParams();
-
-    // LOADING
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
-        return () => clearTimeout(timer);
-    }, []);
 
 
     const useToken = () => {
@@ -43,16 +36,22 @@ const LessonsPage = () => {
                     return {
                         lessonId: lessonId,
                         title: title,
-                        lessonPicture: lessonPicture,
+                        lessonPicture: lessons_default,
                         isCompleted: isCompleted,
-                        currentScore: currentScore
+                        currentScore: currentScore,
+                        length: lessons.length,
                     }
                 })
                 setLessons(newArr)
+                setIsLoading(false)
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                     const refreshedToken = await refreshAccessToken(); // refresh the token
                     fetchLessons(refreshedToken); // try the request again with the new token
+                } else if (err.response.data.message === 'Not ALlowed to Access This Course Yet') {
+                    navigate('/verify')
+                } else if (level !== 'beginner' || level !== 'elementary' || level !== 'pre-intermediate' || level !== 'intermediate' || level !== 'upper-intermediate' || level !== 'ielts') {
+                    navigate('/error')
                 } else {
                     console.log(err);
                 }
