@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../api/axios';
 import { lessons_default } from '../../assets';
 const LessonsPage = () => {
-    const { user, bgColor, refreshAccessToken, isAccessTokenExpired, setLessons } = useGlobalContext();
+    const { user, bgColor, refreshAccessToken, isAccessTokenExpired, setLessons, lessonTitle, showCardLessons, setShowCardLessons } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();
     const { level } = useParams();
@@ -15,6 +15,7 @@ const LessonsPage = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
         const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+
 
 
         const fetchLessons = async (token) => {
@@ -50,9 +51,10 @@ const LessonsPage = () => {
                     fetchLessons(refreshedToken); // try the request again with the new token
                 } else if (err.response.data.message === 'Not ALlowed to Access This Course Yet') {
                     navigate('/verify')
-                } else if (level !== 'beginner' || level !== 'elementary' || level !== 'pre-intermediate' || level !== 'intermediate' || level !== 'upper-intermediate' || level !== 'ielts') {
-                    navigate('/error')
-                } else {
+                }
+                // else if (level !== 'beginner' || level !== 'elementary' || level !== 'pre-intermediate' || level !== 'intermediate' || level !== 'upper-intermediate' || level !== 'ielts') {
+                //     navigate('/error')} 
+                else {
                     console.log(err);
                 }
             }
@@ -109,6 +111,12 @@ const LessonsPage = () => {
                 <Navbar />
                 <HerroBanner />
                 <Lessons />
+                {showCardLessons && (
+                    <div className="card-lessons">
+                        <h2>{lessonTitle}</h2>
+                        <button onClick={() => setShowCardLessons(false)}>OK</button>
+                    </div>
+                )}
                 <Footer />
             </div>
         </>

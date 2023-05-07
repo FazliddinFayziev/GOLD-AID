@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { logo } from '../assets'
+import { logo } from '../assets';
+import { useGlobalContext } from '../context/context';
 
 const LessonCard = ({ index, lessonId, title, lessonPicture, isCompleted, currentScore, length }) => {
-    // const [num, setNum] = useState(0)
+    const { setLessonTitle, setShowCardLessons } = useGlobalContext();
+    // const [cardTitle, setCardTitle] = useState('')
     return (
         <>
             <div key={lessonId} className='lesson-card-box'>
@@ -21,8 +23,13 @@ const LessonCard = ({ index, lessonId, title, lessonPicture, isCompleted, curren
                             <img src={logo} alt="logo" />
                         </div>
                     </div>
+                    <div className='lesson-button-container'>
+                        <button className='title-button-name' onClick={() => {
+                            setLessonTitle(title)
+                            setShowCardLessons(true)
+                        }}>title</button>
+                    </div>
                 </div>
-                <p>{length}</p>
             </div>
         </>
     )

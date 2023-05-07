@@ -63,6 +63,12 @@ export const AppProvider = ({ children }) => {
     // USESTATE() FOR USER PROFILE
     const [userProfile, setUserProfile] = useState([])
 
+    // LESSON CARD TITLE
+    const [lessonTitle, setLessonTitle] = useState('');
+
+    // Lesson Card
+    const [showCardLessons, setShowCardLessons] = useState(false);
+
 
     // Targetting value of inputs
     const handleInputChange = (e) => {
@@ -206,6 +212,14 @@ export const AppProvider = ({ children }) => {
         // Lessons
         lessons,
         setLessons,
+
+        // Lessons Title
+        lessonTitle,
+        setLessonTitle,
+
+        // Lessons Card
+        showCardLessons,
+        setShowCardLessons,
 
         open,
         setOpen,
