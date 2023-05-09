@@ -63,11 +63,19 @@ export const AppProvider = ({ children }) => {
     // USESTATE() FOR USER PROFILE
     const [userProfile, setUserProfile] = useState([])
 
+    // Single video page Lessons
+    const [singleLesson, setSingleLesson] = useState([]);
+
     // LESSON CARD TITLE
     const [lessonTitle, setLessonTitle] = useState('');
 
     // Lesson Card
     const [showCardLessons, setShowCardLessons] = useState(false);
+
+    // Set Files
+    const [lessonFiles, setLessonFiles] = useState([]);
+
+
 
 
     // Targetting value of inputs
@@ -157,6 +165,8 @@ export const AppProvider = ({ children }) => {
 
 
 
+
+
     return <AppContext.Provider value={{
         ...state,
 
@@ -220,6 +230,14 @@ export const AppProvider = ({ children }) => {
         // Lessons Card
         showCardLessons,
         setShowCardLessons,
+
+        // Single video page Lessons
+        singleLesson,
+        setSingleLesson,
+
+        // Passing the files from API
+        lessonFiles,
+        setLessonFiles,
 
         open,
         setOpen,

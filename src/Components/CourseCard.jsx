@@ -19,7 +19,6 @@ const CourseCard = ({ id, ieltsPicture, coursePicture, name, }) => {
                 <div className='course-for-img'>
                     <img src={logo} alt="logo" />
                 </div>
-                {/* <p className='course-name'>{name}</p> */}
             </div>
         </div>
     )

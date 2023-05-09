@@ -2,10 +2,10 @@ import React from 'react';
 import { click } from '../assets';
 import { document } from '../assets';
 
-const DocumentContainer = ({ documentLink, lesson, id }) => {
+const DocumentContainer = ({ file, id }) => {
     return (
         <div key={id} className='file-container'>
-            <a href={documentLink} download={lesson}>
+            <a href={file} download="Golden-Aid">
                 <div className='file-img-container'>
                     <div className='file-document-img'>
                         <img src={document} alt="document-gold-aid" />

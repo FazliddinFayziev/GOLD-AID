@@ -6,7 +6,8 @@ import VideoContainer from './VideoContainer';
 import { useGlobalContext } from '../context/context';
 
 const Video = () => {
-    const { bgColor } = useGlobalContext();
+    const { bgColor, singleLesson } = useGlobalContext();
+    const { lessonId, title, files, videos, lessonPicture, description, course } = singleLesson
     return (
         <>
             <div className='video-title'>

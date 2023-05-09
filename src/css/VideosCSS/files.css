@@ -9,6 +9,22 @@
     --font-w: 800;
 }
 
+.no-files {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    font-family: var(--font);
+}
+
+.no-files-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
 .files-title {
     display: flex;
     justify-content: center;

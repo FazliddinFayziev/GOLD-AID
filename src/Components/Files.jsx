@@ -1,22 +1,39 @@
 import React from 'react';
 import "../css/VideosCSS/files.css";
-import { DonwloadDocument } from '../Data/data';
 import DocumentContainer from './DocumentContainer';
 import { useGlobalContext } from '../context/context';
+import { AiOutlineSearch } from "react-icons/ai";
 
 const Files = () => {
-    const { bgColor } = useGlobalContext();
+    const { bgColor, singleLesson } = useGlobalContext();
+    const files = singleLesson?.files || [];
+
+    const filesObjArr = files.map((file, index) => ({
+        id: index + 1,
+        file,
+    }));
+
     return (
         <>
             <div className='files-title'>
                 <h1 className={bgColor ? 'white' : 'black'}>Files</h1>
             </div>
-            {
-                DonwloadDocument.map((document, index) => {
+            {files.length ? (
+                filesObjArr.map((document, index) => {
                     return (
-                        <DocumentContainer key={index} {...document} />
+                        <DocumentContainer key={index} {...document} index={index} />
                     )
                 })
+            ) : (
+                <div>
+                    <div className='no-files-search'>
+                        <AiOutlineSearch fontSize={40} />
+                    </div>
+                    <div className='no-files'>
+                        <h3>There is not Files Yet</h3>
+                    </div>
+                </div>
+            )
             }
         </>
     )
