@@ -96,6 +96,22 @@
     border-radius: 10px;
 }
 
+
+.lock-cover {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.404);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lock {
+    color: white;
+}
+
 .course-image-container {
     position: absolute;
     top: 10%;
@@ -156,6 +172,11 @@
         border-radius: 10px;
     }
 
+    .lock-cover {
+        width: 250px;
+        height: 350px;
+    }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -190,6 +211,11 @@
         width: 200px;
         height: 300px;
         border-radius: 10px;
+    }
+
+    .lock-cover {
+        width: 200px;
+        height: 300px;
     }
 
     .course-image-container {

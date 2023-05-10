@@ -10,51 +10,41 @@ const Home = () => {
     const { bgColor, user, setUser, isAccessTokenExpired, refreshAccessToken, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile } = useGlobalContext();
     const navigate = useNavigate();
 
-    // LOADING
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setIsLoading(false);
-    //     }, 2000);
-    //     return () => clearTimeout(timer);
-    // }, []);
-
-
 
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
         const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
 
-
         const fetchCourses = async (token) => {
             try {
                 const res = await axios.get('/courses', {
                     headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
+                        Authorization: `Bearer ${token}`,
+                    },
                 });
                 console.log(res.data);
-                const { courses, user } = res.data
+                const { courses, user } = res.data;
                 const newArr = courses.map((course) => {
                     const {
                         _id,
                         name,
                         coursePicture,
-                        mainScore,
+                        minScore,
                         isCompleted,
-                    } = course
+                    } = course;
                     return {
                         id: _id,
                         name: name,
                         coursePicture: level_default,
                         ieltsPicture: level_default_ielts,
-                        mainScore: mainScore,
-                        isCompleted: isCompleted
-                    }
-                })
-                setCourses(newArr)
-                setUserProfile(user)
-                setIsLoading(false)
+                        minScore: minScore,
+                        isCompleted: isCompleted,
+                    };
+                });
+                setCourses(newArr);
+                setUserProfile(user);
+                setIsLoading(false);
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                     const refreshedToken = await refreshAccessToken(); // refresh the token
@@ -67,38 +57,37 @@ const Home = () => {
 
         useEffect(() => {
             const fetch = async () => {
-                const token = await refreshAccessToken()
-                await fetchCourses(token)
-                if (!token) return navigate('/login')
-                // console.log('Access token is fetching the courses')
-            }
-            fetch()
-        }, [])
-
+                const token = await refreshAccessToken();
+                if (!token) {
+                    navigate('/register');
+                } else {
+                    await fetchCourses(token);
+                }
+            };
+            fetch();
+        }, []);
 
         useEffect(() => {
             const timer = setInterval(() => {
                 refreshAccessToken()
-                fetchCourses(user.accessToken)
+                    .then((token) => fetchCourses(token))
+                    .catch((err) => console.log(err));
             }, 3000000); // fetches new urls and tokens every 50 minutes
-            return () => clearInterval(timer)
-        }, [])
+            return () => clearInterval(timer);
+        }, []);
 
         useEffect(() => {
             if (!refreshToken || !accessTokenExpireTime) {
-                // Navigate to login page if tokens do not exist in localStorage
-                navigate('/register')
-            } else if (isAccessTokenExpired()) {
-                // Navigate to login page if access token is expired
-                navigate('/login')
-            } else {
-                refreshAccessToken();
-                fetchCourses(user.accessToken)
+                navigate('/register');
+            }
+            else if (isAccessTokenExpired()) {
+                navigate('/login');
             }
         }, []);
 
         return accessToken;
     };
+
 
     const accessToken = useToken();
 

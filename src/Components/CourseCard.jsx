@@ -1,8 +1,12 @@
-import React from 'react'
-import { logo } from '../assets'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import { logo } from '../assets';
+import { useNavigate } from 'react-router-dom';
+import { AiFillLock } from 'react-icons/ai';
+import { useGlobalContext } from '../context/context';
 
-const CourseCard = ({ id, ieltsPicture, coursePicture, name, }) => {
+const CourseCard = ({ id, ieltsPicture, coursePicture, name, minScore }) => {
+    const { userProfile } = useGlobalContext();
+    const { _id, email, profilePicture, progressScore, completedCourses, course } = userProfile
     const navigate = useNavigate();
     const handleNavigate = () => {
         navigate(`user/${name.toLowerCase()}`)
@@ -20,6 +24,17 @@ const CourseCard = ({ id, ieltsPicture, coursePicture, name, }) => {
                     <img src={logo} alt="logo" />
                 </div>
             </div>
+            {progressScore >= minScore ?
+                (
+                    ""
+                ) : (
+                    <div className='lock-cover'>
+                        <div className='lock'>
+                            <AiFillLock fontSize={50} />
+                        </div>
+                    </div >
+                )
+            }
         </div>
     )
 }

@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from '../../api/axios'
 
 const VideoPage = () => {
-    const { bgColor, user, refreshAccessToken, isAccessTokenExpired, setSingleLesson, setLessonFiles } = useGlobalContext();
+    const { bgColor, user, refreshAccessToken, isAccessTokenExpired, setSingleLesson } = useGlobalContext();
     const { level, lessonId } = useParams();
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();

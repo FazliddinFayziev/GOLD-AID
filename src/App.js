@@ -1,10 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useGlobalContext } from "./context/context";
-import { Home, Login, Register, TestPage, Warning, Error, Layout, Admin, LessonsPage } from './Pages'
-import VideoPage from "./Pages/User/VideoPage";
-import Homework from "./Pages/User/Homework";
-import Profile from "./Pages/User/Profile";
+import { Home, VideoPage, Homework, Profile, Login, Register, TestPage, Warning, Error, Layout, Admin, LessonsPage, NotAllowed, Offline } from './Pages'
 import { Verify, Verifying } from "./Components";
 
 
@@ -25,12 +22,6 @@ function App() {
           <Route path="test" element={isRegister ? <TestPage /> : <Navigate to="/register" />} />
           <Route path="verify" element={<Verify />} />
           <Route path="verify/email/register/:token" element={<Verifying />} />
-          {/* const {access, refresh} = await axios.post('/verify', {token})
-          if(accoes){ */}
-          {/* // put on the global context 
-            // put regresh in localstroagfe 
-            // redirect to the home page 
-          } */}
 
           {/* PROTECTED ROUTES */}
           <Route path="/" element={<Home />} />
@@ -41,9 +32,11 @@ function App() {
         </Route>
         <Route path="/admin" element={<Admin />} />
 
-        {/* Catch Error */}
+        {/* Catch Error and such pages*/}
         <Route path="*" element={<Error />} />
         <Route path="/error" element={<Error />} />
+        <Route path="/notallowed" element={<NotAllowed />} />
+        <Route path="/offline" element={<Offline />} />
       </Routes>
     </>
   );

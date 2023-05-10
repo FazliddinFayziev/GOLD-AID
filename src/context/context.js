@@ -72,8 +72,11 @@ export const AppProvider = ({ children }) => {
     // Lesson Card
     const [showCardLessons, setShowCardLessons] = useState(false);
 
-    // Set Files
-    const [lessonFiles, setLessonFiles] = useState([]);
+    // Set video
+    const [isVideo, setIsVideo] = useState([]);
+
+    // Video Language
+    const [videoLanguage, setVideoLanguage] = useState('uzbek');
 
 
 
@@ -235,9 +238,13 @@ export const AppProvider = ({ children }) => {
         singleLesson,
         setSingleLesson,
 
-        // Passing the files from API
-        lessonFiles,
-        setLessonFiles,
+        // Set Video
+        isVideo,
+        setIsVideo,
+
+        // Video Language
+        videoLanguage,
+        setVideoLanguage,
 
         open,
         setOpen,

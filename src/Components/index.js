@@ -2,7 +2,8 @@
 
 // USER PAGE COMPONENTS ===================================>
 
-// REGISTER PAGE COMPONENTS
+// REGISTER PAGE'S AND OTHER PAGES' COMPONENTS
+export { default as NotAllowedComponent } from "./NotAllowedComponent";
 export { default as Register_Inputs } from './Register_Inputs';
 export { default as RegisterNavbar } from './RegisterNavbar';
 export { default as CountdownTimer } from "./CountdownTimer";

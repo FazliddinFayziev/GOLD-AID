@@ -4,6 +4,8 @@ import { useGlobalContext } from '../../context/context'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../api/axios';
 import { lessons_default } from '../../assets';
+
+
 const LessonsPage = () => {
     const { user, bgColor, refreshAccessToken, isAccessTokenExpired, setLessons, lessonTitle, showCardLessons, setShowCardLessons } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true)
@@ -49,11 +51,9 @@ const LessonsPage = () => {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                     const refreshedToken = await refreshAccessToken(); // refresh the token
                     fetchLessons(refreshedToken); // try the request again with the new token
-                } else if (err.response.data.message === 'Not ALlowed to Access This Course Yet') {
-                    navigate('/verify')
+                } else if (err.response.status === 403) {
+                    navigate('/notallowed')
                 }
-                // else if (level !== 'beginner' || level !== 'elementary' || level !== 'pre-intermediate' || level !== 'intermediate' || level !== 'upper-intermediate' || level !== 'ielts') {
-                //     navigate('/error')} 
                 else {
                     console.log(err);
                 }
