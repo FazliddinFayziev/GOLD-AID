@@ -5,7 +5,6 @@ import Inputs, { Eye } from '../Data/Inputs';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/context';
 import { setTokenToLocalStorage } from '../context/Functions';
-import ShowCard from './ShowCard';
 
 
 const Login_Inputs = () => {
@@ -97,6 +96,8 @@ const Login_Inputs = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder={Inputs(eng, ru).InputEmail}
+                        // autoComplete='off'
+                        autoComplete="new-password"
                     />
                 </div>
 
@@ -107,6 +108,8 @@ const Login_Inputs = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder={Inputs(eng, ru).InputPassword}
+                        // autoComplete='off'
+                        autoComplete="new-password"
                     />
                     <div onClick={() => setOpen(!open)} className='eye'>
                         {Eye(open).sign}

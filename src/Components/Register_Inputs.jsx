@@ -24,6 +24,7 @@ const Register_Inputs = () => {
         setIsRegister,
         languageBoolean,
         handleInputChange,
+        setShowSuccessCard,
     } = useGlobalContext();
 
     // LOCAL ============================>
@@ -139,6 +140,14 @@ const Register_Inputs = () => {
         return <CircleLoading />
     }
 
+    const handleInputFocus = () => {
+        setShowSuccessCard(true);
+    };
+
+    const handleInputBlur = () => {
+        setShowSuccessCard(false);
+    };
+
 
     // MAIN REGISTRATION
     return (
@@ -161,6 +170,8 @@ const Register_Inputs = () => {
                             onChange={(e) => handleInputChange(e)}
                             required
                             autoComplete="off"
+                            onFocus={handleInputFocus}
+                            onBlur={handleInputBlur}
                         />
                         <label htmlFor="name" className="label-name">
                             <span className="content-name">{Inputs(eng, ru).InputName}</span>
@@ -197,7 +208,9 @@ const Register_Inputs = () => {
                             name="email"
                             value={email}
                             onChange={(e) => handleInputChange(e)}
-                            required autoComplete="off"
+                            required
+                            // autoComplete="off"
+                            autoComplete="new-password"
                         />
                         <label htmlFor="name" className="label-name">
                             <span className="content-name">{Inputs(eng, ru).InputEmail}</span>
@@ -212,7 +225,8 @@ const Register_Inputs = () => {
                             value={password}
                             onChange={(e) => handleInputChange(e)}
                             required
-                            autoComplete="off"
+                            // autoComplete="off"
+                            autoComplete="new-password"
                         />
                         <label htmlFor="name" className="label-name">
                             <span className="content-name">{Inputs(eng, ru).InputPassword}</span>

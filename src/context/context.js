@@ -44,6 +44,14 @@ export const AppProvider = ({ children }) => {
     // show card
     const [showCard, setShowCard] = useState(false);
 
+    // Success card show
+    const [showSuccessCard, setShowSuccessCard] = useState(false);
+
+    // Set ShowCard false after 5 second
+    useEffect(() => {
+        setTimeout(() => setShowCard(false), 5000);
+    }, [showCard]);
+
     // USESTATE() FOR TIMING FUNCTIONS
     const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
 
@@ -68,9 +76,6 @@ export const AppProvider = ({ children }) => {
 
     // LESSON CARD TITLE
     const [lessonTitle, setLessonTitle] = useState('');
-
-    // Lesson Card
-    const [showCardLessons, setShowCardLessons] = useState(false);
 
     // Set video
     const [isVideo, setIsVideo] = useState([]);
@@ -193,6 +198,10 @@ export const AppProvider = ({ children }) => {
         showCard,
         setShowCard,
 
+        // Success card
+        showSuccessCard,
+        setShowSuccessCard,
+
         // calculate score for backend
         Calculate,
 
@@ -229,10 +238,6 @@ export const AppProvider = ({ children }) => {
         // Lessons Title
         lessonTitle,
         setLessonTitle,
-
-        // Lessons Card
-        showCardLessons,
-        setShowCardLessons,
 
         // Single video page Lessons
         singleLesson,

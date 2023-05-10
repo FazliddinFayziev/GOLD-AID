@@ -10,6 +10,7 @@ export { default as CountdownTimer } from "./CountdownTimer";
 export { default as CircleLoading } from './CircleLoading';
 export { default as Login_Inputs } from './Login_Inputs';
 export { default as WarningPage } from './WarningPage';
+export { default as SuccessCard } from './SuccessCard';
 export { default as FinishTest } from "./FinishTest";
 export { default as WarningNav } from './WarningNav';
 export { default as Verifying } from "./Verifying";

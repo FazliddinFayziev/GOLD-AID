@@ -1,16 +1,16 @@
 import React from 'react'
 import { useGlobalContext } from '../context/context'
 
-const ShowCard = ({ handleClose }) => {
-    const { errMsg, showCard } = useGlobalContext();
+const ShowCard = ({ message }) => {
+    const { showCard } = useGlobalContext()
+
     return (
-        <div className={`warning-card ${showCard ? 'show-card' : ''}`}>
-            <div className="content">
-                <p>{errMsg}</p>
-                <button onClick={handleClose}>ok</button>
+        <div className='notification-card'>
+            <div className={`notification ${showCard ? 'show' : ''}`}>
+                {message}
             </div>
         </div>
-    )
+    );
 }
 
 export default ShowCard

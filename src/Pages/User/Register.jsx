@@ -1,16 +1,15 @@
-import { RegisterNavbar, Register_Inputs, ShowCard } from "../../Components"
+import { RegisterNavbar, Register_Inputs, ShowCard, SuccessCard } from "../../Components"
 import { register_img } from "../../assets";
 import { useGlobalContext } from '../../context/context';
 
 const Register = () => {
-    const { setShowCard } = useGlobalContext();
+    const { errMsg } = useGlobalContext();
 
-    const handleClose = () => {
-        setShowCard(false);
-    }
+
     return (
         <>
-            <ShowCard handleClose={handleClose} />
+            <ShowCard message={errMsg} />
+            <SuccessCard message={"Hello World"} />
             <div className="main-container">
                 <div className="part-one">
                     <RegisterNavbar />

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 :root {
   --gray: #D9D9D9;
@@ -7,6 +8,8 @@
   --maincolor: #4461F2;
   --maincolorHover: #002aff;
   --mainBackgroundColor: #F8F8FF;
+  --poppins: 'Poppins',
+    sans-serif;
   --font: 'Dosis',
     sans-serif;
   --font-w: 800;
@@ -15,6 +18,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: var(--font);
   margin: 0;
   padding: 0;
 }
@@ -27,81 +31,82 @@ body {
 
 /* REGISTER ==============================> */
 
-.show-card {
+.notification-card {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background-color: #000000aa;
-  z-index: 1;
+  height: 100vh;
+}
+
+.notification {
+  position: absolute;
+  width: 30%;
+  height: 10%;
+  background-color: rgb(255, 206, 206);
+  color: black;
+  top: 2%;
+  z-index: 100;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  transform: translateY(-120%);
+}
+
+.notification.show {
+  transform: translateY(0%);
+}
+
+
+.notification-success-card {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.notification-success {
+  position: absolute;
+  width: 30%;
+  height: 10%;
+  background-color: rgb(206, 255, 212);
+  color: black;
+  top: 2%;
+  z-index: 100;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  transform: translateY(-120%);
+}
+
+.notification-success.show-success {
+  transform: translateY(0%);
 }
 
 .main-container {
   position: relative;
-  z-index: 0;
+  z-index: 1;
   background-color: var(--mainBackgroundColor);
   font-family: var(--font);
-  font-weight: var(--font-w);
+  font-weight: 500;
   display: flex;
   width: 100%;
   height: 100vh;
 }
 
-.warning-card {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  width: 100%;
-  height: 0;
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-}
-
-.warning-card.show-card {
-  height: 100%;
-  opacity: 1;
-}
-
-.warning-card .content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 400px;
-  background-color: var(--white);
-  color: var(--black);
-  font-family: var(--font);
-  font-weight: var(--font-w);
-  padding: 20px;
-  border-radius: 5px;
-  text-align: center;
-  box-shadow: 0 0 10px #0000003f;
-}
-
-.warning-card button {
-  background-color: var(--maincolor);
-  color: #ffffff;
-  border: none;
-  padding: 5px 10px;
-  margin-top: 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.warning-card button:hover {
-  background-color: var(--maincolorHover);
-}
 
 
 /* PART - 1 PAGE-ONE  */
@@ -759,6 +764,12 @@ body {
   .register-nav,
   .register-nav .register-nav-container ul .nav-select {
     font-size: small;
+  }
+
+  .notification {
+    width: 40%;
+    height: 10%;
+    font-size: 12px;
   }
 }
 

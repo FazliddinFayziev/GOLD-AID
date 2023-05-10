@@ -7,7 +7,7 @@ import { lessons_default } from '../../assets';
 
 
 const LessonsPage = () => {
-    const { user, bgColor, refreshAccessToken, isAccessTokenExpired, setLessons, lessonTitle, showCardLessons, setShowCardLessons } = useGlobalContext();
+    const { user, bgColor, refreshAccessToken, isAccessTokenExpired, setLessons, lessonTitle } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();
     const { level } = useParams();
@@ -111,12 +111,6 @@ const LessonsPage = () => {
                 <Navbar />
                 <HerroBanner />
                 <Lessons />
-                {showCardLessons && (
-                    <div className="card-lessons">
-                        <h2>{lessonTitle}</h2>
-                        <button onClick={() => setShowCardLessons(false)}>OK</button>
-                    </div>
-                )}
                 <Footer />
             </div>
         </>

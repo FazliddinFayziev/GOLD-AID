@@ -4,14 +4,12 @@ import { login_img } from "../../assets";
 import { useGlobalContext } from '../../context/context';
 
 const Login = () => {
-    const { setShowCard } = useGlobalContext();
+    const { errMsg } = useGlobalContext();
 
-    const handleClose = () => {
-        setShowCard(false);
-    }
+
     return (
         <>
-            <ShowCard handleClose={handleClose} />
+            <ShowCard message={errMsg} />
             <div className="main-container">
                 <div className="part-one">
                     <RegisterNavbar />
