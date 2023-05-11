@@ -41,6 +41,7 @@ export { default as CommentSection } from "./CommentSection";
 export { default as VideoLanguage } from "./VideoLanguage";
 export { default as SmallNavbar } from "./SmallNavbar";
 export { default as LessonTitle } from "./LessonTitle";
+export { default as GoLessons } from "./GoLessons";
 export { default as Comment } from "./Comment";
 export { default as Video } from "./Video";
 export { default as Files } from "./Files";

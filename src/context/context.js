@@ -49,7 +49,7 @@ export const AppProvider = ({ children }) => {
 
     // Set ShowCard false after 5 second
     useEffect(() => {
-        setTimeout(() => setShowCard(false), 5000);
+        setTimeout(() => setShowCard(false), 10000);
     }, [showCard]);
 
     // USESTATE() FOR TIMING FUNCTIONS
@@ -74,14 +74,14 @@ export const AppProvider = ({ children }) => {
     // Single video page Lessons
     const [singleLesson, setSingleLesson] = useState([]);
 
-    // LESSON CARD TITLE
-    const [lessonTitle, setLessonTitle] = useState('');
-
     // Set video
     const [isVideo, setIsVideo] = useState([]);
 
     // Video Language
     const [videoLanguage, setVideoLanguage] = useState('uzbek');
+
+    // Text for showcard while it is on the focus for Register page
+    const [focusText, setFocusText] = useState('');
 
 
 
@@ -235,10 +235,6 @@ export const AppProvider = ({ children }) => {
         lessons,
         setLessons,
 
-        // Lessons Title
-        lessonTitle,
-        setLessonTitle,
-
         // Single video page Lessons
         singleLesson,
         setSingleLesson,
@@ -250,6 +246,10 @@ export const AppProvider = ({ children }) => {
         // Video Language
         videoLanguage,
         setVideoLanguage,
+
+        // Focus Text
+        focusText,
+        setFocusText,
 
         open,
         setOpen,

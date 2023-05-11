@@ -5,7 +5,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 const NoLessons = () => {
     return (
         <div className='no-lessons'>
-            <div className='no-leeons-search'>
+            <div className='no-lessons-search'>
                 <AiOutlineSearch fontSize={40} />
             </div>
             <div className="no-lessons-container">

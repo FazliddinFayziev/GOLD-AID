@@ -101,8 +101,8 @@
 .check-lesson-container {
     position: absolute;
     display: flex;
-    margin-left: 10px;
-    margin-top: 10px;
+    left: 20%;
+    top: 4%;
 }
 
 .check-lesson {
@@ -113,14 +113,13 @@
     height: 20px;
     border-radius: 50%;
     border: 2px solid var(--maincolor);
-    background-color: green;
+    background-color: rgb(125, 255, 125);
     outline: none;
     cursor: pointer;
 }
 
 .check-lesson:checked::before {
-    content: '\2713';
-    /* Unicode character for checkmark */
+    content: '\2714';
     display: block;
     width: 100%;
     height: 100%;
@@ -150,7 +149,7 @@
 
 .lesson-name-container {
     position: absolute;
-    top: 50%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -163,32 +162,9 @@
     font-size: 13px;
 }
 
-.lesson-image-container {
+.lesson-title-container {
     position: absolute;
-    top: 10%;
-    right: 25%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.lesson-for-img {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    position: absolute;
-}
-
-.lesson-for-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.lesson-button-container {
-    position: absolute;
-    top: 75%;
+    top: 88%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -196,19 +172,13 @@
     align-items: center;
 }
 
-.title-button-name {
-    color: var(--white);
-    font-family: var(--font);
+.lesson-title {
+    color: var(--black);
     font-size: 15px;
-    padding: 1px 8px;
-    border: solid 2px var(--maincolor);
-    background-color: var(--maincolor);
-    cursor: pointer;
-    border-radius: 2px;
 }
 
 /* NO LESSONS */
-.no-leeons-search {
+.no-lessons-search {
     display: flex;
     justify-content: center;
     color: #333;
@@ -249,24 +219,6 @@
         border-radius: 10px;
     }
 
-    .lesson-for-img {
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        position: absolute;
-    }
-
-    .lesson-for-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .lesson-image-container {
-        top: 10%;
-        right: 20%;
-        transform: translate(-50%, -50%);
-    }
 }
 
 @media screen and (max-width: 768px) {
@@ -275,23 +227,9 @@
         /* 2 columns */
     }
 
-    .lesson-for-img {
-        width: 30px;
-        height: 30px;
-        text-align: center;
-        position: absolute;
-    }
-
-    .lesson-for-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .lesson-image-container {
-        top: 10%;
-        right: 25%;
-        transform: translate(-50%, -50%);
+    .lesson-title {
+        color: var(--black);
+        font-size: 12px;
     }
 }
 
@@ -312,11 +250,5 @@
         height: 100%;
         object-fit: cover;
         border-radius: 10px;
-    }
-
-    .lesson-image-container {
-        top: 10%;
-        right: 30%;
-        transform: translate(-50%, -50%);
     }
 }

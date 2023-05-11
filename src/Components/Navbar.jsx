@@ -4,6 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { hambook, logo, profile } from '../assets';
 import { useGlobalContext } from '../context/context';
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -18,11 +19,13 @@ const Navbar = () => {
         <>
             <div className='container-home-navbar'>
                 {/* IMAGE DIV */}
-                <div>
-                    <div className='logo-img'>
-                        <img src={logo} alt="gold-aid" />
+                <Link to={'/'}>
+                    <div>
+                        <div className='logo-img'>
+                            <img src={logo} alt="gold-aid" />
+                        </div>
                     </div>
-                </div>
+                </Link>
 
                 {/* NAVBAR OTHER SIDE DIV */}
                 <div className='home-navbar-about'>

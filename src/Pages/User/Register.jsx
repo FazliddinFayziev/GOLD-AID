@@ -3,13 +3,13 @@ import { register_img } from "../../assets";
 import { useGlobalContext } from '../../context/context';
 
 const Register = () => {
-    const { errMsg } = useGlobalContext();
+    const { errMsg, focusText } = useGlobalContext();
 
 
     return (
         <>
             <ShowCard message={errMsg} />
-            <SuccessCard message={"Hello World"} />
+            <SuccessCard message={focusText} />
             <div className="main-container">
                 <div className="part-one">
                     <RegisterNavbar />

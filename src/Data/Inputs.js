@@ -2,6 +2,44 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 const Inputs = (eng, ru) => {
     const WarningPage = (eng ? (<p className='warning-page-text'>You will be given only one chance to take the test. Thanks to test, we will know your level. <span className='red-text'>Please be responsible for your test, because according to your test results, you will get your courses !</span></p>) : ru ? (<p className='warning-page-text'>Вам будет предоставлена ​​только одна возможность пройти тест. Благодаря тесту мы узнаем ваш уровень. <span className='red-text'>Пожалуйста, будьте ответственны за свой тест, потому что по результатам теста вы получите свои курсы !</span></p>) : (<p className='warning-page-text'>Sinovdan o'tish uchun sizga faqat bitta imkoniyat beriladi. Sinov orqali biz sizning darajangizni bilib olamiz. <span className='red-text'>Iltimos, testga mas'uliyat bilan yondashing, chunki test natijalari sizni qaysi kursda bo'lishingizni belgilab beradi!</span></p>))
     const WarningPageTitle = (eng ? (<h1>Before start, we should know your <span className="text-level">Level</span></h1>) : ru ? (<h1>Перед стартом, мы должны знать ваш <span className="text-level">Уровень</span></h1>) : (<h1>Boshlashdan oldin, biz sizning <span className="text-level">Darajangizni</span> bilishimiz kerak</h1>))
+    const PasswordText = (eng ? (
+        <p className='password-text'>
+            • Has at least 6 characters and 12 maximum.
+            <br />
+            • Include capital or lower letters.
+            <br />
+            • Include numbers (0-9) and symbols ( @$#%&* )
+        </p>
+    ) : ru ? (
+        <p className='password-text'>
+            • Имеет не менее 6 символов и не более 12.
+            <br />
+            • используйте заглавные или строчные буквы (A-z/a-z).
+            <br />
+            • используйте цифры (0-9) и символы ( @$#%&* )
+        </p>
+    ) : (
+        <p className='password-text'>
+            • Kamida 6 ta belgi va maksimal 12 ta belgidan foydalaning.
+            <br />
+            • bosh yoki kichik harflardan foydalaning (A-z/a-z).
+            <br />
+            • raqamlar (0-9) va belgilardan foydalaning ( @$#%&* )
+        </p>
+    ))
+    const ConfirmPasswordText = (eng ? (
+        <p className='password-text'>
+            • Confirm (repeat) your password.
+        </p>
+    ) : ru ? (
+        <p className='password-text'>
+            • Подтвердите (повторите) свой пароль.
+        </p>
+    ) : (
+        <p className='password-text'>
+            • Parolingizni tasdiqlang (takrorlang).
+        </p>
+    ))
     const Forgot = (eng ? "Forgot my password and Username" : ru ? "Забыли пароль и имя пользователя" : "Parol va foydalanuvchi nomimni unutdim")
     const InputConfirmPassword = (eng ? "Confirm Password:" : ru ? "Подтвердите пароль:" : "Parolni tasdiqlang:")
     const InputAge = (eng ? "Enter Age:" : ru ? "Введите возраст:" : "Yoshingizni kiriting:")
@@ -26,13 +64,15 @@ const Inputs = (eng, ru) => {
     const InputGender = (eng ? "Gender" : ru ? "Пол" : "Jins")
     const Login = (eng ? "Login" : ru ? "Логин" : "Kirish")
     const About = (eng ? "About" : ru ? "О нас" : "Biz")
-    return {
 
+    return {
         InputConfirmPassword,
+        ConfirmPasswordText,
         WarningPageTitle,
         ContinueButton,
         RegisterButton,
         InputPassword,
+        PasswordText,
         RegisterNav,
         WarningPage,
         InputFemale,
@@ -82,19 +122,18 @@ export const EmailCheck = (email, setIsEmail) => {
 
 // check Password
 export const checkPassword = (password, setCheckStrong) => {
-    let upperCaseLetters = /[A-Za-z]/g;
-    let lowerCaseLetters = /[a-z]/g;
-    if (password.match(upperCaseLetters) && password.match(lowerCaseLetters)) {
+    let lowerCaseLetters = /[A-za-z]/g;
+    if (password.match(lowerCaseLetters)) {
         setCheckStrong({ weak: true, good: false, strong: false })
     } else {
         setCheckStrong({ weak: false, good: false, strong: false })
     }
     let numbers = /[0-9]/g;
     let signs = /[@$#%&*]/g;
-    if (password.match(numbers) && password.match(signs) && password.match(upperCaseLetters) && password.match(lowerCaseLetters)) {
+    if (password.match(numbers) && password.match(signs) && password.match(lowerCaseLetters)) {
         setCheckStrong({ weak: false, good: true, strong: false })
     }
-    if (password.length >= 8 && password.length <= 15 && password.match(numbers) && password.match(signs) && password.match(upperCaseLetters) && password.match(lowerCaseLetters)) {
+    if (password.length >= 6 && password.length <= 12 && password.match(numbers) && password.match(signs) && password.match(lowerCaseLetters)) {
         setCheckStrong({ weak: false, good: false, strong: true })
     }
 }
@@ -103,19 +142,18 @@ export const checkPassword = (password, setCheckStrong) => {
 
 // check confirm Password
 export const checkConfirmPassword = (confirmInputValue, setCheckStrongConfirm, password) => {
-    let upperCaseLetters = /[A-Za-z]/g;
-    let lowerCaseLetters = /[a-z]/g;
-    if (confirmInputValue.match(upperCaseLetters) && confirmInputValue.match(lowerCaseLetters)) {
+    let lowerCaseLetters = /[A-za-z]/g;
+    if (confirmInputValue.match(lowerCaseLetters)) {
         setCheckStrongConfirm({ weakCon: true, goodCon: false, strongCon: false })
     } else {
         setCheckStrongConfirm({ weakCon: false, goodCon: false, strongCon: false })
     }
     let numbers = /[0-9]/g;
     let signs = /[@$#%&*]/g;
-    if (confirmInputValue.match(numbers) && confirmInputValue.match(signs) && confirmInputValue.match(upperCaseLetters) && confirmInputValue.match(lowerCaseLetters)) {
+    if (confirmInputValue.match(numbers) && confirmInputValue.match(signs) && confirmInputValue.match(lowerCaseLetters)) {
         setCheckStrongConfirm({ weakCon: false, goodCon: true, strongCon: false })
     }
-    if (confirmInputValue === password && confirmInputValue.length >= 8 && confirmInputValue.length <= 15 && confirmInputValue.match(numbers) && confirmInputValue.match(signs) && confirmInputValue.match(upperCaseLetters) && confirmInputValue.match(lowerCaseLetters)) {
+    if (confirmInputValue === password && confirmInputValue.length >= 6 && confirmInputValue.length <= 12 && confirmInputValue.match(numbers) && confirmInputValue.match(signs) && confirmInputValue.match(lowerCaseLetters)) {
         setCheckStrongConfirm({ weakCon: false, goodCon: false, strongCon: true })
     }
 }

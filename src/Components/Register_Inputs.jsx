@@ -21,6 +21,7 @@ const Register_Inputs = () => {
         password,
         setErrMsg,
         setShowCard,
+        setFocusText,
         setIsRegister,
         languageBoolean,
         handleInputChange,
@@ -88,6 +89,8 @@ const Register_Inputs = () => {
     }, [email])
 
 
+    // Password MinLength-6 and MaxLength-12
+
 
     // MAIN FUNCTION ============================>
 
@@ -141,10 +144,21 @@ const Register_Inputs = () => {
     }
 
     const handleInputFocus = () => {
+        setFocusText(Inputs(eng, ru).PasswordText)
         setShowSuccessCard(true);
     };
 
     const handleInputBlur = () => {
+        setShowSuccessCard(false);
+    };
+
+
+    const handleConfirmFocus = () => {
+        setFocusText(Inputs(eng, ru).ConfirmPasswordText)
+        setShowSuccessCard(true);
+    };
+
+    const handleConfirmBlur = () => {
         setShowSuccessCard(false);
     };
 
@@ -170,8 +184,6 @@ const Register_Inputs = () => {
                             onChange={(e) => handleInputChange(e)}
                             required
                             autoComplete="off"
-                            onFocus={handleInputFocus}
-                            onBlur={handleInputBlur}
                         />
                         <label htmlFor="name" className="label-name">
                             <span className="content-name">{Inputs(eng, ru).InputName}</span>
@@ -227,6 +239,8 @@ const Register_Inputs = () => {
                             required
                             // autoComplete="off"
                             autoComplete="new-password"
+                            onFocus={handleInputFocus}
+                            onBlur={handleInputBlur}
                         />
                         <label htmlFor="name" className="label-name">
                             <span className="content-name">{Inputs(eng, ru).InputPassword}</span>
@@ -246,6 +260,8 @@ const Register_Inputs = () => {
                             onChange={(e) => setConfirmInputValue(e.target.value)}
                             required
                             autoComplete="off"
+                            onFocus={handleConfirmFocus}
+                            onBlur={handleConfirmBlur}
                         />
                         <label htmlFor="name" className="label-name">
                             <span className="content-name">{Inputs(eng, ru).InputConfirmPassword}</span>

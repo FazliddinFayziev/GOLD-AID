@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BeforeHomework, CommentSection, Files, Footer, LessonTitle, Loading, SmallNavbar, Video, VideoLanguage } from '../../Components'
+import { BeforeHomework, CommentSection, Files, Footer, GoLessons, LessonTitle, Loading, SmallNavbar, Video, VideoLanguage } from '../../Components'
 import { useGlobalContext } from '../../context/context'
 import "../../css/VideosCSS/videoPage.css"
 import { useNavigate, useParams } from 'react-router-dom'
@@ -99,6 +99,7 @@ const VideoPage = () => {
         <>
             <div className={bgColor ? 'video-container-white' : 'video-container-black'}>
                 <SmallNavbar />
+                <GoLessons />
                 <LessonTitle />
                 <VideoLanguage />
                 <Video />
