@@ -5,6 +5,7 @@
 
 .video-container-white,
 .video-container-black {
+    position: relative;
     width: 100%;
     height: 100%;
     transition: background-color 0.5s ease-in-out;

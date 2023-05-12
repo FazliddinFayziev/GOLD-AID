@@ -34,8 +34,10 @@ export const AppProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     // USESTATE() BACKGROUND COLOR
-    const [bgColor, setBgColor] = useState(true)
+    const [bgColor, setBgColor] = useState(true);
 
+    // Check Admin
+    const [checkAdmin, setCheckAdmin] = useState(false);
 
     // LOGGIN AND REGISTER LOGICS AND HOME
     const [isRegister, setIsRegister] = useState(false);
@@ -77,11 +79,17 @@ export const AppProvider = ({ children }) => {
     // Set video
     const [isVideo, setIsVideo] = useState([]);
 
+    // Comment USESTATE()
+    const [comments, setComments] = useState([]);
+
     // Video Language
     const [videoLanguage, setVideoLanguage] = useState('uzbek');
 
     // Text for showcard while it is on the focus for Register page
     const [focusText, setFocusText] = useState('');
+
+    // const refresh the comments by usign the USEEFFECT() 
+    const [changeComment, setChangeComment] = useState(false);
 
 
 
@@ -186,6 +194,10 @@ export const AppProvider = ({ children }) => {
         isLoading,
         setIsLoading,
 
+        // Check Admin
+        checkAdmin,
+        setCheckAdmin,
+
         // bg color
         bgColor,
         setBgColor,
@@ -250,6 +262,14 @@ export const AppProvider = ({ children }) => {
         // Focus Text
         focusText,
         setFocusText,
+
+        // Comments Object/Array
+        comments,
+        setComments,
+
+        // Change comments
+        changeComment,
+        setChangeComment,
 
         open,
         setOpen,

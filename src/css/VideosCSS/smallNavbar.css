@@ -34,7 +34,7 @@
 .small-logo-img img {
     width: 100%;
     height: 100%;
-    object-fit: var(--maincolorHover);
+    object-fit: cover;
 }
 
 .small-navbar-about {
@@ -124,12 +124,14 @@
     margin-right: 20px;
     width: 50px;
     height: 50px;
+    border-radius: 50%;
 }
 
 .small-navbar-profile-picture img {
     width: 100%;
     height: 100%;
-    object-fit: var(--maincolorHover);
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .small-hambook-container {
@@ -173,15 +175,11 @@
         transform: scale(1.2);
     }
 
-    .small-navbar-sidebar {
-        overflow: hidden;
-    }
-
     .small-navbar-menu-show {
         display: block;
         position: absolute;
         width: 50%;
-        height: 80%;
+        height: 100%;
         background-color: var(--maincolor);
         z-index: 100;
         top: 0;
@@ -195,7 +193,7 @@
         display: block;
         position: absolute;
         width: 0;
-        height: 80%;
+        height: 100%;
         background-color: var(--maincolor);
         z-index: 100;
         top: 0;
@@ -257,12 +255,14 @@
         width: 60px;
         height: 60px;
         margin-top: 50px;
+        border-radius: 50%;
     }
 
     .small-navbar-menu-img img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 50%;
     }
 
     .small-navbar-menu-text {

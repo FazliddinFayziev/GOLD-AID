@@ -708,6 +708,35 @@ body {
 }
 
 
+
+/* CHOOSE PAGE  */
+.choose-page {
+  display: flex;
+}
+
+.choose-button {
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  background-color: var(--maincolor);
+  text-decoration: none;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin: 10px;
+}
+
+.choose-button:hover {
+  background-color: var(--maincolorHover);
+}
+
+.admin-span {
+  color: var(--maincolor);
+  font-weight: var(--font-w);
+}
+
+
 /* WHOLE MEDIA */
 
 /* MEDIA PART-1 AND MEADIA PART-2 */

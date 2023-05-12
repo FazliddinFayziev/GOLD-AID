@@ -14,9 +14,10 @@ const Login_Inputs = () => {
         open,
         setUser,
         setOpen,
-        languageBoolean,
         setErrMsg,
         setShowCard,
+        setCheckAdmin,
+        languageBoolean,
     } = useGlobalContext();
     const { ru, eng } = languageBoolean;
 
@@ -48,7 +49,8 @@ const Login_Inputs = () => {
             setEmail('');
             setPassword('');
             if (isAdmin) {
-                navigate('/admin');
+                setCheckAdmin(true);
+                navigate('/choose');
                 setLoginLoading(false)
             } else {
                 navigate('/')

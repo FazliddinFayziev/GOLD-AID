@@ -10,22 +10,22 @@ const Video = () => {
     const { lessonId, title, files, videos, lessonPicture, description, course } = singleLesson
 
     const changeVideo = (lng) => {
-        if (lng === 'uzbek') {
-            setVideoLanguage('uzbek')
-            setIsVideo(videos.uzbek)
-        } else if (lng === 'russian') {
-            setVideoLanguage('russian')
-            setIsVideo(videos.russian)
-        } else {
-            setVideoLanguage('english')
-            setIsVideo(videos.english)
+        if (lng === 'uzbek' && videos && videos.uzbek) {
+            setVideoLanguage('uzbek');
+            setIsVideo(videos.uzbek);
+        } else if (lng === 'russian' && videos && videos.russian) {
+            setVideoLanguage('russian');
+            setIsVideo(videos.russian);
+        } else if (lng === 'english' && videos && videos.english) {
+            setVideoLanguage('english');
+            setIsVideo(videos.english);
         }
-    }
+    };
 
     useEffect(() => {
         changeVideo(videoLanguage)
         console.log(videoLanguage)
-    }, [videoLanguage])
+    }, [videoLanguage, isVideo])
 
     return (
         <>

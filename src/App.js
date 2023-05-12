@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useGlobalContext } from "./context/context";
-import { Home, VideoPage, Homework, Profile, Login, Register, TestPage, Warning, Error, Layout, Admin, LessonsPage, NotAllowed, Offline } from './Pages'
+import { Home, VideoPage, Homework, Profile, Login, Register, TestPage, Warning, Error, Layout, Admin, LessonsPage, NotAllowed, Offline, Choose } from './Pages'
 import { Verify, Verifying } from "./Components";
 
 
@@ -10,7 +10,7 @@ import { Verify, Verifying } from "./Components";
 
 
 function App() {
-  const { isRegister } = useGlobalContext();
+  const { isRegister, checkAdmin } = useGlobalContext();
   return (
     <>
       <Routes>
@@ -22,6 +22,7 @@ function App() {
           <Route path="test" element={isRegister ? <TestPage /> : <Navigate to="/register" />} />
           <Route path="verify" element={<Verify />} />
           <Route path="verify/email/register/:token" element={<Verifying />} />
+          <Route path="/choose" element={checkAdmin ? <Choose /> : <Navigate to="/login" />} />
 
           {/* PROTECTED ROUTES */}
           <Route path="/" element={<Home />} />

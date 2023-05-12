@@ -14,3 +14,4 @@ export const level_default_ielts = "https://res.cloudinary.com/dcrolfqsj/image/u
 export const lessons_default = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683806651/lesson_2_utmd1b.jpg";
 export const illustration = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683694508/ilustartion-removebg-preview_i9s93o.png";
 export const offline = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683702152/offline-removebg-preview_chuvjs.png";
+export const choose_illustration = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683858425/stock-removebg-preview_iwnvnf.png";

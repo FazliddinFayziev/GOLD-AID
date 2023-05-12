@@ -13,6 +13,7 @@ export { default as WarningPage } from './WarningPage';
 export { default as SuccessCard } from './SuccessCard';
 export { default as FinishTest } from "./FinishTest";
 export { default as WarningNav } from './WarningNav';
+export { default as ChoosePage } from "./ChoosePage";
 export { default as Verifying } from "./Verifying";
 export { default as ShowCard } from './ShowCard';
 export { default as Loading } from './Loading';

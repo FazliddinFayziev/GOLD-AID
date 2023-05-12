@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom';
 const SmallNavbar = () => {
 
     // GLOBAL
-    const { bgColor, setBgColor } = useGlobalContext();
+    const { bgColor, setBgColor, userProfile } = useGlobalContext();
+    const { _id, email, profilePicture, progressScore, completedCourses, course } = userProfile
 
     // LOCAL
     const [nav, setNav] = useState(false);
@@ -38,7 +39,7 @@ const SmallNavbar = () => {
                         {bgColor ? <BsFillMoonFill fontSize={30} color='#fff' /> : <BsFillSunFill fontSize={30} color='#fff' />}
                     </div>
                     <div className='small-navbar-profile-picture'>
-                        <img src={profile} alt="gold-aid-profile-image" />
+                        <img src={profilePicture} alt="gold-aid-profile-image" />
                     </div>
 
 
@@ -53,29 +54,29 @@ const SmallNavbar = () => {
             </div>
 
             {/* @MEDIA OPEN NAVBAR MENU */}
-            <div className='small-navbar-sidebar'>
-                <div className={nav ? 'small-navbar-menu-show' : 'small-navbar-menu-hidden'}>
-                    <div className={nav ? 'small-navbar-menu-box-show' : 'small-navbar-menu-box-hidden'}>
-                        <div
-                            onClick={() => setNav(false)}
-                            className='small-navbar-menu-icon'
-                        >
-                            <AiOutlineClose className='small-navbar-menu-close' fontSize={30} />
+            {/* <div className='small-navbar-sidebar'> */}
+            <div className={nav ? 'small-navbar-menu-show' : 'small-navbar-menu-hidden'}>
+                <div className={nav ? 'small-navbar-menu-box-show' : 'small-navbar-menu-box-hidden'}>
+                    <div
+                        onClick={() => setNav(false)}
+                        className='small-navbar-menu-icon'
+                    >
+                        <AiOutlineClose className='small-navbar-menu-close' fontSize={30} />
+                    </div>
+                    <div className='small-navbar-menu-container-img'>
+                        <div className='small-navbar-menu-img'>
+                            <img src={profilePicture} alt="profile-picture" />
                         </div>
-                        <div className='small-navbar-menu-container-img'>
-                            <div className='small-navbar-menu-img'>
-                                <img src={profile} alt="profile-picture" />
-                            </div>
-                        </div>
-                        <div className='small-navbar-menu-text'>
-                            <ul>
-                                <li>About</li>
-                                <li>Contact</li>
-                            </ul>
-                        </div>
+                    </div>
+                    <div className='small-navbar-menu-text'>
+                        <ul>
+                            <li>About</li>
+                            <li>Contact</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+            {/* </div> */}
         </>
     )
 }
