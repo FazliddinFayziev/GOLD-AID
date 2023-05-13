@@ -20,9 +20,33 @@
     color: #fff;
 }
 
-.comment-container {
+.comment-container-form {
     padding: 20px;
+}
+
+.comment-container {
+    max-height: 80vh;
+    padding: 20px;
+    overflow-y: scroll;
     font-family: var(--font);
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
+
+.comment-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.comment-container::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color);
+}
+
+.comment-container::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color);
+}
+
+.comment-container::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover-color);
 }
 
 .comment-section {
@@ -31,6 +55,11 @@
     background-color: #fff;
     padding: 20px;
     gap: 1rem;
+}
+
+.add-comment {
+    display: flex;
+    justify-content: center;
 }
 
 .comment-single-container {

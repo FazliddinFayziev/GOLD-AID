@@ -1,9 +1,15 @@
 import React from 'react';
 import "../css/VideosCSS/homework.css"
 import { useGlobalContext } from '../context/context';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const BeforeHomework = () => {
     const { bgColor } = useGlobalContext();
+    const navigate = useNavigate();
+    const { lessonId } = useParams();
+    const handleHomework = () => {
+        navigate(`/user/homework/${lessonId}`)
+    }
     return (
         <>
             <div className='files-title'>
@@ -25,8 +31,10 @@ const BeforeHomework = () => {
                     </div>
                 </div>
             </div>
-            <div className='home-work-button'>
-                <button type='submit'>Do my Homework</button>
+            <div className='home-work-button'
+                onClick={handleHomework}
+            >
+                <button type='button'>Do my Homework</button>
             </div>
         </>
     )

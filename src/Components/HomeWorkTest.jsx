@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { questions } from '../Data/data';
-import FinishTest from './FinishTest';
 import { useGlobalContext } from '../context/context';
 import { backendScore, getLevel } from '../context/Functions';
 import Loading from './Loading';
@@ -10,10 +9,9 @@ import HomeworkTimer from './HomeworkTimer';
 const HomeWorkTest = () => {
 
     // GLOBAL
-    const { timeLeft, setTimeLeft, Calculate } = useGlobalContext();
+    const { lessonsHomeWorkTimeLeft, homeworkArray } = useGlobalContext();
 
     // LOCAL
-    const [score, setScore] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [level, setLevel] = useState("");
@@ -45,51 +43,49 @@ const HomeWorkTest = () => {
 
     // USEEFFECT() FOR TIMING FUNCTION
     useEffect(() => {
-        if (timeLeft === 0) {
+        if (lessonsHomeWorkTimeLeft === 0) {
             handleQuizSubmit();
         }
-    }, [timeLeft])
+    }, [lessonsHomeWorkTimeLeft])
 
 
 
     // Whole logic of checking th tests
     const handleQuizSubmit = () => {
-        let newScore = 0;
-        questions[randomQuestion].quiz.forEach((question) => {
-            if (selectedAnswers[question.id] === question.answer) {
-                newScore++;
-            }
-        });
-        setScore(newScore);
-        setIsSubmitted(true);
-        const level = getLevel(newScore);
-        setLevel(level);
-        setTimeLeft(0);
-        Calculate(level, backendScore(level));
+
+
     };
 
     if (isloading) {
         return <Loading />
     }
 
+    // TURNING THE ARRAY INTO OBJECT IN HOME OPTIONS ARRAY
+    const OptionsArrayToObject = (array) => {
+        const OptionsObjArr = array.map((option) => ({
+            value: option,
+        }));
+        return OptionsObjArr
+    }
+
     return (
         <>
-            {timeLeft > 0 && <HomeworkTimer />}
+            {lessonsHomeWorkTimeLeft > 0 && <HomeworkTimer />}
             <div className={isSubmitted ? "homework-hidden" : undefined}>
                 <div className='homework-test-container'>
                     <h1 className='homework-test-welcome-page'><p className='welcome'>Good luck</p></h1>
                 </div>
-                {questions[randomQuestion].quiz.map((question) => (
-                    <div key={question.id} className="homework-test-div">
-                        <h3 className='homework-test-question'>{question.id}) {question.text}</h3>
-                        {question.options.map((option, index) => (
+                {homeworkArray.map((homework, index) => (
+                    <div key={homework._id} className="homework-test-div">
+                        <h3 className='homework-test-question'>{index + 1}) {homework.question}</h3>
+                        {OptionsArrayToObject(homework.options).map((option, index) => (
                             <label key={index} className="homework-test-label">
                                 <input
                                     className='homework-test-input'
                                     type="radio"
-                                    name={question.id}
+                                    name={homework._id}
                                     value={option.value}
-                                    onChange={(e) => handleOptionSelect(e, question.id)}
+                                    onChange={(e) => handleOptionSelect(e, homework._id)}
                                     disabled={isSubmitted}
                                 />
                                 <span>{option.value}</span>
@@ -111,7 +107,9 @@ const HomeWorkTest = () => {
             </div>
             <div className='finish-test-container'>
                 {isSubmitted && (
-                    <FinishTest score={score} level={level} />
+                    <div>
+                        Test is Finished
+                    </div>
                 )}
             </div>
         </>

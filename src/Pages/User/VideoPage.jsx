@@ -6,8 +6,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from '../../api/axios';
 
 const VideoPage = () => {
-    const { bgColor, user, refreshAccessToken, isAccessTokenExpired, setSingleLesson, comments, setComments, changeComment, setChangeComment } = useGlobalContext();
+    const { bgColor, user, refreshAccessToken, isAccessTokenExpired, setSingleLesson, comments, setComments, changeComment, setChangeComment, limSkipComments, setLimSkipComments, scrollLoading, setScrollLoading } = useGlobalContext();
     const { level, lessonId } = useParams();
+    const { lim, skip } = limSkipComments;
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const VideoPage = () => {
                     }
                 });
                 console.log(res.data);
-                const { lesson: { course, files, videos, lessonPicture, title, description, } } = res.data
+                const { userId, profilePicture, lesson: { course, files, videos, lessonPicture, title, description, } } = res.data
                 const newArr = {
                     lessonId: lessonId,
                     title: title,
@@ -37,6 +38,8 @@ const VideoPage = () => {
                     lessonPicture: lessonPicture,
                     description: description,
                     course: course,
+                    userId: userId,
+                    profilePicture: profilePicture,
                 }
                 setSingleLesson(newArr)
                 setIsLoading(false)
@@ -52,14 +55,18 @@ const VideoPage = () => {
 
         const fetchComments = async (token) => {
             try {
-                const res = await axios.get(`/lessons/comments/all/?lessonId=${lessonId}&lim=20&skip=0`, {
+                const res = await axios.get(`/lessons/comments/all/?lessonId=${lessonId}&lim=${lim}&skip=${skip}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 });
                 console.log(res.data);
-                const { comments } = res.data
-                setComments(comments)
+                const { comments, userId } = res.data
+                const newCommments = {
+                    Allcomments: comments,
+                    CommentsUserId: userId
+                }
+                setComments(newCommments)
                 setIsLoading(false)
             } catch (err) {
                 if (err && err.response && err.response.status === 400 && err.response.data.message === 'token is expired') {

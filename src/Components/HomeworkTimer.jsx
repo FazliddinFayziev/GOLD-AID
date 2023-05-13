@@ -5,21 +5,21 @@ import { useGlobalContext } from "../context/context";
 const HomeworkTimer = () => {
 
     // GLOBAL
-    const { timeLeft, setTimeLeft, bgColor } = useGlobalContext();
+    const { setLessonsHomeWorkTimeLeft, lessonsHomeWorkTimeLeft, bgColor } = useGlobalContext();
 
     // LOCAL
     useEffect(() => {
-        if (timeLeft <= 0) return;
+        if (lessonsHomeWorkTimeLeft <= 0) return;
         const intervalId = setInterval(() => {
-            setTimeLeft((prevTime) => prevTime - 1);
+            setLessonsHomeWorkTimeLeft((prevTime) => prevTime - 1);
         }, 1000);
 
         return () => clearInterval(intervalId);
-    }, [timeLeft]);
+    }, [lessonsHomeWorkTimeLeft]);
 
-    const hours = Math.floor(timeLeft / 3600);
-    const minutes = Math.floor((timeLeft % 3600) / 60);
-    const seconds = Math.floor(timeLeft % 60);
+    const hours = Math.floor(lessonsHomeWorkTimeLeft / 3600);
+    const minutes = Math.floor((lessonsHomeWorkTimeLeft % 3600) / 60);
+    const seconds = Math.floor(lessonsHomeWorkTimeLeft % 60);
 
     return (
         <div className="homework-countdown-timer">
@@ -47,7 +47,7 @@ const HomeworkTimer = () => {
                     stroke="#4461F2"
                     strokeWidth="4%"
                     strokeDasharray={`${(
-                        ((3600 - timeLeft) / 3600) *
+                        ((3600 - lessonsHomeWorkTimeLeft) / 3600) *
                         2 *
                         Math.PI *
                         48

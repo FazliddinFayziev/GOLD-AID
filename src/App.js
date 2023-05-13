@@ -28,7 +28,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="user/:level" element={<LessonsPage />} />
           <Route path="user/:level/:lessonId" element={<VideoPage />} />
-          <Route path="user/:level/:lessonId/:homework" element={<Homework />} />
+          <Route path="user/homework/:lessonId" element={<Homework />} />
           <Route path="/profile/:user" element={<Profile />} />
         </Route>
         <Route path="/admin" element={<Admin />} />

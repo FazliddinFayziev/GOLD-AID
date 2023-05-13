@@ -57,6 +57,9 @@ export const AppProvider = ({ children }) => {
     // USESTATE() FOR TIMING FUNCTIONS
     const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
 
+
+    const [lessonsHomeWorkTimeLeft, setLessonsHomeWorkTimeLeft] = useState(0); // It will be set up when user comes to homeWork page
+
     // Change the Language Function
     useEffect(() => {
         changeLanguage(language, setLanguageBoolean)
@@ -82,6 +85,9 @@ export const AppProvider = ({ children }) => {
     // Comment USESTATE()
     const [comments, setComments] = useState([]);
 
+    // Homework Array with objects
+    const [homeworkArray, setHomeworkArray] = useState([]);
+
     // Video Language
     const [videoLanguage, setVideoLanguage] = useState('uzbek');
 
@@ -90,6 +96,12 @@ export const AppProvider = ({ children }) => {
 
     // const refresh the comments by usign the USEEFFECT() 
     const [changeComment, setChangeComment] = useState(false);
+
+    // limit and skip of comments
+    const [limSkipComments, setLimSkipComments] = useState({ lim: 10, skip: 0 })
+
+    // Scroll Loading
+    const [scrollLoading, setScrollLoading] = useState(false)
 
 
 
@@ -270,6 +282,24 @@ export const AppProvider = ({ children }) => {
         // Change comments
         changeComment,
         setChangeComment,
+
+        // Limit and Skip of Comments
+        limSkipComments,
+        setLimSkipComments,
+
+
+        // Scroll Loaading
+        scrollLoading,
+        setScrollLoading,
+
+        // HomeWork Array with objects
+        homeworkArray,
+        setHomeworkArray,
+
+
+        // lessonsHomeWorkTimeLeft
+        lessonsHomeWorkTimeLeft,
+        setLessonsHomeWorkTimeLeft,
 
         open,
         setOpen,

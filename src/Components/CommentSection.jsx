@@ -1,6 +1,6 @@
 import Comment from './Comment';
 import "../css/VideosCSS/comment.css"
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { IoMdSend } from "react-icons/io"
 import { useGlobalContext } from '../context/context';
 import { useParams } from 'react-router-dom';
@@ -8,12 +8,16 @@ import axios from '../api/axios';
 
 const CommentSection = () => {
     // GLOBAL
-    const { bgColor, comments, changeComment, setChangeComment, refreshAccessToken, user } = useGlobalContext();
+    const { bgColor, comments, changeComment, setChangeComment, refreshAccessToken, user, limSkipComments, setLimSkipComments, scrollLoading, setScrollLoading } = useGlobalContext();
 
+    const { Allcomments } = comments
     // LOCAL
     const [comment, setComment] = useState('');
-    const [lengthMessage, setLengthMessage] = useState('Hello Wolrd')
+    const [lengthMessage, setLengthMessage] = useState('')
     const { lessonId } = useParams();
+
+    // Comment Scroll logic
+    const commentContainerRef = useRef(null);
 
     const { accessToken } = user;
 
@@ -41,24 +45,47 @@ const CommentSection = () => {
     // SUBMITING THE COMMENT
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (comment !== "") {
+        if (comment === "") {
+            setLengthMessage('Add Comment...')
+        } else if (comment.split('').length >= 60) {
+            setLengthMessage('No more than 60 letters...')
+        } else {
             AddComment()
             setComment('')
             setChangeComment(!changeComment)
-        } else if (comment.length >= 60) {
-
         }
     }
+
+
+    // Handle Scroll Logic
+    const handleScroll = () => {
+        const commentContainer = commentContainerRef.current;
+        if (commentContainer) {
+            const scrollTop = commentContainer.scrollTop;
+            const scrollHeight = commentContainer.scrollHeight;
+            const clientHeight = commentContainer.clientHeight;
+            const top = Math.floor(scrollTop + 1)
+            if (top + clientHeight >= scrollHeight) {
+                console.log('User has reached the end');
+                setScrollLoading(true)
+                setLimSkipComments({ lim: 15, skip: 0 })
+                setChangeComment(!changeComment)
+                // setScrollLoading(false)
+            }
+        }
+    };
+
 
     return (
         <>
             <div className='files-title'>
                 <h1 className={bgColor ? 'white' : 'black'}>Comments</h1>
             </div>
-            <div className='comment-container'>
+            <p className='add-comment'>{lengthMessage}</p>
+            <div className='comment-container-form'>
                 <form onSubmit={handleSubmit} className='comment-input'>
                     <input
-                        type="text"
+                        type='text'
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         placeholder='Type your comment here...'
@@ -67,22 +94,38 @@ const CommentSection = () => {
                         <IoMdSend className='comment-send-icon' fontSize={30} />
                     </button>
                 </form>
-                {
-                    comments.length === 0 ? (
-                        <div className='no-comment'>
-                            <p className={bgColor ? 'white' : 'black'}>No Comments yet...</p>
-                        </div>
-                    ) : (
-                        <div className="comment-section">
-                            {comments.map((text, index) => (
+            </div>
+            <div className='comment-container' ref={commentContainerRef} onScroll={handleScroll}>
+                {Allcomments && Allcomments.length === 0 ? (
+                    <div className='no-comment'>
+                        <p className={bgColor ? 'white' : 'black'}>No Comments yet...</p>
+                    </div>
+                ) : (
+                    <>
+                        <div className='comment-section'>
+                            {Allcomments?.map((text, index) => (
                                 <Comment key={index} {...text} />
                             ))}
                         </div>
-                    )
-                }
+
+                        {
+                            scrollLoading && (
+                                <div className="loading-scroll-container">
+                                    <div className="loading-scroll-spinner"></div>
+                                </div>
+                            )
+                        }
+                    </>
+                )}
             </div>
         </>
-    )
+    );
+
+
+
+
+
+
 }
 
 export default CommentSection
