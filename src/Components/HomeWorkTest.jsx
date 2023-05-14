@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { questions } from '../Data/data';
 import { useGlobalContext } from '../context/context';
-import { backendScore, getLevel } from '../context/Functions';
 import Loading from './Loading';
 import "../css/Homework/homework.css";
 import HomeworkTimer from './HomeworkTimer';
+import axios from '../api/axios';
+import { useParams } from 'react-router-dom';
+import Passed from './Passed';
 
 const HomeWorkTest = () => {
 
     // GLOBAL
-    const { lessonsHomeWorkTimeLeft, homeworkArray } = useGlobalContext();
+    const { lessonsHomeWorkTimeLeft, homeworkArray, refreshAccessToken, user } = useGlobalContext();
+    const { accessToken } = user;
 
     // LOCAL
-    const [selectedAnswers, setSelectedAnswers] = useState({});
+    const [answersArray, setAnswersArray] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [level, setLevel] = useState("");
-    const [randomQuestion, setRandomQuestion] = useState(0);
+    const { lessonId } = useParams();
 
     // LOADING USESTATE()
     const [isloading, setIsLoading] = useState(true);
-
-    const handleOptionSelect = (e, questionId) => {
-        setSelectedAnswers({ ...selectedAnswers, [questionId]: e.target.value });
-    };
-
 
     // LOADING
     useEffect(() => {
@@ -32,13 +28,6 @@ const HomeWorkTest = () => {
         }, 2000);
         return () => clearTimeout(timer);
     }, []);
-
-    useEffect(() => {
-        // RANDOM QUESTIONS
-        const randomQuestions = Math.floor(Math.random() * questions.length);
-        console.log(randomQuestions)
-        setRandomQuestion(randomQuestions)
-    }, [])
 
 
     // USEEFFECT() FOR TIMING FUNCTION
@@ -49,13 +38,51 @@ const HomeWorkTest = () => {
     }, [lessonsHomeWorkTimeLeft])
 
 
+    // Targeting the the chosen answers
+    const handleOptionSelect = (e, homeworkId) => {
+        setAnswersArray({ ...answersArray, [homeworkId]: e.target.value })
+    }
 
-    // Whole logic of checking th tests
-    const handleQuizSubmit = () => {
 
-
+    // Submitting the chosen answers 
+    const SubmitHomeWork = async (token, homework) => {
+        try {
+            const res = await axios.put(`/lessons/homework/check/${lessonId}`, {
+                homework
+            },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+            console.log(res.data);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                SubmitHomeWork(refreshedToken, homework); // try the request again with the new token
+            } else {
+                console.log(err);
+                console.log(err.response.data)
+            }
+        }
     };
 
+
+
+    // Submitting the array of homework to backend
+    const handleQuizSubmit = async (e) => {
+        // e.preventDefault()
+        const homework = homeworkArray.map((hw) => {
+            const chosenAnswer = answersArray[hw._id] || "I do not know"; // Set an empty string if no answer is selected
+            return {
+                id: hw._id,
+                chosenAnswer,
+            };
+        });
+        console.log(homework)
+        await SubmitHomeWork(accessToken, homework);
+        setIsSubmitted(true)
+    };
     if (isloading) {
         return <Loading />
     }
@@ -68,9 +95,11 @@ const HomeWorkTest = () => {
         return OptionsObjArr
     }
 
+
+
     return (
         <>
-            {lessonsHomeWorkTimeLeft > 0 && <HomeworkTimer />}
+            {lessonsHomeWorkTimeLeft > 0 && !isSubmitted && <HomeworkTimer />}
             <div className={isSubmitted ? "homework-hidden" : undefined}>
                 <div className='homework-test-container'>
                     <h1 className='homework-test-welcome-page'><p className='welcome'>Good luck</p></h1>
@@ -85,7 +114,9 @@ const HomeWorkTest = () => {
                                     type="radio"
                                     name={homework._id}
                                     value={option.value}
-                                    onChange={(e) => handleOptionSelect(e, homework._id)}
+                                    onChange={(e) => {
+                                        handleOptionSelect(e, homework._id)
+                                    }}
                                     disabled={isSubmitted}
                                 />
                                 <span>{option.value}</span>
@@ -108,7 +139,7 @@ const HomeWorkTest = () => {
             <div className='finish-test-container'>
                 {isSubmitted && (
                     <div>
-                        Test is Finished
+                        <Passed />
                     </div>
                 )}
             </div>

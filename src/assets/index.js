@@ -15,3 +15,4 @@ export const lessons_default = "https://res.cloudinary.com/dcrolfqsj/image/uploa
 export const illustration = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683694508/ilustartion-removebg-preview_i9s93o.png";
 export const offline = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683702152/offline-removebg-preview_chuvjs.png";
 export const choose_illustration = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1683858425/stock-removebg-preview_iwnvnf.png";
+export const passed = "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684069289/passed-removebg-preview_ufd8ph.png";

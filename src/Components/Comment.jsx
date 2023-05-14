@@ -6,7 +6,7 @@ import { useGlobalContext } from '../context/context';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 
-const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremail }) => {
+const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremail, createdBy }) => {
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
     const [commentDelete, setCommentDelete] = useState(false);
@@ -14,8 +14,7 @@ const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremai
     const [deleteId, setDeleteId] = useState('')
     const { lessonId } = useParams();
     const navigate = useNavigate();
-    const { refreshAccessToken, comments, singleLesson, isAccessTokenExpired, user, changeComment, setChangeComment, userProfile } = useGlobalContext();
-    const { _id, email, profilePicture, progressScore, completedCourses, course } = userProfile
+    const { refreshAccessToken, comments, singleLesson, isAccessTokenExpired, user, changeComment, setChangeComment } = useGlobalContext();
     const { userId } = singleLesson
     const { CommentsUserId } = comments
 
@@ -167,7 +166,7 @@ const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremai
 
             <div className="likes-container">
 
-                {userId !== CommentsUserId && (
+                {userId !== createdBy && (
                     <>
                         <div>
                             <div className="likes" onClick={handleLike}>
@@ -192,7 +191,7 @@ const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremai
 
 
                 <div>
-                    {userId === CommentsUserId && (
+                    {userId === createdBy && (
                         <div
                             className="likes"
                             onClick={handleDelete}

@@ -224,6 +224,35 @@
     margin: 0 0.5em;
 }
 
+
+/* Passed the test component ===============> */
+
+.passed-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 65vh;
+}
+
+.passed-card-img {
+    width: 200px;
+    height: 200px;
+}
+
+.passed-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.congrats {
+    color: var(--maincolor);
+    font-weight: var(--font-w);
+}
+
+/* MEDIA */
+
 @media (min-width: 1024px) {
     .homework-countdown-timer {
         display: flex;

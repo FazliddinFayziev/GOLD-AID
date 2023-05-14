@@ -61,10 +61,9 @@ const VideoPage = () => {
                     }
                 });
                 console.log(res.data);
-                const { comments, userId } = res.data
+                const { comments } = res.data
                 const newCommments = {
-                    Allcomments: comments,
-                    CommentsUserId: userId
+                    Allcomments: comments
                 }
                 setComments(newCommments)
                 setIsLoading(false)
