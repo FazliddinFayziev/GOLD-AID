@@ -4,8 +4,7 @@ import Loading from './Loading';
 import "../css/Homework/homework.css";
 import HomeworkTimer from './HomeworkTimer';
 import axios from '../api/axios';
-import { useParams } from 'react-router-dom';
-import Passed from './Passed';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const HomeWorkTest = () => {
 
@@ -16,18 +15,11 @@ const HomeWorkTest = () => {
     // LOCAL
     const [answersArray, setAnswersArray] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const { lessonId } = useParams();
+    const { level, lessonId } = useParams();
+    const navigate = useNavigate();
 
     // LOADING USESTATE()
-    const [isloading, setIsLoading] = useState(true);
-
-    // LOADING
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
-        return () => clearTimeout(timer);
-    }, []);
+    const [isloading, setIsLoading] = useState(false);
 
 
     // USEEFFECT() FOR TIMING FUNCTION
@@ -47,6 +39,7 @@ const HomeWorkTest = () => {
     // Submitting the chosen answers 
     const SubmitHomeWork = async (token, homework) => {
         try {
+
             const res = await axios.put(`/lessons/homework/check/${lessonId}`, {
                 homework
             },
@@ -56,13 +49,20 @@ const HomeWorkTest = () => {
                     },
                 });
             console.log(res.data);
+            const { msg } = res.data
+            if (msg === "Congrats, you completed the lesson!") {
+                navigate(`/${level}/success`)
+            }
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // refresh the token
                 SubmitHomeWork(refreshedToken, homework); // try the request again with the new token
+            } else if (err.response.data.err === "You already completed this lesson") {
+                navigate(`/${level}/already`)
             } else {
                 console.log(err);
                 console.log(err.response.data)
+                navigate(`/${level}/failed`)
             }
         }
     };
@@ -70,8 +70,8 @@ const HomeWorkTest = () => {
 
 
     // Submitting the array of homework to backend
-    const handleQuizSubmit = async (e) => {
-        // e.preventDefault()
+    const handleQuizSubmit = async () => {
+        setIsLoading(true)
         const homework = homeworkArray.map((hw) => {
             const chosenAnswer = answersArray[hw._id] || "I do not know"; // Set an empty string if no answer is selected
             return {
@@ -82,7 +82,10 @@ const HomeWorkTest = () => {
         console.log(homework)
         await SubmitHomeWork(accessToken, homework);
         setIsSubmitted(true)
+        setIsLoading(false)
     };
+
+
     if (isloading) {
         return <Loading />
     }
@@ -133,13 +136,6 @@ const HomeWorkTest = () => {
                                 Submit
                             </button>
                         </div>
-                    </div>
-                )}
-            </div>
-            <div className='finish-test-container'>
-                {isSubmitted && (
-                    <div>
-                        <Passed />
                     </div>
                 )}
             </div>

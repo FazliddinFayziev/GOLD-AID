@@ -19,6 +19,8 @@ const initialState = {
     courseName: '',
 }
 
+
+
 export const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -102,6 +104,9 @@ export const AppProvider = ({ children }) => {
 
     // Scroll Loading
     const [scrollLoading, setScrollLoading] = useState(false)
+
+    // USER Profile Picture
+    const [userProfilePicture, setUserProfilePicture] = useState('');
 
 
 
@@ -254,6 +259,10 @@ export const AppProvider = ({ children }) => {
         // Verify Email Message
         msg,
         setMsg,
+
+        // Profile Picture
+        userProfilePicture,
+        setUserProfilePicture,
 
         // Lessons
         lessons,

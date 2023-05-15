@@ -7,7 +7,7 @@ import axios from '../../api/axios';
 import { level_default, level_default_ielts } from '../../assets';
 
 const Home = () => {
-    const { bgColor, user, setUser, isAccessTokenExpired, refreshAccessToken, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile } = useGlobalContext();
+    const { bgColor, user, setUser, isAccessTokenExpired, refreshAccessToken, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile, userProfilePicture, setUserProfilePicture } = useGlobalContext();
     const navigate = useNavigate();
 
 
@@ -42,8 +42,12 @@ const Home = () => {
                         isCompleted: isCompleted,
                     };
                 });
+                const userPicture = {
+                    profilePicture: user.profilePicture
+                }
                 setCourses(newArr);
                 setUserProfile(user);
+                setUserProfilePicture(userPicture)
                 setIsLoading(false);
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
@@ -99,6 +103,8 @@ const Home = () => {
     if (!accessToken) {
         return navigate('/login') // Render loading spinner
     }
+
+
     return (
         <>
             <div className={bgColor ? 'home-container-white' : 'home-container-black'}>

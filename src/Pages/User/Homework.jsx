@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Footer, HomeWorkTest, Loading, SmallNavbar } from '../../Components';
+import { Footer, HomeWorkTest, Loading, NotHomework, SmallNavbar } from '../../Components';
 import { useGlobalContext } from '../../context/context';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../../api/axios';
@@ -10,7 +10,7 @@ const Homework = () => {
 
     const { lessonId } = useParams();
     const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     const useToken = () => {
@@ -27,8 +27,9 @@ const Homework = () => {
                 });
                 console.log(res.data);
                 const { homework, timeOut } = res.data
-                setHomeworkArray(homework);
-                setLessonsHomeWorkTimeLeft(timeOut);
+                await setHomeworkArray(homework);
+                await setLessonsHomeWorkTimeLeft(timeOut * 60);
+                setIsLoading(false)
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                     const refreshedToken = await refreshAccessToken(); // refresh the token
@@ -75,14 +76,14 @@ const Homework = () => {
 
     const accessToken = useToken();
 
-    if (isLoading) {
+    if (isLoading || lessonsHomeWorkTimeLeft === 0) {
         return <Loading />
     }
 
 
-    if (!accessToken) {
-        return navigate('/login') // Render loading spinner
-    }
+    // if (!accessToken) {
+    //     return <Loading /> // Render loading spinner
+    // }
 
 
 
@@ -91,7 +92,14 @@ const Homework = () => {
         <>
             <div className={bgColor ? 'homework-test-page-white' : 'homework-test-page-black'}>
                 <SmallNavbar />
-                <HomeWorkTest />
+                {homeworkArray.length > 0 ? (
+                    <>
+                        {lessonsHomeWorkTimeLeft > 0 && <HomeWorkTest />}
+                    </>
+                ) : (
+                    <NotHomework />
+                )
+                }
                 <Footer />
             </div>
         </>

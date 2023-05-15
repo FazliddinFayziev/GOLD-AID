@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from '../../api/axios';
 
 const VideoPage = () => {
-    const { bgColor, user, refreshAccessToken, isAccessTokenExpired, setSingleLesson, comments, setComments, changeComment, setChangeComment, limSkipComments, setLimSkipComments, scrollLoading, setScrollLoading } = useGlobalContext();
+    const { bgColor, user, refreshAccessToken, isAccessTokenExpired, setSingleLesson, comments, setComments, changeComment, setChangeComment, limSkipComments, setLimSkipComments, scrollLoading, setScrollLoading, setUserProfilePicture } = useGlobalContext();
     const { level, lessonId } = useParams();
     const { lim, skip } = limSkipComments;
     const [isLoading, setIsLoading] = useState(true)
@@ -39,9 +39,12 @@ const VideoPage = () => {
                     description: description,
                     course: course,
                     userId: userId,
-                    profilePicture: profilePicture,
+                }
+                const userPicture = {
+                    profilePicture: profilePicture
                 }
                 setSingleLesson(newArr)
+                setUserProfilePicture(userPicture)
                 setIsLoading(false)
             } catch (err) {
                 if (err && err.response && err.response.status === 400 && err.response.data.message === 'token is expired') {
@@ -61,9 +64,10 @@ const VideoPage = () => {
                     }
                 });
                 console.log(res.data);
-                const { comments } = res.data
+                const { comments, number } = res.data
                 const newCommments = {
-                    Allcomments: comments
+                    Allcomments: comments,
+                    number: number
                 }
                 setComments(newCommments)
                 setIsLoading(false)

@@ -10,7 +10,7 @@ const CommentSection = () => {
     // GLOBAL
     const { bgColor, comments, changeComment, setChangeComment, refreshAccessToken, user, limSkipComments, setLimSkipComments, scrollLoading, setScrollLoading } = useGlobalContext();
 
-    const { Allcomments } = comments
+    const { Allcomments, number } = comments
     // LOCAL
     const [comment, setComment] = useState('');
     const [lengthMessage, setLengthMessage] = useState('')
@@ -20,6 +20,18 @@ const CommentSection = () => {
     const commentContainerRef = useRef(null);
 
     const { accessToken } = user;
+    const { lim, skip } = limSkipComments;
+
+
+    // USEEFFECT() SET LOADING TO FALSE
+    useEffect(() => {
+        if (lim > number) {
+            setScrollLoading(false)
+        } else {
+            setScrollLoading(true)
+        }
+    }, [limSkipComments])
+
 
     // ADD COMMENTS
     const AddComment = async () => {

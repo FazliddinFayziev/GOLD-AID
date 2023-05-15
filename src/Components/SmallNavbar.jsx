@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 const SmallNavbar = () => {
 
     // GLOBAL
-    const { bgColor, setBgColor, userProfile } = useGlobalContext();
-    const { _id, email, profilePicture, progressScore, completedCourses, course } = userProfile
+    const { bgColor, setBgColor, userProfile, userProfilePicture } = useGlobalContext();
+    const { profilePicture } = userProfilePicture
 
     // LOCAL
     const [nav, setNav] = useState(false);
@@ -39,7 +39,14 @@ const SmallNavbar = () => {
                         {bgColor ? <BsFillMoonFill fontSize={30} color='#fff' /> : <BsFillSunFill fontSize={30} color='#fff' />}
                     </div>
                     <div className='small-navbar-profile-picture'>
-                        <img src={profilePicture} alt="gold-aid-profile-image" />
+                        <img
+                            src={profilePicture ? profilePicture : profile}
+                            alt='gold-aid-profile-image'
+                            onError={(e) => {
+                                e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
+                                e.target.src = profile; // Display the default profile image
+                            }}
+                        />
                     </div>
 
 
@@ -65,7 +72,14 @@ const SmallNavbar = () => {
                     </div>
                     <div className='small-navbar-menu-container-img'>
                         <div className='small-navbar-menu-img'>
-                            <img src={profilePicture} alt="profile-picture" />
+                            <img
+                                src={profilePicture ? profilePicture : profile}
+                                alt='gold-aid-profile-image'
+                                onError={(e) => {
+                                    e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
+                                    e.target.src = profile; // Display the default profile image
+                                }}
+                            />
                         </div>
                     </div>
                     <div className='small-navbar-menu-text'>

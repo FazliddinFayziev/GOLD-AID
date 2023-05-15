@@ -232,7 +232,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 65vh;
+    height: 70vh;
 }
 
 .passed-card-img {
@@ -251,6 +251,182 @@
     font-weight: var(--font-w);
 }
 
+/* No Homework Page */
+
+.nohomework-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--mainBackgroundColor);
+    font-family: var(--font);
+}
+
+.nohomework-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nohomework-heading {
+    font-size: 7rem;
+    font-weight: var(--font-w);
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.nohomework-subheading {
+    font-size: 2rem;
+    font-weight: normal;
+    color: #666;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.nohomework-button {
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    background-color: var(--maincolor);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.nohomework-button:hover {
+    background-color: var(--maincolorHover);
+}
+
+
+/* Failed Page */
+
+.failed-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--mainBackgroundColor);
+    font-family: var(--font);
+}
+
+.failed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.failed-heading {
+    font-size: 7rem;
+    font-weight: var(--font-w);
+    text-transform: uppercase;
+    color: red;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.failed-subheading {
+    font-size: 2rem;
+    font-weight: normal;
+    color: #666;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: var(--font-w);
+}
+
+.failed {
+    color: red;
+    font-weight: var(--font-w);
+}
+
+.failed-button {
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    background-color: var(--maincolor);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.failed-button:hover {
+    background-color: var(--maincolorHover);
+}
+
+
+/* Passed again page */
+.passed-again-found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--mainBackgroundColor);
+    font-family: var(--font);
+}
+
+.passed-again-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.passed-again-heading {
+    font-size: 7rem;
+    font-weight: var(--font-w);
+    text-transform: uppercase;
+    color: rgb(255, 213, 0);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.passed-again-subheading {
+    font-size: 2rem;
+    font-weight: normal;
+    color: #666;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: var(--font-w);
+}
+
+.passed-again {
+    color: rgb(0, 164, 25);
+    font-weight: var(--font-w);
+}
+
+.passed-again-button {
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    background-color: var(--maincolor);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.passed-again-button:hover {
+    background-color: var(--maincolorHover);
+}
+
+
+/* Passed page */
+.passed-heading {
+    font-size: 7rem;
+    font-weight: var(--font-w);
+    text-transform: uppercase;
+    color: rgb(0, 164, 25);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+
+
 /* MEDIA */
 
 @media (min-width: 1024px) {
@@ -260,5 +436,46 @@
         align-items: center;
         margin-left: 80%;
         position: fixed;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nohomework-heading {
+        font-size: 5rem;
+    }
+
+    .nohomework-subheading {
+        font-size: 1rem;
+    }
+
+    .nohomework-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.6rem;
+    }
+
+    .failed-heading {
+        font-size: 5rem;
+    }
+
+    .failed-subheading {
+        font-size: 1rem;
+    }
+
+    .failed-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.6rem;
+    }
+
+    .passed-again-heading {
+        font-size: 5rem;
+    }
+
+    .passed-again-subheading {
+        font-size: 1rem;
+    }
+
+    .passed-again-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.6rem;
     }
 }

@@ -7,7 +7,7 @@ import { lessons_default } from '../../assets';
 
 
 const LessonsPage = () => {
-    const { user, bgColor, refreshAccessToken, isAccessTokenExpired, setLessons, lessonTitle } = useGlobalContext();
+    const { user, bgColor, refreshAccessToken, isAccessTokenExpired, setLessons, lessonTitle, userProfilePicture, setUserProfilePicture } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();
     const { level } = useParams();
@@ -28,7 +28,7 @@ const LessonsPage = () => {
                     }
                 });
                 console.log(res.data);
-                const { lessons, currentScore } = res.data
+                const { lessons, currentScore, profilePicture } = res.data
                 const newArr = lessons.map((lesson) => {
                     const {
                         lessonId,
@@ -45,7 +45,11 @@ const LessonsPage = () => {
                         length: lessons.length,
                     }
                 })
+                const userPicture = {
+                    profilePicture: profilePicture
+                }
                 setLessons(newArr)
+                setUserProfilePicture(userPicture)
                 setIsLoading(false)
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {

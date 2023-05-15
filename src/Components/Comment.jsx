@@ -6,7 +6,7 @@ import { useGlobalContext } from '../context/context';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 
-const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremail, createdBy }) => {
+const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremail, createdBy, isLiked, isDisliked }) => {
     const [liked, setLiked] = useState(false);
     const [disliked, setDisliked] = useState(false);
     const [commentDelete, setCommentDelete] = useState(false);
@@ -14,9 +14,8 @@ const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremai
     const [deleteId, setDeleteId] = useState('')
     const { lessonId } = useParams();
     const navigate = useNavigate();
-    const { refreshAccessToken, comments, singleLesson, isAccessTokenExpired, user, changeComment, setChangeComment } = useGlobalContext();
+    const { refreshAccessToken, singleLesson, isAccessTokenExpired, user, changeComment, setChangeComment } = useGlobalContext();
     const { userId } = singleLesson
-    const { CommentsUserId } = comments
 
 
     const { accessToken } = user;
@@ -165,28 +164,24 @@ const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremai
             </div>
 
             <div className="likes-container">
-
-                {userId !== createdBy && (
-                    <>
-                        <div>
-                            <div className="likes" onClick={handleLike}>
-                                {liked ? <AiFillLike /> : <AiOutlineLike />}
-                            </div>
-                            <p className="likes-count">{!likes ? 0 : likes}</p>
-                        </div>
+                <div>
+                    <div className="likes" onClick={handleLike}>
+                        {liked || isLiked ? <AiFillLike /> : <AiOutlineLike />}
+                    </div>
+                    <p className="likes-count">{!likes ? 0 : likes}</p>
+                </div>
 
 
 
-                        <div>
-                            <div
-                                className="likes" onClick={handleDisLike}
-                            >
-                                {disliked ? <AiFillDislike /> : <AiOutlineDislike />}
-                            </div>
-                            <p className="likes-count">{!disLikes ? 0 : disLikes}</p>
-                        </div>
-                    </>
-                )}
+                <div>
+                    <div
+                        className="likes" onClick={handleDisLike}
+                    >
+                        {disliked || isDisliked ? <AiFillDislike /> : <AiOutlineDislike />}
+                    </div>
+                    <p className="likes-count">{!disLikes ? 0 : disLikes}</p>
+                </div>
+
 
 
 

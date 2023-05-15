@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import "../css/VideosCSS/video.css"
-import { video } from "../assets/index"
 import 'video-react/dist/video-react.css'
 import VideoContainer from './VideoContainer';
 import { useGlobalContext } from '../context/context';
@@ -32,11 +31,15 @@ const Video = () => {
             <div className='video-title'>
                 <h1 className={bgColor ? 'white' : 'black'}>Video</h1>
             </div>
-            <div className='video-play-container'>
-                <VideoContainer src={isVideo} />
-            </div>
+            {videos && (
+                <div className='video-play-container'>
+                    <VideoContainer src={isVideo} />
+                </div>
+            )
+            }
         </>
-    )
+    );
+
 }
 
 export default Video

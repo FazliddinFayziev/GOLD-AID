@@ -51,7 +51,8 @@ export { default as Files } from "./Files";
 // HomeWork Page COMPONENTS
 export { default as HomeworkTimer } from "./HomeworkTimer";
 export { default as HomeWorkTest } from "./HomeWorkTest";
-export { default as Passed } from "./Passed";
+export { default as NotHomework } from "./NotHomework";
+
 
 
 // Profile Page COMPONENTS

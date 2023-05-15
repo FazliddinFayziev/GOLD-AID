@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useGlobalContext } from "./context/context";
-import { Home, VideoPage, Homework, Profile, Login, Register, TestPage, Warning, Error, Layout, Admin, LessonsPage, NotAllowed, Offline, Choose } from './Pages'
+import { Home, VideoPage, Homework, Profile, Login, Register, TestPage, Warning, Error, Layout, Admin, LessonsPage, NotAllowed, Offline, Choose, Passed, Already, Failed } from './Pages'
 import { Verify, Verifying } from "./Components";
 
 
@@ -28,9 +28,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="user/:level" element={<LessonsPage />} />
           <Route path="user/:level/:lessonId" element={<VideoPage />} />
-          <Route path="user/homework/:lessonId" element={<Homework />} />
-          <Route path="/profile/:user" element={<Profile />} />
+          <Route path="user/:level/homework/:lessonId" element={<Homework />} />
+          <Route path="profile/:userId" element={<Profile />} />
+          <Route path="/:level/success" element={<Passed />} />
+          <Route path="/:level/already" element={<Already />} />
+          <Route path="/:level/failed" element={<Failed />} />
         </Route>
+
+
         <Route path="/admin" element={<Admin />} />
 
         {/* Catch Error and such pages*/}

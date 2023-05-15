@@ -22,7 +22,7 @@
 
 .homework-p {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     font-family: var(--font);
     color: var(--black);
@@ -38,22 +38,6 @@
     color: var(--white);
     margin-top: 30px;
     font-weight: 500;
-}
-
-.home-ball {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--maincolor);
-    margin-right: 10px;
-}
-
-.home-ball-2 {
-    width: 13px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--maincolor);
-    margin-right: 10px;
 }
 
 .home-work-button {

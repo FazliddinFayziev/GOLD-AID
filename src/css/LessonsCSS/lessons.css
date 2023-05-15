@@ -66,6 +66,7 @@
     /* 3 columns */
     grid-gap: 20px;
     margin-top: 20px;
+    margin-bottom: 10%;
 }
 
 .lesson-card-box {
