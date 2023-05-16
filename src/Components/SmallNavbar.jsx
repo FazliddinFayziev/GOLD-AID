@@ -38,16 +38,19 @@ const SmallNavbar = () => {
                     >
                         {bgColor ? <BsFillMoonFill fontSize={30} color='#fff' /> : <BsFillSunFill fontSize={30} color='#fff' />}
                     </div>
-                    <div className='small-navbar-profile-picture'>
-                        <img
-                            src={profilePicture ? profilePicture : profile}
-                            alt='gold-aid-profile-image'
-                            onError={(e) => {
-                                e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
-                                e.target.src = profile; // Display the default profile image
-                            }}
-                        />
-                    </div>
+
+                    <Link to={`/user/profile`}>
+                        <div className='small-navbar-profile-picture'>
+                            <img
+                                src={profilePicture ? profilePicture : profile}
+                                alt='gold-aid-profile-image'
+                                onError={(e) => {
+                                    e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
+                                    e.target.src = profile; // Display the default profile image
+                                }}
+                            />
+                        </div>
+                    </Link>
 
 
                     {/* NAVBAR @MEDIA HAMBURGER */}
@@ -71,16 +74,18 @@ const SmallNavbar = () => {
                         <AiOutlineClose className='small-navbar-menu-close' fontSize={30} />
                     </div>
                     <div className='small-navbar-menu-container-img'>
-                        <div className='small-navbar-menu-img'>
-                            <img
-                                src={profilePicture ? profilePicture : profile}
-                                alt='gold-aid-profile-image'
-                                onError={(e) => {
-                                    e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
-                                    e.target.src = profile; // Display the default profile image
-                                }}
-                            />
-                        </div>
+                        <Link to={`/user/profile`}>
+                            <div className='small-navbar-menu-img'>
+                                <img
+                                    src={profilePicture ? profilePicture : profile}
+                                    alt='gold-aid-profile-image'
+                                    onError={(e) => {
+                                        e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
+                                        e.target.src = profile; // Display the default profile image
+                                    }}
+                                />
+                            </div>
+                        </Link>
                     </div>
                     <div className='small-navbar-menu-text'>
                         <ul>

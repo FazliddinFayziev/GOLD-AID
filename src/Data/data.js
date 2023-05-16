@@ -3910,3 +3910,62 @@ export const profilePuctures = [
         active: true
     },
 ]
+
+
+
+
+
+export const randomMidjourney = [
+    {
+        id: 0,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209581/mid1_qvfvws.png"
+    },
+    {
+        id: 1,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209564/mid6_cujhzs.png"
+    },
+    {
+        id: 2,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209564/mid9_dfmf2n.png"
+    },
+    {
+        id: 3,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209564/mid12_oqmfa5.png"
+    },
+    {
+        id: 4,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209563/mid13_fmgv7e.jpg"
+    },
+    {
+        id: 5,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209563/mid10_uubmhx.png"
+    },
+    {
+        id: 6,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209563/mid4_wipopn.png"
+    },
+    {
+        id: 7,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209563/mid8_ischog.png"
+    },
+    {
+        id: 8,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209562/mid11_fjksgj.jpg"
+    },
+    {
+        id: 9,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209561/mid5_surulh.png"
+    },
+    {
+        id: 10,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209561/mid3_hzkqno.jpg"
+    },
+    {
+        id: 11,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209561/mid2_xghytd.webp"
+    },
+    {
+        id: 12,
+        img: "https://res.cloudinary.com/dcrolfqsj/image/upload/v1684209560/mid7_jrxhd4.jpg"
+    },
+]

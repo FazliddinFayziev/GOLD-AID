@@ -1,11 +1,17 @@
-import React from 'react'
-import { RegisterNavbar, Login_Inputs, ShowCard } from "../../Components"
-import { login_img } from "../../assets";
+import React, { useEffect, useState } from 'react'
+import { RegisterNavbar, Login_Inputs, ShowCard } from "../../Components";
 import { useGlobalContext } from '../../context/context';
+import { randomMidjourney } from '../../Data/data';
 
 const Login = () => {
     const { errMsg } = useGlobalContext();
+    const [randomPic, setRandomPic] = useState(8);
 
+    useEffect(() => {
+        // RANDOM Pictures
+        const ReadyrandomPic = Math.floor(Math.random() * randomMidjourney.length);
+        setRandomPic(ReadyrandomPic)
+    }, [])
 
     return (
         <>
@@ -17,7 +23,7 @@ const Login = () => {
                 </div>
 
                 <div className="part-two">
-                    <img src={login_img} alt="gold-aid-register" />
+                    <img src={randomMidjourney[randomPic].img} alt="gold-aid-register" />
                     <div className="cover"></div>
                 </div>
 

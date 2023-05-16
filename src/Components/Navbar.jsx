@@ -9,8 +9,9 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
     // GLOBAL
-    const { bgColor, setBgColor, userProfilePicture } = useGlobalContext();
+    const { bgColor, setBgColor, userProfilePicture, userProfile } = useGlobalContext();
     const { profilePicture } = userProfilePicture
+    const { _id } = userProfile
 
     // LOCAL
     const [nav, setNav] = useState(false);
@@ -42,16 +43,18 @@ const Navbar = () => {
 
                     {/* PROFILE IMAGE */}
 
-                    <div className='home-navbar-profile-picture'>
-                        <img
-                            src={profilePicture ? profilePicture : profile}
-                            alt='gold-aid-profile-image'
-                            onError={(e) => {
-                                e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
-                                e.target.src = profile; // Display the default profile image
-                            }}
-                        />
-                    </div>
+                    <Link to={`/user/profile`}>
+                        <div className='home-navbar-profile-picture'>
+                            <img
+                                src={profilePicture ? profilePicture : profile}
+                                alt='gold-aid-profile-image'
+                                onError={(e) => {
+                                    e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
+                                    e.target.src = profile; // Display the default profile image
+                                }}
+                            />
+                        </div>
+                    </Link>
 
 
                     {/* NAVBAR @MEDIA HAMBURGER */}
@@ -66,37 +69,51 @@ const Navbar = () => {
 
             {/* @MEDIA OPEN NAVBAR MENU */}
             <div className='navbar-sidebar'>
+
                 <div className={nav ? 'navbar-menu-show' : 'navbar-menu-hidden'}>
+
                     <div className={nav ? 'navbar-menu-box-show' : 'navbar-menu-box-hidden'}>
+
                         <div
                             onClick={() => setNav(false)}
                             className='navbar-menu-icon'
                         >
                             <AiOutlineClose className='navbar-menu-close' fontSize={30} />
                         </div>
+
                         <div className='navbar-menu-container-img'>
 
                             {/* PROFILE IMAGE */}
+                            <Link to={`/user/profile`}>
 
-                            <div className='navbar-menu-img'>
-                                <img
-                                    src={profilePicture ? profilePicture : profile}
-                                    alt='gold-aid-profile-image'
-                                    onError={(e) => {
-                                        e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
-                                        e.target.src = profile; // Display the default profile image
-                                    }}
-                                />
-                            </div>
+                                <div className='navbar-menu-img'>
+
+                                    <img
+                                        src={profilePicture ? profilePicture : profile}
+                                        alt='gold-aid-profile-image'
+                                        onError={(e) => {
+                                            e.target.onerror = null; // Prevent infinite loop if the default image also fails to load
+                                            e.target.src = profile; // Display the default profile image
+                                        }}
+                                    />
+
+                                </div>
+
+                            </Link>
+
                         </div>
+
                         <div className='navbar-menu-text'>
                             <ul>
                                 <li>About</li>
                                 <li>Contact</li>
                             </ul>
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
         </>
     )

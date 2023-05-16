@@ -152,6 +152,17 @@ export const AppProvider = ({ children }) => {
     const [user, setUser] = useState({})
 
 
+    // USESTATE() USERS PROFILEPAGE
+    const [userProfilePage, setUserProfilePage] = useState([])
+
+
+    // Avatars
+    const [avatars, setAvatars] = useState([]);
+
+    // Change ProfileImage
+    const [changeProfileImage, setChangeProfileImage] = useState(false);
+
+
     // Make API call to refresh access token using refresh token
     const refreshAccessToken = async () => {
         try {
@@ -192,6 +203,9 @@ export const AppProvider = ({ children }) => {
         const currentTime = new Date().getTime();
         return currentTime > accessTokenExpireTime;
     };
+
+
+
 
 
 
@@ -309,6 +323,19 @@ export const AppProvider = ({ children }) => {
         // lessonsHomeWorkTimeLeft
         lessonsHomeWorkTimeLeft,
         setLessonsHomeWorkTimeLeft,
+
+
+        // User Profile Page
+        userProfilePage,
+        setUserProfilePage,
+
+        // User Avatars
+        avatars,
+        setAvatars,
+
+        // Change Profile Image
+        changeProfileImage,
+        setChangeProfileImage,
 
         open,
         setOpen,

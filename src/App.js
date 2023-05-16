@@ -29,7 +29,7 @@ function App() {
           <Route path="user/:level" element={<LessonsPage />} />
           <Route path="user/:level/:lessonId" element={<VideoPage />} />
           <Route path="user/:level/homework/:lessonId" element={<Homework />} />
-          <Route path="profile/:userId" element={<Profile />} />
+          <Route path="user/profile" element={<Profile />} />
           <Route path="/:level/success" element={<Passed />} />
           <Route path="/:level/already" element={<Already />} />
           <Route path="/:level/failed" element={<Failed />} />

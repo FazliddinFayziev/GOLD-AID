@@ -6,10 +6,13 @@
     --maincolor: #4461F2;
     --maincolorHover: #002aff;
     --mainBackgroundColor: #F8F8FF;
-    --font: 'Dosis',
-        sans-serif;
+    --font: 'Dosis', sans-serif;
     --font-w: 800;
     --border: solid 2px #000;
+    --media-width: 40px;
+    /* Added: Set the max width for media */
+    --media-height: auto;
+    /* Added: Allow height to adjust automatically */
 }
 
 .no-comment .white {
@@ -83,8 +86,10 @@
 }
 
 .avatar {
-    width: 50px;
-    height: 50px;
+    width: var(--media-width);
+    /* Updated: Set the width of the avatar */
+    height: var(--media-height);
+    /* Updated: Allow height to adjust automatically */
     border-radius: 50%;
 }
 
