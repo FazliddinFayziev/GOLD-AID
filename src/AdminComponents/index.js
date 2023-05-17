@@ -21,5 +21,5 @@ export { default as Settings } from './Settings';
 
 // Other Components
 export { default as DashboardCard } from "./DashboardCard";
-export { default as PieChart } from "./PieChart";
+// export { default as PieChart } from "./PieChart";
 

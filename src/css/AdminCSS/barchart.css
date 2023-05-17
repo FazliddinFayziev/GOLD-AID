@@ -1,0 +1,68 @@
+/* PIE CHART */
+.charts-container {
+    display: flex;
+    justify-content: space-around;
+    height: 600px;
+    margin-top: 50px;
+}
+
+.pie-chart-width-admin {
+    width: 500px;
+    height: 560px;
+    padding: 10px;
+}
+
+.bar-chart-width-admin {
+    width: 500px;
+    height: 560px;
+}
+
+/* CHARTS */
+/* GENDER STATISTICS */
+.gender-statistics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Bar */
+
+.chart-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 500px;
+    width: 100%;
+}
+
+.bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: lightgray;
+    margin: 0 10px;
+}
+
+.label-bar {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.bar:nth-child(1) {
+    border: 2px solid rgba(75, 192, 192, 0.2);
+}
+
+.bar:nth-child(2) {
+    border: 2px solid rgba(153, 102, 255, 0.2);
+}
+
+.bar:nth-child(3) {
+    border: 2px solid rgba(255, 99, 132, 0.2);
+}
+
+.bar:nth-child(4) {
+    border: 2px solid rgba(255, 159, 64, 0.2);
+}
