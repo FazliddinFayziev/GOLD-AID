@@ -21,3 +21,4 @@ export { default as Layout } from "./Layout";
 // ADMIN RELATED PAGES
 export { default as Admin } from "./Admin/Admin";
 export { default as Choose } from "./User/Choose";
+export { default as NotAlailable } from "./Admin/NotAvailable";

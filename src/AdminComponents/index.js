@@ -18,3 +18,8 @@ export { default as AdminVideos } from './AdminVideos';
 // OPTIONS
 export { default as Settings } from './Settings';
 
+
+// Other Components
+export { default as DashboardCard } from "./DashboardCard";
+export { default as PieChart } from "./PieChart";
+

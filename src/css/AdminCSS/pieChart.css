@@ -1,0 +1,51 @@
+.pie-chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.chart {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    z-index: 1;
+}
+
+.slice {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 100px, 200px, 100px);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.male {
+    background-color: #0080ff;
+}
+
+.female {
+    background-color: #ff0080;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.color {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}

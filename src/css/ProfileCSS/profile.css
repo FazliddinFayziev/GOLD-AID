@@ -186,6 +186,11 @@
 
 /* NAME, EMAIL AND PASSWORD OF USER FOR EDITING IT */
 /* STYLES */
+
+.name-loading {
+    display: flex;
+}
+
 .profile-name h1 {
     font-family: var(--font);
     font-size: 15px;
@@ -238,21 +243,52 @@
 }
 
 .profile-name-btn button {
-    background-color: #b1b1b1;
+    background-color: var(--maincolor);
     transition: all 0.5s ease;
     font-family: var(--font);
+    border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
     padding: 5px;
     border: none;
-    color: #000;
+    color: #fff;
     width: 80px;
     height: 40px;
 }
 
 .profile-name-btn button:hover {
-    background-color: #484848;
+    background-color: var(--maincolorHover);
     color: #fff;
+}
+
+.edit-old-password {
+    margin-top: 10px;
+    margin-left: 20px;
+    color: #077202;
+    font-weight: 600;
+}
+
+.edit-old-password-red {
+    margin-top: 10px;
+    margin-left: 20px;
+    color: #ff0101;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.edit-new-password {
+    margin-top: 10px;
+    margin-left: 20px;
+    color: #077202;
+    font-weight: 600;
+}
+
+.edit-new-password-red {
+    margin-top: 10px;
+    margin-left: 20px;
+    color: #ff0000;
+    font-weight: 600;
+    font-size: 13px;
 }
 
 .go-home-profile {
@@ -272,6 +308,7 @@
     transition: all 0.5s ease;
     color: var(--white);
     cursor: pointer;
+    text-decoration: none;
 }
 
 .go-home-profile button:hover {

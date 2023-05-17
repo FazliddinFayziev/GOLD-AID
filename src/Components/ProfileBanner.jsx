@@ -2,7 +2,7 @@ import React from 'react'
 import { logo, profile } from '../assets';
 import { BiLogOutCircle } from "react-icons/bi";
 import { useGlobalContext } from '../context/context';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProfileBanner = () => {
     const { userProfilePage, setUser } = useGlobalContext();
@@ -25,7 +25,9 @@ const ProfileBanner = () => {
 
                     <div className="profile-banner-cover">
 
-                        <img src={logo} alt="Logo" className="profile-banner-logo" />
+                        <Link to={'/'}>
+                            <img src={logo} alt="Logo" className="profile-banner-logo" />
+                        </Link>
 
                         {/* LogOut Button */}
 

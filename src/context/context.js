@@ -87,6 +87,9 @@ export const AppProvider = ({ children }) => {
     // Comment USESTATE()
     const [comments, setComments] = useState([]);
 
+    // Admin User
+    const [adminUser, setAdminUser] = useState([]);
+
     // Homework Array with objects
     const [homeworkArray, setHomeworkArray] = useState([]);
 
@@ -107,6 +110,7 @@ export const AppProvider = ({ children }) => {
 
     // USER Profile Picture
     const [userProfilePicture, setUserProfilePicture] = useState('');
+
 
 
 
@@ -336,6 +340,10 @@ export const AppProvider = ({ children }) => {
         // Change Profile Image
         changeProfileImage,
         setChangeProfileImage,
+
+        // Admin User
+        adminUser,
+        setAdminUser,
 
         open,
         setOpen,

@@ -1,5 +1,7 @@
 import React from 'react';
 import '../css/AdminCSS/dashboard.css';
+import DashboardCard from './DashboardCard';
+import PieChart from './PieChart';
 
 const Dashboard = () => {
     return (
@@ -8,6 +10,12 @@ const Dashboard = () => {
                 <div className='start-dashboard'>
                     Dashboard
                 </div>
+                <div className='dashboard-cards-container'>
+                    <div className='dashboard-cards'>
+                        <DashboardCard />
+                    </div>
+                </div>
+                <PieChart />
             </div>
         </>
     )
