@@ -36,10 +36,10 @@
 
 .video-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 2px;
-    border: 5px inset var(--maincolor);
+    /* border: 5px inset var(--maincolor); */
 }
 
 .main-video {
@@ -51,7 +51,47 @@
 
 .video-react .big-play-button {
     color: yellow !important;
+    height: 60px !important;
+    width: 60px !important;
+    border-radius: 50% !important;
 }
+
+.video-react .big-play-button::before {
+    margin-top: 10% !important;
+}
+
+/* VIDEO TITLE and DESCRIPTION */
+.lesson-video-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.lesson-video-title {
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.lesson-video-title-text {
+    padding-left: 10px;
+}
+
+.video-text {
+    padding: 10px;
+    font-weight: 800;
+    color: var(--maincolor);
+    font-size: 12px;
+}
+
+.video-text-desc {
+    padding-left: 10px;
+    font-weight: 600;
+}
+
 
 @media(max-width: 950px) {
     .video-title {
@@ -61,6 +101,10 @@
 
 @media (max-width: 450px) {
     .video-container {
-        max-width: 300px;
+        max-width: 95%;
+    }
+
+    .lesson-video-title {
+        max-width: 95%;
     }
 }

@@ -145,9 +145,8 @@ const VideoPage = () => {
             <div className={bgColor ? 'video-container-white' : 'video-container-black'}>
                 <SmallNavbar />
                 <GoLessons />
-                <LessonTitle />
-                <VideoLanguage />
                 <Video />
+                <LessonTitle />
                 <Files />
                 <BeforeHomework />
                 <CommentSection />

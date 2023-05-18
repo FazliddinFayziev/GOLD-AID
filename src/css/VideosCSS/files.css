@@ -9,7 +9,7 @@
     --font-w: 800;
 }
 
-.no-files {
+.no-files-black {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,11 +17,27 @@
     font-family: var(--font);
 }
 
-.no-files-search {
+.no-files-white {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-family: var(--font);
+}
+
+.no-files-search-black {
     display: flex;
     justify-content: center;
     align-items: center;
     color: #333;
+    margin-bottom: 10px;
+}
+
+.no-files-search-white {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
     margin-bottom: 10px;
 }
 

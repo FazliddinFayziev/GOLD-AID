@@ -94,7 +94,7 @@ export const AppProvider = ({ children }) => {
     const [homeworkArray, setHomeworkArray] = useState([]);
 
     // Video Language
-    const [videoLanguage, setVideoLanguage] = useState('uzbek');
+    const [videoLanguage, setVideoLanguage] = useState('');
 
     // Text for showcard while it is on the focus for Register page
     const [focusText, setFocusText] = useState('');

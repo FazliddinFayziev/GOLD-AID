@@ -26,10 +26,10 @@ const Files = () => {
                 })
             ) : (
                 <div>
-                    <div className='no-files-search'>
+                    <div className={bgColor ? 'no-files-search-black' : "no-files-search-white"}>
                         <AiOutlineSearch fontSize={40} />
                     </div>
-                    <div className='no-files'>
+                    <div className={bgColor ? 'no-files-black' : 'no-files-white'}>
                         <h3>There is not Files Yet</h3>
                     </div>
                 </div>

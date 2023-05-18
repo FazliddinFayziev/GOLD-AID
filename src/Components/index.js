@@ -39,7 +39,6 @@ export { default as DocumentContainer } from "./DocumentContainer";
 export { default as BeforeHomework } from "./BeforeHomework";
 export { default as VideoContainer } from "./VideoContainer";
 export { default as CommentSection } from "./CommentSection";
-export { default as VideoLanguage } from "./VideoLanguage";
 export { default as SmallNavbar } from "./SmallNavbar";
 export { default as LessonTitle } from "./LessonTitle";
 export { default as GoLessons } from "./GoLessons";

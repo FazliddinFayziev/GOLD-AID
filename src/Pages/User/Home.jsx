@@ -9,7 +9,7 @@ import { level_default, level_default_ielts } from '../../assets';
 const Home = () => {
     const { bgColor, user, setUser, isAccessTokenExpired, refreshAccessToken, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile, userProfilePicture, setUserProfilePicture } = useGlobalContext();
     const navigate = useNavigate();
-
+    const refreshToken = localStorage.getItem('refreshToken');
 
     const useToken = () => {
         const { accessToken } = user;
@@ -101,8 +101,13 @@ const Home = () => {
 
 
     if (!accessToken) {
-        return navigate('/login') // Render loading spinner
+        return <Loading /> // Render loading spinner
     }
+
+    if (!refreshToken) {
+        return navigate('/register')
+    }
+
 
 
     return (
