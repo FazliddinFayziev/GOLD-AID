@@ -14,7 +14,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Working with Dashboard Crads */}
-                <div className='dashboard-cards-container'>
+                < div className='dashboard-cards-container'>
                     <div className='dashboard-cards'>
                         <DashboardCard />
                     </div>
@@ -30,12 +30,12 @@ const Dashboard = () => {
                     </div>
                     <div className='bar-chart-width-admin'>
                         <div className='gender-statistics'>
-                            <p>Age Statistics</p>
+                            <p>Users' activity</p>
                         </div>
                         <BarChart />
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

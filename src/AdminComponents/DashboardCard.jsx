@@ -2,8 +2,11 @@ import React from 'react';
 import { FaUserGraduate } from "react-icons/fa";
 import { MdOutlinePlayLesson } from "react-icons/md";
 import { BsFillBarChartFill } from "react-icons/bs";
+import { useGlobalContext } from '../context/context';
 
 const DashboardCard = () => {
+    const { getDashInfo } = useGlobalContext();
+    const { courses, lessons, totalUsers } = getDashInfo
     return (
         <>
             <div className='main-dashboard-card-div'>
@@ -15,7 +18,7 @@ const DashboardCard = () => {
                         <p>Overall Users</p>
                     </div>
                     <div className='dashboard-card-desc'>
-                        <p>20 000</p>
+                        <p>{totalUsers}</p>
                     </div>
                 </div>
             </div>
@@ -29,7 +32,7 @@ const DashboardCard = () => {
                         <p>Overall Courses</p>
                     </div>
                     <div className='dashboard-card-desc'>
-                        <p>6</p>
+                        <p>{courses}</p>
                     </div>
                 </div>
             </div>
@@ -43,7 +46,7 @@ const DashboardCard = () => {
                         <p>Overall Lessons</p>
                     </div>
                     <div className='dashboard-card-desc'>
-                        <p>600</p>
+                        <p>{lessons}</p>
                     </div>
                 </div>
             </div>

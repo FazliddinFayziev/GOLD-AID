@@ -1,15 +1,17 @@
 import React from 'react';
 import '../css/AdminCSS/barchart.css';
-
-const data = [
-    { range: '0-10', count: 8 },
-    { range: '10-20', count: 15 },
-    { range: '20-30', count: 20 },
-    { range: '30+', count: 12 },
-];
+import { useGlobalContext } from '../context/context';
 
 const BarChart = () => {
+    const { getDashInfo } = useGlobalContext();
+    const { activeUsers, totalUsers } = getDashInfo
+    const data = [
+        { range: 'Non-Active Users', count: totalUsers - activeUsers },
+        { range: 'Active Users', count: activeUsers },
+    ];
+
     const maxCount = Math.max(...data.map(item => item.count));
+
 
     return (
         <div className="chart-container">
@@ -22,7 +24,7 @@ const BarChart = () => {
                         backgroundColor: getBarColor(index),
                     }}
                 >
-                    <div className="label-bar">{item.range}</div>
+                    <div className="label-bar">{item.range} ({item.count})</div>
                 </div>
             ))}
         </div>
@@ -30,7 +32,7 @@ const BarChart = () => {
 };
 
 const getBarColor = index => {
-    const colors = ['rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)'];
+    const colors = ['rgba(255, 0, 0, 0.2)', 'rgba(0, 255, 51, 0.2)'];
     return colors[index % colors.length];
 };
 

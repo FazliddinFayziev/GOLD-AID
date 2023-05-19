@@ -93,8 +93,14 @@ export const AppProvider = ({ children }) => {
     // Homework Array with objects
     const [homeworkArray, setHomeworkArray] = useState([]);
 
+    // Get DashboardInfo
+    const [getDashInfo, setGetDashInfo] = useState([]);
+
+    // USER INFO ADMIN PANNEL
+    const [userInfo, setUserInfo] = useState([]);
+
     // Video Language
-    const [videoLanguage, setVideoLanguage] = useState('');
+    const [videoLanguage, setVideoLanguage] = useState('uzbek');
 
     // Text for showcard while it is on the focus for Register page
     const [focusText, setFocusText] = useState('');
@@ -252,9 +258,17 @@ export const AppProvider = ({ children }) => {
         // calculate score for backend
         Calculate,
 
+        // GET DASHBOARD INFO
+        getDashInfo,
+        setGetDashInfo,
+
         // SIDEBAR
         sideBar,
         setSideBar,
+
+        // USER INFO
+        userInfo,
+        setUserInfo,
 
         // DASHBOARD
         dashboardElement,

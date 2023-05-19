@@ -46,23 +46,15 @@
 }
 
 .label-bar {
-    margin-top: 5px;
+    margin-bottom: 2px;
     text-align: center;
     font-size: 12px;
 }
 
 .bar:nth-child(1) {
-    border: 2px solid rgba(75, 192, 192, 0.2);
+    border: 2px solid rgba(255, 0, 0, 0.2);
 }
 
 .bar:nth-child(2) {
-    border: 2px solid rgba(153, 102, 255, 0.2);
-}
-
-.bar:nth-child(3) {
-    border: 2px solid rgba(255, 99, 132, 0.2);
-}
-
-.bar:nth-child(4) {
-    border: 2px solid rgba(255, 159, 64, 0.2);
+    border: 2px solid rgba(0, 255, 51, 0.2);
 }

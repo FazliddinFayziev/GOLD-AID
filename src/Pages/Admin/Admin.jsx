@@ -1,39 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { AddLesson, AdminLevels, AdminVideos, Dashboard, Documents, Menu, Settings, SideBar, Users } from '../../AdminComponents'
+import { AddLesson, AdminLevels, AdminVideos, Dashboard, Documents, Menu, Settings, SideBar, SingleUser, Users } from '../../AdminComponents'
 import { useGlobalContext } from '../../context/context'
 import { DashboardTypes } from '../../context/DashboardPathNames';
 import { NotAlailable } from '..';
 import axios from '../../api/axios';
-import { useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Loading } from '../../Components';
 
-const Admin = () => {
-    const { dashboardElement, user, refreshAccessToken, isAccessTokenExpired, adminUser, setAdminUser } = useGlobalContext();
 
+const Admin = () => {
+    const { dashboardElement, user, refreshAccessToken, isAccessTokenExpired, adminUser, setAdminUser, getDashInfo, setGetDashInfo } = useGlobalContext();
 
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const refreshToken = localStorage.getItem('refreshToken');
+
 
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
         const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
 
-        const fetchCourses = async (token) => {
+        const fetchDashboardInfo = async (token) => {
             try {
-                const res = await axios.get('/courses', {
+                const res = await axios.get('/admin/stats', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
                 console.log(res.data);
-                const { user, courses } = res.data
-                setAdminUser(user);
+                setGetDashInfo(res.data);
                 setIsLoading(false);
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                     const refreshedToken = await refreshAccessToken(); // refresh the token
-                    fetchCourses(refreshedToken); // try the request again with the new token
+                    fetchDashboardInfo(refreshedToken); // try the request again with the new token
                 } else {
                     console.log(err);
                 }
@@ -46,7 +49,7 @@ const Admin = () => {
                 if (!token) {
                     navigate('/register');
                 } else {
-                    await fetchCourses(token);
+                    await fetchDashboardInfo(token);
                 }
             };
             fetch();
@@ -55,7 +58,7 @@ const Admin = () => {
         useEffect(() => {
             const timer = setInterval(() => {
                 refreshAccessToken()
-                    .then((token) => fetchCourses(token))
+                    .then((token) => fetchDashboardInfo(token))
                     .catch((err) => console.log(err));
             }, 3000000); // fetches new urls and tokens every 50 minutes
             return () => clearInterval(timer);
@@ -81,9 +84,15 @@ const Admin = () => {
     }
 
 
-    // if (!accessToken) {
-    //     return navigate('/login') // Render loading spinner
-    // }
+    if (!accessToken) {
+        return <Loading /> // Render loading spinner
+    }
+
+    if (!refreshToken) {
+        navigate('register')
+    }
+
+
 
 
     return (
@@ -91,21 +100,22 @@ const Admin = () => {
             <div className='media-admin-pannel'>
                 <SideBar />
                 <Menu />
-                {dashboardElement === DashboardTypes.DASHBOARD ? (
-                    <Dashboard />
-                ) : dashboardElement === DashboardTypes.LEVELS ? (
-                    <AdminLevels />
-                ) : dashboardElement === DashboardTypes.ADDLESSON ? (
-                    <AddLesson />
-                ) : dashboardElement === DashboardTypes.USERS ? (
-                    <Users />
-                ) : dashboardElement === DashboardTypes.DOCUMENTS ? (
-                    <Documents />
-                ) : dashboardElement === DashboardTypes.VIDEOS ? (
-                    <AdminVideos />
-                ) : (
-                    <Settings />
-                )}
+                <div className="admin-content">
+                    <Routes>
+
+                        {/* Main Routes */}
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="courses" element={<AdminLevels />} />
+                        <Route path="add-lesson" element={<AddLesson />} />
+                        <Route path="users" element={<Users />} />
+                        <Route path="documents" element={<Documents />} />
+                        <Route path="videos" element={<AdminVideos />} />
+                        <Route path="settings" element={<Settings />} />
+
+                        {/* Second-page routes */}
+                        <Route path='users/:userId' element={<SingleUser />} />
+                    </Routes>
+                </div>
             </div>
 
             {/* MEDIA SCREEN */}
