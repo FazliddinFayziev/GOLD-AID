@@ -271,3 +271,21 @@
 .video-checkbox input[type="checkbox"]:checked {
     background: #00ed64;
 }
+
+.add-lesson-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.add-lesson-button button {
+    width: 150px;
+    height: 50px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 800;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+}

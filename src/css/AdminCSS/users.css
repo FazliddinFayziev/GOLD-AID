@@ -60,6 +60,8 @@
 }
 
 /* USERS CARDS  */
+
+
 .active-user {
     position: absolute;
     width: 20px;
@@ -121,6 +123,7 @@
 .user-card {
     display: flex;
     text-decoration: none;
+    position: relative;
     width: 350px;
     height: 150px;
     border-radius: 10px;

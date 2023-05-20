@@ -97,6 +97,10 @@ const AddLesson = () => {
 
             </div>
 
+            <div className='add-lesson-button'>
+                <button>Upload</button>
+            </div>
+
         </div>
     )
 }

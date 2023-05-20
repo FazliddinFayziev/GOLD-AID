@@ -1,0 +1,72 @@
+.admin-lesson {
+    background-color: #161928;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+.admin-lesson-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns */
+    grid-gap: 20px;
+    padding: 50px;
+}
+
+/* COURSES CARD COMPONENT */
+
+.card-lesson-box-admin {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.cardImg-lesson-admin {
+    width: 250px;
+    height: 300px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+.cardImg-lesson-admin img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.lesson-name-container-admin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lesson-name-admin {
+    color: var(--white);
+    font-size: 12px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    position: absolute;
+}
+
+@media (max-width: 1400px) {
+
+    .cardImg-lesson-admin {
+        width: 250px;
+        height: 350px;
+        border-radius: 10px;
+    }
+
+}
