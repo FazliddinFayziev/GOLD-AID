@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useGlobalContext } from '../context/context';
-import axios from '../api/axios';
+import { useGlobalContext } from '../../context/context';
+import axios from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
-import "../css/AdminCSS/users.css";
-import UserData from './UserData';
+import "../../css/AdminCSS/users.css";
+import UserData from '../UserData';
 
 const Users = () => {
     const { user, refreshAccessToken, isAccessTokenExpired, userInfo, setUserInfo } = useGlobalContext();
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     const useToken = () => {
@@ -79,7 +79,7 @@ const Users = () => {
             <div className='user-title'>
                 Users
             </div>
-            <UserData accessToken={accessToken} />
+            <UserData isLoading={isLoading} />
         </div>
     )
 }

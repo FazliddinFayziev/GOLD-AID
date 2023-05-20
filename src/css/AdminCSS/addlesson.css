@@ -1,0 +1,273 @@
+.add-lesson-container {
+    width: 100%;
+    height: 100%;
+    background-color: #161928;
+    color: #fff;
+}
+
+.add-lesson-title {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.upload-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-top: 50px;
+}
+
+.upload-box-1 {
+    width: 50%;
+    height: 100%;
+}
+
+/* UploadInput.css */
+
+.upload-image-title {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.upload-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#file-input {
+    display: none;
+}
+
+.upload-icon {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 40px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+
+.upload-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.upload-icon:hover {
+    background-color: #0056b3;
+}
+
+.file-name {
+    margin-left: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Add any additional styles as needed */
+
+.upload-box-2 {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+/* UPLOAD TITLE */
+.upload-add-lesson-title {
+    padding: 10px;
+}
+
+.upload-add-lesson-title input {
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: #414351;
+    padding: 10px;
+    color: #fff;
+    font-size: 20px;
+    padding-left: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+.upload-add-lesson-title textarea {
+    width: 300px;
+    height: 150px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: #414351;
+    padding: 10px;
+    color: #fff;
+    font-size: 15px;
+    padding-left: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+.upload-add-lesson-title select {
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: #414351;
+    color: #fff;
+    font-size: 20px;
+    padding-left: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+
+/* VIDEO UPLOAD =====================================> */
+
+.uzbek-russian {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-upload-video {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.video-upload-title {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font);
+    font-size: 12px;
+    margin-top: 50px;
+}
+
+.video-upload-title h1:after {
+    display: inline-block;
+    content: "";
+    width: 100%;
+    height: 4px;
+    margin-bottom: 25px;
+    background-color: var(--maincolor);
+}
+
+
+.upload-video-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.upload-video-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+#video-input {
+    display: none;
+}
+
+.video-icon {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 40px;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+
+.video-icon video {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.video-icon:hover {
+    background-color: #0056b3;
+}
+
+.video-name {
+    margin-left: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+
+
+/* CHECK BOX */
+
+.video-checkbox {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.video-checkbox input[type="checkbox"] {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgb(0, 132, 255);
+    outline: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+}
+
+.video-checkbox input[type="checkbox"]::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+}
+
+.video-checkbox input[type="checkbox"]:checked::before {
+    transform: translateX(100%);
+    background: #fff;
+}
+
+.video-checkbox input[type="checkbox"]:checked {
+    background: #00ed64;
+}

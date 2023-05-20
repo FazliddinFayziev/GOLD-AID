@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/AdminCSS/dashboard.css';
-import DashboardCard from './DashboardCard';
-import { PieChart } from './PieChart';
-import BarChart from './BarChart';
+import "../../css/AdminCSS/dashboard.css";
+import DashboardCard from '../DashboardCard';
+import { PieChart } from '../PieChart';
+import BarChart from '../BarChart';
 
 const Dashboard = () => {
     return (

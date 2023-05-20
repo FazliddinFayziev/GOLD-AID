@@ -3,7 +3,7 @@ import SearchInput from './SearchInput'
 import { useGlobalContext } from '../context/context'
 import UserCard from './UserCard';
 
-const UserData = ({ accessToken }) => {
+const UserData = ({ isLoading }) => {
     const { userInfo } = useGlobalContext();
     return (
         <>
@@ -11,7 +11,7 @@ const UserData = ({ accessToken }) => {
                 <SearchInput />
             </div>
             {
-                !accessToken ? (
+                isLoading ? (
                     <div className='loading-users'>
                         <div className="loading-circle-user"></div>
                     </div>

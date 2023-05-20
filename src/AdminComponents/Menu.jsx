@@ -6,7 +6,7 @@ import { profile } from '../assets';
 
 
 const Menu = () => {
-    const { setSideBar, adminUser, setAdminUser } = useGlobalContext();
+    const { setSideBar, adminUser } = useGlobalContext();
     const { name, profilePicture } = adminUser;
     return (
         <div className='menu-admin'>

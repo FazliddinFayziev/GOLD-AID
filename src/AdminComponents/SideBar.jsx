@@ -71,10 +71,10 @@ const SideBar = () => {
                 <ul>
                     <li>
 
-                        <Link className="menu-link" to={'/admin/documents'}>
+                        <Link className="menu-link" to={'/admin/quotes'}>
                             <div onClick={handleClose} className="menu-link">
                                 <FaFileAlt className="menu-icon" />
-                                Documents
+                                Quotes
                             </div>
                         </Link>
 

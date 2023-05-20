@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { AddLesson, AdminLevels, AdminVideos, Dashboard, Documents, Menu, Settings, SideBar, SingleUser, Users } from '../../AdminComponents'
+import { AddLesson, AdminLevels, AdminVideos, Dashboard, Menu, Quotes, Settings, SideBar, SingleUser, Users } from '../../AdminComponents'
 import { useGlobalContext } from '../../context/context'
 import { DashboardTypes } from '../../context/DashboardPathNames';
 import { NotAlailable } from '..';
 import axios from '../../api/axios';
-import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Loading } from '../../Components';
 
 
@@ -13,7 +13,6 @@ const Admin = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
 
     const refreshToken = localStorage.getItem('refreshToken');
 
@@ -31,6 +30,8 @@ const Admin = () => {
                     },
                 });
                 console.log(res.data);
+                const { admin } = res.data
+                setAdminUser(admin)
                 setGetDashInfo(res.data);
                 setIsLoading(false);
             } catch (err) {
@@ -108,12 +109,13 @@ const Admin = () => {
                         <Route path="courses" element={<AdminLevels />} />
                         <Route path="add-lesson" element={<AddLesson />} />
                         <Route path="users" element={<Users />} />
-                        <Route path="documents" element={<Documents />} />
+                        <Route path="quotes" element={<Quotes />} />
                         <Route path="videos" element={<AdminVideos />} />
                         <Route path="settings" element={<Settings />} />
 
                         {/* Second-page routes */}
                         <Route path='users/:userId' element={<SingleUser />} />
+
                     </Routes>
                 </div>
             </div>
