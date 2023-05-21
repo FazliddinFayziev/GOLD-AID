@@ -78,9 +78,6 @@ const AdminLessons = () => {
 
 
     const accessToken = useToken();
-    useEffect(() => {
-        console.log(lessons)
-    }, [lessons])
 
 
 
@@ -96,7 +93,7 @@ const AdminLessons = () => {
                     </div>
                 ) : (
                     <>
-                        <Link to={'/admin/courses'}>
+                        <Link to={`/admin/courses`}>
                             <div className='admin-lesson-card-back'>
                                 <IoIosArrowBack className='back-to-courses' />
                             </div>

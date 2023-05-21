@@ -1,0 +1,363 @@
+.edit-lesson-container {
+    width: 100%;
+    height: 100%;
+    background-color: #161928;
+    color: #fff;
+}
+
+.edit-lesson-title {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.edit-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-top: 50px;
+}
+
+.edit-box-1 {
+    width: 50%;
+    height: 100%;
+}
+
+/* UploadInput.css */
+
+.edit-image-title {
+    display: flex;
+    justify-content: center;
+    color: #00b3aa;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.edit-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#edit-image-admin {
+    display: none;
+}
+
+.edit-icon {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 40px;
+    width: 250px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+
+.edit-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.edit-icon:hover {
+    background-color: #0056b3;
+}
+
+.edit-name {
+    margin-left: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Add any additional styles as needed */
+
+.edit-box-2 {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+/* UPLOAD TITLE */
+.edit-add-lesson-title {
+    padding: 10px;
+    color: #00b3aa;
+}
+
+.edit-add-lesson-title .h4-title {
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: #fff;
+    font-size: 15px;
+    padding-left: 12px;
+}
+
+.edit-add-lesson-title p {
+    width: 300px;
+    height: 150px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: #fff;
+    font-size: 15px;
+    padding-left: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
+
+.edit-add-lesson-title p::-webkit-scrollbar {
+    width: 8px;
+}
+
+.edit-add-lesson-title p::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color);
+}
+
+.edit-add-lesson-title p::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color);
+}
+
+.edit-add-lesson-title p::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover-color);
+}
+
+.edit-add-lesson-title h3 {
+    width: 300px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 20px;
+    padding-left: 12px;
+    padding-top: 10px;
+}
+
+
+/* VIDEO UPLOAD =====================================> */
+.video-edit-title {
+    display: flex;
+    justify-content: center;
+    font-family: var(--font);
+    font-size: 12px;
+    margin-top: 50px;
+}
+
+.video-edit-title h1:after {
+    display: inline-block;
+    content: "";
+    width: 100%;
+    height: 4px;
+    margin-bottom: 25px;
+    background-color: var(--maincolor);
+}
+
+.uzbek-russian-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-upload-video {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+
+.edit-video-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.edit-video-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+#video-input-edit {
+    display: none;
+}
+
+.video-icon-edit {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 40px;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+
+.video-icon-edit video {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.video-icon-edit:hover {
+    background-color: #0056b3;
+}
+
+.video-name-edit {
+    margin-left: 10px;
+    font-size: 18px;
+    color: #fff;
+}
+
+
+/* CHECK BOX */
+
+.video-checkbox-edit {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.video-checkbox-edit input[type="checkbox"] {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgb(0, 132, 255);
+    outline: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+}
+
+.video-checkbox-edit input[type="checkbox"]::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+}
+
+.video-checkbox-edit input[type="checkbox"]:checked::before {
+    transform: translateX(100%);
+    background: #fff;
+}
+
+.video-checkbox-edit input[type="checkbox"]:checked {
+    background: #00ed64;
+}
+
+
+
+
+/* EDIT FILES */
+
+.fuck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.files-edit-container-box {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* margin-left: 50px; */
+    grid-gap: 10px;
+
+}
+
+.files-edit-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.files-edit-box {
+    width: 250px;
+    height: 50px;
+    background-color: #c1dfff;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.file-edit-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #007bff;
+    width: 50px;
+    height: 50px;
+}
+
+.file-edit-title {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.file-edit-dowload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #007bff;
+    width: 50px;
+    height: 50px;
+}
+
+
+
+@media screen and (min-width: 1024px) {
+    .files-edit-container {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* margin-left: 4%; */
+        grid-gap: 20px;
+    }
+}

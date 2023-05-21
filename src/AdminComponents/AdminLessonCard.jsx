@@ -1,12 +1,10 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom';
-import { level_default_ielts } from '../assets';
+import { Link } from 'react-router-dom';
 
 const AdminLessonCard = ({ lessonPicture, title, lessonId, index }) => {
-    const { courseName } = useParams();
     return (
         <>
-            <Link to={``}>
+            <Link to={`${lessonId}`}>
                 <div key={lessonId} className='lesson-card-box-admin'>
                     <div className='lesson-card-hover-admin'>
                         <div className='lesson-cardImg-box-admin'>
