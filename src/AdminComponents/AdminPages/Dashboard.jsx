@@ -13,27 +13,31 @@ const Dashboard = () => {
                     Dashboard
                 </div>
 
-                {/* Working with Dashboard Crads */}
-                < div className='dashboard-cards-container'>
-                    <div className='dashboard-cards'>
-                        <DashboardCard />
-                    </div>
-                </div>
+                <div className='dashboard-container'>
 
-                {/* Working with Charts */}
-                <div className='charts-container'>
-                    <div className='pie-chart-width-admin'>
-                        <div className='gender-statistics'>
-                            <p>Gender Statistics</p>
+                    {/* Working with Dashboard Crads */}
+                    < div className='dashboard-cards-container'>
+                        <div className='dashboard-cards'>
+                            <DashboardCard />
                         </div>
-                        <PieChart />
                     </div>
-                    <div className='bar-chart-width-admin'>
-                        <div className='gender-statistics'>
-                            <p>Users' activity</p>
+
+                    {/* Working with Charts */}
+                    <div className='charts-container'>
+                        <div className='pie-chart-width-admin'>
+                            <div className='gender-statistics'>
+                                <p>Gender Statistics</p>
+                            </div>
+                            <PieChart />
                         </div>
-                        <BarChart />
+                        <div className='bar-chart-width-admin'>
+                            <div className='gender-statistics'>
+                                <p>Users' activity</p>
+                            </div>
+                            <BarChart />
+                        </div>
                     </div>
+
                 </div>
             </div >
         </>

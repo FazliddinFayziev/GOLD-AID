@@ -5,12 +5,47 @@
     height: 100%;
 }
 
+.no-lesson-admin {
+    width: 100%;
+    height: 65vh;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-lesson-admin-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .admin-courses-card {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     /* 3 columns */
     grid-gap: 20px;
     padding: 50px;
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
+
+.admin-courses-card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.admin-courses-card::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color);
+}
+
+.admin-courses-card::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-color);
+}
+
+.admin-courses-card::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover-color);
 }
 
 /* COURSES CARD COMPONENT */
@@ -57,12 +92,14 @@
     position: absolute;
 }
 
-@media (max-width: 1400px) {
 
-    .cardImg-box-admin {
-        width: 250px;
-        height: 350px;
-        border-radius: 10px;
+/* @media (max-width: 3000px) {
+
+    .admin-courses {
+        background-color: #161928;
+        color: #fff;
+        width: 100%;
+        height: 100vh;
     }
 
-}
+} */

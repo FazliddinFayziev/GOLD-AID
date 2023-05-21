@@ -89,7 +89,7 @@ const Quotes = () => {
                             <div className="loading-circle-user"></div>
                         </div>
                     ) : (
-                        quotes === [] ? (
+                        quotes.length === 0 ? (
                             <div className='no-quotes'>
                                 <div>
                                     <div className='no-quote-icon'>

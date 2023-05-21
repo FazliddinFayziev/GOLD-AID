@@ -19,11 +19,6 @@ const CourseCard = ({ id, ieltsPicture, coursePicture, name, minScore }) => {
             <div className='course-name-container'>
                 <p className='course-name'>{name}</p>
             </div>
-            <div className='course-image-container'>
-                <div className='course-for-img'>
-                    <img src={logo} alt="logo" />
-                </div>
-            </div>
             {progressScore >= minScore ?
                 (
                     ""
