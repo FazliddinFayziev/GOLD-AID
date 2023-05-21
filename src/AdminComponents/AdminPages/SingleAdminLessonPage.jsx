@@ -136,8 +136,10 @@ const SingleAdminLessonPage = () => {
 
             </div>
 
+
+            {/* Files */}
             <div className='video-edit-title'>
-                <h1 className='black'>Video</h1>
+                <h1 className='black'>Files</h1>
             </div>
 
             <div className='fuck'>
