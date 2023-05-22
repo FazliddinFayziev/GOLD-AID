@@ -29,6 +29,7 @@ export { default as SearchInput } from "./SearchInput";
 export { default as SingleUser } from "./SingleUser";
 export { default as EditVideo } from "./EditVideos";
 export { default as AllQuotes } from "./AllQuotes";
+export { default as EditFiles } from "./EditFiles";
 export { default as UserCard } from "./UserCard";
 export { default as UserData } from "./UserData";
 export { default as AddVideo } from "./AddVideo";

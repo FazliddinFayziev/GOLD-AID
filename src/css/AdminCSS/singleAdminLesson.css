@@ -287,37 +287,23 @@
 
 /* EDIT FILES */
 
-.fuck {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .files-edit-container-box {
-    display: flex;
-    justify-content: center;
-    width: 90%;
+    width: 100%;
     height: 100%;
     display: grid;
+    justify-content: space-between;
     grid-template-columns: repeat(3, 1fr);
-    /* margin-left: 50px; */
-    grid-gap: 10px;
-
-}
-
-.files-edit-container {
-    display: flex;
-    justify-content: center;
+    grid-gap: 20px;
 }
 
 
 .files-edit-box {
-    width: 250px;
+    width: 200px;
     height: 50px;
     background-color: #c1dfff;
-    margin-left: 20px;
     display: flex;
     justify-content: center;
+    margin: 20px auto;
 }
 
 .file-edit-icon {
@@ -330,7 +316,7 @@
 }
 
 .file-edit-title {
-    width: 150px;
+    width: 100px;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -351,13 +337,94 @@
 
 
 
+/* HOMEWORK EDIT  */
+
+
+
+.homework-edit-div {
+    font-family: var(--font);
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 30px;
+}
+
+.homework-edit-question {
+    font-weight: var(--font-w);
+}
+
+.homework-edit-label {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.homework-edit-input {
+    margin-left: 8px;
+    appearance: none;
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    border-width: 1px;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    transition-duration: 200ms;
+    margin-top: 1px;
+    vertical-align: top;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    float: left;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.homework-edit-input:checked {
+    background-color: var(--maincolor);
+    border-color: var(--maincolor);
+}
+
+.homework-edit-input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.homework-edit-label span {
+    margin-left: 0.5rem
+}
+
+.homework-correct-answer-title {
+    font-size: 20px;
+    color: #00ed64;
+}
+
+.homework-correct-answer {
+    color: #00b3aa;
+    font-size: 20px;
+}
+
+.admin-edit-button {
+    width: 100px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 16px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+}
+
+
+/* 
 @media screen and (min-width: 1024px) {
     .files-edit-container {
         width: 100%;
         height: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        /* margin-left: 4%; */
         grid-gap: 20px;
     }
-}
+} */

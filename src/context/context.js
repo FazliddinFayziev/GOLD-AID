@@ -118,6 +118,9 @@ export const AppProvider = ({ children }) => {
     const [userProfilePicture, setUserProfilePicture] = useState('');
 
 
+    // ADMIN PANEL ==================================================> 
+
+    const [singleAdminLesson, setSingleAdminLesson] = useState([])
 
 
 
@@ -358,6 +361,11 @@ export const AppProvider = ({ children }) => {
         // Admin User
         adminUser,
         setAdminUser,
+
+
+        // Admin pannel ================================>
+        singleAdminLesson,
+        setSingleAdminLesson,
 
         open,
         setOpen,

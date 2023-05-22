@@ -8,11 +8,12 @@ import { VscFileSubmodule } from "react-icons/vsc";
 import { BsDownload } from "react-icons/bs";
 import axios from '../../api/axios';
 import EditVideos from '../EditVideos';
+import EditFiles from '../EditFiles';
 
 const SingleAdminLessonPage = () => {
 
     const { courseName, lessonId } = useParams();
-    const { refreshAccessToken, isAccessTokenExpired, user } = useGlobalContext();
+    const { refreshAccessToken, isAccessTokenExpired, user, singleAdminLesson, setSingleAdminLesson } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(false);
 
 
@@ -32,6 +33,8 @@ const SingleAdminLessonPage = () => {
                     },
                 });
                 console.log(res.data);
+                const { lesson } = res.data
+                setSingleAdminLesson(lesson)
                 setIsLoading(false);
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
@@ -77,6 +80,15 @@ const SingleAdminLessonPage = () => {
     };
 
 
+    // TURNING THE ARRAY INTO OBJECT IN HOME OPTIONS ARRAY
+    const OptionsArrayToObject = (array) => {
+        const OptionsObjArr = array.map((option) => ({
+            value: option,
+        }));
+        return OptionsObjArr
+    }
+
+
     const accessToken = useToken();
 
 
@@ -111,23 +123,25 @@ const SingleAdminLessonPage = () => {
                         <div className='edit-add-lesson-title'>
                             <h4>Title: </h4>
                             <br />
-                            <h4 className='h4-title'>Present Perfect Simple</h4>
+                            <h4 className='h4-title'>{singleAdminLesson.title}</h4>
                         </div>
                         <div className='edit-add-lesson-title'>
                             <h4>Description:</h4>
                             <br />
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex, eveniet.</p>
+                            <p>{singleAdminLesson.description}</p>
                         </div>
                         <div className='edit-add-lesson-title'>
                             <h4>Course:</h4>
-                            <h3>BEGINNER</h3>
+                            <h3>{courseName.toLocaleUpperCase()}</h3>
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* VIDEOS */}
+
             <div>
+
                 <div className='video-edit-title'>
                     <h1 className='black'>Video</h1>
                 </div>
@@ -137,75 +151,57 @@ const SingleAdminLessonPage = () => {
             </div>
 
 
-            {/* Files */}
-            <div className='video-edit-title'>
-                <h1 className='black'>Files</h1>
-            </div>
+            {/* FILES */}
 
-            <div className='fuck'>
+            <div>
 
-                <div className='files-edit-container-box'>
-
-                    <div className='files-edit-container'>
-                        <div className='files-edit-box'>
-                            <div className='file-edit-icon'>
-                                <VscFileSubmodule fontSize={30} />
-                            </div>
-                            <div className='file-edit-title'>
-                                <p>Document</p>
-                            </div>
-                            <div className='file-edit-dowload'>
-                                <BsDownload fontSize={30} />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='files-edit-container'>
-                        <div className='files-edit-box'>
-                            <div className='file-edit-icon'>
-                                <VscFileSubmodule fontSize={30} />
-                            </div>
-                            <div className='file-edit-title'>
-                                <p>Document</p>
-                            </div>
-                            <div className='file-edit-dowload'>
-                                <BsDownload fontSize={30} />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='files-edit-container'>
-                        <div className='files-edit-box'>
-                            <div className='file-edit-icon'>
-                                <VscFileSubmodule fontSize={30} />
-                            </div>
-                            <div className='file-edit-title'>
-                                <p>Document</p>
-                            </div>
-                            <div className='file-edit-dowload'>
-                                <BsDownload fontSize={30} />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='files-edit-container'>
-                        <div className='files-edit-box'>
-                            <div className='file-edit-icon'>
-                                <VscFileSubmodule fontSize={30} />
-                            </div>
-                            <div className='file-edit-title'>
-                                <p>Document</p>
-                            </div>
-                            <div className='file-edit-dowload'>
-                                <BsDownload fontSize={30} />
-                            </div>
-                        </div>
-                    </div>
-
+                <div className='video-edit-title'>
+                    <h1 className='black'>Files</h1>
                 </div>
+
+                <EditFiles />
+
             </div>
 
-        </div>
+
+            <div>
+
+                <div className='video-edit-title'>
+                    <h1 className='black'>Homework</h1>
+                </div>
+
+
+                {singleAdminLesson.homework && singleAdminLesson.homework.map((homework, index) => {
+                    return (
+                        <>
+                            <div key={homework._lessonId} className="homework-edit-div">
+                                <h3 className='homework-edit-question'>{index + 1}) {homework.question}</h3>
+                                {OptionsArrayToObject(homework.options).map((option, index) => {
+                                    return (
+                                        <>
+                                            <label key={index} className="homework-edit-label">
+                                                <input
+                                                    className='homework-edit-input'
+                                                    type="radio"
+                                                    name={homework._id}
+                                                    value={option.value}
+                                                />
+                                                <span>{option.value}</span>
+                                            </label>
+                                        </>
+                                    )
+                                })}
+                                <p className='homework-correct-answer-title'>Correct Answer:</p>
+                                <p className='homework-correct-answer'>{homework.correctAnswer}</p>
+                            </div>
+                            <button className='admin-edit-button'>Edit</button>
+                        </>
+                    )
+                })}
+
+            </div>
+
+        </div >
     )
 }
 

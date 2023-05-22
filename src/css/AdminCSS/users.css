@@ -127,9 +127,7 @@
     width: 350px;
     height: 150px;
     border-radius: 10px;
-    margin-left: 30px;
-    margin-top: 15px;
-    margin-bottom: 10%;
+    margin: 20px auto;
 }
 
 .user-card-img {

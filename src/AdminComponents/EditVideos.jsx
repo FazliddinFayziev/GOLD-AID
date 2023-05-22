@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+import { useGlobalContext } from '../context/context';
 
-const EditVideos = () => {
+const EditVideos = ({ videos }) => {
     // EDIT IMAGES
     const [isChecked, setIsChecked] = useState(false); // Checkbox 
+    const { singleAdminLesson, setSingleAdminLesson } = useGlobalContext();
 
 
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked); // Toggle checkbox state
+    };
+
+
+    const findUrlByLanguage = (language) => {
+        if (singleAdminLesson && singleAdminLesson.videos) {
+            const video = singleAdminLesson.videos.find((video) => video.lng === language);
+            return video ? video.Url : null;
+        }
+        return null;
     };
 
     return (
@@ -32,9 +43,15 @@ const EditVideos = () => {
                                 <div id="video-input-edit"></div>
                                 <label htmlFor="video-input-label-edit">
                                     <div className="video-icon-edit">
-                                        <video src="https://www.google.com/search?q=video&rlz=1C1ONGR_enMY1035MY1035&oq=video+&aqs=chrome..69i57j69i59l2j69i61j69i60l4.2261j0j4&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:7c842fc1,vid:bef8QLNHubw" alt="edited-video" controls={true} />
+                                        {
+                                            findUrlByLanguage('uzbek') ? (
+                                                <video src={findUrlByLanguage('uzbek')} alt="edited-video" controls={true} />
+                                            ) : (
+                                                <div>No Video</div>
+                                            )
+                                        }
                                     </div>
-                                    <span className="video-name-edit">Edit Video</span>
+                                    <span className="video-name-edit">Uzbek Video</span>
                                 </label>
                             </div>
 
@@ -44,9 +61,15 @@ const EditVideos = () => {
                                 <div id="video-input-edit"></div>
                                 <label htmlFor="video-input-label-edit">
                                     <div className="video-icon-edit">
-                                        <video src="https://www.google.com/search?q=video&rlz=1C1ONGR_enMY1035MY1035&oq=video+&aqs=chrome..69i57j69i59l2j69i61j69i60l4.2261j0j4&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:7c842fc1,vid:bef8QLNHubw" alt="edited-video" controls={true} />
+                                        {
+                                            findUrlByLanguage('russian') ? (
+                                                <video src={findUrlByLanguage('russian')} alt="edited-video" controls={true} />
+                                            ) : (
+                                                <div>No Video</div>
+                                            )
+                                        }
                                     </div>
-                                    <span className="video-name-edit">Edit Video</span>
+                                    <span className="video-name-edit">Russian Video</span>
                                 </label>
                             </div>
                         </>
@@ -59,9 +82,15 @@ const EditVideos = () => {
                                 <div id="video-input-edit"></div>
                                 <label htmlFor="video-input-label-edit">
                                     <div className="video-icon-edit">
-                                        <video src="https://www.google.com/search?q=video&rlz=1C1ONGR_enMY1035MY1035&oq=video+&aqs=chrome..69i57j69i59l2j69i61j69i60l4.2261j0j4&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:7c842fc1,vid:bef8QLNHubw" alt="edited-video" controls={true} />
+                                        {
+                                            findUrlByLanguage('english') ? (
+                                                <video src={findUrlByLanguage('english')} alt="edited-video" controls={true} />
+                                            ) : (
+                                                <div>No Video</div>
+                                            )
+                                        }
                                     </div>
-                                    <span className="video-name-edit">Edit Video</span>
+                                    <span className="video-name-edit">English Video</span>
                                 </label>
                             </div>
                         </>
