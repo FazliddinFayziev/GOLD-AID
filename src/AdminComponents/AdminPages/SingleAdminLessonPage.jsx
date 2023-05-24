@@ -14,7 +14,14 @@ const SingleAdminLessonPage = () => {
 
     const { courseName, lessonId } = useParams();
     const { refreshAccessToken, isAccessTokenExpired, user, singleAdminLesson, setSingleAdminLesson } = useGlobalContext();
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    // const files = singleAdminLesson?.files || [];
+
+    // const filesObjArr = files.map((file, index) => ({
+    //     id: index + 1,
+    //     file: file.Url,
+    // }));
 
 
 
@@ -97,109 +104,131 @@ const SingleAdminLessonPage = () => {
             <div className='edit-lesson-title'>
                 Add Lesson
             </div>
-            <div className='edit-container'>
-
-                {/* BOX - 1 */}
-
-                <div className='edit-box-1'>
-                    <div className='edit-image-title'>Image:</div>
-                    <div className="edit-input">
-                        <div id="edit-image-admin"></div>
-                        <label htmlFor="edit-input">
-                            <div className="edit-icon">
-                                {
-                                    <img src={level_default} alt="edit-image" />
-                                }
-                            </div>
-                            <span className="edit-name">Edit Image</span>
-                        </label>
-                    </div>
+            {isLoading ? (
+                <div className='loading-users'>
+                    <div className="loading-circle-user"></div>
                 </div>
+            ) : (
+                <>
 
-                {/* BOX - 2 */}
+                    <div className='edit-container'>
 
-                <div className='edit-box-2'>
+                        {/* BOX - 1 */}
+
+                        <div className='edit-box-1'>
+                            <div className='edit-image-title'>Image:</div>
+                            <div className="edit-input">
+                                <div id="edit-image-admin"></div>
+                                <label htmlFor="edit-input">
+                                    <div className="edit-icon">
+                                        {
+                                            <img src={level_default} alt="edit-image" />
+                                        }
+                                    </div>
+                                    <span className="edit-name">Edit Image</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        {/* BOX - 2 */}
+
+                        <div className='edit-box-2'>
+                            <div>
+                                <div className='edit-add-lesson-title'>
+                                    <h4>Title: </h4>
+                                    <br />
+                                    <h4 className='h4-title'>{singleAdminLesson.title}</h4>
+                                </div>
+                                <div className='edit-add-lesson-title'>
+                                    <h4>Description:</h4>
+                                    <br />
+                                    <p>{singleAdminLesson.description}</p>
+                                </div>
+                                <div className='edit-add-lesson-title'>
+                                    <h4>Course:</h4>
+                                    <h3>{courseName.toLocaleUpperCase()}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* VIDEOS */}
+
                     <div>
-                        <div className='edit-add-lesson-title'>
-                            <h4>Title: </h4>
-                            <br />
-                            <h4 className='h4-title'>{singleAdminLesson.title}</h4>
+
+                        <div className='video-edit-title'>
+                            <h1 className='black'>Video</h1>
                         </div>
-                        <div className='edit-add-lesson-title'>
-                            <h4>Description:</h4>
-                            <br />
-                            <p>{singleAdminLesson.description}</p>
-                        </div>
-                        <div className='edit-add-lesson-title'>
-                            <h4>Course:</h4>
-                            <h3>{courseName.toLocaleUpperCase()}</h3>
-                        </div>
+
+                        <EditVideos />
+
                     </div>
-                </div>
-            </div>
-
-            {/* VIDEOS */}
-
-            <div>
-
-                <div className='video-edit-title'>
-                    <h1 className='black'>Video</h1>
-                </div>
-
-                <EditVideos />
-
-            </div>
 
 
-            {/* FILES */}
+                    {/* FILES */}
 
-            <div>
+                    <div>
 
-                <div className='video-edit-title'>
-                    <h1 className='black'>Files</h1>
-                </div>
+                        <div className='video-edit-title'>
+                            <h1 className='black'>Files</h1>
+                        </div>
 
-                <EditFiles />
+                        {/* {
+                    // files.length ? (
+                        filesObjArr.map((document, index) => {
+                            return (
+                                
+                            )
+                } */}
 
-            </div>
+                        {/* {
+                    singleAdminLesson.files.map((document, index) => {
+                    })
+                } */}
+                        {/* {singleAdminLesson.files.map((document) => {
+                    <EditFiles {...document} />
+                })} */}
 
 
-            <div>
-
-                <div className='video-edit-title'>
-                    <h1 className='black'>Homework</h1>
-                </div>
+                    </div>
 
 
-                {singleAdminLesson.homework && singleAdminLesson.homework.map((homework, index) => {
-                    return (
-                        <>
-                            <div key={homework._lessonId} className="homework-edit-div">
-                                <h3 className='homework-edit-question'>{index + 1}) {homework.question}</h3>
-                                {OptionsArrayToObject(homework.options).map((option, index) => {
-                                    return (
-                                        <>
-                                            <label key={index} className="homework-edit-label">
-                                                <input
-                                                    className='homework-edit-input'
-                                                    type="radio"
-                                                    name={homework._id}
-                                                    value={option.value}
-                                                />
-                                                <span>{option.value}</span>
-                                            </label>
-                                        </>
-                                    )
-                                })}
-                                <p className='homework-correct-answer-title'>Correct Answer:</p>
-                                <p className='homework-correct-answer'>{homework.correctAnswer}</p>
-                            </div>
-                            <button className='admin-edit-button'>Edit</button>
-                        </>
-                    )
-                })}
+                    <div>
 
-            </div>
+                        <div className='video-edit-title'>
+                            <h1 className='black'>Homework</h1>
+                        </div>
+
+
+                        {singleAdminLesson.homework && singleAdminLesson.homework.map((homework, index) => {
+                            return (
+                                <div key={index}>
+                                    <div className="homework-edit-div">
+                                        <h3 className='homework-edit-question'>{index + 1}) {homework.question}</h3>
+                                        {OptionsArrayToObject(homework.options).map((option, index) => {
+                                            return (
+                                                <label key={index} className="homework-edit-label">
+                                                    <input
+                                                        className='homework-edit-input'
+                                                        type="radio"
+                                                        name={homework._id}
+                                                        value={option.value}
+                                                    />
+                                                    <span>{option.value}</span>
+                                                </label>
+                                            )
+                                        })}
+                                        <p className='homework-correct-answer-title'>Correct Answer:</p>
+                                        <p className='homework-correct-answer'>{homework.correctAnswer}</p>
+                                    </div>
+                                    <button className='admin-edit-button'>Edit</button>
+                                </div>
+                            )
+                        })}
+
+                    </div>
+                </>
+            )}
 
         </div >
     )

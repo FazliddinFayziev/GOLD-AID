@@ -11,6 +11,22 @@
     font-weight: 600;
 }
 
+.add-lesson-add-error {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    margin-top: 50px;
+    color: rgb(255, 119, 119);
+}
+
+.add-lesson-add-error-green {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    margin-top: 50px;
+    color: rgb(130, 255, 119);
+}
+
 .upload-container {
     width: 100%;
     height: 100%;
@@ -41,6 +57,19 @@
 #file-input {
     display: none;
 }
+
+#video-input-uz {
+    display: none;
+}
+
+#video-input-ru {
+    display: none;
+}
+
+#video-input-eng {
+    display: none;
+}
+
 
 .upload-icon {
     background-color: #007bff;

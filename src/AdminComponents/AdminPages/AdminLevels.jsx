@@ -110,8 +110,8 @@ const AdminLevels = () => {
                     ) : (
                         <div className='admin-courses-card'>
                             {
-                                courses.map((course) => {
-                                    return <CourseAdminCard key={course._id} {...course} />
+                                courses.map((course, index) => {
+                                    return <CourseAdminCard key={index} {...course} />
                                 })
                             }
                         </div>

@@ -123,6 +123,17 @@ export const AppProvider = ({ children }) => {
     const [singleAdminLesson, setSingleAdminLesson] = useState([])
 
 
+    // UPLOAD VIDEO UZ
+    const [selectedFileUz, setSelectedFileUz] = useState(null);
+
+    // UPLOAD VIDEO RU
+    const [selectedFileRu, setSelectedFileRu] = useState(null);
+
+    // UPLOAD VIDEO ENG
+    const [selectedFileEng, setSelectedFileEng] = useState(null);
+
+
+
 
     // Targetting value of inputs
     const handleInputChange = (e) => {
@@ -174,6 +185,9 @@ export const AppProvider = ({ children }) => {
 
     // Change ProfileImage
     const [changeProfileImage, setChangeProfileImage] = useState(false);
+
+    // CHECK BOX
+    const [isChecked, setIsChecked] = useState(false); // Checkbox 
 
 
     // Make API call to refresh access token using refresh token
@@ -331,7 +345,6 @@ export const AppProvider = ({ children }) => {
         limSkipComments,
         setLimSkipComments,
 
-
         // Scroll Loaading
         scrollLoading,
         setScrollLoading,
@@ -340,11 +353,9 @@ export const AppProvider = ({ children }) => {
         homeworkArray,
         setHomeworkArray,
 
-
         // lessonsHomeWorkTimeLeft
         lessonsHomeWorkTimeLeft,
         setLessonsHomeWorkTimeLeft,
-
 
         // User Profile Page
         userProfilePage,
@@ -366,6 +377,18 @@ export const AppProvider = ({ children }) => {
         // Admin pannel ================================>
         singleAdminLesson,
         setSingleAdminLesson,
+
+        // Video UZ
+        selectedFileUz, setSelectedFileUz,
+
+        // Video RU
+        selectedFileRu, setSelectedFileRu,
+
+        // Video ENG
+        selectedFileEng, setSelectedFileEng,
+
+        // CHECK BOX
+        isChecked, setIsChecked,
 
         open,
         setOpen,

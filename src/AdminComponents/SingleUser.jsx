@@ -4,6 +4,7 @@ import { useGlobalContext } from '../context/context';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import { IoIosArrowBack } from "react-icons/io";
+import { AiFillLock } from "react-icons/ai";
 
 const SingleUser = () => {
 
@@ -109,43 +110,43 @@ const SingleUser = () => {
                                 </div>
                             </div>
                             <div className='table-container'>
-                                <div class="table">
+                                <div className="table">
 
-                                    <div class="term">Name</div>
-                                    <div class="desc">{name}</div>
+                                    <div className="term">Name</div>
+                                    <div className="desc">{name}</div>
 
-                                    <div class="term">Email</div>
-                                    <div class="desc">{email}</div>
+                                    <div className="term">Email</div>
+                                    <div className="desc">{email}</div>
 
-                                    <div class="term">Age</div>
-                                    <div class="desc">{age}</div>
+                                    <div className="term">Age</div>
+                                    <div className="desc">{age}</div>
 
-                                    <div class="term">canComment</div>
-                                    <div class="desc">{canComment ? "true" : "false"}</div>
+                                    <div className="term">canComment</div>
+                                    <div className="desc">{canComment ? "true" : "false"} <button className='block-user'><AiFillLock /></button></div>
 
-                                    <div class="term">course</div>
-                                    <div class="desc">{course}</div>
+                                    <div className="term">course</div>
+                                    <div className="desc">{course}</div>
 
-                                    <div class="term">progressScore</div>
-                                    <div class="desc">{progressScore}</div>
+                                    <div className="term">progressScore</div>
+                                    <div className="desc">{progressScore}</div>
 
-                                    <div class="term">Gender</div>
-                                    <div class="desc">{gender}</div>
+                                    <div className="term">Gender</div>
+                                    <div className="desc">{gender}</div>
 
-                                    <div class="term">isActive</div>
-                                    <div class="desc">{isActive ? "true" : "false"}</div>
+                                    <div className="term">isActive</div>
+                                    <div className="desc">{isActive ? "true" : "false"}</div>
 
-                                    <div class="term">isAdmin</div>
-                                    <div class="desc">{isAdmin ? "true" : "false"}</div>
+                                    <div className="term">isAdmin</div>
+                                    <div className="desc">{isAdmin ? "true" : "false"}</div>
 
-                                    <div class="term">isEmailSent</div>
-                                    <div class="desc">{isEmailSent ? "true" : "false"}</div>
+                                    <div className="term">isEmailSent</div>
+                                    <div className="desc">{isEmailSent ? "true" : "false"}</div>
 
-                                    <div class="term">isVerified</div>
-                                    <div class="desc">{isVerified ? "true" : "false"}</div>
+                                    <div className="term">isVerified</div>
+                                    <div className="desc">{isVerified ? "true" : "false"}</div>
 
-                                    <div class="term">password attempts</div>
-                                    <div class="desc">{attemptsToUpdatePassword}</div>
+                                    <div className="term">password attempts</div>
+                                    <div className="desc">{attemptsToUpdatePassword}</div>
                                 </div>
                             </div>
                         </div>

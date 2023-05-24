@@ -1,29 +1,72 @@
 import React, { useState } from 'react';
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+import { useGlobalContext } from '../context/context';
 
 const AddVideo = () => {
-    // UPLOAD IMAGES
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [previewImage, setPreviewImage] = useState(null);
-    const [uploaded, setUploaded] = useState(false);
-    const [isChecked, setIsChecked] = useState(false); // Checkbox 
 
-    const handleFileChange = (event) => {
+    const { isChecked, setIsChecked, selectedFileUz, setSelectedFileUz, selectedFileRu, setSelectedFileRu, selectedFileEng, setSelectedFileEng } = useGlobalContext();
+
+
+    // UPLOAD UZBEK VIDEO
+    const [previewVideoUz, setPreviewVideoUz] = useState(null);
+    const [uploadedUz, setUploadedUz] = useState(false);
+
+    // UPLOAD RUSSAIN VIDEO
+    const [previewVideoRu, setPreviewVideoRu] = useState(null);
+    const [uploadedRu, setUploadedRu] = useState(false);
+
+    // UPLOAD ENGLISH VIDEO
+    const [previewVideoEng, setPreviewVideoEng] = useState(null);
+    const [uploadedEng, setUploadedEng] = useState(false);
+
+    // UZBEK
+    const handleFileChangeUz = (event) => {
         const file = event.target.files[0];
-        setSelectedFile(file);
+        setSelectedFileUz(file);
 
         // Create a preview URL for the selected image
         const reader = new FileReader();
         reader.onload = () => {
-            setPreviewImage(reader.result);
+            setPreviewVideoUz(reader.result);
         };
         reader.readAsDataURL(file);
-        setUploaded(true)
+        setUploadedUz(true)
     };
 
+    // RUSSIAN
+    const handleFileChangeRu = (event) => {
+        const file = event.target.files[0];
+        setSelectedFileRu(file);
+
+        // Create a preview URL for the selected image
+        const reader = new FileReader();
+        reader.onload = () => {
+            setPreviewVideoRu(reader.result);
+        };
+        reader.readAsDataURL(file);
+        setUploadedRu(true)
+    };
+
+    // ENGLISH
+    const handleFileChangeEng = (event) => {
+        const file = event.target.files[0];
+        setSelectedFileEng(file);
+
+        // Create a preview URL for the selected image
+        const reader = new FileReader();
+        reader.onload = () => {
+            setPreviewVideoEng(reader.result);
+        };
+        reader.readAsDataURL(file);
+        setUploadedEng(true)
+    };
+
+
+    // CHECK BOX // CHANGE VIDEO ENGLISH
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked); // Toggle checkbox state
     };
+
 
     return (
         <>
@@ -46,18 +89,18 @@ const AddVideo = () => {
                             < div className="upload-video-1">
                                 <input
                                     type="file"
-                                    id="video-input"
-                                    onChange={handleFileChange}
+                                    id="video-input-uz"
+                                    onChange={handleFileChangeUz}
                                 />
-                                <label htmlFor="video-input">
+                                <label htmlFor="video-input-uz">
                                     <div className="video-icon">
                                         {
-                                            !uploaded ? <AiOutlineVideoCameraAdd /> : (
-                                                <img src={previewImage} alt="selected-file" />
+                                            !uploadedUz ? <AiOutlineVideoCameraAdd /> : (
+                                                <video src={previewVideoUz} alt="selected-file" controls={true} />
                                             )
                                         }
                                     </div>
-                                    <span className="video-name">{selectedFile ? selectedFile.name : 'Choose a file'}</span>
+                                    <span className="video-name">{selectedFileUz ? selectedFileUz.name : 'Choose a file'}</span>
                                 </label>
                             </div>
 
@@ -66,18 +109,18 @@ const AddVideo = () => {
                             <div className="upload-video-2">
                                 <input
                                     type="file"
-                                    id="video-input"
-                                    onChange={handleFileChange}
+                                    id="video-input-ru"
+                                    onChange={handleFileChangeRu}
                                 />
-                                <label htmlFor="video-input">
+                                <label htmlFor="video-input-ru">
                                     <div className="video-icon">
                                         {
-                                            !uploaded ? <AiOutlineVideoCameraAdd /> : (
-                                                <video src={previewImage} alt="selected-file" controls='true' />
+                                            !uploadedRu ? <AiOutlineVideoCameraAdd /> : (
+                                                <video src={previewVideoRu} alt="selected-file" controls={true} />
                                             )
                                         }
                                     </div>
-                                    <span className="video-name">{selectedFile ? selectedFile.name : 'Choose a file'}</span>
+                                    <span className="video-name">{selectedFileRu ? selectedFileRu.name : 'Choose a file'}</span>
                                 </label>
                             </div>
                         </>
@@ -89,18 +132,18 @@ const AddVideo = () => {
                             <div className="upload-video">
                                 <input
                                     type="file"
-                                    id="video-input"
-                                    onChange={handleFileChange}
+                                    id="video-input-eng"
+                                    onChange={handleFileChangeEng}
                                 />
-                                <label htmlFor="video-input">
+                                <label htmlFor="video-input-eng">
                                     <div className="video-icon">
                                         {
-                                            !uploaded ? <AiOutlineVideoCameraAdd /> : (
-                                                <img src={previewImage} alt="selected-file" />
+                                            !uploadedEng ? <AiOutlineVideoCameraAdd /> : (
+                                                <video src={previewVideoEng} alt="selected-file" controls={true} />
                                             )
                                         }
                                     </div>
-                                    <span className="video-name">{selectedFile ? selectedFile.name : 'Choose a file'}</span>
+                                    <span className="video-name">{selectedFileEng ? selectedFileEng.name : 'Choose a file'}</span>
                                 </label>
                             </div>
                         </>

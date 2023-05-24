@@ -7,7 +7,7 @@ const EditFiles = () => {
     const { singleAdminLesson, setSingleAdminLesson } = useGlobalContext();
     return (
         <>
-            <div className='files-edit-container-box'>
+            <div key={''} className='files-edit-container-box'>
 
                 <div className='files-edit-box'>
                     <div className='file-edit-icon'>
@@ -16,9 +16,9 @@ const EditFiles = () => {
                     <div className='file-edit-title'>
                         <p>Document</p>
                     </div>
-                    <div className='file-edit-dowload'>
+                    <a href={''} download="Golden-Aid" className='file-edit-dowload'>
                         <BsDownload fontSize={30} />
-                    </div>
+                    </a>
                 </div>
 
             </div>

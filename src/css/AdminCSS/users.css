@@ -312,6 +312,23 @@
     -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
 }
 
+.block-user {
+    margin-left: 100px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    background-color: #ff6262;
+}
+
+.unblock-user {
+    margin-left: 100px;
+    padding: 5px;
+    color: #fff;
+    background-color: #62ff84;
+}
+
 
 @media screen and (max-width: 1440px) {
     .table-container {
