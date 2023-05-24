@@ -319,13 +319,18 @@
     border: none;
     border-radius: 10px;
     font-size: 12px;
+    cursor: pointer;
     background-color: #ff6262;
 }
 
 .unblock-user {
     margin-left: 100px;
     padding: 5px;
-    color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
     background-color: #62ff84;
 }
 

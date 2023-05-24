@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context/context';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import { IoIosArrowBack } from "react-icons/io";
-import { AiFillLock } from "react-icons/ai";
+import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 
 const SingleUser = () => {
 
@@ -13,6 +13,7 @@ const SingleUser = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [singleUser, setSingleUser] = useState([]);
+    const [refetchUserInfo, setRefetchUserInfo] = useState(false);
 
 
     const useToken = () => {
@@ -51,7 +52,7 @@ const SingleUser = () => {
                 }
             };
             fetch();
-        }, []);
+        }, [refetchUserInfo]);
 
         useEffect(() => {
             const timer = setInterval(() => {
@@ -74,7 +75,36 @@ const SingleUser = () => {
         return accessToken;
     };
 
-    const accessToken = useToken();
+
+    const { accessToken } = user;
+
+    const CanCommentFunction = async (token) => {
+        try {
+            const res = await axios.patch(`/admin/users/edit/comment/permission/${userId}`, {
+                userId
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                CanCommentFunction(refreshedToken); // try the request again with the new token
+            } else {
+                console.log(err);
+            }
+        }
+    };
+
+    const getAccess = useToken();
+
+    const handleCanComment = () => {
+        CanCommentFunction(accessToken)
+        setRefetchUserInfo(!refetchUserInfo)
+        setIsLoading(true)
+    }
 
     const { name, gender, course, email, age, canComment, progressScore, isActive, isAdmin, profilePicture, isEmailSent, isVerified, attemptsToUpdatePassword } = singleUser
 
@@ -122,7 +152,11 @@ const SingleUser = () => {
                                     <div className="desc">{age}</div>
 
                                     <div className="term">canComment</div>
-                                    <div className="desc">{canComment ? "true" : "false"} <button className='block-user'><AiFillLock /></button></div>
+                                    <div className="desc">{canComment ? "true" : "false"} {
+                                        refetchUserInfo ?
+                                            <button onClick={handleCanComment} className='unblock-user'><AiFillUnlock /></button>
+                                            : <button onClick={handleCanComment} className='block-user'><AiFillLock /></button>
+                                    }</div>
 
                                     <div className="term">course</div>
                                     <div className="desc">{course}</div>

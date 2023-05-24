@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useGlobalContext } from '../../context/context';
 import '../../css/AdminCSS/singleAdminLesson.css';
 import { ImUpload } from "react-icons/im";
@@ -9,6 +9,8 @@ import { BsDownload } from "react-icons/bs";
 import axios from '../../api/axios';
 import EditVideos from '../EditVideos';
 import EditFiles from '../EditFiles';
+import { IoIosArrowBack } from "react-icons/io";
+import { BiSearchAlt } from "react-icons/bi";
 
 const SingleAdminLessonPage = () => {
 
@@ -102,7 +104,7 @@ const SingleAdminLessonPage = () => {
     return (
         <div className='edit-lesson-container'>
             <div className='edit-lesson-title'>
-                Add Lesson
+                Single Lesson
             </div>
             {isLoading ? (
                 <div className='loading-users'>
@@ -110,6 +112,12 @@ const SingleAdminLessonPage = () => {
                 </div>
             ) : (
                 <>
+
+                    <Link to={`/admin/courses/${courseName}`}>
+                        <div className='admin-lesson-card-back'>
+                            <IoIosArrowBack className='back-to-courses' />
+                        </div>
+                    </Link>
 
                     <div className='edit-container'>
 
@@ -200,31 +208,42 @@ const SingleAdminLessonPage = () => {
                         </div>
 
 
-                        {singleAdminLesson.homework && singleAdminLesson.homework.map((homework, index) => {
-                            return (
-                                <div key={index}>
-                                    <div className="homework-edit-div">
-                                        <h3 className='homework-edit-question'>{index + 1}) {homework.question}</h3>
-                                        {OptionsArrayToObject(homework.options).map((option, index) => {
-                                            return (
-                                                <label key={index} className="homework-edit-label">
-                                                    <input
-                                                        className='homework-edit-input'
-                                                        type="radio"
-                                                        name={homework._id}
-                                                        value={option.value}
-                                                    />
-                                                    <span>{option.value}</span>
-                                                </label>
-                                            )
-                                        })}
-                                        <p className='homework-correct-answer-title'>Correct Answer:</p>
-                                        <p className='homework-correct-answer'>{homework.correctAnswer}</p>
+                        {singleAdminLesson.homework.length !== 0 ? (
+                            singleAdminLesson.homework.map((homework, index) => {
+                                return (
+                                    <div key={index}>
+                                        <div className="homework-edit-div">
+                                            <h3 className='homework-edit-question'>{index + 1}) {homework.question}</h3>
+                                            {OptionsArrayToObject(homework.options).map((option, index) => {
+                                                return (
+                                                    <label key={index} className="homework-edit-label">
+                                                        <input
+                                                            className='homework-edit-input'
+                                                            type="radio"
+                                                            name={homework._id}
+                                                            value={option.value}
+                                                        />
+                                                        <span>{option.value}</span>
+                                                    </label>
+                                                )
+                                            })}
+                                            <p className='homework-correct-answer-title'>Correct Answer:</p>
+                                            <p className='homework-correct-answer'>{homework.correctAnswer}</p>
+                                        </div>
+                                        <button className='admin-edit-button'>Edit</button>
                                     </div>
-                                    <button className='admin-edit-button'>Edit</button>
+                                )
+                            })) : (
+                            <>
+                                <div className='no-homework-icon'>
+                                    <div>
+                                        <BiSearchAlt />
+                                        <br />
+                                        There is not Homework
+                                    </div>
                                 </div>
-                            )
-                        })}
+                            </>
+                        )}
 
                     </div>
                 </>
