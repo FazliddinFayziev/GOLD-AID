@@ -11,21 +11,15 @@ import EditVideos from '../EditVideos';
 import EditFiles from '../EditFiles';
 import { IoIosArrowBack } from "react-icons/io";
 import { BiSearchAlt } from "react-icons/bi";
+import { GiArchiveResearch } from "react-icons/gi";
 
 const SingleAdminLessonPage = () => {
 
     const { courseName, lessonId } = useParams();
     const { refreshAccessToken, isAccessTokenExpired, user, singleAdminLesson, setSingleAdminLesson } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true);
-
-    // const files = singleAdminLesson?.files || [];
-
-    // const filesObjArr = files.map((file, index) => ({
-    //     id: index + 1,
-    //     file: file.Url,
-    // }));
-
-
+    const { accessToken } = user
+    const navigate = useNavigate();
 
     const useToken = () => {
 
@@ -98,7 +92,33 @@ const SingleAdminLessonPage = () => {
     }
 
 
-    const accessToken = useToken();
+    const getAccess = useToken();
+
+
+    const deleteLesson = async (token) => {
+        try {
+            const res = await axios.delete(`/admin/lessons/${lessonId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                deleteLesson(refreshedToken); // try the request again with the new token
+            } else {
+                console.log(err);
+            }
+        }
+    };
+
+
+    // DELETE LESSON
+    const handleDeleteLesson = () => {
+        deleteLesson(accessToken)
+        navigate(`/admin/courses/${courseName}`)
+    }
 
 
     return (
@@ -181,22 +201,26 @@ const SingleAdminLessonPage = () => {
                             <h1 className='black'>Files</h1>
                         </div>
 
-                        {/* {
-                    // files.length ? (
-                        filesObjArr.map((document, index) => {
-                            return (
-                                
+                        {
+                            singleAdminLesson.files.length !== 0 ? (
+                                <div className='files-edit-container-box'>
+                                    {singleAdminLesson.files.map((file, index) => {
+                                        return <EditFiles {...file} key={index} />
+                                    })}
+                                </div>
+                            ) : (
+                                <>
+                                    <div className='no-homework-icon'>
+                                        <div>
+                                            <div className='icon-center'>
+                                                <GiArchiveResearch fontSize={30} />
+                                            </div>
+                                            <p>There is no Files</p>
+                                        </div>
+                                    </div>
+                                </>
                             )
-                } */}
-
-                        {/* {
-                    singleAdminLesson.files.map((document, index) => {
-                    })
-                } */}
-                        {/* {singleAdminLesson.files.map((document) => {
-                    <EditFiles {...document} />
-                })} */}
-
+                        }
 
                     </div>
 
@@ -237,17 +261,27 @@ const SingleAdminLessonPage = () => {
                             <>
                                 <div className='no-homework-icon'>
                                     <div>
-                                        <BiSearchAlt />
-                                        <br />
-                                        There is not Homework
+                                        <div className='icon-center'>
+                                            <BiSearchAlt fontSize={30} />
+                                        </div>
+                                        <p>There is no Homework</p>
                                     </div>
                                 </div>
                             </>
                         )}
 
                     </div>
+
+                    {/* DELETE LESSON */}
+
+                    <div onClick={handleDeleteLesson} className='delete-lesson'>
+                        <button>Delete Lesson</button>
+                    </div>
                 </>
+
             )}
+
+
 
         </div >
     )

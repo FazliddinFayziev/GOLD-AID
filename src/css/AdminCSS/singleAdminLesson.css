@@ -335,6 +335,11 @@
     height: 50px;
 }
 
+.no-files-icon {
+    display: flex;
+    justify-content: center;
+}
+
 
 
 /* HOMEWORK EDIT  */
@@ -424,14 +429,24 @@
     height: 30vh;
 }
 
+.icon-center {
+    display: flex;
+    justify-content: center;
+}
 
-/* 
-@media screen and (min-width: 1024px) {
-    .files-edit-container {
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 20px;
-    }
-} */
+/* DELETE LESSON */
+.delete-lesson {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+}
+
+.delete-lesson button {
+    padding: 10px;
+    background-color: #ff5555;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
