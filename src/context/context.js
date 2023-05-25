@@ -189,6 +189,9 @@ export const AppProvider = ({ children }) => {
     // CHECK BOX
     const [isChecked, setIsChecked] = useState(false); // Checkbox 
 
+    // CHANGE ADMIN-COURSES
+    const [changeAdminCourse, setChangeAdminCourse] = useState(false);
+
 
     // Make API call to refresh access token using refresh token
     const refreshAccessToken = async () => {
@@ -389,6 +392,9 @@ export const AppProvider = ({ children }) => {
 
         // CHECK BOX
         isChecked, setIsChecked,
+
+        // ADMIN CHANGE COURSE
+        changeAdminCourse, setChangeAdminCourse,
 
         open,
         setOpen,

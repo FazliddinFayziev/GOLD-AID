@@ -9,7 +9,7 @@ import { level_default, level_default_ielts } from '../../assets';
 
 const AdminLevels = () => {
 
-    const { user, refreshAccessToken, isAccessTokenExpired } = useGlobalContext();
+    const { user, refreshAccessToken, isAccessTokenExpired, changeAdminCourse } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true);
     const [courses, setCourses] = useState([]);
     const navigate = useNavigate();
@@ -69,7 +69,7 @@ const AdminLevels = () => {
                 }
             };
             fetch();
-        }, []);
+        }, [changeAdminCourse]);
 
         useEffect(() => {
             const timer = setInterval(() => {
