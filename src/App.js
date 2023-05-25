@@ -11,7 +11,8 @@ import { Users } from "./AdminComponents";
 
 
 function App() {
-  const { isRegister, checkAdmin } = useGlobalContext();
+  const { isRegister, checkAdmin, isAdminGo, setIsAdminGo, user } = useGlobalContext();
+
   return (
     <>
       <Routes>
@@ -36,6 +37,7 @@ function App() {
 
 
 
+        {/* Admin panel */}
         <Route path="/admin/*" element={<Admin />} />
 
 

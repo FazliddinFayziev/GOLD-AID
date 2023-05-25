@@ -11,7 +11,7 @@ const Navbar = () => {
     // GLOBAL
     const { bgColor, setBgColor, userProfilePicture, userProfile } = useGlobalContext();
     const { profilePicture } = userProfilePicture
-    const { _id } = userProfile
+    const { _id, isAdmin } = userProfile
 
     // LOCAL
     const [nav, setNav] = useState(false);
@@ -33,6 +33,11 @@ const Navbar = () => {
                     <ul>
                         <li>About</li>
                         <li>Contact</li>
+                        {isAdmin &&
+                            <Link to={'/admin'}>
+                                <li>Admin</li>
+                            </Link>
+                        }
                     </ul>
                     <div
                         className={`home-navbar-icon ${bgColor ? 'animate' : ''}`}

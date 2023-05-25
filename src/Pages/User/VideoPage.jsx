@@ -101,7 +101,7 @@ const VideoPage = () => {
                 await fetchComments(token);
             };
             fetch()
-        }, [changeComment])
+        }, [changeComment, lim])
 
 
         useEffect(() => {

@@ -192,6 +192,9 @@ export const AppProvider = ({ children }) => {
     // CHANGE ADMIN-COURSES
     const [changeAdminCourse, setChangeAdminCourse] = useState(false);
 
+    // isAdmin TRUE OR FALSE
+    const [isAdminGo, setIsAdminGo] = useState(true);
+
 
     // Make API call to refresh access token using refresh token
     const refreshAccessToken = async () => {
@@ -380,6 +383,9 @@ export const AppProvider = ({ children }) => {
         // Admin pannel ================================>
         singleAdminLesson,
         setSingleAdminLesson,
+
+        // PERMITION TO ADMIN PANEL
+        isAdminGo, setIsAdminGo,
 
         // Video UZ
         selectedFileUz, setSelectedFileUz,

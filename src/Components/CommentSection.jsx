@@ -80,7 +80,11 @@ const CommentSection = () => {
             if (top + clientHeight >= scrollHeight) {
                 console.log('User has reached the end');
                 setScrollLoading(true)
-                setLimSkipComments({ lim: 15, skip: 0 })
+                setLimSkipComments((prevState) => ({
+                    lim: prevState.lim + 5, // Add 5 to the previous value of lim
+                    skip: 0,
+                }));
+
                 setChangeComment(!changeComment)
                 // setScrollLoading(false)
             }

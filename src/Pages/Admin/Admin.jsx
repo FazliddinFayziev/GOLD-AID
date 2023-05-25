@@ -11,7 +11,7 @@ import { Loading } from '../../Components';
 const Admin = () => {
     const { dashboardElement, user, refreshAccessToken, isAccessTokenExpired, adminUser, setAdminUser, getDashInfo, setGetDashInfo } = useGlobalContext();
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
     const refreshToken = localStorage.getItem('refreshToken');
@@ -38,6 +38,8 @@ const Admin = () => {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                     const refreshedToken = await refreshAccessToken(); // refresh the token
                     fetchDashboardInfo(refreshedToken); // try the request again with the new token
+                } else if (err.response.status === 401) {
+                    navigate('/')
                 } else {
                     console.log(err);
                 }
@@ -111,7 +113,6 @@ const Admin = () => {
                         <Route path="users" element={<Users />} />
                         <Route path="quotes" element={<Quotes />} />
                         <Route path="videos" element={<AdminVideos />} />
-                        <Route path="settings" element={<Settings />} />
 
                         {/* Second-page routes */}
                         <Route path='users/:userId' element={<SingleUser />} />

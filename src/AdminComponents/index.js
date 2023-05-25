@@ -18,7 +18,6 @@ export { default as AdminVideos } from './AdminPages/AdminVideos';
 
 // OPTIONS
 export { default as Quotes } from "./AdminPages/Quotes";
-export { default as Settings } from './AdminPages/Settings';
 
 
 // Other Components

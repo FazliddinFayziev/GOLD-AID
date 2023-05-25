@@ -2,7 +2,7 @@ import React from 'react';
 import '../css/AdminCSS/sidebar.css';
 import { logo } from '../assets';
 import { FaTachometerAlt, FaBookOpen, FaVideo, FaCog, FaFileAlt, FaUser } from 'react-icons/fa';
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiFillHome } from "react-icons/ai";
 import { useGlobalContext } from '../context/context';
 import { DashboardTypes } from '../context/DashboardPathNames';
 import { Link, useNavigate } from 'react-router-dom';
@@ -96,10 +96,10 @@ const SideBar = () => {
                 <ul>
                     <li>
 
-                        <Link className="menu-link" to={'/admin/settings'}>
+                        <Link className="menu-link" to={'/'}>
                             <div onClick={handleClose} className="menu-link">
-                                <FaCog className="menu-icon" />
-                                Settings
+                                <AiFillHome className="menu-icon" />
+                                Home
                             </div>
                         </Link>
 
