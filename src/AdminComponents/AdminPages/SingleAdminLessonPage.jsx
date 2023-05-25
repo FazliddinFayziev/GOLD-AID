@@ -6,6 +6,7 @@ import { ImUpload } from "react-icons/im";
 import { level_default } from "../../assets";
 import { VscFileSubmodule } from "react-icons/vsc";
 import { BsDownload } from "react-icons/bs";
+import { AiFillPlusCircle } from "react-icons/ai";
 import axios from '../../api/axios';
 import EditVideos from '../EditVideos';
 import EditFiles from '../EditFiles';
@@ -28,7 +29,10 @@ const SingleAdminLessonPage = () => {
     const [description, setDescription] = useState('');
     const [uploaded, setUploaded] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState('');
+    const [addFileInfo, setAddFileInfo] = useState(false);
+    const [addedFile, setAddedFile] = useState(null);
+    const [previewFile, setPreviewFile] = useState(null);
     const { accessToken } = user
     const navigate = useNavigate();
 
@@ -136,7 +140,7 @@ const SingleAdminLessonPage = () => {
         }
     };
 
-    // DELTE LOGIC
+    // DELETE LOGIC
     const handleDeleteLesson = () => {
         setShowDeleteConfirmation(true); // Show delete confirmation card
     };
@@ -154,7 +158,7 @@ const SingleAdminLessonPage = () => {
 
     // EDIT IMAGE
 
-    // UPLOAD FILE
+    // UPLOAD IMAGE
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         setSelectedFile(file);
@@ -295,6 +299,127 @@ const SingleAdminLessonPage = () => {
 
 
     // UPDATE VIDEO
+
+
+
+
+    // ADD NEW FILE
+    const handleAddFile = (event) => {
+        const file = event.target.files[0];
+        setAddedFile(file);
+    };
+
+    useEffect(() => {
+        if (addedFile) {
+            // Create a preview URL for the selected file
+            const reader = new FileReader();
+            reader.onload = () => {
+                setPreviewFile(reader.result);
+            };
+            reader.readAsDataURL(addedFile);
+        }
+    }, [addedFile]);
+
+
+    // ADD FILE API
+    const AddFile = async (token) => {
+        setIsLoading(true)
+        try {
+            const formData = new FormData();
+            formData.append('files', addedFile);
+            formData.append('lessonId', lessonId);
+            const res = await axios.post(`/admin/lessons/files`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully uploaded ! ! !');
+            setIsLoading(false)
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                AddFile(refreshedToken); // try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err)
+                setIsLoading(false)
+            }
+        }
+    };
+
+
+    const handleAddNewFile = () => {
+        AddFile(accessToken);
+        setAddFileInfo(false);
+        setRefetch(!refetch)
+    }
+
+
+    // DELETE SINGLE FILE
+    const DeleteSingleFile = async (token, Key) => {
+        setIsLoading(true)
+        try {
+            const res = await axios.delete(`admin/lessons/files/file/?lessonId=${lessonId}&fileId=${Key}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully Deleted!');
+            setIsLoading(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                DeleteSingleFile(refreshedToken, Key); // try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err);
+                setIsLoading(false);
+            }
+        }
+    };
+
+
+    const handleDeleteSingleFile = (Key) => {
+        DeleteSingleFile(accessToken, Key);
+        setRefetch(!refetch)
+    }
+
+
+
+    // DELETE ALL FILES AT THE SAME TIME
+
+    const DeleteAllFiles = async (token) => {
+        setIsLoading(true)
+        try {
+            const res = await axios.delete(`/admin/lessons/files/${lessonId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully Deleted!');
+            setIsLoading(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                DeleteAllFiles(refreshedToken); // try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err);
+                setIsLoading(false);
+            }
+        }
+    };
+
+
+    const handleDeleteAllFiles = () => {
+        DeleteAllFiles(accessToken);
+        setRefetch(!refetch)
+    }
+
 
 
 
@@ -494,13 +619,47 @@ const SingleAdminLessonPage = () => {
                             <h1 className='black'>Files</h1>
                         </div>
 
+                        <div className={errorMsg === 'Successfully uploaded ! ! !' ? 'add-lesson-add-error-green' : 'add-lesson-add-error'}>
+                            {errorMsg}
+                        </div>
+
+                        {
+                            addFileInfo ? (
+                                <>
+                                    <div className="upload-container-admin-file">
+                                        <input type="file" id="file-input-admin-file" className="file-input-admin-file" accept=".pdf, .jpg, .jpeg, .png" onChange={handleAddFile} />
+                                        <label htmlFor="file-input-admin-file" className="file-label-admin-file">
+                                            <span className="file-icon-admin-file">
+                                                <i className="fas fa-cloud-upload-alt-admin-file"></i>
+                                            </span>
+                                            <span className="file-text-admin-file">{addedFile ? addedFile.name : 'Choose a file'}</span>
+                                        </label>
+                                    </div>
+                                    <div className='add-new-file'>
+                                        <button onClick={handleAddNewFile}>UPLOAD</button>
+                                    </div>
+                                </>
+                            ) : (
+                                <div onClick={() => setAddFileInfo(true)} className='add-new-file'>
+                                    <button>Add File <AiFillPlusCircle fontSize={20} className='add-file-icon' /></button>
+                                </div>
+                            )
+                        }
+
                         {
                             singleAdminLesson.files.length !== 0 ? (
-                                <div className='files-edit-container-box'>
-                                    {singleAdminLesson.files.map((file, index) => {
-                                        return <EditFiles {...file} key={index} />
-                                    })}
-                                </div>
+                                <>
+                                    <div className='files-edit-container-box'>
+                                        {singleAdminLesson.files.map((file, index) => {
+                                            return <EditFiles {...file} key={index} index={index} handleDeleteSingleFile={handleDeleteSingleFile} />
+                                        })}
+                                    </div>
+                                    <div className='delete-all-files'>
+                                        <button onClick={handleDeleteAllFiles}>
+                                            Delete All Files
+                                        </button>
+                                    </div>
+                                </>
                             ) : (
                                 <>
                                     <div className='no-homework-icon'>

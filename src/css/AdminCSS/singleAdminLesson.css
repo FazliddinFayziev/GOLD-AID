@@ -356,6 +356,91 @@
     justify-content: center;
 }
 
+.add-new-file {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.add-new-file button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.add-file-icon {
+    padding-top: 10px;
+}
+
+/* UPLOAD FILE */
+.upload-container-admin-file {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.file-input-admin-file {
+    display: none;
+}
+
+.file-label-admin-file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    background-color: #f0f0f0;
+    color: #000;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-icon-admin-file {
+    margin-right: 8px;
+}
+
+.file-text-admin-file {
+    font-size: 16px;
+}
+
+.delete-file-container {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-file {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.delete-all-files {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.delete-all-files button {
+    padding: 10px;
+    background-color: #ff5555;
+    font-weight: 800;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Customize the styles as per your preference */
+
 
 
 /* HOMEWORK EDIT  */

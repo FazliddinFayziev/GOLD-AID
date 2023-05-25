@@ -1,7 +1,8 @@
 import React from 'react';
 import '../css/AdminCSS/sidebar.css';
 import { logo } from '../assets';
-import { FaTachometerAlt, FaBookOpen, FaVideo, FaCog, FaFileAlt, FaUser } from 'react-icons/fa';
+import { FaTachometerAlt, FaBookOpen, FaCog, FaFileAlt, FaUser } from 'react-icons/fa';
+import { RxAvatar } from "react-icons/rx";
 import { AiOutlineClose, AiFillHome } from "react-icons/ai";
 import { useGlobalContext } from '../context/context';
 import { DashboardTypes } from '../context/DashboardPathNames';
@@ -83,8 +84,8 @@ const SideBar = () => {
 
                         <Link className="menu-link" to={'/admin/videos'}>
                             <div onClick={handleClose} className="menu-link">
-                                <FaVideo className="menu-icon" />
-                                Videos
+                                <RxAvatar className="menu-icon" />
+                                Avatars
                             </div>
                         </Link>
 

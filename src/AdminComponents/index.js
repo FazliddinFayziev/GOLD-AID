@@ -13,7 +13,7 @@ export { default as SingleAdminLessonPage } from "./AdminPages/SingleAdminLesson
 
 
 // ADDITIONAL 
-export { default as AdminVideos } from './AdminPages/AdminVideos';
+export { default as AdminAvatars } from "./AdminPages/AdminAvatars";
 
 
 // OPTIONS
