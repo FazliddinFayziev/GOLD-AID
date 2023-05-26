@@ -33,6 +33,15 @@ const SingleAdminLessonPage = () => {
     const [addFileInfo, setAddFileInfo] = useState(false);
     const [addedFile, setAddedFile] = useState(null);
     const [previewFile, setPreviewFile] = useState(null);
+    const [question, setQuestion] = useState('');
+    const [option, setOption] = useState({ option_1: '', option_2: '', option_3: '', option_4: '' });
+    const { option_1, option_2, option_3, option_4 } = option
+    const [correctAnswer, setCorrectAnswer] = useState('');
+    const [editHomeworkTime, setEditHomeworkTime] = useState(false);
+    const [homeTime, setHomeTime] = useState('');
+    const [editCardHomework, setEditCardHomework] = useState(false);
+    const [getIdOfHome, setGetIdOfHome] = useState('');
+
     const { accessToken } = user
     const navigate = useNavigate();
 
@@ -465,6 +474,130 @@ const SingleAdminLessonPage = () => {
 
 
 
+    // ADD HOMEWORK
+
+    const AddHomework = async (token) => {
+        setIsLoading(true);
+        try {
+            const res = await axios.post(`/admin/homework`, {
+                question: question,
+                options: [option_1, option_2, option_3, option_4],
+                correctAnswer: correctAnswer,
+                lessonId: lessonId
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully uploaded ! ! !');
+            setQuestion('')
+            setOption({ option_1: '', option_2: '', option_3: '', option_4: '' })
+            setCorrectAnswer('')
+            setIsLoading(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // Refresh the token
+                AddHomework(refreshedToken); // Try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err);
+                setIsLoading(false);
+            }
+        }
+    };
+
+
+    const handleAddHomework = () => {
+        AddHomework(accessToken);
+        setRefetch(!refetch)
+    }
+
+
+    // EDIT HOMEWORK TIME
+
+    const EditHomeworkTime = async (token) => {
+        setIsLoading(true);
+        try {
+            const res = await axios.patch(`/admin/homework/timeout/${lessonId}`, {
+                timeOutMinutes: homeTime
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully uploaded ! ! !');
+            setIsLoading(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // Refresh the token
+                EditHomeworkTime(refreshedToken); // Try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err);
+                setIsLoading(false);
+            }
+        }
+    };
+
+
+    const handleEditHomeworkTime = () => {
+        EditHomeworkTime(accessToken);
+        setEditHomeworkTime(false)
+        setRefetch(!refetch)
+    }
+
+
+    // EDIT SINGLE HOMEWORK QUESTION, OPTIONS AND SO ON
+
+    const EditHomeworkQuestion = async (token) => {
+        setIsLoading(true);
+        try {
+            const res = await axios.patch(`/admin/homework/${getIdOfHome}`, {
+                question: question,
+                options: [option_1, option_2, option_3, option_4],
+                correctAnswer: correctAnswer,
+                lessonId: lessonId
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully uploaded ! ! !');
+            setQuestion('');
+            setOption({ option_1: '', option_2: '', option_3: '', option_4: '' });
+            setCorrectAnswer('');
+            setEditCardHomework(false);
+            setIsLoading(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // Refresh the token
+                EditHomeworkQuestion(refreshedToken); // Try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err);
+                setIsLoading(false);
+            }
+        }
+    };
+
+
+    const handleEditHomeworkQuestion = () => {
+        EditHomeworkQuestion(accessToken);
+        setRefetch(!refetch)
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -496,7 +629,7 @@ const SingleAdminLessonPage = () => {
 
                     <div className='edit-container'>
 
-                        {/* EDIT - 1 */}
+                        {/* EDIT - 1 ==========================================================> */}
                         {
                             editLessonImage ? (
                                 <div className='upload-box-1'>
@@ -546,7 +679,7 @@ const SingleAdminLessonPage = () => {
                             )
                         }
 
-                        {/* BOX - 2 */}
+                        {/* BOX - 2 ==================================> */}
 
                         <div className='edit-box-2'>
                             <div>
@@ -598,7 +731,7 @@ const SingleAdminLessonPage = () => {
                         </div>
                     </div>
 
-                    {/* VIDEOS */}
+                    {/* VIDEOS ======================================================================================================> */}
 
                     <div>
 
@@ -611,7 +744,7 @@ const SingleAdminLessonPage = () => {
                     </div>
 
 
-                    {/* FILES */}
+                    {/* FILES ===================================================================================================> */}
 
                     <div>
 
@@ -677,11 +810,166 @@ const SingleAdminLessonPage = () => {
                     </div>
 
 
+
+                    {/* HOMEWORK ==========================================================================================> */}
+
+
                     <div>
 
                         <div className='video-edit-title'>
                             <h1 className='black'>Homework</h1>
                         </div>
+                        <div className={errorMsg === 'Successfully uploaded ! ! !' ? 'add-lesson-add-error-green' : 'add-lesson-add-error'}>
+                            {errorMsg}
+                        </div>
+
+
+                        <div className='homework-timeout'>
+                            <div className='homework-timeout-container'>
+                                <p>Homework Time</p>
+                                {editHomeworkTime ? (
+                                    <input value={homeTime} onChange={(e) => setHomeTime(e.target.value)} className='change-home-time' type="number" />
+                                ) : (
+                                    <h3><span>{singleAdminLesson.homeWorkTimeOut}</span> Minutes</h3>
+                                )}
+                            </div>
+                        </div>
+
+                        {editHomeworkTime ? (
+                            <div onClick={handleEditHomeworkTime} className='add-new-file'>
+                                <button>Save</button>
+                            </div>
+                        ) : (
+                            <div onClick={() => setEditHomeworkTime(true)} className='add-new-file'>
+                                <button>Edit Homework Time</button>
+                            </div>
+                        )}
+
+
+
+                        <div className='upload-homework'>
+                            <h4 className='upload-homework-title-main'>Upload HomeWork</h4>
+                            <div className='upload-homework-container-box'>
+                                <div className='upload-homework-box'>
+
+                                    <div className='homework-question'>
+                                        <div className='upload-homework-container'>
+                                            <h3>Question:</h3>
+                                            <input value={question} onChange={(e) => setQuestion(e.target.value)} type="text" placeholder='Question...' />
+                                        </div>
+                                    </div>
+
+                                    <h4>All Options</h4>
+                                    <div className='homework-all-options'>
+                                        <div className='option'>
+                                            <p>Option-1</p>
+                                            <input value={option_1} onChange={(e) => setOption({ ...option, option_1: e.target.value })} type="text" />
+                                        </div>
+                                        <div className='option'>
+                                            <p>Option-2</p>
+                                            <input value={option_2} onChange={(e) => setOption({ ...option, option_2: e.target.value })} type="text" />
+                                        </div>
+                                        <div className='option'>
+                                            <p>Option-3</p>
+                                            <input value={option_3} onChange={(e) => setOption({ ...option, option_3: e.target.value })} type="text" />
+                                        </div>
+                                        <div className='option'>
+                                            <p>Option-4</p>
+                                            <input value={option_4} onChange={(e) => setOption({ ...option, option_4: e.target.value })} type="text" />
+                                        </div>
+                                    </div>
+
+                                    <div className='homework-options'>
+                                        <div className='upload-add-homework-title'>
+                                            <h4>Choose Correct Answer</h4>
+                                            <br />
+                                            <select onChange={(e) => setCorrectAnswer(e.target.value)} name='options'>
+                                                <option value="choose">Choose</option>
+                                                <option value={option_1}>Option-1</option>
+                                                <option value={option_2}>Option-2</option>
+                                                <option value={option_3}>Option-3</option>
+                                                <option value={option_4}>Option-4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div onClick={handleAddHomework} className='add-new-file'>
+                                        <button>Add Homework</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {/* EDIT CARD ======================================> */}
+                        {
+                            editCardHomework && (
+                                <div className='edit-confirmation-overlay'>
+                                    <div className='edit-confirmation-card'>
+                                        <div className='error-msg-homework'>
+                                            <p>{errorMsg}</p>
+                                        </div>
+                                        <div className='edit-homework'>
+                                            <h4 className='edit-homework-title-main'>Edit HomeWork</h4>
+                                            <div className='edit-homework-container-box'>
+                                                <div className='edit-homework-box'>
+
+                                                    <div className='edit-homework-question'>
+                                                        <div className='edit-homework-container'>
+                                                            <h3>Question:</h3>
+                                                            <input value={question} onChange={(e) => setQuestion(e.target.value)} type="text" placeholder='Question...' />
+                                                        </div>
+                                                    </div>
+
+                                                    <h4>All Options</h4>
+                                                    <div className='edit-homework-all-options'>
+                                                        <div className='edit-option'>
+                                                            <p>Option-1</p>
+                                                            <input value={option_1} onChange={(e) => setOption({ ...option, option_1: e.target.value })} type="text" />
+                                                        </div>
+                                                        <div className='edit-option'>
+                                                            <p>Option-2</p>
+                                                            <input value={option_2} onChange={(e) => setOption({ ...option, option_2: e.target.value })} type="text" />
+                                                        </div>
+                                                        <div className='edit-option'>
+                                                            <p>Option-3</p>
+                                                            <input value={option_3} onChange={(e) => setOption({ ...option, option_3: e.target.value })} type="text" />
+                                                        </div>
+                                                        <div className='edit-option'>
+                                                            <p>Option-4</p>
+                                                            <input value={option_4} onChange={(e) => setOption({ ...option, option_4: e.target.value })} type="text" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className='edit-homework-options'>
+                                                        <div className='edit-add-homework-title'>
+                                                            <h4>Choose Correct Answer</h4>
+                                                            <br />
+                                                            <select onChange={(e) => setCorrectAnswer(e.target.value)} name='options'>
+                                                                <option value="choose">Choose</option>
+                                                                <option value={option_1}>Option-1</option>
+                                                                <option value={option_2}>Option-2</option>
+                                                                <option value={option_3}>Option-3</option>
+                                                                <option value={option_4}>Option-4</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className='edit-homework-button'>
+                                                        <button onClick={handleEditHomeworkQuestion}>Edit Homework</button>
+                                                    </div>
+                                                    <div className='cancel-homework-button'>
+                                                        <button onClick={() => setEditCardHomework(false)}>Go back</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
 
 
                         {singleAdminLesson.homework.length !== 0 ? (
@@ -706,7 +994,13 @@ const SingleAdminLessonPage = () => {
                                             <p className='homework-correct-answer-title'>Correct Answer:</p>
                                             <p className='homework-correct-answer'>{homework.correctAnswer}</p>
                                         </div>
-                                        <button className='admin-edit-button'>Edit</button>
+                                        <button onClick={() => {
+                                            setGetIdOfHome(homework._id);
+                                            setQuestion('');
+                                            setOption({ option_1: '', option_2: '', option_3: '', option_4: '' });
+                                            setCorrectAnswer('');
+                                            setEditCardHomework(true);
+                                        }} className='admin-edit-button'>Edit</button>
                                         <button onClick={() => handleDeleteSingleQuestion(homework._id)} className='admin-edit-button-delete'>Delete</button>
                                     </div>
                                 )

@@ -132,6 +132,9 @@ export const AppProvider = ({ children }) => {
     // UPLOAD VIDEO ENG
     const [selectedFileEng, setSelectedFileEng] = useState(null);
 
+    // SEARCH USER VALUE
+    const [searchUserValue, setSearchUserValue] = useState("");
+
 
 
 
@@ -401,6 +404,9 @@ export const AppProvider = ({ children }) => {
 
         // ADMIN CHANGE COURSE
         changeAdminCourse, setChangeAdminCourse,
+
+        //  SEARCG USER VALUE
+        searchUserValue, setSearchUserValue,
 
         open,
         setOpen,

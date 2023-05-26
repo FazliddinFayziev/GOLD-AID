@@ -6,18 +6,22 @@ import "../../css/AdminCSS/users.css";
 import UserData from '../UserData';
 
 const Users = () => {
-    const { user, refreshAccessToken, isAccessTokenExpired, userInfo, setUserInfo } = useGlobalContext();
+    const { user, refreshAccessToken, isAccessTokenExpired, setUserInfo } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true);
+    const [refetch, setRefetch] = useState(false);
+    const [usersLimit, setUsersLimit] = useState({ lim: 10, skip: 0 })
+    const { lim, skip } = usersLimit
     const navigate = useNavigate();
+
 
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
         const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
 
-        const fetchDashboardInfo = async (token) => {
+        const fetchAllUsersInfo = async (token) => {
             try {
-                const res = await axios.get('admin/users/?lim=5&skip=0', {
+                const res = await axios.get(`admin/users/?lim=${lim}&skip=${skip}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -29,7 +33,7 @@ const Users = () => {
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                     const refreshedToken = await refreshAccessToken(); // refresh the token
-                    fetchDashboardInfo(refreshedToken); // try the request again with the new token
+                    fetchAllUsersInfo(refreshedToken); // try the request again with the new token
                 } else {
                     console.log(err);
                 }
@@ -42,16 +46,16 @@ const Users = () => {
                 if (!token) {
                     navigate('/register');
                 } else {
-                    await fetchDashboardInfo(token);
+                    await fetchAllUsersInfo(token);
                 }
             };
             fetch();
-        }, []);
+        }, [refetch]);
 
         useEffect(() => {
             const timer = setInterval(() => {
                 refreshAccessToken()
-                    .then((token) => fetchDashboardInfo(token))
+                    .then((token) => fetchAllUsersInfo(token))
                     .catch((err) => console.log(err));
             }, 3000000); // fetches new urls and tokens every 50 minutes
             return () => clearInterval(timer);
@@ -79,7 +83,7 @@ const Users = () => {
             <div className='user-title'>
                 Users
             </div>
-            <UserData isLoading={isLoading} />
+            <UserData setRefetch={setRefetch} isLoading={isLoading} setIsLoading={setIsLoading} refetch={refetch} setUsersLimit={setUsersLimit} />
         </div>
     )
 }

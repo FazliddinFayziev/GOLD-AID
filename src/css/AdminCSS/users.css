@@ -177,6 +177,40 @@
     margin-left: 5px;
 }
 
+.more-users-container {
+    display: flex;
+    justify-content: center;
+}
+
+.more-users {
+    width: 50px;
+    height: 50px;
+    background-color: #1D2032;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+}
+
+.no-users {
+    display: flex;
+    justify-content: center;
+}
+
+.no-user-icon {
+    display: flex;
+    justify-content: center;
+}
+
+.no-users p {
+    font-size: 30px;
+}
+
 /* SINGLE USER PAGE */
 .back-to-user-page {
     width: 50px;
