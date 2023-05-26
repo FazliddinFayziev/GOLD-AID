@@ -82,7 +82,7 @@ const SideBar = () => {
                     </li>
                     <li>
 
-                        <Link className="menu-link" to={'/admin/videos'}>
+                        <Link className="menu-link" to={'/admin/avatars'}>
                             <div onClick={handleClose} className="menu-link">
                                 <RxAvatar className="menu-icon" />
                                 Avatars

@@ -45,6 +45,12 @@ const SingleAdminLessonPage = () => {
     const { accessToken } = user
     const navigate = useNavigate();
 
+
+    // Set ShowCard false after 5 second
+    useEffect(() => {
+        setTimeout(() => setErrorMsg(''), 10000);
+    }, [errorMsg]);
+
     const useToken = () => {
 
         const { accessToken } = user;
@@ -595,6 +601,42 @@ const SingleAdminLessonPage = () => {
 
 
 
+    // DELETE ALL HOMEWORKS
+
+    const DeleteAllHomeworkQuestions = async (token) => {
+        setIsLoading(true);
+        try {
+            const res = await axios.delete(`/admin/homework/all/${lessonId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully Deleted ! ! !');
+            setIsLoading(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // Refresh the token
+                DeleteAllHomeworkQuestions(refreshedToken); // Try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err);
+                setIsLoading(false);
+            }
+        }
+    };
+
+    const handleDeleteAllHomeworks = () => {
+        DeleteAllHomeworkQuestions(accessToken);
+        setRefetch(!refetch)
+    }
+
+
+
+
+
+
+
 
 
 
@@ -1004,7 +1046,8 @@ const SingleAdminLessonPage = () => {
                                         <button onClick={() => handleDeleteSingleQuestion(homework._id)} className='admin-edit-button-delete'>Delete</button>
                                     </div>
                                 )
-                            })) : (
+                            })
+                        ) : (
                             <>
                                 <div className='no-homework-icon'>
                                     <div>
@@ -1015,6 +1058,10 @@ const SingleAdminLessonPage = () => {
                                     </div>
                                 </div>
                             </>
+                        )}
+                        <br />
+                        {singleAdminLesson.homework.length !== 0 && (
+                            <button onClick={handleDeleteAllHomeworks} className='admin-edit-button-delete'>Delete All</button>
                         )}
 
 
