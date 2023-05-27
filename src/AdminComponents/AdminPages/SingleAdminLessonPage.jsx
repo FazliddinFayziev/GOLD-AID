@@ -42,6 +42,9 @@ const SingleAdminLessonPage = () => {
     const [editCardHomework, setEditCardHomework] = useState(false);
     const [getIdOfHome, setGetIdOfHome] = useState('');
 
+
+    const [addVideoCard, setAddVideoCard] = useState(false);
+
     const { accessToken } = user
     const navigate = useNavigate();
 
@@ -781,7 +784,11 @@ const SingleAdminLessonPage = () => {
                             <h1 className='black'>Video</h1>
                         </div>
 
-                        <EditVideos />
+                        <div className='add-video-button'>
+                            <button onClick={() => setAddVideoCard(true)}>Add Video</button>
+                        </div>
+
+                        <EditVideos addVideoCard={addVideoCard} setAddVideoCard={setAddVideoCard} />
 
                     </div>
 

@@ -301,6 +301,245 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+.add-video-button {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.add-video-button button {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+
+.add-video-confirmation-overlay {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-video-confirmation-card {
+    background-color: #fff;
+    color: #000;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 850px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-video-confirmation-card h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.video-box-add-upload {
+    width: 800px;
+    height: 500px;
+}
+
+.add-video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    height: 320px;
+}
+
+.video-box-add-upload p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #007bff;
+}
+
+.add-video-upload-edit {
+    width: 500px;
+    height: 300px;
+    position: relative;
+}
+
+.check-video-before-add {
+    width: 400px;
+    height: 200px;
+}
+
+.check-video-before-add video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-label-edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    border: 2px dashed #ccc;
+    color: #666;
+    font-size: 18px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.upload-label-edit:hover {
+    border-color: #999;
+}
+
+.upload-label-edit i {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.upload-label-edit span {
+    font-weight: bold;
+}
+
+.upload-input-edit {
+    display: none;
+}
+
+.add-video-edit-select {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.video-box-add-upload button {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+
+.go-back-add-edit-video {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+    color: #fff;
+    background-color: #ff5656;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* EDIT FILES */
 
 .files-edit-container-box {
