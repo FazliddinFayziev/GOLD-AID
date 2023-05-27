@@ -59,13 +59,44 @@
     -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
 }
 
+.upload-quote {
+    display: flex;
+    justify-content: center;
+}
+
+.upload-quote button {
+    padding: 10px;
+    border: none;
+    background-color: #68a4ff;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.go-back-quote {
+    display: flex;
+    justify-content: center;
+}
+
+.go-back-quote button {
+    padding: 10px;
+    border: none;
+    background-color: #ff6868;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
 /* ALL QUOTES */
 
 .all-quotes-cards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     height: 50vh;
-    /* 3 columns */
     grid-gap: 20px;
     padding: 50px;
 }
@@ -98,8 +129,7 @@
     width: 100%;
     max-width: 400px;
     position: relative;
-    margin-left: 20px;
-    margin-top: 30px;
+    margin: 30px auto;
     z-index: 1;
 }
 
@@ -109,9 +139,7 @@
     left: 2%;
     z-index: 2;
     width: 100%;
-    /* Set width to 100% */
     padding-bottom: 50%;
-    /* Maintain aspect ratio */
     background-color: #414351;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
@@ -164,10 +192,9 @@
     align-items: center;
     z-index: 3;
     width: 100%;
-    /* Set width to 100% */
     height: 100%;
-    /* Set height to 100% */
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 500;
     background-color: #1619287d;
     margin-top: -52%;
     padding: 20px;
@@ -176,4 +203,107 @@
     box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
     -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
     -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+.all-quotes-short {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #1619287d;
+    margin-top: -52%;
+    padding: 20px;
+    color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.75);
+}
+
+/* DELETE QUOTE */
+.delete-quote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 4;
+    background-color: rgba(255, 0, 0, 0.315);
+    top: 85%;
+    left: 20%;
+}
+
+.edit-quote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 4;
+    background-color: rgba(0, 60, 255, 0.315);
+    top: 85%;
+    left: 5%;
+}
+
+.delete-quote-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.delete-quote-card {
+    background-color: #fff;
+    color: #000;
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.delete-quote-card h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.quote-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.quote-delete-button,
+.cancel-quote-delete-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.quote-delete-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+}
+
+.cancel-quote-delete-button {
+    background-color: #f1f1f1;
+    color: #333;
+    border: none;
 }

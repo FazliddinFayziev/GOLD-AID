@@ -6,11 +6,15 @@ import { useNavigate } from 'react-router-dom';
 
 const AdminAvatars = () => {
     const { refreshAccessToken, user, isAccessTokenExpired } = useGlobalContext();
-    const [isLoading, setIsLoading] = useState(false);
-    const [avatars, setAvatars] = useState([]);
+    const { accessToken } = user;
+    const [isLoading, setIsLoading] = useState(true);
+    const [errorMsg, setErrorMsg] = useState('');
     const [selectedAvatar, setSelectedAvatar] = useState(null);
     const [preview, setPreview] = useState(null);
     const [avatar, setAvatar] = useState([]);
+    const [refetch, setRefetch] = useState(false);
+    const [getIdOfAvatar, setGetIdOfAvatar] = useState('');
+    const [showCard, setShowCard] = useState(false);
     const navigate = useNavigate();
 
     const handleFileChange = (e) => {
@@ -19,23 +23,81 @@ const AdminAvatars = () => {
         setPreview(URL.createObjectURL(file));
     };
 
-    const handleAddAvatar = () => {
-        if (selectedAvatar) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                setAvatars([...avatars, event.target.result]);
-                setSelectedAvatar(null);
-                setPreview(null);
-            };
-            reader.readAsDataURL(selectedAvatar);
+
+    // UPLOAD AVATARS
+    const UploadAvatar = async (token) => {
+        setIsLoading(true);
+        try {
+            const formData = new FormData();
+            formData.append('image', selectedAvatar);
+            const res = await axios.post(`/admin/images/avatars`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully uploaded ! ! !');
+            setSelectedAvatar(null);
+            setPreview(null);
+            setIsLoading(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                UploadAvatar(refreshedToken); // try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err);
+                setIsLoading(false);
+            }
         }
     };
 
-    const handleDeleteAvatar = (index) => {
-        const updatedAvatars = [...avatars];
-        updatedAvatars.splice(index, 1);
-        setAvatars(updatedAvatars);
+    const handleAddAvatar = () => {
+        UploadAvatar(accessToken);
+        setRefetch(!refetch);
     };
+
+
+
+
+    // DELETE AVATAR
+
+    const DeleteAvatar = async (token) => {
+        setIsLoading(true);
+        try {
+            const res = await axios.delete(`/admin/images/avatars/${getIdOfAvatar}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully Deleted ! ! !');
+            setIsLoading(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                DeleteAvatar(refreshedToken); // try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err);
+                setIsLoading(false);
+            }
+        }
+    };
+
+    const handleDeleteAvatar = () => {
+        setShowCard(false);
+        DeleteAvatar(accessToken);
+        setRefetch(!refetch);
+    };
+
+
+
+
+
+
+    // GET AVATARS
 
 
     const useToken = () => {
@@ -75,7 +137,7 @@ const AdminAvatars = () => {
                 }
             };
             fetch();
-        }, []);
+        }, [refetch]);
 
         useEffect(() => {
             const fetch = async () => {
@@ -110,7 +172,7 @@ const AdminAvatars = () => {
         return accessToken;
     };
 
-    const accessToken = useToken();
+    const getAccess = useToken();
 
     return (
         <div className="avatars-page">
@@ -125,20 +187,50 @@ const AdminAvatars = () => {
                     Add Avatar
                 </button>
             </div>
-            <div className="avatar-list">
-                {avatar?.map((mainAvatar, index) => (
+
+
+            {/* SHOW DELETE CONFIRMATION CARD */}
+            {showCard && (
+                <div className='delete-confirmation-overlay'>
+                    <div className='delete-confirmation-card'>
+                        <h3>Are you sure you want to delete this Avatar?</h3>
+                        <div className='confirmation-buttons'>
+                            <button className='confirm-delete-button' onClick={handleDeleteAvatar}>Yes</button>
+                            <button className='cancel-delete-button' onClick={() => setShowCard(false)}>No</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
+            {
+                isLoading ? (
+                    <div className='loading-users'>
+                        <div className="loading-circle-user"></div>
+                    </div>
+                ) : (
                     <>
-                        <div className="avatar-item" key={index}>
-                            <div className='avatar-image'>
-                                <img src={mainAvatar.url} alt={`Avatar ${index + 1}`} />
-                            </div>
-                            <div className="avatar-actions">
-                                <button className='delete-avatar' onClick={() => handleDeleteAvatar(index)}>Delete</button>
-                            </div>
+                        <div className={errorMsg === 'Successfully uploaded ! ! !' ? 'add-lesson-add-error-green' : 'add-lesson-add-error'}>
+                            {errorMsg}
+                        </div>
+                        <div className="avatar-list">
+                            {avatar?.map((mainAvatar, index) => (
+                                <div className="avatar-item" key={index}>
+                                    <div className='avatar-image'>
+                                        <img src={mainAvatar.url} alt={`Avatar ${index + 1}`} />
+                                    </div>
+                                    <div className="avatar-actions">
+                                        <button onClick={() => {
+                                            setGetIdOfAvatar(mainAvatar.id);
+                                            setShowCard(true)
+                                        }} className='delete-avatar'>Delete</button>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </>
-                ))}
-            </div>
+                )
+            }
         </div>
     );
 };

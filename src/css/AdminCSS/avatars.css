@@ -125,17 +125,6 @@
     margin-top: 10px;
 }
 
-.avatar-actions .edit-avatar {
-    padding: 8px 16px;
-    margin: 5px;
-    background-color: #2196f3;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 .delete-avatar {
     background-color: #d21919;
     padding: 8px 16px;
