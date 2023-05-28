@@ -57,8 +57,9 @@ const LessonsPage = () => {
                     fetchLessons(refreshedToken); // try the request again with the new token
                 } else if (err.response.status === 403) {
                     navigate('/notallowed')
-                }
-                else {
+                } else if (err.response.status === 404) {
+                    navigate('/error'); // Navigate to the error page for invalid level
+                } else {
                     console.log(err);
                 }
             }

@@ -60,15 +60,21 @@ const Home = () => {
         };
 
         useEffect(() => {
-            const fetch = async () => {
-                const token = await refreshAccessToken();
-                if (!token) {
-                    navigate('/register');
-                } else {
-                    await fetchCourses(token);
-                }
-            };
-            fetch();
+            if (!refreshToken) {
+                navigate('/register');
+            } else if (!accessToken) {
+                const fetchToken = async () => {
+                    const token = await refreshAccessToken();
+                    if (!token) {
+                        navigate('/register');
+                    } else {
+                        await fetchCourses(token);
+                    }
+                };
+                fetchToken();
+            } else if (isAccessTokenExpired()) {
+                navigate('/login');
+            }
         }, []);
 
         useEffect(() => {

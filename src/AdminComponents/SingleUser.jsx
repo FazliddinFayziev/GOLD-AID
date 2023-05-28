@@ -154,8 +154,8 @@ const SingleUser = () => {
                                     <div className="term">canComment</div>
                                     <div className="desc">{canComment ? "true" : "false"} {
                                         refetchUserInfo ?
-                                            <button onClick={handleCanComment} className='unblock-user'><AiFillUnlock /></button>
-                                            : <button onClick={handleCanComment} className='block-user'><AiFillLock /></button>
+                                            <button onClick={handleCanComment} className='block-user'><AiFillLock /></button>
+                                            : <button onClick={handleCanComment} className='unblock-user'><AiFillUnlock /></button>
                                     }</div>
 
                                     <div className="term">course</div>
