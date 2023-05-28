@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context/context';
 import axios from '../api/axios';
 import { useParams } from 'react-router-dom';
 
-const EditVideos = ({ addVideoCard, setAddVideoCard }) => {
+const EditVideos = ({ addVideoCard, setAddVideoCard, refetch, setRefetch, deleteCard, setDeleteCard }) => {
     const { refreshAccessToken, user } = useGlobalContext();
     const { lessonId } = useParams();
     const { accessToken } = user;
@@ -14,9 +14,16 @@ const EditVideos = ({ addVideoCard, setAddVideoCard }) => {
     const [language, setLanguage] = useState('');
 
 
+    const [deleteLoading, setDeleteLoading] = useState(false);
+    const [deleteMsg, setDeleteMsg] = useState('');
+
+
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewVideo, setPreviewVideo] = useState(null);
     const [uploaded, setUploaded] = useState(false);
+    const [loadingUpload, setLoadingUpload] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+    const [uploadProgress, setUploadProgress] = useState(0);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -48,7 +55,6 @@ const EditVideos = ({ addVideoCard, setAddVideoCard }) => {
 
     // ADDING NEW VIDEO
     const PostVideo = async (token) => {
-        // setIsLoading(true)
         try {
             const formData = new FormData();
             formData.append('video', selectedFile);
@@ -58,25 +64,104 @@ const EditVideos = ({ addVideoCard, setAddVideoCard }) => {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
                 },
+                onUploadProgress: (progressEvent) => {
+                    const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+                    setUploadProgress(progress);
+                },
             });
             console.log(res.data);
-            // setErrorMsg('Successfully uploaded ! ! !');
-            // setIsLoading(false);
+            setErrorMsg('Successfully uploaded ! ! !');
+            setRefetch(!refetch)
+            setLoadingUpload(false);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // refresh the token
                 PostVideo(refreshedToken); // try the request again with the new token
             } else {
                 console.log(err.response.data.err);
-                // setErrorMsg(err.response.data.err)
-                // setIsLoading(false)
+                setErrorMsg(err.response.data.err)
+                setLoadingUpload(false)
             }
         }
     };
 
     const handlePostVideo = () => {
+        setLoadingUpload(true)
         PostVideo(accessToken)
     }
+
+
+
+
+    // EDIT VIDEO
+    const EditVideo = async (token) => {
+        try {
+            const formData = new FormData();
+            formData.append('video', selectedFile);
+            const res = await axios.patch(`/admin/lessons/lesson/edit/video/?lessonId=${lessonId}&language=${language}`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+                onUploadProgress: (progressEvent) => {
+                    const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+                    setUploadProgress(progress);
+                },
+            });
+            console.log(res.data);
+            setErrorMsg('Successfully Edited ! ! !');
+            setRefetch(!refetch)
+            setLoadingUpload(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                EditVideo(refreshedToken); // try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setErrorMsg(err.response.data.err)
+                setLoadingUpload(false)
+            }
+        }
+    };
+
+    const handleEditVideo = () => {
+        setLoadingUpload(true)
+        EditVideo(accessToken)
+    }
+
+
+
+    // DELETE VIDEO
+    const DeleteVideo = async (token) => {
+        try {
+            const res = await axios.delete(`admin/lessons/lesson/edit/video/?lessonId=${lessonId}&language=${language}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(res.data);
+            setDeleteMsg('Successfully Deleted ! ! !');
+            setRefetch(!refetch)
+            setDeleteLoading(false);
+        } catch (err) {
+            if (err.response.status === 400 && err.response.data.message === 'token is expired') {
+                const refreshedToken = await refreshAccessToken(); // refresh the token
+                DeleteVideo(refreshedToken); // try the request again with the new token
+            } else {
+                console.log(err.response.data.err);
+                setDeleteMsg(err.response.data.err)
+                setDeleteLoading(false)
+            }
+        }
+    };
+
+    const handleDeleteVideo = () => {
+        setDeleteLoading(true)
+        DeleteVideo(accessToken)
+    }
+
+
+
 
     return (
         <>
@@ -88,42 +173,103 @@ const EditVideos = ({ addVideoCard, setAddVideoCard }) => {
                 <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
             </div>
 
-            {/* SHOX ADD CARD */}
+            {/* SHOw ADD CARD */}
             {addVideoCard && (
                 <div className='add-video-confirmation-overlay'>
                     <div className='add-video-confirmation-card'>
-                        <div className='video-box-add-upload'>
-                            <p>Add New Video</p>
-                            <div className='add-video-container'>
-                                <div className='add-video-upload-edit'>
-                                    <label htmlFor="video-upload-edit" className="upload-label-edit">
-                                        {!uploaded ? (
-                                            <>
-                                                <AiOutlineVideoCameraAdd />
-                                                <span>Upload Video</span>
-                                            </>
-                                        ) : (
-                                            <div className='check-video-before-add'>
-                                                <video src={previewVideo} alt="selected-file" controls={true} />
-                                            </div>
-                                        )}
-                                    </label>
-                                    <input type="file" id="video-upload-edit" onChange={handleFileChange} className="upload-input-edit" accept="video/*" />
-                                </div>
+                        {loadingUpload ? (
+                            <div className='video-box-add-upload'>
+                                {uploadProgress < 100 ? (
+                                    <div className='upload-progress'>
+                                        <div className='progress-bar-add-video'>
+                                            <div className='fill' style={{ width: `${uploadProgress}%` }}></div>
+                                        </div>
+                                        <div className='progress-text-add-video'>{uploadProgress}%</div>
+                                    </div>
+                                ) : (
+                                    <div className='loading-add-video-edit'>
+                                        <div className='loading-circle-user'></div>
+                                    </div>
+                                )}
                             </div>
-                            <select onChange={(e) => setLanguage(e.target.value)} className='add-video-edit-select'>
-                                <option value="choose">Language</option>
-                                <option value="uzbek">Uzbek</option>
-                                <option value="russian">Russian</option>
-                                <option value="english">English</option>
-                            </select>
-                            <button onClick={handlePostVideo}>Upload video</button>
-                        </div>
-                        <button onClick={() => setAddVideoCard(false)} className='go-back-add-edit-video'>Go Back</button>
+                        ) : (
+                            <div>
+                                <div className='video-box-add-upload'>
+                                    <p className={errorMsg === "Successfully uploaded ! ! !" ? "error-msg-add-video-green" : 'error-msg-add-video'}>{errorMsg}</p>
+                                    <p className='add-video-title'>Add New Video</p>
+                                    <div className='add-video-container'>
+                                        <div className='add-video-upload-edit'>
+                                            <label htmlFor="video-upload-edit" className="upload-label-edit">
+                                                {!uploaded ? (
+                                                    <>
+                                                        <AiOutlineVideoCameraAdd />
+                                                        <span>Upload Video</span>
+                                                    </>
+                                                ) : (
+                                                    <div className='check-video-before-add'>
+                                                        <video src={previewVideo} alt="selected-file" controls={true} />
+                                                    </div>
+                                                )}
+                                            </label>
+                                            <input type="file" id="video-upload-edit" onChange={handleFileChange} className="upload-input-edit" accept="video/*" />
+                                        </div>
+                                    </div>
+                                    <select onChange={(e) => setLanguage(e.target.value)} className='add-video-edit-select'>
+                                        <option value="choose">Language</option>
+                                        <option value="uzbek">Uzbek</option>
+                                        <option value="russian">Russian</option>
+                                        <option value="english">English</option>
+                                    </select>
+                                    <button onClick={handlePostVideo}>Upload video</button>
+                                    <button onClick={handleEditVideo}>Edit video</button>
+                                </div>
+                                <button onClick={() => setAddVideoCard(false)} className='go-back-add-edit-video'>Go Back</button>
+                                <button onClick={() => {
+                                    setErrorMsg('');
+                                    setLanguage('');
+                                    setUploaded(false);
+                                    setSelectedFile(null);
+                                    setPreviewVideo(null)
+                                }} className='go-back-add-edit-video-blue'>Clean All</button>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}
 
+
+
+            {/* DELETE CONFIRMATION CARD */}
+            {
+                deleteCard && (
+                    <div className='add-video-confirmation-overlay'>
+                        <div className='add-video-confirmation-card'>
+                            <p className='add-video-title'>Choose Language and Delete Video</p>
+                            <p className={errorMsg === "Successfully uploaded ! ! !" ? "error-msg-add-video-green" : 'error-msg-add-video'}>{deleteMsg}</p>
+                            {deleteLoading ? (
+                                <div style={{ marginTop: "20px" }} className='loading-add-video-edit'>
+                                    <div className='loading-circle-user'></div>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className='deleteVideo'>
+                                        <div className='delete-select-video'>
+                                            <select onChange={(e) => setLanguage(e.target.value)} className='add-video-edit-select'>
+                                                <option value="choose">Language</option>
+                                                <option value="uzbek">Uzbek</option>
+                                                <option value="russian">Russian</option>
+                                                <option value="english">English</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button onClick={handleDeleteVideo} className='go-back-add-edit-video'>Delete</button>
+                                    <button onClick={() => setDeleteCard(false)} className='go-back-add-edit-video-blue'>Cancel</button>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                )
+            }
 
 
             <div className='edit-upload-video'>

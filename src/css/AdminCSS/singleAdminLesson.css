@@ -308,10 +308,34 @@
 
 
 
+.progress-bar-add-video {
+    width: 100%;
+    height: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar-add-video .fill {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.3s;
+}
+
+.progress-text-add-video {
+    margin-top: 5px;
+}
 
 
+.error-msg-add-video {
+    font-size: 15px;
+    color: rgb(255, 0, 0);
+}
 
-
+.error-msg-add-video-green {
+    font-size: 15px;
+    color: rgb(4, 255, 0);
+}
 
 .add-video-button {
     display: flex;
@@ -324,6 +348,22 @@
     height: 50px;
     padding: 10px;
     background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-video-button {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+.delete-video-button button {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    background-color: #ff0000;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -371,7 +411,7 @@
     height: 320px;
 }
 
-.video-box-add-upload p {
+.add-video-title {
     font-size: 18px;
     font-weight: 600;
     color: #007bff;
@@ -460,8 +500,37 @@
     cursor: pointer;
 }
 
+.go-back-add-edit-video-blue {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+    color: #fff;
+    background-color: #56b3ff;
+    border: none;
+    cursor: pointer;
+}
 
 
+
+
+
+/* DELETE VIDEO */
+
+.deleteVideo {
+    width: 400px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.delete-select-video {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 

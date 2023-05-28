@@ -41,6 +41,7 @@ const SingleAdminLessonPage = () => {
     const [homeTime, setHomeTime] = useState('');
     const [editCardHomework, setEditCardHomework] = useState(false);
     const [getIdOfHome, setGetIdOfHome] = useState('');
+    const [deleteCard, setDeleteCard] = useState(false);
 
 
     const [addVideoCard, setAddVideoCard] = useState(false);
@@ -785,10 +786,14 @@ const SingleAdminLessonPage = () => {
                         </div>
 
                         <div className='add-video-button'>
-                            <button onClick={() => setAddVideoCard(true)}>Add Video</button>
+                            <button onClick={() => setAddVideoCard(true)}>Add / Edit Video</button>
                         </div>
 
-                        <EditVideos addVideoCard={addVideoCard} setAddVideoCard={setAddVideoCard} />
+                        <div className='delete-video-button'>
+                            <button onClick={() => setDeleteCard(true)}>Delete Video</button>
+                        </div>
+
+                        <EditVideos addVideoCard={addVideoCard} setAddVideoCard={setAddVideoCard} refetch={refetch} setRefetch={setRefetch} deleteCard={deleteCard} setDeleteCard={setDeleteCard} />
 
                     </div>
 
@@ -849,7 +854,7 @@ const SingleAdminLessonPage = () => {
                                             <div className='icon-center'>
                                                 <GiArchiveResearch fontSize={30} />
                                             </div>
-                                            <p>There is no Files</p>
+                                            <p>There are no Files</p>
                                         </div>
                                     </div>
                                 </>
