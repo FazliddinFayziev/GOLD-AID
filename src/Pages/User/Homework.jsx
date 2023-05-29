@@ -1,12 +1,21 @@
+import axios from '../../api/axios';
 import React, { useEffect, useState } from 'react'
-import { Footer, HomeWorkTest, Loading, NotHomework, SmallNavbar } from '../../Components';
 import { useGlobalContext } from '../../context/context';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from '../../api/axios';
+import { Footer, HomeWorkTest, Loading, NotHomework, SmallNavbar } from '../../Components';
 
 
 const Homework = () => {
-    const { bgColor, user, refreshAccessToken, isAccessTokenExpired, homeworkArray, setHomeworkArray, lessonsHomeWorkTimeLeft, setLessonsHomeWorkTimeLeft } = useGlobalContext();
+    const {
+        bgColor,
+        user,
+        refreshAccessToken,
+        isAccessTokenExpired,
+        homeworkArray,
+        setHomeworkArray,
+        lessonsHomeWorkTimeLeft,
+        setLessonsHomeWorkTimeLeft
+    } = useGlobalContext();
 
     const { lessonId } = useParams();
     const navigate = useNavigate();

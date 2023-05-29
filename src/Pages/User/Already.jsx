@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { ImHappy2 } from "react-icons/im";
 import { runFireworks } from '../../assets/utils';
+import { Link, useParams } from 'react-router-dom';
 
 const Already = () => {
     const { level } = useParams();

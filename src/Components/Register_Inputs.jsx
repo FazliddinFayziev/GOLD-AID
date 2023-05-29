@@ -106,12 +106,20 @@ const Register_Inputs = () => {
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
-            if (name !== "" && age !== "" && gender !== "" && isEmail && strong && strongCon) {
-                setIsRegister(true)
-                console.log(response.data.isRegistered)
-                navigate("/warning")
+            if (name === "" && age === "" && gender === "" && !isEmail && !strong && !strongCon && confirmInputValue === "" && password === "") {
                 setRegisterLoading(false)
+                setShowCard(true)
+                setErrMsg(eng ? "Please fill all inputs right" : ru ? "Пожалуйста, заполните все поля правильно" : "Iltimos, barcha maʼlumotlarni toʻgʻri toʻldiring");
+            } else if (name.length < 3) {
+                setRegisterLoading(false)
+                setShowCard(true)
+                setErrMsg(eng ? "Name should include at least 3 characters" : ru ? "Имя должно содержать не менее 3 символов" : "Nom kamida 3 ta belgidan iborat boʻlishi kerak");
             }
+            setIsRegister(true)
+            console.log(response.data.isRegistered)
+            navigate("/warning")
+            setRegisterLoading(false)
+
         } catch (err) {
             if (!err?.response) {
                 setRegisterLoading(false)
@@ -121,7 +129,7 @@ const Register_Inputs = () => {
                 setRegisterLoading(false)
                 setShowCard(true)
                 setErrMsg(eng ? 'Not found' : ru ? "Не найдено" : "Topilmadi");
-            } else if (err.response?.status === 400 && !name && !age && !gender && !isEmail && !strong && !strongCon) {
+            } else if (err.response?.status === 400 && !name || !age || !gender || !isEmail || !strong || !strongCon || !confirmInputValue || !password) {
                 setRegisterLoading(false)
                 setShowCard(true)
                 setErrMsg(eng ? "Please fill all inputs right" : ru ? "Пожалуйста, заполните все поля правильно" : "Iltimos, barcha maʼlumotlarni toʻgʻri toʻldiring");

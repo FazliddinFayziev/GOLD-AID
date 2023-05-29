@@ -1,10 +1,10 @@
+import axios from '../../api/axios';
+import '../../css/HomeCSS/home.css';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Courses, Footer, HerroBanner, Loading, Navbar } from '../../Components';
 import { useGlobalContext } from '../../context/context';
-import '../../css/HomeCSS/home.css';
-import axios from '../../api/axios';
 import { level_default, level_default_ielts } from '../../assets';
+import { Courses, Footer, HerroBanner, Loading, Navbar } from '../../Components';
 
 const Home = () => {
     const { bgColor, user, setUser, isAccessTokenExpired, refreshAccessToken, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile, userProfilePicture, setUserProfilePicture } = useGlobalContext();

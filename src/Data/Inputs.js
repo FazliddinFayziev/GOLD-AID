@@ -122,19 +122,14 @@ export const EmailCheck = (email, setIsEmail) => {
 
 // check Password
 export const checkPassword = (password, setCheckStrong) => {
-    let lowerCaseLetters = /[A-za-z]/g;
-    if (password.match(lowerCaseLetters)) {
+    if (password.length >= 1 && password.length <= 2) {
         setCheckStrong({ weak: true, good: false, strong: false })
-    } else {
-        setCheckStrong({ weak: false, good: false, strong: false })
-    }
-    let numbers = /[0-9]/g;
-    let signs = /[@$#%&*]/g;
-    if (password.match(numbers) && password.match(signs) && password.match(lowerCaseLetters)) {
-        setCheckStrong({ weak: false, good: true, strong: false })
-    }
-    if (password.length >= 6 && password.length <= 12 && password.match(numbers) && password.match(signs) && password.match(lowerCaseLetters)) {
+    } else if (password.length >= 3 && password.length <= 5) {
+        setCheckStrong({ weak: false, good: true, strong: true })
+    } else if (password.length >= 6 && password.length <= 12) {
         setCheckStrong({ weak: false, good: false, strong: true })
+    } else {
+        setCheckStrong({ weak: true, good: false, strong: false })
     }
 }
 
@@ -142,19 +137,14 @@ export const checkPassword = (password, setCheckStrong) => {
 
 // check confirm Password
 export const checkConfirmPassword = (confirmInputValue, setCheckStrongConfirm, password) => {
-    let lowerCaseLetters = /[A-za-z]/g;
-    if (confirmInputValue.match(lowerCaseLetters)) {
+    if (confirmInputValue.length >= 1 && confirmInputValue.length <= 2) {
         setCheckStrongConfirm({ weakCon: true, goodCon: false, strongCon: false })
-    } else {
-        setCheckStrongConfirm({ weakCon: false, goodCon: false, strongCon: false })
-    }
-    let numbers = /[0-9]/g;
-    let signs = /[@$#%&*]/g;
-    if (confirmInputValue.match(numbers) && confirmInputValue.match(signs) && confirmInputValue.match(lowerCaseLetters)) {
+    } else if (confirmInputValue.length >= 3 && confirmInputValue.length <= 5) {
         setCheckStrongConfirm({ weakCon: false, goodCon: true, strongCon: false })
-    }
-    if (confirmInputValue === password && confirmInputValue.length >= 6 && confirmInputValue.length <= 12 && confirmInputValue.match(numbers) && confirmInputValue.match(signs) && confirmInputValue.match(lowerCaseLetters)) {
+    } else if (confirmInputValue === password && confirmInputValue.length >= 6 && confirmInputValue.length <= 12) {
         setCheckStrongConfirm({ weakCon: false, goodCon: false, strongCon: true })
+    } else {
+        setCheckStrongConfirm({ weakCon: true, goodCon: false, strongCon: false })
     }
 }
 

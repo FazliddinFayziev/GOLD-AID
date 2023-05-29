@@ -152,9 +152,6 @@ const EditUser = () => {
                     <h1>Email:</h1>
                     <h2>{email}</h2>
                 </div>
-                <div className='profile-name-btn'>
-                    <button type='button'>Edit</button>
-                </div>
             </div>
             <div>
                 <div className='profile-name'>
