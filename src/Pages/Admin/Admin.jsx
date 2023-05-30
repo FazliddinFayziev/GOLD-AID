@@ -9,7 +9,7 @@ import { Loading } from '../../Components';
 
 
 const Admin = () => {
-    const { dashboardElement, user, refreshAccessToken, isAccessTokenExpired, adminUser, setAdminUser, getDashInfo, setGetDashInfo } = useGlobalContext();
+    const { dashboardElement, user, refreshAccessToken, isRefreshTokenExpired, adminUser, setAdminUser, getDashInfo, setGetDashInfo } = useGlobalContext();
 
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
@@ -21,6 +21,7 @@ const Admin = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
         const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
         const fetchDashboardInfo = async (token) => {
             try {
@@ -68,10 +69,10 @@ const Admin = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

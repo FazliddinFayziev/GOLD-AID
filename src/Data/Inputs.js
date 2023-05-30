@@ -5,26 +5,14 @@ const Inputs = (eng, ru) => {
     const PasswordText = (eng ? (
         <p className='password-text'>
             • Has at least 6 characters and 12 maximum.
-            <br />
-            • Include capital or lower letters.
-            <br />
-            • Include numbers (0-9) and symbols ( @$#%&* )
         </p>
     ) : ru ? (
         <p className='password-text'>
             • Имеет не менее 6 символов и не более 12.
-            <br />
-            • используйте заглавные или строчные буквы (A-z/a-z).
-            <br />
-            • используйте цифры (0-9) и символы ( @$#%&* )
         </p>
     ) : (
         <p className='password-text'>
             • Kamida 6 ta belgi va maksimal 12 ta belgidan foydalaning.
-            <br />
-            • bosh yoki kichik harflardan foydalaning (A-z/a-z).
-            <br />
-            • raqamlar (0-9) va belgilardan foydalaning ( @$#%&* )
         </p>
     ))
     const ConfirmPasswordText = (eng ? (
@@ -128,8 +116,10 @@ export const checkPassword = (password, setCheckStrong) => {
         setCheckStrong({ weak: false, good: true, strong: true })
     } else if (password.length >= 6 && password.length <= 12) {
         setCheckStrong({ weak: false, good: false, strong: true })
-    } else {
+    } else if (password.length > 12) {
         setCheckStrong({ weak: true, good: false, strong: false })
+    } else {
+        setCheckStrong({ weak: false, good: false, strong: false })
     }
 }
 
@@ -143,8 +133,10 @@ export const checkConfirmPassword = (confirmInputValue, setCheckStrongConfirm, p
         setCheckStrongConfirm({ weakCon: false, goodCon: true, strongCon: false })
     } else if (confirmInputValue === password && confirmInputValue.length >= 6 && confirmInputValue.length <= 12) {
         setCheckStrongConfirm({ weakCon: false, goodCon: false, strongCon: true })
-    } else {
+    } else if (confirmInputValue !== password || confirmInputValue.length > 12) {
         setCheckStrongConfirm({ weakCon: true, goodCon: false, strongCon: false })
+    } else {
+        setCheckStrongConfirm({ weakCon: false, goodCon: false, strongCon: false })
     }
 }
 

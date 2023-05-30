@@ -5,7 +5,7 @@ import axios from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
 
 const AdminAvatars = () => {
-    const { refreshAccessToken, user, isAccessTokenExpired } = useGlobalContext();
+    const { refreshAccessToken, user, isRefreshTokenExpired } = useGlobalContext();
     const { accessToken } = user;
     const [isLoading, setIsLoading] = useState(true);
     const [errorMsg, setErrorMsg] = useState('');
@@ -105,6 +105,8 @@ const AdminAvatars = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
         const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
+
 
         const fetchAllAvatars = async (token) => {
             try {
@@ -161,10 +163,10 @@ const AdminAvatars = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

@@ -16,6 +16,10 @@ const ProfileBanner = () => {
         return navigate('/login')
     }
 
+    const handleBack = () => {
+        navigate('/')
+    }
+
 
     return (
         <>
@@ -25,9 +29,9 @@ const ProfileBanner = () => {
 
                     <div className="profile-banner-cover">
 
-                        <Link to={'/'}>
+                        <div style={{ cursor: 'pointer' }} onClick={handleBack}>
                             <img src={logo} alt="Logo" className="profile-banner-logo" />
-                        </Link>
+                        </div>
 
                         {/* LogOut Button */}
 

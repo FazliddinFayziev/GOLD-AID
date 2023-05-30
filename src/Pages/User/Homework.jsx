@@ -6,26 +6,31 @@ import { Footer, HomeWorkTest, Loading, NotHomework, SmallNavbar } from '../../C
 
 
 const Homework = () => {
+
+    // GLOBAL
     const {
-        bgColor,
         user,
-        refreshAccessToken,
-        isAccessTokenExpired,
+        bgColor,
         homeworkArray,
         setHomeworkArray,
+        refreshAccessToken,
+        isRefreshTokenExpired,
         lessonsHomeWorkTimeLeft,
         setLessonsHomeWorkTimeLeft
     } = useGlobalContext();
 
-    const { lessonId } = useParams();
     const navigate = useNavigate();
+    const { lessonId } = useParams();
+
+    // LOCAL
     const [isLoading, setIsLoading] = useState(true);
 
 
+    // FETCHING DATA (GET METHOD)
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
         const fetchHomeWork = async (token) => {
             try {
@@ -71,10 +76,10 @@ const Homework = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

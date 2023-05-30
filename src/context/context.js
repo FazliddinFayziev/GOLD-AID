@@ -233,11 +233,11 @@ export const AppProvider = ({ children }) => {
 
 
     // IS ACCESS TOKEN EXPERED
-    const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+    const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
-    const isAccessTokenExpired = () => {
+    const isRefreshTokenExpired = () => {
         const currentTime = new Date().getTime();
-        return currentTime > accessTokenExpireTime;
+        return currentTime > refreshTokenExpireTime;
     };
 
 
@@ -311,8 +311,8 @@ export const AppProvider = ({ children }) => {
         // Access Token
         refreshAccessToken,
 
-        // Is access Token Expired
-        isAccessTokenExpired,
+        // Is refresh Token Expired
+        isRefreshTokenExpired,
 
         // Verify Email Message
         msg,

@@ -17,7 +17,7 @@ import { GiArchiveResearch } from "react-icons/gi";
 const SingleAdminLessonPage = () => {
 
     const { courseName, lessonId } = useParams();
-    const { refreshAccessToken, isAccessTokenExpired, user, singleAdminLesson, setSingleAdminLesson, changeAdminCourse, setChangeAdminCourse } = useGlobalContext();
+    const { refreshAccessToken, isRefreshTokenExpired, user, singleAdminLesson, setSingleAdminLesson, changeAdminCourse, setChangeAdminCourse } = useGlobalContext();
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [refetch, setRefetch] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -59,7 +59,8 @@ const SingleAdminLessonPage = () => {
 
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
+
         const navigate = useNavigate();
 
         const fetchLessons = async (token) => {
@@ -117,10 +118,10 @@ const SingleAdminLessonPage = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

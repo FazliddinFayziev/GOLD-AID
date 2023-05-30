@@ -7,14 +7,34 @@ import { level_default, level_default_ielts } from '../../assets';
 import { Courses, Footer, HerroBanner, Loading, Navbar } from '../../Components';
 
 const Home = () => {
-    const { bgColor, user, setUser, isAccessTokenExpired, refreshAccessToken, isLoading, setIsLoading, courses, setCourses, userProfile, setUserProfile, userProfilePicture, setUserProfilePicture } = useGlobalContext();
+
+    // GLOBAL
+    const {
+        user,
+        bgColor,
+        setUser,
+        courses,
+        isLoading,
+        setCourses,
+        userProfile,
+        setIsLoading,
+        setUserProfile,
+        userProfilePicture,
+        refreshAccessToken,
+        isRefreshTokenExpired,
+        setUserProfilePicture
+    } = useGlobalContext();
+
     const navigate = useNavigate();
+
+    // LOCAL STORAGE
     const refreshToken = localStorage.getItem('refreshToken');
 
+    // FETCHING THE DATA (GET METHOD)
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
         const fetchCourses = async (token) => {
             try {
@@ -72,7 +92,7 @@ const Home = () => {
                     }
                 };
                 fetchToken();
-            } else if (isAccessTokenExpired()) {
+            } else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);
@@ -87,10 +107,10 @@ const Home = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);
@@ -101,6 +121,8 @@ const Home = () => {
 
     const accessToken = useToken();
 
+
+    // LOADINGS
 
     if (isLoading) {
         return <Loading />

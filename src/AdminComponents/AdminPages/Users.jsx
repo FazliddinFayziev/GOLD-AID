@@ -6,7 +6,7 @@ import "../../css/AdminCSS/users.css";
 import UserData from '../UserData';
 
 const Users = () => {
-    const { user, refreshAccessToken, isAccessTokenExpired, setUserInfo } = useGlobalContext();
+    const { user, refreshAccessToken, isRefreshTokenExpired, setUserInfo } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true);
     const [refetch, setRefetch] = useState(false);
     const [usersLimit, setUsersLimit] = useState({ lim: 10, skip: 0 })
@@ -18,6 +18,7 @@ const Users = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
         const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
         const fetchAllUsersInfo = async (token) => {
             try {
@@ -62,10 +63,10 @@ const Users = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

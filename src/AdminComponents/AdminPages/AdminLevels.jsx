@@ -9,7 +9,7 @@ import { level_default, level_default_ielts } from '../../assets';
 
 const AdminLevels = () => {
 
-    const { user, refreshAccessToken, isAccessTokenExpired, changeAdminCourse } = useGlobalContext();
+    const { user, refreshAccessToken, isRefreshTokenExpired, changeAdminCourse } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true);
     const [courses, setCourses] = useState([]);
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ const AdminLevels = () => {
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
         const fetchCourses = async (token) => {
             try {
@@ -81,10 +81,10 @@ const AdminLevels = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from '../../api/axios';
 
 const VideoPage = () => {
-    const { bgColor, user, refreshAccessToken, isAccessTokenExpired, setSingleLesson, comments, setComments, changeComment, setChangeComment, limSkipComments, setLimSkipComments, scrollLoading, setScrollLoading, setUserProfilePicture } = useGlobalContext();
+    const { bgColor, user, refreshAccessToken, isRefreshTokenExpired, setSingleLesson, comments, setComments, changeComment, setChangeComment, limSkipComments, setLimSkipComments, scrollLoading, setScrollLoading, setUserProfilePicture } = useGlobalContext();
     const { level, lessonId } = useParams();
     const { lim, skip } = limSkipComments;
     const [isLoading, setIsLoading] = useState(true)
@@ -17,7 +17,7 @@ const VideoPage = () => {
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
 
 
@@ -114,10 +114,10 @@ const VideoPage = () => {
         }, [])
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 // Navigate to login page if tokens do not exist in localStorage
                 navigate('/register')
-            } else if (isAccessTokenExpired()) {
+            } else if (isRefreshTokenExpired()) {
                 // Navigate to login page if access token is expired
                 navigate('/login')
             } else {

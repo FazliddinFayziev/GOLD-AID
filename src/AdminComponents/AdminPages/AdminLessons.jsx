@@ -15,12 +15,12 @@ const AdminLessons = () => {
     const [lessons, setLessons] = useState([]);
     const navigate = useNavigate();
 
-    const { user, refreshAccessToken, isAccessTokenExpired } = useGlobalContext();
+    const { user, refreshAccessToken, isRefreshTokenExpired } = useGlobalContext();
 
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
         const fetchLessons = async (token) => {
             try {
@@ -65,10 +65,10 @@ const AdminLessons = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

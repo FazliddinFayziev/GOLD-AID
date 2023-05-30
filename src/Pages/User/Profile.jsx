@@ -11,7 +11,7 @@ import { Loading } from '../../Components'
 
 const Profile = () => {
 
-    const { user, refreshAccessToken, isAccessTokenExpired, userProfilePage, setUserProfilePage, avatars, setAvatars, changeProfileImage, setChangeProfileImage } = useGlobalContext();
+    const { user, refreshAccessToken, isRefreshTokenExpired, userProfilePage, setUserProfilePage, avatars, setAvatars, changeProfileImage, setChangeProfileImage } = useGlobalContext();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -20,7 +20,7 @@ const Profile = () => {
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
         const fetchUserProfile = async (token) => {
             try {
@@ -66,10 +66,10 @@ const Profile = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

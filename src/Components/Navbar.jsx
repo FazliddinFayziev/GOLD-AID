@@ -4,7 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { hambook, logo, profile } from '../assets';
 import { useGlobalContext } from '../context/context';
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -12,21 +12,25 @@ const Navbar = () => {
     const { bgColor, setBgColor, userProfilePicture, userProfile } = useGlobalContext();
     const { profilePicture } = userProfilePicture
     const { _id, isAdmin } = userProfile
+    const navigate = useNavigate();
 
     // LOCAL
     const [nav, setNav] = useState(false);
+
+    // HANDLE BACK
+    const handleBack = () => {
+        navigate('/')
+    }
 
     return (
         <>
             <div className='container-home-navbar'>
                 {/* IMAGE DIV */}
-                <Link to={'/'}>
-                    <div>
-                        <div className='logo-img'>
-                            <img src={logo} alt="gold-aid" />
-                        </div>
+                <div onClick={handleBack}>
+                    <div className='logo-img'>
+                        <img src={logo} alt="gold-aid" />
                     </div>
-                </Link>
+                </div>
 
                 {/* NAVBAR OTHER SIDE DIV */}
                 <div className='home-navbar-about'>

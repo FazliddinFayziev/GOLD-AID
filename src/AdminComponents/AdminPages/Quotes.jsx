@@ -9,7 +9,7 @@ import { GiArchiveResearch } from "react-icons/gi";
 
 const Quotes = () => {
 
-    const { refreshAccessToken, isAccessTokenExpired, user } = useGlobalContext();
+    const { refreshAccessToken, isRefreshTokenExpired, user } = useGlobalContext();
     const { accessToken } = user;
     const [isLoading, setIsLoading] = useState(true);
     const [showCard, setShowCard] = useState(false);
@@ -23,7 +23,7 @@ const Quotes = () => {
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
         const fetchQuotes = async (token) => {
             try {
@@ -68,10 +68,10 @@ const Quotes = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

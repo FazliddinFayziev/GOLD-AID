@@ -8,7 +8,7 @@ import { AiFillLock, AiFillUnlock } from "react-icons/ai";
 
 const SingleUser = () => {
 
-    const { refreshAccessToken, isAccessTokenExpired, user } = useGlobalContext();
+    const { refreshAccessToken, isRefreshTokenExpired, user } = useGlobalContext();
     const { userId } = useParams();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +19,7 @@ const SingleUser = () => {
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
         const fetchSingleUser = async (token) => {
             try {
@@ -64,10 +64,10 @@ const SingleUser = () => {
         }, []);
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 navigate('/register');
             }
-            else if (isAccessTokenExpired()) {
+            else if (isRefreshTokenExpired()) {
                 navigate('/login');
             }
         }, []);

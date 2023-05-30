@@ -7,7 +7,7 @@ import { lessons_default } from '../../assets';
 
 
 const LessonsPage = () => {
-    const { user, bgColor, refreshAccessToken, isAccessTokenExpired, setLessons, lessonTitle, userProfilePicture, setUserProfilePicture } = useGlobalContext();
+    const { user, bgColor, refreshAccessToken, isRefreshTokenExpired, setLessons, lessonTitle, userProfilePicture, setUserProfilePicture } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate();
     const { level } = useParams();
@@ -16,7 +16,7 @@ const LessonsPage = () => {
     const useToken = () => {
         const { accessToken } = user;
         const refreshToken = localStorage.getItem('refreshToken');
-        const accessTokenExpireTime = localStorage.getItem('accessTokenExpireTime');
+        const refreshTokenExpireTime = localStorage.getItem('refreshTokenExpireTime');
 
 
 
@@ -85,10 +85,10 @@ const LessonsPage = () => {
         }, [])
 
         useEffect(() => {
-            if (!refreshToken || !accessTokenExpireTime) {
+            if (!refreshToken || !refreshTokenExpireTime) {
                 // Navigate to login page if tokens do not exist in localStorage
                 navigate('/register')
-            } else if (isAccessTokenExpired()) {
+            } else if (isRefreshTokenExpired()) {
                 // Navigate to login page if access token is expired
                 navigate('/login')
             } else {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { RegisterNavbar, Login_Inputs, ShowCard } from "../../Components";
 import { useGlobalContext } from '../../context/context';
 import { randomMidjourney } from '../../Data/data';
+import { login_img } from '../../assets';
 
 const Login = () => {
     const { errMsg } = useGlobalContext();
@@ -23,7 +24,7 @@ const Login = () => {
                 </div>
 
                 <div className="part-two">
-                    <img src={randomMidjourney[randomPic].img} alt="gold-aid-register" />
+                    <img src={login_img} alt="gold-aid-register" />
                     <div className="cover"></div>
                 </div>
 

@@ -13,7 +13,7 @@ const UserCard = ({ age, course, email, gender, isActive, name, profilePicture, 
                 <div className='user-card-title'>
                     <div className='user-card-title-container'>
                         <h3>{name}</h3>
-                        <p className='user-content'>Email: <span className='gray-span'>{email}</span> </p>
+                        <p className='user-content'>Email: <span className='gray-span'>{email.slice(0, 10)} . . .</span> </p>
                         <p className='user-content'>Gender: <span className='gray-span'>{gender}</span></p>
                         <p className='user-content'>Level: <span className='gray-span'>{course}</span></p>
                         <p className='user-content'>Age: <span className='gray-span'>{age}</span></p>

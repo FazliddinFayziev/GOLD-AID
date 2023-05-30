@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { RegisterNavbar, Register_Inputs, ShowCard, SuccessCard } from "../../Components"
 import { randomMidjourney } from "../../Data/data";
 import { useGlobalContext } from '../../context/context';
+import { register_img } from "../../assets";
 
 const Register = () => {
     const { errMsg, focusText } = useGlobalContext();
@@ -24,11 +25,12 @@ const Register = () => {
                 </div>
 
                 <div className="part-two">
-                    <img src={randomMidjourney[randomPic].img} alt="gold-aid-register" />
+                    <img src={register_img} alt="gold-aid-register" />
                     <div className="cover"></div>
                 </div>
 
             </div>
+            {/* randomMidjourney[randomPic].img */}
         </>
     );
 }
