@@ -4,8 +4,6 @@ import { useGlobalContext } from '../../context/context';
 import '../../css/AdminCSS/singleAdminLesson.css';
 import { ImUpload } from "react-icons/im";
 import { level_default } from "../../assets";
-import { VscFileSubmodule } from "react-icons/vsc";
-import { BsDownload } from "react-icons/bs";
 import { AiFillPlusCircle } from "react-icons/ai";
 import axios from '../../api/axios';
 import EditVideos from '../EditVideos';
@@ -46,6 +44,13 @@ const SingleAdminLessonPage = () => {
     const [singleFileDelete, setSingleFileDelete] = useState(false);
     const [getKey, setGetKey] = useState('');
     const [smallLoading, setSmallLoading] = useState(false);
+    const [deleteAllHomeworks, setDeleteAllHomeworks] = useState(false);
+    const [smallHomeLoading, setSmallHomeLoading] = useState(false);
+    const [smallEditHomeLoading, setSmallEditHomeLoading] = useState(false);
+    const [smallTimeLoading, setSmallTimeLoading] = useState(false);
+
+    const [getHomeworkId, setGetHomeworkId] = useState('')
+    const [singleHomeCard, setSingleHomeCard] = useState(false);
 
 
     const [addVideoCard, setAddVideoCard] = useState(false);
@@ -461,34 +466,35 @@ const SingleAdminLessonPage = () => {
 
     // DELETE SINGLE QUESTION
 
-    const deleteSingleHomework = async (token, id) => {
-        setIsLoading(true);
+    const deleteSingleHomework = async (token) => {
+        setSmallHomeLoading(true);
         try {
-            const res = await axios.delete(`/admin/homework/${id}`, {
+            const res = await axios.delete(`/admin/homework/${getHomeworkId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
             console.log(res.data);
             setErrorMsg('Successfully Deleted!');
-            setIsLoading(false);
+            setSmallHomeLoading(false);
+            setRefetch(!refetch);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // Refresh the token
-                deleteSingleHomework(refreshedToken, id); // Try the request again with the new token
+                deleteSingleHomework(refreshedToken); // Try the request again with the new token
             } else {
                 console.log(err.response.data.err);
                 setErrorMsg(err.response.data.err);
-                setIsLoading(false);
+                setSmallHomeLoading(false);
             }
         }
     };
 
 
 
-    const handleDeleteSingleQuestion = (id) => {
-        deleteSingleHomework(accessToken, id);
-        setRefetch(!refetch)
+    const handleDeleteSingleQuestion = () => {
+        setSingleHomeCard(false)
+        deleteSingleHomework(accessToken);
     }
 
 
@@ -498,7 +504,7 @@ const SingleAdminLessonPage = () => {
     // ADD HOMEWORK
 
     const AddHomework = async (token) => {
-        setIsLoading(true);
+        setSmallHomeLoading(true);
         try {
             const res = await axios.post(`/admin/homework`, {
                 question: question,
@@ -515,7 +521,7 @@ const SingleAdminLessonPage = () => {
             setQuestion('')
             setOption({ option_1: '', option_2: '', option_3: '', option_4: '' })
             setCorrectAnswer('')
-            setIsLoading(false);
+            setSmallHomeLoading(false);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // Refresh the token
@@ -523,7 +529,7 @@ const SingleAdminLessonPage = () => {
             } else {
                 console.log(err.response.data.err);
                 setErrorMsg(err.response.data.err);
-                setIsLoading(false);
+                setSmallHomeLoading(false);
             }
         }
     };
@@ -538,7 +544,7 @@ const SingleAdminLessonPage = () => {
     // EDIT HOMEWORK TIME
 
     const EditHomeworkTime = async (token) => {
-        setIsLoading(true);
+        setSmallTimeLoading(true);
         try {
             const res = await axios.patch(`/admin/homework/timeout/${lessonId}`, {
                 timeOutMinutes: homeTime
@@ -549,7 +555,7 @@ const SingleAdminLessonPage = () => {
             });
             console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
-            setIsLoading(false);
+            setSmallTimeLoading(false);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // Refresh the token
@@ -557,7 +563,7 @@ const SingleAdminLessonPage = () => {
             } else {
                 console.log(err.response.data.err);
                 setErrorMsg(err.response.data.err);
-                setIsLoading(false);
+                setSmallTimeLoading(false);
             }
         }
     };
@@ -573,7 +579,7 @@ const SingleAdminLessonPage = () => {
     // EDIT SINGLE HOMEWORK QUESTION, OPTIONS AND SO ON
 
     const EditHomeworkQuestion = async (token) => {
-        setIsLoading(true);
+        setSmallEditHomeLoading(true);
         try {
             const res = await axios.patch(`/admin/homework/${getIdOfHome}`, {
                 question: question,
@@ -591,7 +597,7 @@ const SingleAdminLessonPage = () => {
             setOption({ option_1: '', option_2: '', option_3: '', option_4: '' });
             setCorrectAnswer('');
             setEditCardHomework(false);
-            setIsLoading(false);
+            setSmallEditHomeLoading(false);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // Refresh the token
@@ -599,7 +605,7 @@ const SingleAdminLessonPage = () => {
             } else {
                 console.log(err.response.data.err);
                 setErrorMsg(err.response.data.err);
-                setIsLoading(false);
+                setSmallEditHomeLoading(false);
             }
         }
     };
@@ -620,7 +626,7 @@ const SingleAdminLessonPage = () => {
     // DELETE ALL HOMEWORKS
 
     const DeleteAllHomeworkQuestions = async (token) => {
-        setIsLoading(true);
+        setSmallHomeLoading(true);
         try {
             const res = await axios.delete(`/admin/homework/all/${lessonId}`, {
                 headers: {
@@ -629,7 +635,7 @@ const SingleAdminLessonPage = () => {
             });
             console.log(res.data);
             setErrorMsg('Successfully Deleted ! ! !');
-            setIsLoading(false);
+            setSmallHomeLoading(false);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // Refresh the token
@@ -637,7 +643,7 @@ const SingleAdminLessonPage = () => {
             } else {
                 console.log(err.response.data.err);
                 setErrorMsg(err.response.data.err);
-                setIsLoading(false);
+                setSmallHomeLoading(false);
             }
         }
     };
@@ -645,6 +651,7 @@ const SingleAdminLessonPage = () => {
     const handleDeleteAllHomeworks = () => {
         DeleteAllHomeworkQuestions(accessToken);
         setRefetch(!refetch)
+        setDeleteAllHomeworks(false)
     }
 
 
@@ -930,11 +937,18 @@ const SingleAdminLessonPage = () => {
                         <div className='homework-timeout'>
                             <div className='homework-timeout-container'>
                                 <p>Homework Time</p>
-                                {editHomeworkTime ? (
-                                    <input value={homeTime} onChange={(e) => setHomeTime(e.target.value)} className='change-home-time' type="number" />
+                                {smallTimeLoading ? (
+                                    <div className="loading-profile-container-lesson-page">
+                                        <div className="loading-profile-spinner-lesson-page"></div>
+                                    </div>
                                 ) : (
-                                    <h3><span>{singleAdminLesson.homeWorkTimeOut}</span> Minutes</h3>
+                                    editHomeworkTime ? (
+                                        <input value={homeTime} onChange={(e) => setHomeTime(e.target.value)} className='change-home-time' type="number" />
+                                    ) : (
+                                        <h3><span>{singleAdminLesson.homeWorkTimeOut}</span> Minutes</h3>
+                                    )
                                 )}
+
                             </div>
                         </div>
 
@@ -1017,55 +1031,62 @@ const SingleAdminLessonPage = () => {
                                             <h4 className='edit-homework-title-main'>Edit HomeWork</h4>
                                             <div className='edit-homework-container-box'>
                                                 <div className='edit-homework-box'>
+                                                    {smallEditHomeLoading ? (
+                                                        <div className="loading-profile-container-lesson-page">
+                                                            <div className="loading-profile-spinner-lesson-page"></div>
+                                                        </div>
+                                                    ) : (
+                                                        <>
 
-                                                    <div className='edit-homework-question'>
-                                                        <div className='edit-homework-container'>
-                                                            <h3>Question:</h3>
-                                                            <input value={question} onChange={(e) => setQuestion(e.target.value)} type="text" placeholder='Question...' />
-                                                        </div>
-                                                    </div>
+                                                            <div className='edit-homework-question'>
+                                                                <div className='edit-homework-container'>
+                                                                    <h3>Question:</h3>
+                                                                    <input value={question} onChange={(e) => setQuestion(e.target.value)} type="text" placeholder='Question...' />
+                                                                </div>
+                                                            </div>
 
-                                                    <h4>All Options</h4>
-                                                    <div className='edit-homework-all-options'>
-                                                        <div className='edit-option'>
-                                                            <p>Option-1</p>
-                                                            <input value={option_1} onChange={(e) => setOption({ ...option, option_1: e.target.value })} type="text" />
-                                                        </div>
-                                                        <div className='edit-option'>
-                                                            <p>Option-2</p>
-                                                            <input value={option_2} onChange={(e) => setOption({ ...option, option_2: e.target.value })} type="text" />
-                                                        </div>
-                                                        <div className='edit-option'>
-                                                            <p>Option-3</p>
-                                                            <input value={option_3} onChange={(e) => setOption({ ...option, option_3: e.target.value })} type="text" />
-                                                        </div>
-                                                        <div className='edit-option'>
-                                                            <p>Option-4</p>
-                                                            <input value={option_4} onChange={(e) => setOption({ ...option, option_4: e.target.value })} type="text" />
-                                                        </div>
-                                                    </div>
+                                                            <h4>All Options</h4>
+                                                            <div className='edit-homework-all-options'>
+                                                                <div className='edit-option'>
+                                                                    <p>Option-1</p>
+                                                                    <input value={option_1} onChange={(e) => setOption({ ...option, option_1: e.target.value })} type="text" />
+                                                                </div>
+                                                                <div className='edit-option'>
+                                                                    <p>Option-2</p>
+                                                                    <input value={option_2} onChange={(e) => setOption({ ...option, option_2: e.target.value })} type="text" />
+                                                                </div>
+                                                                <div className='edit-option'>
+                                                                    <p>Option-3</p>
+                                                                    <input value={option_3} onChange={(e) => setOption({ ...option, option_3: e.target.value })} type="text" />
+                                                                </div>
+                                                                <div className='edit-option'>
+                                                                    <p>Option-4</p>
+                                                                    <input value={option_4} onChange={(e) => setOption({ ...option, option_4: e.target.value })} type="text" />
+                                                                </div>
+                                                            </div>
 
-                                                    <div className='edit-homework-options'>
-                                                        <div className='edit-add-homework-title'>
-                                                            <h4>Choose Correct Answer</h4>
-                                                            <br />
-                                                            <select onChange={(e) => setCorrectAnswer(e.target.value)} name='options'>
-                                                                <option value="choose">Choose</option>
-                                                                <option value={option_1}>Option-1</option>
-                                                                <option value={option_2}>Option-2</option>
-                                                                <option value={option_3}>Option-3</option>
-                                                                <option value={option_4}>Option-4</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                            <div className='edit-homework-options'>
+                                                                <div className='edit-add-homework-title'>
+                                                                    <h4>Choose Correct Answer</h4>
+                                                                    <br />
+                                                                    <select onChange={(e) => setCorrectAnswer(e.target.value)} name='options'>
+                                                                        <option value="choose">Choose</option>
+                                                                        <option value={option_1}>Option-1</option>
+                                                                        <option value={option_2}>Option-2</option>
+                                                                        <option value={option_3}>Option-3</option>
+                                                                        <option value={option_4}>Option-4</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
 
-                                                    <div className='edit-homework-button'>
-                                                        <button onClick={handleEditHomeworkQuestion}>Edit Homework</button>
-                                                    </div>
-                                                    <div className='cancel-homework-button'>
-                                                        <button onClick={() => setEditCardHomework(false)}>Go back</button>
-                                                    </div>
-
+                                                            <div className='edit-homework-button'>
+                                                                <button onClick={handleEditHomeworkQuestion}>Edit Homework</button>
+                                                            </div>
+                                                            <div className='cancel-homework-button'>
+                                                                <button onClick={() => setEditCardHomework(false)}>Go back</button>
+                                                            </div>
+                                                        </>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -1074,56 +1095,90 @@ const SingleAdminLessonPage = () => {
                             )
                         }
 
-
-                        {singleAdminLesson.homework.length !== 0 ? (
-                            singleAdminLesson.homework.map((homework, index) => {
-                                return (
-                                    <div key={index}>
-                                        <div className="homework-edit-div">
-                                            <h3 className='homework-edit-question'>{index + 1}) {homework.question}</h3>
-                                            {OptionsArrayToObject(homework.options).map((option, index) => {
-                                                return (
-                                                    <label key={index} className="homework-edit-label">
-                                                        <input
-                                                            className='homework-edit-input'
-                                                            type="radio"
-                                                            name={homework._id}
-                                                            value={option.value}
-                                                        />
-                                                        <span>{option.value}</span>
-                                                    </label>
-                                                )
-                                            })}
-                                            <p className='homework-correct-answer-title'>Correct Answer:</p>
-                                            <p className='homework-correct-answer'>{homework.correctAnswer}</p>
-                                        </div>
-                                        <button onClick={() => {
-                                            setGetIdOfHome(homework._id);
-                                            setQuestion('');
-                                            setOption({ option_1: '', option_2: '', option_3: '', option_4: '' });
-                                            setCorrectAnswer('');
-                                            setEditCardHomework(true);
-                                        }} className='admin-edit-button'>Edit</button>
-                                        <button onClick={() => handleDeleteSingleQuestion(homework._id)} className='admin-edit-button-delete'>Delete</button>
-                                    </div>
-                                )
-                            })
+                        {smallHomeLoading ? (
+                            <div className="loading-profile-container-lesson-page">
+                                <div className="loading-profile-spinner-lesson-page"></div>
+                            </div>
                         ) : (
-                            <>
-                                <div className='no-homework-icon'>
-                                    <div>
-                                        <div className='icon-center'>
-                                            <BiSearchAlt fontSize={30} />
+                            <div>
+                                {singleAdminLesson.homework.length !== 0 ? (
+                                    singleAdminLesson.homework.map((homework, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <div className="homework-edit-div">
+                                                    <h3 className='homework-edit-question'>{index + 1}) {homework.question}</h3>
+                                                    {OptionsArrayToObject(homework.options).map((option, index) => {
+                                                        return (
+                                                            <label key={index} className="homework-edit-label">
+                                                                <input
+                                                                    className='homework-edit-input'
+                                                                    type="radio"
+                                                                    name={homework._id}
+                                                                    value={option.value}
+                                                                />
+                                                                <span>{option.value}</span>
+                                                            </label>
+                                                        )
+                                                    })}
+                                                    <p className='homework-correct-answer-title'>Correct Answer:</p>
+                                                    <p className='homework-correct-answer'>{homework.correctAnswer}</p>
+                                                </div>
+                                                <button onClick={() => {
+                                                    setGetIdOfHome(homework._id);
+                                                    setQuestion('');
+                                                    setOption({ option_1: '', option_2: '', option_3: '', option_4: '' });
+                                                    setCorrectAnswer('');
+                                                    setEditCardHomework(true);
+                                                }} className='admin-edit-button'>Edit</button>
+
+                                                {singleHomeCard && (
+                                                    <div className='delete-confirmation-overlay'>
+                                                        <div className='delete-confirmation-card'>
+                                                            <h3>Are you sure you want to delete this homework?</h3>
+                                                            <div className='confirmation-buttons'>
+                                                                <button className='confirm-delete-button' onClick={handleDeleteSingleQuestion}>Yes</button>
+                                                                <button className='cancel-delete-button' onClick={() => setSingleHomeCard(false)}>No</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                <button onClick={() => {
+                                                    setSingleHomeCard(true);
+                                                    setGetHomeworkId(homework._id);
+                                                }} className='admin-edit-button-delete'>Delete</button>
+                                            </div>
+                                        )
+                                    })
+                                ) : (
+                                    <>
+                                        <div className='no-homework-icon'>
+                                            <div>
+                                                <div className='icon-center'>
+                                                    <BiSearchAlt fontSize={30} />
+                                                </div>
+                                                <p>There is no Homework</p>
+                                            </div>
                                         </div>
-                                        <p>There is no Homework</p>
+                                    </>
+                                )}
+                                <br />
+                                {deleteAllHomeworks && (
+                                    <div className='delete-confirmation-overlay'>
+                                        <div className='delete-confirmation-card'>
+                                            <h3>Are you sure you want to delete all homeworks?</h3>
+                                            <div className='confirmation-buttons'>
+                                                <button className='confirm-delete-button' onClick={handleDeleteAllHomeworks}>Yes</button>
+                                                <button className='cancel-delete-button' onClick={() => setDeleteAllHomeworks(false)}>No</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </>
+                                )}
+                                {singleAdminLesson.homework.length !== 0 && (
+                                    <button onClick={() => setDeleteAllHomeworks(true)} className='admin-edit-button-delete'>Delete All</button>
+                                )}
+                            </div>
                         )}
-                        <br />
-                        {singleAdminLesson.homework.length !== 0 && (
-                            <button onClick={handleDeleteAllHomeworks} className='admin-edit-button-delete'>Delete All</button>
-                        )}
+
 
 
                     </div>
