@@ -198,6 +198,9 @@ export const AppProvider = ({ children }) => {
     // isAdmin TRUE OR FALSE
     const [isAdminGo, setIsAdminGo] = useState(true);
 
+    // Restart page
+    const [restart, setRestart] = useState(false);
+
 
     // Make API call to refresh access token using refresh token
     const refreshAccessToken = async () => {
@@ -407,6 +410,9 @@ export const AppProvider = ({ children }) => {
 
         //  SEARCG USER VALUE
         searchUserValue, setSearchUserValue,
+
+        // Restart page 
+        restart, setRestart,
 
         open,
         setOpen,

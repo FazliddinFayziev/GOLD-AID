@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/context';
 import { setTokenToLocalStorage } from '../context/Functions';
+import CircleLoading from './CircleLoading';
 function FinishTest({ score, level }) {
 
     // GLOBAL
@@ -23,13 +24,15 @@ function FinishTest({ score, level }) {
     const { ru, eng } = languageBoolean;
 
     // LOCAL
-    const [err, setErr] = useState('')
+    const [err, setErr] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
 
     // SUBMITTING MY DATA TO BACKEND
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsLoading(true)
         try {
             const res = await axios.post('/register', {
                 name: name,
@@ -48,9 +51,11 @@ function FinishTest({ score, level }) {
             setMsg(msg)
             navigate('/verify')
             ContinueButton();
+            setIsLoading(false)
         } catch (err) {
             console.log(err.response.data.err)
             setErr(err.response.data.err)
+            setIsLoading(false)
         }
     }
 
@@ -66,13 +71,17 @@ function FinishTest({ score, level }) {
                     <p>{Inputs(eng, ru).YourLevel}  <span className=''>{level}</span></p>
                     <div className='button-container-for-test'>
                         <div className='test-button-container'>
-                            <button
-                                type='submit'
-                                className="test-button"
-                                onClick={handleSubmit}
-                            >
-                                {Inputs(eng, ru).ContinueButton}
-                            </button>
+                            {isLoading ? (
+                                <CircleLoading />
+                            ) : (
+                                <button
+                                    type='submit'
+                                    className="test-button"
+                                    onClick={handleSubmit}
+                                >
+                                    {Inputs(eng, ru).ContinueButton}
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

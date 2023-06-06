@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const Navbar = () => {
 
     // GLOBAL
-    const { bgColor, setBgColor, userProfilePicture, userProfile } = useGlobalContext();
+    const { bgColor, setBgColor, userProfilePicture, userProfile, restart, setRestart } = useGlobalContext();
     const { profilePicture } = userProfilePicture
     const { _id, isAdmin } = userProfile
     const navigate = useNavigate();
@@ -19,14 +19,15 @@ const Navbar = () => {
 
     // HANDLE BACK
     const handleBack = () => {
-        navigate('/')
+        navigate('/');
+        setRestart(!restart);
     }
 
     return (
         <>
             <div className='container-home-navbar'>
                 {/* IMAGE DIV */}
-                <div onClick={handleBack}>
+                <div className='onclick' onClick={handleBack}>
                     <div className='logo-img'>
                         <img src={logo} alt="gold-aid" />
                     </div>

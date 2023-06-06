@@ -22,7 +22,8 @@ const Home = () => {
         userProfilePicture,
         refreshAccessToken,
         isRefreshTokenExpired,
-        setUserProfilePicture
+        setUserProfilePicture,
+        restart, setRestart,
     } = useGlobalContext();
 
     const navigate = useNavigate();
@@ -80,22 +81,14 @@ const Home = () => {
         };
 
         useEffect(() => {
-            if (!refreshToken) {
-                navigate('/register');
-            } else if (!accessToken) {
-                const fetchToken = async () => {
-                    const token = await refreshAccessToken();
-                    if (!token) {
-                        navigate('/register');
-                    } else {
-                        await fetchCourses(token);
-                    }
-                };
-                fetchToken();
-            } else if (isRefreshTokenExpired()) {
-                navigate('/login');
+            const fetch = async () => {
+                const token = await refreshAccessToken()
+                await fetchCourses(token)
+                if (!token) return navigate('/login')
+                console.log('Access token is fetching the courses')
             }
-        }, []);
+            fetch()
+        }, [])
 
         useEffect(() => {
             const timer = setInterval(() => {
@@ -130,7 +123,7 @@ const Home = () => {
 
 
     if (!accessToken) {
-        return <Loading /> // Render loading spinner
+        return navigate('/login')
     }
 
     if (!refreshToken) {

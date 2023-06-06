@@ -4,13 +4,19 @@ import { AiOutlineClose } from "react-icons/ai";
 import { hambook, logo, profile } from '../assets';
 import { useGlobalContext } from '../context/context';
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SmallNavbar = () => {
 
     // GLOBAL
-    const { bgColor, setBgColor, userProfile, userProfilePicture } = useGlobalContext();
+    const { bgColor, setBgColor, userProfile, userProfilePicture, restart, setRestart } = useGlobalContext();
     const { profilePicture } = userProfilePicture
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate('/');
+        setRestart(!restart);
+    }
 
     // LOCAL
     const [nav, setNav] = useState(false);
@@ -18,13 +24,13 @@ const SmallNavbar = () => {
         <>
             <div className='container-small-navbar'>
                 {/* IMAGE DIV */}
-                <Link to={'/'}>
-                    <div>
-                        <div className='small-logo-img'>
-                            <img src={logo} alt="gold-aid" />
-                        </div>
+
+                <div className='onclick' onClick={handleNavigate}>
+                    <div className='small-logo-img'>
+                        <img src={logo} alt="gold-aid" />
                     </div>
-                </Link>
+                </div>
+
 
                 {/* NAVBAR OTHER SIDE DIV */}
                 <div className='small-navbar-about'>

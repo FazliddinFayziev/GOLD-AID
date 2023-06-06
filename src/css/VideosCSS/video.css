@@ -78,18 +78,24 @@
 
 .lesson-video-title-text {
     padding-left: 10px;
+    font-size: 14px;
 }
 
 .video-text {
     padding: 10px;
     font-weight: 800;
     color: var(--maincolor);
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .video-text-desc {
     padding-left: 10px;
     font-weight: 600;
+    font-size: 14px;
+}
+
+.onclick {
+    cursor: pointer;
 }
 
 

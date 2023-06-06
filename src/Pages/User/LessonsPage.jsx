@@ -39,7 +39,7 @@ const LessonsPage = () => {
                     return {
                         lessonId: lessonId,
                         title: title,
-                        lessonPicture: lessons_default,
+                        lessonPicture: lessonPicture,
                         isCompleted: isCompleted,
                         currentScore: currentScore,
                         length: lessons.length,

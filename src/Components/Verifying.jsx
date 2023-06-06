@@ -28,7 +28,7 @@ const Verifying = () => {
             })
             const { accessToken, refreshToken } = res.data
             setUser({ accessToken });
-            setTokenToLocalStorage(refreshToken, 3600) // Local Storage with TOKENS
+            setTokenToLocalStorage(refreshToken, 3600, 604800) // Local Storage with TOKENS
 
             return navigate('/')
         } catch (err) {
