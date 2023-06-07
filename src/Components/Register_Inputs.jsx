@@ -121,7 +121,7 @@ const Register_Inputs = () => {
             } else if (err.response?.status === 400 && name !== "" && age !== "" && gender !== "" && isEmail && strong && strongCon) {
                 setRegisterLoading(false)
                 setShowCard(true)
-                setErrMsg(eng ? "This Email is Taken" : ru ? "Это электронное письмо занято" : "Ushbu elektron pochta band, iltimos boshqa elektron pochta kiriting");
+                setErrMsg(eng ? "This Email is wrong or taken" : ru ? "Это электронное письмо неверно или занято" : "Bu e-pochta noto‘g‘ri yoki band, iltimos boshqa elektron pochta kiriting");
             }
             else {
                 setRegisterLoading(false)
@@ -137,7 +137,6 @@ const Register_Inputs = () => {
         if (
             email === "" ||
             !isEmail ||
-            age === "" ||
             gender === "" ||
             !strong ||
             !strongCon ||
@@ -162,6 +161,16 @@ const Register_Inputs = () => {
                     : ru
                         ? "имя должно содержать не менее 3 символов"
                         : "ism kamida 3 ta belgidan iborat bo'lishi kerak"
+            );
+        } else if (age === "" || age > 100 || age < 0) {
+            setRegisterLoading(false);
+            setShowCard(true);
+            setErrMsg(
+                eng
+                    ? "please put correct age"
+                    : ru
+                        ? "Пожалуйста, укажите правильный возраст"
+                        : "Iltimos, yoshni to'g'ri belgilang"
             );
         } else {
             await CheckIsRegistered();
@@ -247,7 +256,7 @@ const Register_Inputs = () => {
                     {/* input-5 */}
                     <div className='form'>
                         <input
-                            type="email"
+                            type="text"
                             name="email"
                             value={email}
                             onChange={(e) => handleInputChange(e)}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { logo, profile } from '../assets';
+import { logo, profile, white_background_image } from '../assets';
 import { BiLogOutCircle } from "react-icons/bi";
 import { useGlobalContext } from '../context/context';
 import { Link, useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ const ProfileBanner = () => {
         <>
             <div className="profile-banner">
 
-                <div className="profile-banner-image" style={{ backgroundImage: `url("https://thumbs.dreamstime.com/b/open-book-hardback-books-wooden-table-education-background-back-to-school-copy-space-text-76106466.jpg")` }}>
+                <div className="profile-banner-image" style={{ backgroundImage: `url(${white_background_image})` }}>
 
                     <div className="profile-banner-cover">
 

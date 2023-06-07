@@ -1,16 +1,18 @@
 import Comment from './Comment';
 import "../css/VideosCSS/comment.css"
 import React, { useState, useEffect, useRef } from 'react';
-import { IoMdSend } from "react-icons/io"
+import { IoMdSend } from "react-icons/io";
+import { ImSad } from "react-icons/im";
 import { useGlobalContext } from '../context/context';
 import { useParams } from 'react-router-dom';
 import axios from '../api/axios';
 
 const CommentSection = () => {
     // GLOBAL
-    const { bgColor, comments, changeComment, setChangeComment, refreshAccessToken, user, limSkipComments, setLimSkipComments, scrollLoading, setScrollLoading } = useGlobalContext();
+    const { bgColor, comments, singleLesson, changeComment, setChangeComment, refreshAccessToken, user, limSkipComments, setLimSkipComments, scrollLoading, setScrollLoading } = useGlobalContext();
 
     const { Allcomments, number } = comments
+    const { canComment } = singleLesson
     // LOCAL
     const [comment, setComment] = useState('');
     const [lengthMessage, setLengthMessage] = useState('')
@@ -98,19 +100,29 @@ const CommentSection = () => {
                 <h1 className={bgColor ? 'white' : 'black'}>Comments</h1>
             </div>
             <p className='add-comment'>{lengthMessage}</p>
-            <div className='comment-container-form'>
-                <form onSubmit={handleSubmit} className='comment-input'>
-                    <input
-                        type='text'
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        placeholder='Type your comment here...'
-                    />
-                    <button type='submit' className='comment-send'>
-                        <IoMdSend className='comment-send-icon' fontSize={30} />
-                    </button>
-                </form>
-            </div>
+            {canComment ? (
+                <div className='comment-container-form'>
+                    <form onSubmit={handleSubmit} className='comment-input'>
+                        <input
+                            type='text'
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                            placeholder='Type your comment here...'
+                        />
+                        <button type='submit' className='comment-send'>
+                            <IoMdSend className='comment-send-icon' fontSize={30} />
+                        </button>
+                    </form>
+                </div>
+            ) : (
+                <div>
+                    <p className='not-allowed-to-comment'>
+                        Your cannot comment
+                        <ImSad fontSize={25} style={{ marginLeft: "10px" }} color='red' />
+                    </p>
+                </div>
+            )
+            }
             <div className='comment-container' ref={commentContainerRef} onScroll={handleScroll}>
                 {Allcomments && Allcomments.length === 0 ? (
                     <div className='no-comment'>

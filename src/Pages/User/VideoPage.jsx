@@ -29,7 +29,7 @@ const VideoPage = () => {
                     }
                 });
                 console.log(res.data);
-                const { userId, profilePicture, lesson: { course, files, videos, lessonPicture, title, description, } } = res.data
+                const { canComment, userId, profilePicture, lesson: { course, files, videos, lessonPicture, title, description, } } = res.data
                 const newArr = {
                     lessonId: lessonId,
                     title: title,
@@ -39,6 +39,7 @@ const VideoPage = () => {
                     description: description,
                     course: course,
                     userId: userId,
+                    canComment: canComment,
                 }
                 const userPicture = {
                     profilePicture: profilePicture

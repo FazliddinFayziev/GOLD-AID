@@ -54,6 +54,7 @@
     height: 60px !important;
     width: 60px !important;
     border-radius: 50% !important;
+    left: 50% !important;
 }
 
 .video-react .big-play-button::before {
