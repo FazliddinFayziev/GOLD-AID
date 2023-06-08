@@ -28,7 +28,7 @@ const Inputs = (eng, ru) => {
             • Parolingizni tasdiqlang (takrorlang).
         </p>
     ))
-    const Forgot = (eng ? "Forgot my password and Username" : ru ? "Забыли пароль и имя пользователя" : "Parol va foydalanuvchi nomimni unutdim")
+    const Forgot = (eng ? "Forgot my password" : ru ? "Забыли пароль" : "Parolimni unutdim")
     const InputConfirmPassword = (eng ? "Confirm Password:" : ru ? "Подтвердите пароль:" : "Parolni tasdiqlang:")
     const InputAge = (eng ? "Enter Age:" : ru ? "Введите возраст:" : "Yoshingizni kiriting:")
     const RegisterButton = (eng ? "Take the test" : ru ? "Пройти тест" : "Test topshirish")

@@ -1,9 +1,9 @@
 import React from 'react'
-import { RegisterNavbar, Login_Inputs, ShowCard } from "../../Components";
+import { RegisterNavbar, ShowCard, ForgetPassword } from "../../Components";
 import { useGlobalContext } from '../../context/context';
 import { login_img } from '../../assets';
 
-const Login = () => {
+const Forget = () => {
     const { errMsg } = useGlobalContext();
 
     return (
@@ -12,7 +12,7 @@ const Login = () => {
             <div className="main-container">
                 <div className="part-one">
                     <RegisterNavbar />
-                    <Login_Inputs />
+                    <ForgetPassword />
                 </div>
 
                 <div className="part-two">
@@ -25,4 +25,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Forget

@@ -2,7 +2,7 @@ import axios from '../api/axios';
 import React, { useState } from 'react';
 import CircleLoading from './CircleLoading';
 import Inputs, { Eye } from '../Data/Inputs';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../context/context';
 import { setTokenToLocalStorage } from '../context/Functions';
 
@@ -119,9 +119,11 @@ const Login_Inputs = () => {
                 </div>
 
                 {/* forget login */}
-                <h5>
-                    {Inputs(eng, ru).Forgot}
-                </h5>
+                <Link to={'/forget'} style={{ textDecoration: 'none' }}>
+                    <h5>
+                        {Inputs(eng, ru).Forgot}
+                    </h5>
+                </Link>
 
                 {/* END OF INPUTS */}
 

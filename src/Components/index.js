@@ -5,6 +5,8 @@
 // REGISTER PAGE'S AND OTHER PAGES' COMPONENTS
 export { default as NotAllowedComponent } from "./NotAllowedComponent";
 export { default as Register_Inputs } from './Register_Inputs';
+export { default as SetNewPassword } from "./SetNewPassword";
+export { default as ForgetPassword } from './ForgetPassword';
 export { default as RegisterNavbar } from './RegisterNavbar';
 export { default as CountdownTimer } from "./CountdownTimer";
 export { default as CircleLoading } from './CircleLoading';
