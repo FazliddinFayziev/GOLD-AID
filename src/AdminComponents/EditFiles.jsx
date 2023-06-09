@@ -3,7 +3,7 @@ import { VscFileSubmodule } from "react-icons/vsc";
 import { BsDownload } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
-const EditFiles = ({ Url, index, Key, handleDeleteSingleFile }) => {
+const EditFiles = ({ Url, index, Key, setGetKey, setSingleFileDelete }) => {
     return (
         <>
             <div>
@@ -19,7 +19,10 @@ const EditFiles = ({ Url, index, Key, handleDeleteSingleFile }) => {
                     </a>
                 </div>
                 <div className='delete-file-container'>
-                    <div onClick={() => handleDeleteSingleFile(Key)} className='delete-file'><AiFillDelete fontSize={20} /></div>
+                    <div onClick={() => {
+                        setGetKey(Key);
+                        setSingleFileDelete(true)
+                    }} className='delete-file'><AiFillDelete fontSize={20} /></div>
                 </div>
             </div>
         </>

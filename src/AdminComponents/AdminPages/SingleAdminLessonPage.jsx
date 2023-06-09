@@ -42,6 +42,10 @@ const SingleAdminLessonPage = () => {
     const [editCardHomework, setEditCardHomework] = useState(false);
     const [getIdOfHome, setGetIdOfHome] = useState('');
     const [deleteCard, setDeleteCard] = useState(false);
+    const [delteAllFilesCard, setDeleteAllFilesCard] = useState(false);
+    const [singleFileDelete, setSingleFileDelete] = useState(false);
+    const [getKey, setGetKey] = useState('');
+    const [smallLoading, setSmallLoading] = useState(false);
 
 
     const [addVideoCard, setAddVideoCard] = useState(false);
@@ -343,7 +347,6 @@ const SingleAdminLessonPage = () => {
 
     // ADD FILE API
     const AddFile = async (token) => {
-        setIsLoading(true)
         try {
             const formData = new FormData();
             formData.append('files', addedFile);
@@ -356,7 +359,8 @@ const SingleAdminLessonPage = () => {
             });
             console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
-            setIsLoading(false)
+            setRefetch(!refetch);
+            setSmallLoading(false)
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // refresh the token
@@ -364,47 +368,48 @@ const SingleAdminLessonPage = () => {
             } else {
                 console.log(err.response.data.err);
                 setErrorMsg(err.response.data.err)
-                setIsLoading(false)
+                setSmallLoading(false)
             }
         }
     };
 
 
     const handleAddNewFile = () => {
+        setSmallLoading(true)
         AddFile(accessToken);
         setAddFileInfo(false);
-        setRefetch(!refetch)
     }
 
 
     // DELETE SINGLE FILE
-    const DeleteSingleFile = async (token, Key) => {
-        setIsLoading(true)
+    const DeleteSingleFile = async (token) => {
+        setSmallLoading(true)
         try {
-            const res = await axios.delete(`admin/lessons/files/file/?lessonId=${lessonId}&fileId=${Key}`, {
+            const res = await axios.delete(`admin/lessons/files/file/?lessonId=${lessonId}&fileId=${getKey}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
             console.log(res.data);
             setErrorMsg('Successfully Deleted!');
-            setIsLoading(false);
+            setRefetch(!refetch);
+            setSmallLoading(false);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // refresh the token
-                DeleteSingleFile(refreshedToken, Key); // try the request again with the new token
+                DeleteSingleFile(refreshedToken); // try the request again with the new token
             } else {
                 console.log(err.response.data.err);
                 setErrorMsg(err.response.data.err);
-                setIsLoading(false);
+                setSmallLoading(false);
             }
         }
     };
 
 
-    const handleDeleteSingleFile = (Key) => {
-        DeleteSingleFile(accessToken, Key);
-        setRefetch(!refetch)
+    const handleDeleteSingleFile = () => {
+        setSingleFileDelete(false)
+        DeleteSingleFile(accessToken);
     }
 
 
@@ -412,7 +417,7 @@ const SingleAdminLessonPage = () => {
     // DELETE ALL FILES AT THE SAME TIME
 
     const DeleteAllFiles = async (token) => {
-        setIsLoading(true)
+        setSmallLoading(true)
         try {
             const res = await axios.delete(`/admin/lessons/files/${lessonId}`, {
                 headers: {
@@ -421,7 +426,8 @@ const SingleAdminLessonPage = () => {
             });
             console.log(res.data);
             setErrorMsg('Successfully Deleted!');
-            setIsLoading(false);
+            setRefetch(!refetch);
+            setSmallLoading(false);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // refresh the token
@@ -429,15 +435,19 @@ const SingleAdminLessonPage = () => {
             } else {
                 console.log(err.response.data.err);
                 setErrorMsg(err.response.data.err);
-                setIsLoading(false);
+                setSmallLoading(false);
             }
         }
     };
 
 
     const handleDeleteAllFiles = () => {
+        setDeleteAllFilesCard(true)
+    }
+
+    const deleteAllFilesFuction = () => {
+        setDeleteAllFilesCard(false);
         DeleteAllFiles(accessToken);
-        setRefetch(!refetch)
     }
 
 
@@ -597,7 +607,8 @@ const SingleAdminLessonPage = () => {
 
     const handleEditHomeworkQuestion = () => {
         EditHomeworkQuestion(accessToken);
-        setRefetch(!refetch)
+        setRefetch(!refetch);
+        setSingleFileDelete(false);
     }
 
 
@@ -828,6 +839,7 @@ const SingleAdminLessonPage = () => {
                                     </div>
                                 </>
                             ) : (
+                                !smallLoading &&
                                 <div onClick={() => setAddFileInfo(true)} className='add-new-file'>
                                     <button>Add File <AiFillPlusCircle fontSize={20} className='add-file-icon' /></button>
                                 </div>
@@ -837,19 +849,55 @@ const SingleAdminLessonPage = () => {
                         {
                             singleAdminLesson.files.length !== 0 ? (
                                 <>
-                                    <div className='files-edit-container-box'>
-                                        {singleAdminLesson.files.map((file, index) => {
-                                            return <EditFiles {...file} key={index} index={index} handleDeleteSingleFile={handleDeleteSingleFile} />
-                                        })}
-                                    </div>
-                                    <div className='delete-all-files'>
-                                        <button onClick={handleDeleteAllFiles}>
-                                            Delete All Files
-                                        </button>
-                                    </div>
+                                    {singleFileDelete && (
+                                        <div className='delete-confirmation-overlay'>
+                                            <div className='delete-confirmation-card'>
+                                                <h3>Are you sure you want to delete this file?</h3>
+                                                <div className='confirmation-buttons'>
+                                                    <button className='confirm-delete-button' onClick={handleDeleteSingleFile}>Yes</button>
+                                                    <button className='cancel-delete-button' onClick={() => setSingleFileDelete(false)}>No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {
+                                        smallLoading ? (
+                                            <div className="loading-profile-container-lesson-page">
+                                                <div className="loading-profile-spinner-lesson-page"></div>
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <div className='files-edit-container-box'>
+                                                    {singleAdminLesson.files.map((file, index) => {
+                                                        return <EditFiles {...file} key={index} index={index} getKey={getKey} setGetKey={setGetKey} setSingleFileDelete={setSingleFileDelete} />
+                                                    })}
+                                                </div>
+                                                <div className='delete-all-files'>
+                                                    <button onClick={handleDeleteAllFiles}>
+                                                        Delete All Files
+                                                    </button>
+                                                </div>
+                                            </>
+                                        )
+                                    }
+                                    {delteAllFilesCard && (
+                                        <div className='delete-confirmation-overlay'>
+                                            <div className='delete-confirmation-card'>
+                                                <h3>Are you sure you want to delete all files?</h3>
+                                                <div className='confirmation-buttons'>
+                                                    <button className='confirm-delete-button' onClick={deleteAllFilesFuction}>Yes</button>
+                                                    <button className='cancel-delete-button' onClick={() => setDeleteAllFilesCard(false)}>No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
                                 </>
                             ) : (
-                                <>
+                                smallLoading ? (
+                                    <div className="loading-profile-container-lesson-page">
+                                        <div className="loading-profile-spinner-lesson-page"></div>
+                                    </div>
+                                ) : (
                                     <div className='no-homework-icon'>
                                         <div>
                                             <div className='icon-center'>
@@ -858,7 +906,7 @@ const SingleAdminLessonPage = () => {
                                             <p>There are no Files</p>
                                         </div>
                                     </div>
-                                </>
+                                )
                             )
                         }
 
