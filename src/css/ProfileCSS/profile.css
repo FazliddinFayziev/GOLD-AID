@@ -237,7 +237,8 @@
 
 .profile-name-btn {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    margin-right: 50px;
     align-items: center;
 }
 

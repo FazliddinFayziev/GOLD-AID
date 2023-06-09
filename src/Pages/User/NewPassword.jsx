@@ -1,5 +1,5 @@
 import React from 'react'
-import { RegisterNavbar, ShowCard, ForgetPassword, SetNewPassword } from "../../Components";
+import { RegisterNavbar, ShowCard, SetNewPassword } from "../../Components";
 import { useGlobalContext } from '../../context/context';
 import { login_img } from '../../assets';
 

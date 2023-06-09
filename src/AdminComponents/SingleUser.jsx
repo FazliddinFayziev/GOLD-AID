@@ -14,6 +14,7 @@ const SingleUser = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [singleUser, setSingleUser] = useState([]);
     const [refetchUserInfo, setRefetchUserInfo] = useState(false);
+    const [smallLoading, setSmallLoading] = useState(false);
 
 
     const useToken = () => {
@@ -32,6 +33,7 @@ const SingleUser = () => {
                 const { user } = res.data;
                 setSingleUser(user);
                 setIsLoading(false);
+                setSmallLoading(false)
             } catch (err) {
                 if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                     const refreshedToken = await refreshAccessToken(); // refresh the token
@@ -103,7 +105,7 @@ const SingleUser = () => {
     const handleCanComment = () => {
         CanCommentFunction(accessToken)
         setRefetchUserInfo(!refetchUserInfo)
-        setIsLoading(true)
+        setSmallLoading(true)
     }
 
     const { name, gender, course, email, age, canComment, progressScore, isActive, isAdmin, profilePicture, isEmailSent, isVerified, attemptsToUpdatePassword } = singleUser
@@ -152,11 +154,20 @@ const SingleUser = () => {
                                     <div className="desc">{age}</div>
 
                                     <div className="term">canComment</div>
-                                    <div className="desc">{canComment ? "true" : "false"} {
-                                        refetchUserInfo ?
-                                            <button onClick={handleCanComment} className='block-user'><AiFillLock /></button>
-                                            : <button onClick={handleCanComment} className='unblock-user'><AiFillUnlock /></button>
-                                    }</div>
+                                    <div className="desc">{canComment ? "true" : "false"}
+                                        {
+                                            smallLoading ? (
+                                                <div className="loading-profile-container-admin">
+                                                    <div className="loading-profile-spinner-admin"></div>
+                                                </div>
+                                            ) : (
+                                                !canComment ?
+                                                    <button onClick={handleCanComment} className='block-user'><AiFillLock /></button>
+                                                    : <button onClick={handleCanComment} className='unblock-user'><AiFillUnlock /></button>
+                                            )
+                                        }
+
+                                    </div>
 
                                     <div className="term">course</div>
                                     <div className="desc">{course}</div>

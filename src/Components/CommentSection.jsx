@@ -117,7 +117,7 @@ const CommentSection = () => {
             ) : (
                 <div>
                     <p className='not-allowed-to-comment'>
-                        Your cannot comment
+                        You cannot comment
                         <ImSad fontSize={25} style={{ marginLeft: "10px" }} color='red' />
                     </p>
                 </div>
