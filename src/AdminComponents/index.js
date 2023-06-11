@@ -9,6 +9,7 @@ export { default as Dashboard } from './AdminPages/Dashboard';
 export { default as AddLesson } from './AdminPages/AddLesson';
 export { default as AdminLevels } from './AdminPages/AdminLevels';
 export { default as AdminLessons } from "./AdminPages/AdminLessons";
+export { default as DefaultImages } from "./AdminPages/DefaultImages";
 export { default as SingleAdminLessonPage } from "./AdminPages/SingleAdminLessonPage";
 
 

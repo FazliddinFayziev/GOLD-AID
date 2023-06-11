@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AddLesson, AdminAvatars, AdminLessons, AdminLevels, Dashboard, Menu, Quotes, SideBar, SingleAdminLessonPage, SingleUser, Users } from '../../AdminComponents'
+import { AddLesson, AdminAvatars, AdminLessons, AdminLevels, Dashboard, DefaultImages, Menu, Quotes, SideBar, SingleAdminLessonPage, SingleUser, Users } from '../../AdminComponents'
 import { useGlobalContext } from '../../context/context'
 import { DashboardTypes } from '../../context/DashboardPathNames';
 import { NotAlailable } from '..';
@@ -114,6 +114,7 @@ const Admin = () => {
                         <Route path="users" element={<Users />} />
                         <Route path="quotes" element={<Quotes />} />
                         <Route path="avatars" element={<AdminAvatars />} />
+                        <Route path="images" element={<DefaultImages />} />
 
                         {/* Second-page routes */}
                         <Route path='users/:userId' element={<SingleUser />} />

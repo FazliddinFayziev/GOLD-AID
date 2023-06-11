@@ -3,6 +3,7 @@ import '../css/AdminCSS/sidebar.css';
 import { logo } from '../assets';
 import { FaTachometerAlt, FaBookOpen, FaCog, FaFileAlt, FaUser } from 'react-icons/fa';
 import { RxAvatar } from "react-icons/rx";
+import { BsFillImageFill } from "react-icons/bs";
 import { AiOutlineClose, AiFillHome } from "react-icons/ai";
 import { useGlobalContext } from '../context/context';
 import { DashboardTypes } from '../context/DashboardPathNames';
@@ -86,6 +87,16 @@ const SideBar = () => {
                             <div onClick={handleClose} className="menu-link">
                                 <RxAvatar className="menu-icon" />
                                 Avatars
+                            </div>
+                        </Link>
+
+                    </li>
+                    <li>
+
+                        <Link className="menu-link" to={'/admin/images'}>
+                            <div onClick={handleClose} className="menu-link">
+                                <BsFillImageFill className="menu-icon" />
+                                Default Images
                             </div>
                         </Link>
 
