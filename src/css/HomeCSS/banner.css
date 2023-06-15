@@ -49,3 +49,16 @@
         font-size: 15px;
     }
 }
+
+@media(max-width: 500px) {
+    .home-banner p {
+        position: absolute;
+        text-align: center;
+        bottom: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 15px;
+        font-family: var(--font);
+    }
+}

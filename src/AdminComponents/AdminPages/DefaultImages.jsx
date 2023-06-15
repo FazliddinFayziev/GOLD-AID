@@ -3,20 +3,26 @@ import "../../css/AdminCSS/images.css";
 import { useGlobalContext } from '../../context/context';
 import axios from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
-import { lessons_default } from '../../assets';
 import { BiMessageSquareEdit } from "react-icons/bi";
 
 const DefaultImages = () => {
     const { user, refreshAccessToken, isRefreshTokenExpired } = useGlobalContext();
     const [isLoading, setIsLoading] = useState(true);
+    const [showCard, setShowCard] = useState(false);
     const [refetch, setRefetch] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
-    const [preview, setPreview] = useState(null);
-    const [updateImages, setUpdateImages] = useState([]);
+    const [typeImages, setTypeImages] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     const [image, setImage] = useState([]);
     const navigate = useNavigate();
 
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setSelectedImage(file);
+    };
+
+    const { accessToken } = user;
 
 
     // UPLOAD Default Image
@@ -25,7 +31,8 @@ const DefaultImages = () => {
         try {
             const formData = new FormData();
             formData.append('image', selectedImage);
-            const res = await axios.post(`/admin/images/avatars`, formData, {
+            formData.append('type', typeImages);
+            const res = await axios.patch(`/admin/images/update/default/image`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -34,7 +41,6 @@ const DefaultImages = () => {
             console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setSelectedImage(null);
-            setPreview(null);
             setIsLoading(false);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
@@ -47,6 +53,20 @@ const DefaultImages = () => {
             }
         }
     };
+
+
+    // HANDLE UPDATE 
+
+    const handleUpdate = () => {
+        setShowCard(false)
+        UploadImage(accessToken)
+    }
+
+
+    // Set error Message false after 10 second
+    useEffect(() => {
+        setTimeout(() => setErrorMsg(''), 10000);
+    }, [errorMsg]);
 
 
 
@@ -129,6 +149,9 @@ const DefaultImages = () => {
     return (
         <div className="images-page">
             <h2>Default Images</h2>
+            <div className={errorMsg === 'Successfully uploaded ! ! !' ? 'add-lesson-add-error-green' : 'add-lesson-add-error'}>
+                {errorMsg}
+            </div>
             <div>
                 {isLoading ? (
                     <div className='loading-users'>
@@ -137,22 +160,38 @@ const DefaultImages = () => {
                 ) : (
                     <div className='default-images'>
 
+                        {showCard && (
+                            <div className='delete-confirmation-overlay'>
+                                <div className='delete-confirmation-card'>
+                                    <h3>Update Default Image</h3>
+                                    <div className='confirmation-buttons'>
+                                        <input type="file" onChange={handleFileChange} />
+                                        <button className='update-default-image' onClick={handleUpdate}>update</button>
+                                        <button className='confirm-delete-button' onClick={() => setShowCard(false)}>cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {image?.map((img) => {
-                            const { awsKey, role, _id } = img
+                            const { awsKey, role, _id, imageUrl } = img
                             return (
-                                <>
-                                    <div key={_id} className='image'>
-                                        <div key={_id}>
-                                            <img src={lessons_default} alt="default-image" />
-                                        </div>
-                                        <p>{role}</p>
-                                        <div className='edit-default-image-box'>
-                                            <div className='edit-default-image'>
-                                                <BiMessageSquareEdit fontSize={50} />
-                                            </div>
+
+                                <div key={_id} className='image'>
+                                    <div key={_id}>
+                                        <img src={imageUrl} alt="default-image" />
+                                    </div>
+                                    <p>{role}</p>
+                                    <div className='edit-default-image-box'>
+                                        <div onClick={() => {
+                                            setTypeImages(role);
+                                            setShowCard(true);
+                                        }} className='edit-default-image'>
+                                            <BiMessageSquareEdit fontSize={50} />
                                         </div>
                                     </div>
-                                </>
+                                </div>
+
                             )
                         })}
 
