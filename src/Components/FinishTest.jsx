@@ -53,7 +53,7 @@ function FinishTest({ score, level }) {
             ContinueButton();
             setIsLoading(false)
         } catch (err) {
-            console.log(err.response.data.err)
+            // console.log(err.response.data.err)
             setErr(err.response.data.err)
             setIsLoading(false)
         }

@@ -79,7 +79,7 @@ const SingleAdminLessonPage = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { lesson } = res.data
                 setSingleAdminLesson(lesson)
                 setIsLoading(false);
@@ -158,7 +158,7 @@ const SingleAdminLessonPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // refresh the token
@@ -218,7 +218,7 @@ const SingleAdminLessonPage = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setIsLoading(false)
         } catch (err) {
@@ -257,7 +257,7 @@ const SingleAdminLessonPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setIsLoading(false)
         } catch (err) {
@@ -295,7 +295,7 @@ const SingleAdminLessonPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setIsLoading(false)
         } catch (err) {
@@ -362,7 +362,7 @@ const SingleAdminLessonPage = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setRefetch(!refetch);
             setSmallLoading(false)
@@ -395,7 +395,7 @@ const SingleAdminLessonPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully Deleted!');
             setRefetch(!refetch);
             setSmallLoading(false);
@@ -429,7 +429,7 @@ const SingleAdminLessonPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully Deleted!');
             setRefetch(!refetch);
             setSmallLoading(false);
@@ -516,7 +516,7 @@ const SingleAdminLessonPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setQuestion('')
             setOption({ option_1: '', option_2: '', option_3: '', option_4: '' })
@@ -553,7 +553,7 @@ const SingleAdminLessonPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setSmallTimeLoading(false);
         } catch (err) {
@@ -591,7 +591,7 @@ const SingleAdminLessonPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setQuestion('');
             setOption({ option_1: '', option_2: '', option_3: '', option_4: '' });
@@ -633,7 +633,7 @@ const SingleAdminLessonPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully Deleted ! ! !');
             setSmallHomeLoading(false);
         } catch (err) {
@@ -653,21 +653,6 @@ const SingleAdminLessonPage = () => {
         setRefetch(!refetch)
         setDeleteAllHomeworks(false)
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

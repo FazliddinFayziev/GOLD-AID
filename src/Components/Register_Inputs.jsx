@@ -106,7 +106,7 @@ const Register_Inputs = () => {
                 }
             );
             setIsRegister(true)
-            console.log(response.data.isRegistered)
+            // console.log(response.data.isRegistered)
             navigate("/warning")
             setRegisterLoading(false)
         } catch (err) {

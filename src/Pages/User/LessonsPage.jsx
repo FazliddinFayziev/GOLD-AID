@@ -27,7 +27,7 @@ const LessonsPage = () => {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { lessons, currentScore, profilePicture } = res.data
                 const newArr = lessons.map((lesson) => {
                     const {
@@ -70,7 +70,7 @@ const LessonsPage = () => {
                 const token = await refreshAccessToken()
                 await fetchLessons(token)
                 if (!token) return navigate('/login')
-                console.log('Access token is fetching the courses')
+                // console.log('Access token is fetching the courses')
             }
             fetch()
         }, [])

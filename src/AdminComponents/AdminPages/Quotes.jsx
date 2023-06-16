@@ -32,7 +32,7 @@ const Quotes = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { quotes } = res.data
                 setQuotes(quotes);
                 setIsLoading(false);
@@ -99,7 +99,7 @@ const Quotes = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully Deleted ! ! !');
             setIsLoading(false);
         } catch (err) {

@@ -29,7 +29,7 @@ const AdminLessons = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { lessons } = res.data;
                 setLessons(lessons);
                 setIsLoading(false);

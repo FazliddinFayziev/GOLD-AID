@@ -30,7 +30,7 @@ const Admin = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { admin } = res.data
                 setAdminUser(admin)
                 setGetDashInfo(res.data);

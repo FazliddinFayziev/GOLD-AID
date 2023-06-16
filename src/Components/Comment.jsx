@@ -36,8 +36,8 @@ const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremai
                     },
                 }
             );
-            console.log(res.data);
-            console.log('Function ID', id);
+            // console.log(res.data);
+            // console.log('Function ID', id);
         } catch (err) {
             if (
                 err &&
@@ -65,8 +65,8 @@ const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremai
                     },
                 }
             );
-            console.log(res.data);
-            console.log('Function ID', id);
+            // console.log(res.data);
+            // console.log('Function ID', id);
         } catch (err) {
             if (
                 err &&
@@ -91,7 +91,7 @@ const Comment = ({ comment, likes, disLikes, id, userPicture, username, useremai
                     Authorization: `Bearer ${accessToken}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setDeletedMessage(res.data.msg);
         } catch (err) {
             if (

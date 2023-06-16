@@ -39,8 +39,8 @@ const Login_Inputs = () => {
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
-            console.log(response);
-            console.log(JSON.stringify(response));
+            // console.log(response);
+            // console.log(JSON.stringify(response));
             const accessToken = response?.data?.accessToken;
             const refreshToken = response?.data?.refreshToken;
             const isAdmin = response?.data?.isAdmin;

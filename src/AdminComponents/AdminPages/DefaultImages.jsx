@@ -38,7 +38,7 @@ const DefaultImages = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setSelectedImage(null);
             setIsLoading(false);
@@ -47,7 +47,7 @@ const DefaultImages = () => {
                 const refreshedToken = await refreshAccessToken(); // refresh the token
                 UploadImage(refreshedToken); // try the request again with the new token
             } else {
-                console.log(err.response.data.err);
+                // console.log(err.response.data.err);
                 setErrorMsg(err.response.data.err);
                 setIsLoading(false);
             }
@@ -85,7 +85,7 @@ const DefaultImages = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { images } = res.data
                 setImage(images);
                 setIsLoading(false);

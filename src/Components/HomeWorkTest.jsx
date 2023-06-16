@@ -48,7 +48,7 @@ const HomeWorkTest = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-            console.log(res.data);
+            // console.log(res.data);
             const { msg } = res.data
             if (msg === "Congrats, you completed the lesson!") {
                 navigate(`/${level}/success`)
@@ -79,7 +79,7 @@ const HomeWorkTest = () => {
                 chosenAnswer,
             };
         });
-        console.log(homework)
+        // console.log(homework)
         await SubmitHomeWork(accessToken, homework);
         setIsSubmitted(true)
         setIsLoading(false)

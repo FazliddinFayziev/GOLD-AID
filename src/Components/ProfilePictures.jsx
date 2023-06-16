@@ -27,7 +27,7 @@ const ProfilePictures = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-            console.log(res.data);
+            // console.log(res.data);
         } catch (err) {
             if (err.response.status === 400 && err.response.data.message === 'token is expired') {
                 const refreshedToken = await refreshAccessToken(); // refresh the token

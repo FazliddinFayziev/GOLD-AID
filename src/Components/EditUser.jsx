@@ -40,7 +40,7 @@ const EditUser = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-            console.log(res.data);
+            // console.log(res.data);
             setEditName(false)
             setNameLoading(false)
         } catch (err) {

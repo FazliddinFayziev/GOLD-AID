@@ -36,7 +36,7 @@ const AdminAvatars = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setSelectedAvatar(null);
             setPreview(null);
@@ -71,7 +71,7 @@ const AdminAvatars = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully Deleted ! ! !');
             setIsLoading(false);
         } catch (err) {
@@ -115,7 +115,7 @@ const AdminAvatars = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { avatars } = res.data
                 setAvatar(avatars);
                 setIsLoading(false);

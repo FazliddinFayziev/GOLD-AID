@@ -28,7 +28,7 @@ const VideoPage = () => {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { canComment, userId, profilePicture, lesson: { course, files, videos, lessonPicture, title, description, } } = res.data
                 const newArr = {
                     lessonId: lessonId,
@@ -64,7 +64,7 @@ const VideoPage = () => {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { comments, number } = res.data
                 const newCommments = {
                     Allcomments: comments,
@@ -98,7 +98,7 @@ const VideoPage = () => {
             const fetch = async () => {
                 const token = await refreshAccessToken();
                 if (!token) return navigate('/login');
-                console.log('Access token is fetching the courses');
+                // console.log('Access token is fetching the courses');
                 await fetchComments(token);
             };
             fetch()

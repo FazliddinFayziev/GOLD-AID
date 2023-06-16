@@ -28,7 +28,7 @@ const AdminLevels = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(res.data);
+                // console.log(res.data);
                 const { courses } = res.data;
                 const newArr = courses.map((course) => {
                     const {

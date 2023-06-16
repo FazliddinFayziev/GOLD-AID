@@ -30,7 +30,7 @@ const ForgetPassword = () => {
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
-            console.log(response);
+            // console.log(response);
             setMsg(response.data.msg);
             navigate('/goemail');
         } catch (err) {

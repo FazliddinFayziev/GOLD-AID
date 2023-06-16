@@ -74,7 +74,7 @@ const AddLesson = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setSelectedFile(null);
             setPreviewImage(null);
@@ -115,7 +115,7 @@ const AddLesson = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(res.data);
+            // console.log(res.data);
             setErrorMsg('Successfully uploaded ! ! !');
             setSelectedFile(null);
             setPreviewImage(null);
